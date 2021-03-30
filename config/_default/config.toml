@@ -68,8 +68,13 @@ paginate = 10
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
-        url = "/about"
+        url = "/about/"
 	  [[languages.en.menu.main]]
 	    identifier = "github"
 		  name = "Github"
 		  url = "https://github.com/DhruvPatel01/"
+    [[languages.en.menu.main]]
+	    identifier = "talks"
+		  name = "Talks"
+		  url = "/talks/"
+

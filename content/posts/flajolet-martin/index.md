@@ -23,13 +23,13 @@ def card(seq):
 
 But we might not have a required memory. Hence we need to make a tradeoff. Use little memory and get an approximate answer or use `O(|U|)` memory, and get the accurate answer. We will go with small memory.
 
-## Flajolet-Martin Algorithm (a hand wavy explanation)
+## Flajolet-Martin Algorithm (a handwavy explanation)
 
 The idea behind FM algorithm is that, each element generates an event. Same element has same event associated with it. So if `x_2 == x` generates `blahblah`, and `x_100 == x`, `blahblah` will be generated. Summary is that, you look for an event that is rare. Now if the events are generated from uniform distribution, as we see more and more "rare" events, we can be confident that we have seen "more" unique elements. 
 
 Let me give an example. Say our event is number of trailing zeros of the hash of incoming element. So if hash is `101010`, the trail length is 1. On average how many different hashes would you have to see to see a trail length of 1? It's a coin toss, on average you would have to toss a coin twice to get Heads. What if we wanted 5 heads and 1 tail? You would have to toss a coin 64 times to see that event.
 
- Wikipedia, Chapter-4 of Mining Massive Datasets, an original paper, and numerous other blogs describe this algorithm, so I won't. I tried to implement this algorithm using trail length as en event, but even with using 1000 hash functions I wasn't able to get reasonably close answer. So I will describe and implement, what I believe is a better version of the same algorithm.
+ Wikipedia, Chapter-4 of Mining Massive Datasets, an original paper, and numerous other blogs describe this algorithm, so I won't. I tried to implement this algorithm using trail length as an event, but even with using 1000 hash functions I wasn't able to get reasonably close answer. So I will describe and implement, what I believe is a better version of the same algorithm.
 
 Instead of trailing length, let our event generator be a function `f: U -> [0, 1]`. If function was chosen randomly from a family of eligible functions, we could expect that for any fixed stream, `<f(x_1), f(x_2), ...>` would be uniformly random between 0 and 1. Now our definition of "rarity" is the smallest of `f(x_i)`s. In a stream of 1000 elements, the smallest element you saw was 0.7?, I don't think there are that many elements. Even if there were 2 unique elements, we should have seen number `< 0.5` with 0.75 probability. On the other hand, in a stream of 1000 elements, the smallest element you saw was 0.01?, looks like there are many unique elements.
 
