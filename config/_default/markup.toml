@@ -7,7 +7,7 @@
     table = true
     taskList = true
     typographer = true
-	mathjax = true
+	  mathjax = true
   [markup.goldmark.parser]
     autoHeadingID = true
     autoHeadingIDType = "github"
