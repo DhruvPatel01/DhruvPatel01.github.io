@@ -1,7 +1,6 @@
 +++
 title = "How to find the number of unique elements in a stream?"
 date = "2021-03-29T14:36:16+05:30"
-author = "Dhruv Patel"
 cover = ""
 tags = ["python", "big data"]
 keywords = ["streaming algorithms", "randomized algorithms", "big data"]

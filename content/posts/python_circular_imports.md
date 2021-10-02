@@ -1,7 +1,6 @@
 +++
 title = "Python got me with circular imports!"
 date = "2021-04-14T21:51:48+05:30"
-author = "Dhruv Patel"
 cover = ""
 tags = ["python-gotcha", "python"]
 keywords = ["python circular imports"]
