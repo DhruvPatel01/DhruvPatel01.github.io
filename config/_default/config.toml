@@ -73,8 +73,4 @@ paginate = 10
 	    identifier = "github"
 		  name = "Github"
 		  url = "https://github.com/DhruvPatel01/"
-    [[languages.en.menu.main]]
-	    identifier = "talks"
-		  name = "Talks"
-		  url = "/talks/"
 
