@@ -6,7 +6,6 @@ tags = ["python", "hpc", "blas"]
 keywords = ["numpy", "python", "blas", "blis", "openblas"]
 description = "Can we do better than NumPy by trading generality? Answer is yes, by using BLAS and C extension."
 showFullContent = false
-draft = true
 +++
 
 ## Can we?
