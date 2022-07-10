@@ -1,7 +1,7 @@
 ---
 title: "Analysis (Not Rigorous) Notes"
 date: 2022-07-10T18:37:29+05:30
-draft: true
+draft: false 
 ---
 
 ## Definitions
