@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>optimization on Dhruv Patel</title><link>https://DhruvPatel01.github.io/tags/optimization/</link><description>Recent content in optimization on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Tue, 07 Dec 2021 16:28:35 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/tags/optimization/index.xml" rel="self" type="application/rss+xml"/><item><title>Why the solution to part 2(AoC21-Day7) works?</title><link>https://DhruvPatel01.github.io/posts/aoc/21/day7/</link><pubDate>Tue, 07 Dec 2021 16:28:35 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/aoc/21/day7/</guid><description>Problem We are given an array of integers, $x_1, x_2, \dots, x_N.$ We want to find an $x$ (also an integer) that minimizes some cost function.
+$$ argmin_x \sum_{i=1}^N f(x_i, x) $$
+Part 1 has a simple cost function, L1 distance. i.e. $f(x_i, x) = | x_i - x|$. Even with non-differentiability, there is a closed form solution to this function, a median. The proofs are there on the Internet, or the book Probability and Computing[1].</description><content>&lt;h2 id="problem">Problem&lt;/h2>
+&lt;p>We are given an array of integers, $x_1, x_2, \dots, x_N.$ We want to find an $x$ (also an integer) that minimizes some cost function.&lt;/p>
+&lt;p>$$
+argmin_x \sum_{i=1}^N f(x_i, x)
+$$&lt;/p>
+&lt;p>Part 1 has a simple cost function, L1 distance. i.e. $f(x_i, x) = | x_i - x|$. Even with non-differentiability, there is a closed form solution to this function, a median. The proofs are there on the Internet, or the book Probability and Computing[1].&lt;/p>
+&lt;p>Part 2 has a non-trivial cost function. If L1 between $x_i$ and $x$ is $d$, the cost function $f$ is defined as $f(x_i, x) = \sum_{i=1}^d i = \frac{d(d+1)}{2} \propto d^2+d.$ This cost function is deceptively similar to L2 (or L1)!&lt;/p>
+&lt;p>&lt;strong>Note:&lt;/strong> The code snippets and values in this blog are from input generated for me. I think Advent of Code generates different inputs for different people. So, you might not be able to replicate exact numbers here, but direction should be same.&lt;/p>
+&lt;h2 id="first-approach-to-the-solution">First approach to the solution.&lt;/h2>
+&lt;p>At first, I thought, this is some kind of combination of L1 and L2. Both L1 and L2 cost functions have a closed form solution (median and mean, respectively). Surely, this one has one too. After all, we are at day 7 only! I pulled pen and paper out, and started differentiating.&lt;/p>
+&lt;p>$$
+\begin{aligned}
+L(X, x) &amp;amp;= \sum_{i=1}^N f(x_i, x) \\
+&amp;amp;= \sum_{i=1}^N (x_i - x)^2 + |x_i - x| \\
+&amp;amp;= \sum_{i=1}^N (x_i^2 + x^2 - 2x_ix) + | x_i - x| \\
+\end{aligned}
+$$&lt;/p>
+&lt;p>$$
+\begin{aligned}
+\frac{d L(X, x)}{dx} &amp;amp;= \sum_{i=1}^N (2x - 2x_i) + sign(| x_i - x|) \\
+&amp;amp;= 2Nx - 2\sum_{i=1}^N x_i + \sum_{i=1}^N sign(| x_i - x|)
+= 0\end{aligned}
+$$&lt;/p>
+&lt;p>I got stuck here. How do I write above thing in the form $x = $ something?&lt;/p>
+&lt;h2 id="second-approach">Second approach&lt;/h2>
+&lt;p>After banging my head for some time, I changed the approach. It is obvious that the loss function is convex. It is a sum of quadratics and linear terms, each of them is convex. Sum of convex functions is convex. So a unique global minimum exists. But how do I find it in a closed form? Not all convex problems have closed form solutions, e.g. Logistic Regression.&lt;/p>
+&lt;p>Also, the solution $x$ has to lie between min(x) and max(x). Obviously! Maybe I can find answer visually?&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">cost&lt;/span>(X, x):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> d &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>abs(X&lt;span style="color:#f92672">-&lt;/span>x)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> d&lt;span style="color:#f92672">*&lt;/span>(d&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>s &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(X&lt;span style="color:#f92672">.&lt;/span>min(), X&lt;span style="color:#f92672">.&lt;/span>max(), &lt;span style="color:#ae81ff">10000&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>costs &lt;span style="color:#f92672">=&lt;/span> [cost(X, x)&lt;span style="color:#f92672">.&lt;/span>sum() &lt;span style="color:#66d9ef">for&lt;/span> x &lt;span style="color:#f92672">in&lt;/span> s]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>argmin &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>argmin(costs)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Following is the output plotted.&lt;/p>
+&lt;p>&lt;img src="images/day7_plot.png" alt="plot">&lt;/p>
+&lt;p>&lt;code>s[argmin]&lt;/code> gave me &lt;code>482.555&lt;/code>. Since required answer is integer and function is convex, I computed the cost of 482 and 483, and &lt;code>cost(X, 482) &amp;lt; cost(X, 483)&lt;/code>. And, that indeed, was the correct answer.&lt;/p>
+&lt;h2 id="ok-so-what">Ok, so what?&lt;/h2>
+&lt;p>Nothing exceptional has happened so far. I could have just used binary search, or could have called heavy guns like PyTorch or JAX to do the optimization.&lt;/p>
+&lt;p>The thing that surprised me was the statement &lt;code>print(X.mean())&lt;/code>. This printed &lt;code>482.59&lt;/code>. The mean is very close to the answer I got using Grid Search! How can I be sure if the mean is not the optimizer? But how can that be? Mean is the optimizer of the L2 loss function. Is this just a coincidence? Many people indeed came up with the solution by just computing the mean instead of doing a grid search. And it works!&lt;/p>
+&lt;p>To explain why this would work, let&amp;rsquo;s revisit the derivation. This time I will write it differently, so that I don&amp;rsquo;t need to worry about undefined differentiation at some points.&lt;/p>
+&lt;p>$$
+\begin{aligned}
+L(X, x) &amp;amp;=
+\sum_{i \; | \; x_i \, \le \, x} f(x_i, x) +&lt;br>
+\sum_{i \; | \; x_i \,&amp;gt; \,x} f(x_i, x) \\
+&amp;amp;= \sum_{i \; | \; x_i \, \le \, x} (x_i - x)^2 + x-x_i +
+\sum_{i \; | \; x_i \,&amp;gt; \,x} (x_i - x)^2 + x_i - x \\
+&amp;amp;= \sum_{i=1}^N (x_i^2 + x^2 - 2x_ix) +
+\sum_{i \; | \; x_i \, \le \, x} x-x_i +
+\sum_{i \; | \; x_i \,&amp;gt; \,x} x_i - x \\
+\end{aligned}
+$$&lt;/p>
+&lt;p>Now, this function is differentiable at all points.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\frac{d L(X, x)}{dx} &amp;amp;= \sum_{i=1}^N (2x - 2x_i) +
+\sum_{i \; | \; x_i \, \le \, x} 1 +
+\sum_{i \; | \; x_i \, &amp;gt; \, x} -1 \\
+&amp;amp;= 2Nx - 2\sum_{i=1}^N x_i + N_{\le} - N_{&amp;gt;} = 0
+\end{align*}
+$$&lt;/p>
+&lt;p>Here, I have defined $N_{\le}$ to be the number of elements less than or equal to $x$, and similarly $N_&amp;gt;$&lt;/p>
+&lt;p>$$
+\begin{align*}
+x &amp;amp;= \frac{2\sum_{i=1}^N x_i + N_&amp;gt; - N_\le}{2N} \\
+&amp;amp;= \bar{x} + \frac{1}{2} \frac{N_&amp;gt; - N_\le}{N}
+\end{align*}
+$$&lt;/p>
+&lt;p>We do not know the values of $N_&amp;gt;$ and $N_\le$. But, we can get bounds by doing worse case analysis.&lt;/p>
+&lt;p>In one case, $N_&amp;gt; = 0, N_\le = N$, which gives us $x \ge \bar{x} - \frac{1}{2}$. On other extreme, $N_&amp;gt; = N, N_\le = 0$, which gives us $x \le \bar{x} + \frac{1}{2}$.&lt;/p>
+&lt;p>So, $\bar{x} - \frac{1}{2} \le x \le \bar{x} + \frac{1}{2}$. This is the reason why looking at integers near to $\bar{x}$ as candidate solutions, was the correct thing to do.&lt;/p>
+&lt;h2 id="references">References&lt;/h2>
+&lt;ol>
+&lt;li>Mitzenmacher, Michael, and Eli Upfal. Probability and computing: Randomization and probabilistic techniques in algorithms and data analysis. Cambridge university press, 2017. (Chapter 3)&lt;/li>
+&lt;/ol></content></item></channel></rss>

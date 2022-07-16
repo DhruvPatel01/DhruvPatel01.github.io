@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python on Dhruv Patel</title><link>https://DhruvPatel01.github.io/tags/python/</link><description>Recent content in python on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Apr 2022 09:11:23 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Can we do better than NumPy in special cases?</title><link>https://DhruvPatel01.github.io/posts/matrix_vector/</link><pubDate>Sun, 10 Apr 2022 09:11:23 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/matrix_vector/</guid><description>Can we? Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from GitHub repository.
+Why would we? Good question. NumPy is great. It is fast. Beating it would be hard. Even if we beat it, will it be worth it? Probably not. You would quote Donald Knuth and say that premature optimization is the root of all evil. I am trying to justify this blog by asking What if this is not a premature optimization?</description><content>&lt;h2 id="can-we">Can we?&lt;/h2>
+&lt;p>Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from &lt;a href="https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec">GitHub repository.&lt;/a>&lt;/p>
+&lt;h2 id="why-would-we">Why would we?&lt;/h2>
+&lt;p>Good question. NumPy is great. It is fast. Beating it would be hard. Even if we beat it, will it be worth it? Probably not. You would quote Donald Knuth and say that premature optimization is the root of all evil. I am trying to justify this blog by asking What if this is not a premature optimization? I would have tried other optimizations, and now I would want to see if I can squeeze out anything else.&lt;/p>
+&lt;p>To quote Pavlo Andy, when money is involved, constants matter. Even if I can outperform NumPy by a measly 10%, it could be worth it at scale.&lt;/p>
+&lt;p>I will be focusing on a problem of matrix vector multiplication. This is not a toy problem. Many machine learning algorithms ultimately just boil down to computing cosine distance between candidate vectors with anchor vector, at least during inference. You can replace cosine with dot, if you store normalized vectors into your datastore. I will also assume that the number of rows in my matrix is &amp;lt;1000. This is also a reasonable assumption. We might not want to wait to batch user requests if we don&amp;rsquo;t want to sacrifice latencies.&lt;/p>
+&lt;h2 id="how-could-we">How could we?&lt;/h2>
+&lt;p>So, here is what I am thinking. &lt;code>np.dot&lt;/code> works, but it is general. It might need to check for continuity, data layout, etc. In production setting, I might know these variables a priory. What if I just skip these checks? Furthermore, I don&amp;rsquo;t know what happens under the hood in NumPy. Sure, &lt;code>np.show_config()&lt;/code> can tell me if NumPy was compiled with &lt;code>BLAS&lt;/code> or not. But, does it use all the optimizations available when I actually make a call to &lt;code>np.dot&lt;/code>?&lt;/p>
+&lt;p>I did try Numba. But, this is just a dot product. Nothing much complicated. Numba&amp;rsquo;s performance was no good than NumPy.&lt;/p>
+&lt;p>Similarly, just lowering the computation to C is not going to beat it. Surely, NumPy does the same thing, but in a more sophisticated manner. I will have to use some &lt;code>BLAS&lt;/code> implementation. I will report my numbers using &lt;code>BLIS&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>, though I have also tried OpenBLAS&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>, and the numbers were similar. I am picking BLIS over OpenBLAS, as I have some experience of using it in the course &lt;a href="https://www.cs.utexas.edu/users/flame/laff/pfhp/">Programming for high performance&lt;/a> from the authors of BLIS, and I think for this simple matrix vector computation, both should be equally optimized. I am not using MKL as I am using AMD processor, and I have read reports that MKL does not perform well on AMD.&lt;/p>
+&lt;p>My NumPy installation showed OpenBLAS in &lt;code>np.show_config()&lt;/code>. So this is a fair comparison.&lt;/p>
+&lt;h3 id="step-1-installing-blisor-openblas-or-something-else">Step 1: Installing BLIS(or OpenBLAS, or something else).&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/flame/blis.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd blis
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./configure -t openmp -p ~/blis auto
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make -j8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make check -j8
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="278416593" type="checkbox" checked />
+&lt;label for="278416593">
+&lt;span class="collapsable-code__language">bash&lt;/span>
+&lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-bash" >&lt;code>
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+make PREFIX=/home/dhruv/OpenBLAS
+make PREFIX=/home/dhruv/OpenBLAS install
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h3 id="step-2-write-and-compile-a-wrapper-around-blas">Step 2: Write and compile a wrapper around BLAS.&lt;/h3>
+&lt;p>As you might have noticed, BLAS routines are also general (hence the g in gemv). The &lt;code>bli_dgemv&lt;/code>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup> computes $y := \beta y + \alpha * trans(A)* conjugate(x)$. Yup, we could conjugate a vector even if we are working with real numbers! I am not sure how it works here, I am not going to use transpose and conjugate features anyway. In my case, $\beta = 0, \alpha=1$.&lt;/p>
+&lt;p>The general signature of &lt;code>bli_dgemv&lt;/code> is&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">bli_dgemv&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> trans_t transa,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> conj_t conjx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dim_t m,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dim_t n,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> alpha,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a, inc_t rsa, inc_t csa,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> x, inc_t incx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> beta,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> y, inc_t incy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> );
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>transa&lt;/code> tells blis if we want to transpose A before the multiplication. I don&amp;rsquo;t, so I will use &lt;code>BLIS_NO_TRANSPOSE&lt;/code>.&lt;/li>
+&lt;li>&lt;code>conjx&lt;/code> tells blis if we want to conjugate x. I don&amp;rsquo;t, so I will use &lt;code>BLIS_NO_CONJUGATE&lt;/code>.&lt;/li>
+&lt;li>m is the number of rows of A.&lt;/li>
+&lt;li>n is the number of columns of A.&lt;/li>
+&lt;li>$\alpha, \beta$ were explained earlier.&lt;/li>
+&lt;li>&lt;code>double *a&lt;/code>, is a pointer to the matrix A. I will have stored the matrix in row major order, so &lt;code>rsa&lt;/code>(row stride) will be &lt;code>n&lt;/code> and &lt;code>csa&lt;/code>(column stride) will be 1.&lt;/li>
+&lt;li>&lt;code>x&lt;/code> is a pointer to array where x, the vector we want to multiply A with, stays.&lt;/li>
+&lt;li>&lt;code>y&lt;/code> is a pointer to array where Ax will be saved.&lt;/li>
+&lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;div class="collapsable-code">
+&lt;input id="832475196" type="checkbox" />
+&lt;label for="832475196">
+&lt;span class="collapsable-code__language">c&lt;/span>
+&lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-c" >&lt;code>
+#include &amp;#34;blis.h&amp;#34;
+void blis_gemv_raw(int m, int n, double *c_matrix, double *x, double *y)
+{
+double one = 1.0;
+double zero = 0.0;
+bli_dgemv(BLIS_NO_TRANSPOSE, BLIS_NO_CONJUGATE,
+m, n, &amp;amp;one, c_matrix, n, 1,
+x, 1,
+&amp;amp;zero,
+y, 1);
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>To compile &lt;code>gemv_blis.c&lt;/code> into &lt;code>gemv_blis.o&lt;/code>, I used the following command, adapted from the PfHP course I mentioned earlier.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>gcc -c -O3 -m64 -mavx2 -std&lt;span style="color:#f92672">=&lt;/span>c99 -march&lt;span style="color:#f92672">=&lt;/span>native &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span>-fopenmp -D_POSIX_C_SOURCE&lt;span style="color:#f92672">=&lt;/span>200809L -I/home/dhruv/blis/include/blis &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span>gemv_blis.c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that though I am using &lt;code>-fopenmp&lt;/code>, I will not use multithreading, as multithreading is not much useful when we work with small data (as mentioned in the introduction.) For this, I will set &lt;code>OMP_NUM_THREADS=1&lt;/code>.&lt;/p>
+&lt;p>The installed NumPy also had detected &lt;code>AVX2&lt;/code> support. So I will be doing a fair comparison. For those who do not know AVX2 or SIMD, SIMD stands for single instruction multiple data. SIMD is the reason why naive lowering to C would not have worked. When used properly, AVX2 instruction can execute floating points operations on 256 bits at a time. We can pack four fp64 numbers in 256 bits, so this would theoretically increase our performance by 4x. BLIS leverages AVX2.&lt;/p>
+&lt;p>I am not writing the details for OpenBLAS wrapper and process of compiling it. If you are interested, please see &lt;code>Makefile&lt;/code> and &lt;code>gemv_openblas.c&lt;/code> files in the GitHub repository accompanying this post&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>.&lt;/p>
+&lt;h3 id="step-3-writing-the-c-extension">Step 3: Writing the C extension.&lt;/h3>
+&lt;p>We will need to call this wrapper function from Python. We can&amp;rsquo;t do that directly, as the wrapper expects pointers to raw memory. One alternative is to use &lt;code>ctypes&lt;/code>. I did try that, and converting NumPy arrays to appropriate pointers itself was taking more than the whole &lt;code>np.dot&lt;/code>. Instead, I am opting for writing a C extension to Python. I won&amp;rsquo;t be explaining the boilerplate code, please visit &lt;a href="https://docs.python.org/3/extending/extending.html">this link&lt;/a> which explains the process.&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="background-color:#3c3d38">&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#3c3d38">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> blis_gemv_raw(&lt;span style="color:#66d9ef">int&lt;/span> m, &lt;span style="color:#66d9ef">int&lt;/span> n, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>c_matrix, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>x, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>y);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> PyObject &lt;span style="color:#f92672">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blis_dgemv(PyObject &lt;span style="color:#f92672">*&lt;/span>self, PyObject &lt;span style="color:#f92672">*&lt;/span>args)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#f92672">*&lt;/span>a;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_ssize_t asize;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_buffer in_buf, out_buf;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in_buf.buf &lt;span style="color:#f92672">=&lt;/span> out_buf.buf &lt;span style="color:#f92672">=&lt;/span> NULL;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in_buf.len &lt;span style="color:#f92672">=&lt;/span> out_buf.len &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>PyArg_ParseTuple(args, &lt;span style="color:#e6db74">&amp;#34;s#s*s*&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>a, &lt;span style="color:#f92672">&amp;amp;&lt;/span>asize, &lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf, &lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (in_buf.buf) PyBuffer_Release(&lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (out_buf.buf) PyBuffer_Release(&lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> NULL;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> m, n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> out_buf.len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> n &lt;span style="color:#f92672">=&lt;/span> in_buf.len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> blis_gemv_raw(m, n, a, in_buf.buf, out_buf.buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_RETURN_NONE;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>In line 3, I declare the signature for &lt;code>blis_gemv_raw&lt;/code> defined and now residing in &lt;code>gemv_blis.o&lt;/code>. Next, I define a new function called &lt;code>blis_gemv&lt;/code>. This function will be called from Python with three arguments, namely matrix A, vector x, and vector y. I&amp;rsquo;m calling x as in_buf and y as out_buf. Once this parsing is successful, I compute m and n. m is computed using y and n is computed using x. Once I have all the arguments, I just call the wrapper around &lt;code>bli_dgemv&lt;/code>.&lt;/p>
+&lt;h3 id="step-4-compiling-the-c-extension">Step 4: Compiling the C extension.&lt;/h3>
+&lt;p>Finally, we need to create a shared object file that can be imported from Python. This is easy. Following is the &lt;code>setup.py&lt;/code> file.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> setuptools &lt;span style="color:#f92672">import&lt;/span> setup, Extension
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>module1 &lt;span style="color:#f92672">=&lt;/span> Extension(&lt;span style="color:#e6db74">&amp;#39;gemv&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sources&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;gemvmodule.c&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> extra_objects&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;gemv_blis.o&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;/home/dhruv/blis/lib/libblis.a&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> libraries&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;m&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;pthread&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> extra_compile_args&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;-fopenmp&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> extra_link_args&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;-fopenmp&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;-m64&amp;#39;&lt;/span>])
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>setup(name&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;gemv&amp;#39;&lt;/span>, version&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;0.1&amp;#39;&lt;/span>, ext_modules&lt;span style="color:#f92672">=&lt;/span>[module1])
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Generate the &lt;code>gemv.so&lt;/code> (or something similar, depending upon your OS), using the following command.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python setup.py build_ext --inplace
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Et, voila! Now we can just &lt;code>import gemv&lt;/code> and call the &lt;code>gemv.blis_dgemv&lt;/code> with three appropriately shaped ndarrays.&lt;/p>
+&lt;h2 id="benchmarking">Benchmarking&lt;/h2>
+&lt;p>I ran both NumPy and BLIS based implementation on batches of [10, 50, 100, 500, 1000] for vector size of 128. Following are the results.&lt;/p>
+&lt;p>&lt;img src="./benchmark.png" alt="benchmark_result.png">&lt;/p>
+&lt;p>Following table shows percentage improvement over &lt;code>np.dot&lt;/code>. This was computed as $\frac{\text{numpy_time} - \text{numpy_time}}{\text{numpy_time}}$.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>batch_size&lt;/th>
+&lt;th style="text-align:right">%improvement&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>10&lt;/td>
+&lt;td style="text-align:right">25.75 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>50&lt;/td>
+&lt;td style="text-align:right">26.21 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>100&lt;/td>
+&lt;td style="text-align:right">24.07 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>500&lt;/td>
+&lt;td style="text-align:right">11.06 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>1000&lt;/td>
+&lt;td style="text-align:right">12.22 %&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>For all the batch sizes, our implementation performs better than NumPy. When the batch size is ≤ 100, the improvements are around 25%. As the batch size increases, the percentage improvement decreases. This is expected, as more time would be taken by the computation instead of the overhead. Still, 10% is good! You can run the benchmark on your computer by running &lt;code>benchmark.py&lt;/code> from the GitHub repository.&lt;/p>
+&lt;p>However, call me greedy if you want, but maybe there is still a scope for improvement? gemv is a general implementation. Maybe just for the pure dot product, we can strip some code out? Worth experimenting. I&amp;rsquo;ll write a new blog if I do that. Meanwhile, if you have any suggestions, or comments, please drop me an email at &lt;code>hello@dxxxxxxxxl.dev&lt;/code>.&lt;/p>
+&lt;h2 id="references">References&lt;/h2>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>&lt;a href="https://github.com/flame/blis/">https://github.com/flame/blis/&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>&lt;a href="https://www.openblas.net/">https://www.openblas.net/&lt;/a>&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:3">
+&lt;p>&lt;a href="https://github.com/flame/blis/blob/master/docs/BLISTypedAPI.md#gemv">https://github.com/flame/blis/blob/master/docs/BLISTypedAPI.md#gemv&lt;/a>&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:4">
+&lt;p>&lt;a href="https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec">https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec&lt;/a>&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></content></item><item><title>Python got me with circular imports!</title><link>https://DhruvPatel01.github.io/posts/python_circular_imports/</link><pubDate>Wed, 14 Apr 2021 21:51:48 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/python_circular_imports/</guid><description>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.
+I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
+&lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="831976245" type="checkbox" />
+&lt;label for="831976245">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">main.py&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+import notmain
+var = {}
+def work():
+print(&amp;#34;Before:&amp;#34;, var)
+notmain.populate()
+print(&amp;#34;After: &amp;#34;, var)
+if __name__ == &amp;#39;__main__&amp;#39;:
+work()
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div class="collapsable-code">
+&lt;input id="826195473" type="checkbox" />
+&lt;label for="826195473">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">notmain.py&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+import main
+def populate():
+main.var[&amp;#39;answer&amp;#39;] = 42
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>What do you think will happen when I run &lt;code>python main.py&lt;/code>? Don&amp;rsquo;t know about you, but I imagined that after I call &lt;code>notmain.populate&lt;/code>, &lt;code>main.var&lt;/code> will have one key, value in it.&lt;/p>
+&lt;pre tabindex="0">&lt;code>Shell&amp;gt; python main.py
+Before: {}
+After: {}
+&lt;/code>&lt;/pre>&lt;p>But boy I was wrong. To explain what just happened, let me try to explain how Python imports work.&lt;/p>
+&lt;h2 id="how-does-python-import-work-a-simple-version">How does Python import work? (A simple version)&lt;/h2>
+&lt;p>In what follows, I only explain what happens when you use &lt;code>import x&lt;/code>. &lt;code>from x import y&lt;/code> is not explained here.&lt;/p>
+&lt;p>When you import a module, two steps happen.&lt;/p>
+&lt;ol>
+&lt;li>Search (done by finder)&lt;/li>
+&lt;li>Load (done by loader)&lt;/li>
+&lt;/ol>
+&lt;p>In the search step, &lt;code>sys.modules&lt;/code> is the first place checked. If the module is not in &lt;code>sys.modules&lt;/code>, Python will search for that module in other ways, current directory being one of them. Once the module(which was not in &lt;code>sys.modules&lt;/code>) is found, it will be added to &lt;code>sys.modules&lt;/code> before step 2 is executed. Thus if &lt;code>a&lt;/code> imports &lt;code>b&lt;/code>, and &lt;code>b&lt;/code> imports &lt;code>c&lt;/code>, and &lt;code>c&lt;/code> imports &lt;code>b&lt;/code>, &lt;code>b&lt;/code> will not be executed again.&lt;/p>
+&lt;p>If the module was not found in &lt;code>sys.modules&lt;/code>, the loading step will execute the module and the exported variables will be made available in the importee module.&lt;/p>
+&lt;p>One thing you should note is that everything in Python is an object. Even the imported module is. Try this,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> math&lt;span style="color:#f92672">,&lt;/span> types
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">assert&lt;/span> isinstance(math, types&lt;span style="color:#f92672">.&lt;/span>ModuleType)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Objects are stored somewhere in memory. Try this,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>print(hex(id(math)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># printed &amp;#39;0x7f7e21029c20&amp;#39; on my machine&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>So everything in the object module will be available as attributes.&lt;/p>
+&lt;p>Now that we know how import works, let&amp;rsquo;s try to see what happened with my code.&lt;/p>
+&lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
+&lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="853462179" type="checkbox" />
+&lt;label for="853462179">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">main.py&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+import notmain
+var = {}
+print(&amp;#34;In Main: &amp;#34;, hex(id(var)))
+def work():
+print(&amp;#34;Before:&amp;#34;, var, &amp;#39;at&amp;#39;, hex(id(var)))
+notmain.populate()
+print(&amp;#34;After: &amp;#34;, var, &amp;#39;at&amp;#39;, hex(id(var)))
+if __name__ == &amp;#39;__main__&amp;#39;:
+work()
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div class="collapsable-code">
+&lt;input id="186945273" type="checkbox" />
+&lt;label for="186945273">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">notmain.py&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+import main
+def populate():
+main.var[&amp;#39;answer&amp;#39;] = 42
+print(&amp;#39;In not main: &amp;#39;, main.var, &amp;#39;at&amp;#39;, hex(id(main.var)))
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;pre tabindex="0">&lt;code>Shell&amp;gt; python main.py
+In Main: 0x7f64e4778cc0
+In Main: 0x7f64e490c6c0
+Before: {} at 0x7f64e490c6c0
+In not main: {&amp;#39;answer&amp;#39;: 42} at 0x7f64e4778cc0
+After: {} at 0x7f64e490c6c0
+&lt;/code>&lt;/pre>&lt;p>First of all notice that &lt;code>In Main: ...&lt;/code> line is printed two times. In the previous section I did tell that &lt;strong>if the module is found in &lt;code>sys.modules&lt;/code>&lt;/strong>, the module will not be executed again. The problem is that &lt;code>main.py&lt;/code> is only imported once, but executed twice.&lt;/p>
+&lt;p>Here is what happens.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>python main.py&lt;/code> starts executing.&lt;/li>
+&lt;li>The first line is &lt;code>import notmain&lt;/code>. Since &lt;code>notmain&lt;/code> is not in &lt;code>sys.modules&lt;/code> yet, it will be executed next. Notice that &lt;code>main&lt;/code> was never imported. So &lt;code>sys.modules&lt;/code> does not have an entry for &lt;code>main&lt;/code>.&lt;/li>
+&lt;li>Control goes to &lt;code>notmain.py&lt;/code>. First line of it is &lt;code>import main&lt;/code>, and as &lt;code>main&lt;/code> is not in the cache, finder adds it into &lt;code>sys.modules&lt;/code> and then loader starts executing &lt;code>main.py&lt;/code> (again!).&lt;/li>
+&lt;li>Control goes to &lt;code>main.py&lt;/code>. Since the first line is &lt;code>import notmain&lt;/code> and &lt;code>notmain&lt;/code> &lt;strong>is in&lt;/strong> the &lt;code>sys.modules&lt;/code> now, there is no effect.&lt;/li>
+&lt;li>Next line in &lt;code>main.py&lt;/code> creates a variable &lt;code>var@0x7f64e4778cc0&lt;/code>.&lt;/li>
+&lt;li>Next few lines defines a function &lt;code>work&lt;/code>.&lt;/li>
+&lt;li>The &lt;code>__name__ == '__main__'&lt;/code> condition is false, as at the moment &lt;code>__name__ == 'main'&lt;/code>&lt;/li>
+&lt;li>Control goes back to &lt;code>notmain.py&lt;/code>. Attributes from the &lt;code>main&lt;/code> module will now be accessible.&lt;/li>
+&lt;li>&lt;code>populate&lt;/code> is defined in &lt;code>notmain&lt;/code>.&lt;/li>
+&lt;li>Control comes back to &lt;code>main&lt;/code>.&lt;/li>
+&lt;li>Variable &lt;code>var&lt;/code> is created (again!) and stored at &lt;code>0x7f64e490c6c0&lt;/code>. Notice that there are two &lt;code>var&lt;/code> variables. &lt;code>notmain&lt;/code> has no idea that there is another &lt;code>var&lt;/code> at &lt;code>0x7f64e490c6c0&lt;/code>, it still thinks that &lt;code>main.var&lt;/code> is at &lt;code>0x7f64e4778cc0&lt;/code>.&lt;/li>
+&lt;li>&lt;code>work&lt;/code> function is defined.&lt;/li>
+&lt;li>&lt;code>__name__ == '__main__'&lt;/code> condition evaluates to true this time. So &lt;code>work&lt;/code> is called, which calls &lt;code>notmain.populate&lt;/code>.&lt;/li>
+&lt;li>&lt;code>notmain.populate&lt;/code> adds &lt;code>answer&lt;/code> key into &lt;code>main.var&lt;/code> and not &lt;code>__main__.var&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="629753148" type="checkbox" />
+&lt;label for="629753148">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">really_main.py&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+import main
+main.work()
+# no change in other files
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;pre tabindex="0">&lt;code>Shell&amp;gt; python really_main.py
+Before: {}
+After: {&amp;#39;answer&amp;#39;: 42}
+&lt;/code>&lt;/pre>&lt;p>Whooo! That worked.&lt;/p>
+&lt;h2 id="comments">Comments?&lt;/h2>
+&lt;p>You have any doubts? Any feedbacks? Please reach out to me at &lt;code>hello at domain&lt;/code> with subject line &lt;code>Comment: Post title&lt;/code>. I&amp;rsquo;ll get back to you as soon as possible.&lt;/p></content></item><item><title>NotAeroCalc Part 1: What is NotAeroCalc and how to use it?</title><link>https://DhruvPatel01.github.io/posts/notaerocalc/notaerocalc_part1/</link><pubDate>Sat, 03 Apr 2021 18:04:02 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/notaerocalc/notaerocalc_part1/</guid><description>I am a Computer Engineer by education and by training. Luckily, we computer engineers do not have to deal with different units. All our units are power of 2. We have sensible names, Kilo, Mega, Giga, you get it. When we get unlucky, there could be a confusion of whether Kilo in the context is $ 2^{10} $ or $ 10^3 $. But that is it.
+But in other engineering (and science) branches this is not the case.</description><content>&lt;p>I am a Computer Engineer by education and by training. Luckily, we computer engineers do not have to deal with different units. All our units are power of 2. We have sensible names, Kilo, Mega, Giga, you get it. When we get unlucky, there could be a confusion of whether Kilo in the context is $ 2^{10} $ or $ 10^3 $. But that is it.&lt;/p>
+&lt;p>But in other engineering (and science) branches this is not the case. A while ago I was taking a course &amp;ldquo;Introduction Aeronautical Engineering&amp;rdquo; on edX (the course is from TUDelft). Honestly, the homework problems there were annoying, at least for me. I can understand that students in the Aero department might need to practice the conversion process.&lt;/p>
+&lt;p>There is a &lt;code>Newton&lt;/code>, which is also $\frac{kg * m}{s^2}$. There is an imperial unit for length called &lt;code>foot&lt;/code>, but you &lt;strong>have to&lt;/strong> convert that into SI units to be compatible with other units in the formula, because the constants in the formula use &lt;code>m&lt;/code>. Then there is &lt;code>Celsius&lt;/code> to &lt;code>Kelvin&lt;/code> mapping. You either have to memorize the conversion factors, or you have to make a long list of the conversion factors.&lt;/p>
+&lt;p>Something had to be done. And I was also looking for something to do on the weekends. So I am working on &lt;a href="https://github.com/DhruvPatel01/NotAeroCalc/">NotAeroCalc&lt;/a>. I kept Aero in because my primary aim is to expedite solving homework problems in that course. But many parts of the app are general and should be usable outside Aerospace engineering.&lt;/p>
+&lt;p>Rather than explaining what NotAeroCalc does, let me show you it in action.&lt;/p>
+&lt;script id="asciicast-sYPyE91MGr9QOamVwnYThzlZN" src="https://asciinema.org/a/sYPyE91MGr9QOamVwnYThzlZN.js" async>&lt;/script>
+&lt;p>You might have noticed a few things. First there is a need for &lt;code>*&lt;/code> between quantity and its unit. I designed it this way because it simplifies the grammar. Another thing is that units are not pluralized, e.g. it is &lt;code>32000 foot&lt;/code> and not &lt;code>32000 feet&lt;/code>. If you need your answer in SI units just use &lt;code>expression in si&lt;/code>.&lt;/p>
+&lt;p>In the backend I am using an amazing Python library called &lt;a href="https://www.astropy.org/">Astropy&lt;/a> for conversion and &lt;a href="https://github.com/dabeaz/ply">Ply&lt;/a> for parsing. You can use all the units available in Astropy, the list can be found &lt;a href="https://docs.astropy.org/en/stable/units/">here&lt;/a>.&lt;/p>
+&lt;p>You can also use math constants like &lt;code>pi&lt;/code> and &lt;code>e&lt;/code>. Internally NotAeroCalc looks for unresolved names in &lt;code>math&lt;/code> library in Python. So if you haven&amp;rsquo;t created a &lt;code>pi&lt;/code> variable, &lt;code>math.pi&lt;/code> will be used.&lt;/p>
+&lt;h2 id="commands-in-notaerocalc">Commands in NotAeroCalc&lt;/h2>
+&lt;dl>
+&lt;dt>&lt;code>del x&lt;/code>&lt;/dt>
+&lt;dd>deletes the variable named &lt;code>x&lt;/code> if defined. If not defined ignores the command.&lt;/dd>
+&lt;dt>&lt;code>variables&lt;/code>&lt;/dt>
+&lt;dd>lists all the variables defined in the current session.&lt;/dd>
+&lt;/dl>
+&lt;h2 id="problem-solving-with-notaerocalc">Problem Solving with NotAeroCalc&lt;/h2>
+&lt;p>Let&amp;rsquo;s try to solve one problem using NotAeroCalc. Below is one of the homework problems from the course.&lt;/p>
+&lt;pre tabindex="0">&lt;code>An aircraft flies at an altitude of 30,000 feet.
+Determine the air temperature (in [K]),
+air pressure (in [Pa]) and air density (in [kg/m3])
+at this altitude, according to the standard atmosphere.
+&lt;/code>&lt;/pre>&lt;p>Following are the variables given.&lt;/p>
+&lt;pre tabindex="0">&lt;code>g = 9.80665 * m/s/s
+T0 = 15*Celsius in Kelvin
+P0 = 1013.25 * hectopascal
+h = 30000 * foot in m
+a = -6.5 * Kelvin/km
+rho0 = 1.225 * kg/m^3
+&lt;/code>&lt;/pre>&lt;p>Notice that some variables are given in &lt;code>m&lt;/code> whereas others are in &lt;code>km&lt;/code>. A good thing about using NotAeroCalc is that generally you do not need to worry about this discrepancy. However you can always use &lt;code>expr in si&lt;/code> to have unified values.&lt;/p>
+&lt;p>Since 30,000 foot is in troposphere, we can use $ T_1 = T_0 + a*h $ formula to compute the temperature at 32000 foot.&lt;/p>
+&lt;p>Once we know the temperature, we can use the following formula to compute the air density.&lt;/p>
+&lt;p>$$
+\frac{\rho_0}{\rho_1} = {\left( \frac{T_1}{T_0} \right)} ^{\frac{g}{R * a} - 1}
+$$&lt;/p>
+&lt;p>There are few things about &lt;code>^&lt;/code> operator in NotAeroCalc that you should keep in mind.&lt;/p>
+&lt;ul>
+&lt;li>In &lt;code>a^b&lt;/code>, &lt;code>b&lt;/code> has to be unit less. So expression like &lt;code>2^(3*m/(3*m))&lt;/code> is allowed, but &lt;code>2^(3*m/3*m)&lt;/code> is not, as it simplifies to &lt;code>2^(1*m^2)&lt;/code>.&lt;/li>
+&lt;li>By default the units are not simplified, you might have to use &lt;code>a^(b in si)&lt;/code> if units in b cancel out.&lt;/li>
+&lt;li>&lt;code>2^((3*m)/(300*cm))&lt;/code> will give you an error. Use &lt;code>2^((3*m)/(300*cm) in si)&lt;/code> for now. I might fix this later.&lt;/li>
+&lt;li>If &lt;code>a&lt;/code> has units, &lt;code>b&lt;/code> has to be like an integer. &lt;code>b = 3.0&lt;/code> is allowed, but &lt;code>b = 3.14&lt;/code> is not. So &lt;code>(3*m)^2.0&lt;/code> evaluates to &lt;code>9*m^2&lt;/code>.&lt;/li>
+&lt;li>Finally, if &lt;code>a&lt;/code> does not have units, any power is allowed.&lt;/li>
+&lt;/ul>
+&lt;p>In the above density formula, the exponent is actually unit less. So everything works out.&lt;/p>
+&lt;p>See the following recording for the whole solution.&lt;/p>
+&lt;script id="asciicast-oTGxU3t8WOPyI6orh3W0TBMfh" src="https://asciinema.org/a/oTGxU3t8WOPyI6orh3W0TBMfh.js" async>&lt;/script>
+&lt;h2 id="what-is-next">What is next?&lt;/h2>
+&lt;p>As far as blogging goes, I plan to write the details of how NotAeroCalc was implemented, the nitty gritty details of Lex and Yacc, in the next part. It is not that difficult really.&lt;/p>
+&lt;p>In the NotAeroCalc itself, I plan to add some features like having a database of formulas, and solving for a particular variables using other user defined variables.&lt;/p>
+&lt;p>GitHub repository for this project can be found &lt;a href="https://github.com/DhruvPatel01/NotAeroCalc/">here&lt;/a>.&lt;/p></content></item><item><title>How to find the number of unique elements in a stream?</title><link>https://DhruvPatel01.github.io/posts/flajolet-martin/</link><pubDate>Mon, 29 Mar 2021 14:36:16 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/flajolet-martin/</guid><description>So, I&amp;rsquo;ve been reading about streaming algorithms. Seems like the journey to streaming algorithms(aka Algorithms for Big Data) starts with the Flajolet-Martin algorithm.
+The Problem We are given a sequence &amp;lt;u_0, u_1, u_2, u_3, ... , u_n&amp;gt; of n elements. Each u_i comes from the fixed set U of some finite size. We want to see how many elements are unique.
+A simple Python code like below can solve the problem, if we have required memory.</description><content>&lt;p>So, I&amp;rsquo;ve been reading about streaming algorithms. Seems like the journey to streaming algorithms(aka Algorithms for Big Data) starts with the Flajolet-Martin algorithm.&lt;/p>
+&lt;h2 id="the-problem">The Problem&lt;/h2>
+&lt;p>We are given a sequence &lt;code>&amp;lt;u_0, u_1, u_2, u_3, ... , u_n&amp;gt;&lt;/code> of &lt;code>n&lt;/code> elements. Each &lt;code>u_i&lt;/code> comes from the fixed set &lt;code>U&lt;/code> of some finite size. We want to see how many elements are unique.&lt;/p>
+&lt;p>A simple Python code like below can solve the problem, if we have required memory.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">card&lt;/span>(seq):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> len(set(seq))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>But we might not have a required memory. Hence we need to make a tradeoff. Use little memory and get an approximate answer or use &lt;code>O(|U|)&lt;/code> memory, and get the accurate answer. We will go with a small memory.&lt;/p>
+&lt;h2 id="flajolet-martin-algorithm-a-handwavy-explanation">Flajolet-Martin Algorithm (a handwavy explanation)&lt;/h2>
+&lt;p>The idea behind the FM algorithm is that each element generates an event. Same element has the same event associated with it. So if &lt;code>x_2 == x&lt;/code> generates &lt;code>blahblah&lt;/code>, and &lt;code>x_100 == x&lt;/code>, &lt;code>blahblah&lt;/code> will be generated. Summary is that you look for an event that is rare. Now if the events are generated from uniform distribution, as we see more and more &amp;ldquo;rare&amp;rdquo; events, we can be confident that we have seen &amp;ldquo;more&amp;rdquo; unique elements.&lt;/p>
+&lt;p>Let me give an example. Say our event is the number of trailing zeros of the hash of the incoming element. So if the hash is &lt;code>101010&lt;/code>, the trail length is 1. On average how many different hashes would you have to see to see a trail length of 1? It&amp;rsquo;s a coin toss, on average you would have to toss a coin twice to get Heads. What if we wanted 5 heads and 1 tail? You would have to toss a coin 64 times to see that event.&lt;/p>
+&lt;p>Wikipedia, Chapter-4 of Mining Massive Datasets, an original paper, and numerous other blogs describe this algorithm, so I won&amp;rsquo;t. I tried to implement this algorithm using the trail length as an event, but even with using 1000 hash functions I wasn&amp;rsquo;t able to get a reasonably close answer. So I will describe and implement what I believe is a better version of the same algorithm.&lt;/p>
+&lt;p>Instead of trailing length, let our event generator be a function &lt;code>f: U -&amp;gt; [0, 1]&lt;/code>. If a function was chosen randomly from a family of eligible functions, we could expect that for any fixed stream, &lt;code>&amp;lt;f(x_1), f(x_2), ...&amp;gt;&lt;/code> would be uniformly random between 0 and 1. Now our definition of &amp;ldquo;rarity&amp;rdquo; is the smallest of &lt;code>f(x_i)&lt;/code>s. In a stream of 1000 elements, the smallest element you saw was 0.7?, I don&amp;rsquo;t think there are that many elements. Even if there were 2 unique elements, we should have seen the numbers &lt;code>&amp;lt; 0.5&lt;/code> with 0.75 probability. On the other hand, in a stream of 1000 elements, the smallest element you saw was 0.01?, looks like there are many unique elements.&lt;/p>
+&lt;p>What exactly is many? Well as per this algorithm, on average, if the smallest number was &lt;code>s&lt;/code>, there were &lt;code>1/s - 1&lt;/code> unique elements in the stream. To answer why exactly this number, you might want to read &lt;a href="https://www.sketchingbigdata.org/fall20/lec/notes.pdf">these lecture notes.&lt;/a> Now this is not an exact answer, but with high probability it is close to the correct answer. If we want to be more certain, compute the number using different randomly picked functions then compute the average. Using the Law of Large numbers, as more and more experiments we do, the average gets closer and closer to the correct answer.&lt;/p>
+&lt;h2 id="implementation">Implementation&lt;/h2>
+&lt;h3 id="ingredients">Ingredients&lt;/h3>
+&lt;ol>
+&lt;li>A stream, (you know, to test the implementation.)&lt;/li>
+&lt;li>Around say a thousand, randomly picked functions of the form &lt;code>U -&amp;gt; [0, 1]&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>For the stream, I will use &lt;a href="https://en.wikipedia.org/wiki/War_and_Peace">Leo Tolstoy&amp;rsquo;s War and Peace&lt;/a>. You can download one from &lt;a href="https://www.gutenberg.org/files/2600/2600-0.txt">Project Gutenberg&lt;/a>. I will use &lt;a href="https://spacy.io/">spaCy&lt;/a> to preprocess the text.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> spacy.lang.en &lt;span style="color:#f92672">import&lt;/span> English
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">with&lt;/span> open(&lt;span style="color:#e6db74">&amp;#39;./data/war_and_peace.txt&amp;#39;&lt;/span>) &lt;span style="color:#66d9ef">as&lt;/span> f:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> data &lt;span style="color:#f92672">=&lt;/span> f&lt;span style="color:#f92672">.&lt;/span>read()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>nlp &lt;span style="color:#f92672">=&lt;/span> English(max_length&lt;span style="color:#f92672">=&lt;/span>len(data))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>doc &lt;span style="color:#f92672">=&lt;/span> nlp(data)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stream &lt;span style="color:#f92672">=&lt;/span> [token&lt;span style="color:#f92672">.&lt;/span>lower_ &lt;span style="color:#66d9ef">for&lt;/span> token &lt;span style="color:#f92672">in&lt;/span> doc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">not&lt;/span> (token&lt;span style="color:#f92672">.&lt;/span>is_punct &lt;span style="color:#f92672">or&lt;/span> token&lt;span style="color:#f92672">.&lt;/span>is_space)]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#e6db74">&amp;#39; &amp;#39;&lt;/span>&lt;span style="color:#f92672">.&lt;/span>join(stream[&lt;span style="color:#ae81ff">1000&lt;/span>:&lt;span style="color:#ae81ff">1010&lt;/span>]))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>speaker was the well known anna pávlovna schérer maid of
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To pick a function, first I generate 64 random bits, and then xor them with &lt;code>hash(token)&lt;/code> which is also 64 bit long on modern machines. First I will write a function that can generate many such &amp;ldquo;functions&amp;rdquo; in a batch.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> random
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">initialise_hash_fn&lt;/span>(n, seed&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">42&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> masks &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(n):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> random&lt;span style="color:#f92672">.&lt;/span>seed(seed&lt;span style="color:#f92672">+&lt;/span>i)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> masks&lt;span style="color:#f92672">.&lt;/span>append(random&lt;span style="color:#f92672">.&lt;/span>getrandbits(&lt;span style="color:#ae81ff">64&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> masks
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>masks &lt;span style="color:#f92672">=&lt;/span> initialise_hash_fn(&lt;span style="color:#ae81ff">1000&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>But xor gives me a number between 0 and 2^64-1, I need between 0 and 1. So will have to divide the resultant hash by 2^64-1.&lt;/p>
+&lt;p>Finally, I process the stream. I&amp;rsquo;ve a thousand masks for thousand random functions.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get_estimates&lt;/span>(masks, stream):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> masks &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array(masks, dtype&lt;span style="color:#f92672">=&lt;/span>np&lt;span style="color:#f92672">.&lt;/span>uint64)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> stream &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array([hash(t) &lt;span style="color:#66d9ef">for&lt;/span> t &lt;span style="color:#f92672">in&lt;/span> stream], dtype&lt;span style="color:#f92672">=&lt;/span>np&lt;span style="color:#f92672">.&lt;/span>uint64)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mx &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>iinfo(np&lt;span style="color:#f92672">.&lt;/span>uint64)&lt;span style="color:#f92672">.&lt;/span>max
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mn &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>ones(len(masks))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> element &lt;span style="color:#f92672">in&lt;/span> stream:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> s &lt;span style="color:#f92672">=&lt;/span> (masks &lt;span style="color:#f92672">^&lt;/span> element)&lt;span style="color:#f92672">/&lt;/span>mx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mn &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>where(mn &lt;span style="color:#f92672">&amp;lt;&lt;/span> s, mn, s)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> mn
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>estimates_raw &lt;span style="color:#f92672">=&lt;/span> get_estimates(masks, stream)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>estimate_raw &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>mean(estimates_raw)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">/&lt;/span>estimate_raw &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, len(set(stream)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># prints, 18117.553711596098 17982&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>So the actual answer is 17,982 and the estimated answer is 18,117. Error of around 150, not bad!&lt;/p>
+&lt;p>We can also see the effect of using more and more random functions below.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>cumsum &lt;span style="color:#f92672">=&lt;/span> estimates_raw&lt;span style="color:#f92672">.&lt;/span>cumsum()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>z &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>arange(len(cumsum)) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>estimates &lt;span style="color:#f92672">=&lt;/span> cumsum&lt;span style="color:#f92672">/&lt;/span>z
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>estimates &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">/&lt;/span>estimates &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(z, estimates)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>axhline(true_n_uniq, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;r&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/cumulative_effects.png" alt="plot">&lt;/p></content></item></channel></rss>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://DhruvPatel01.github.io/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Jul 2022 18:37:29 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Analysis (Not Rigorous) Notes</title><link>https://DhruvPatel01.github.io/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
+&lt;dl>
+&lt;dt>Interior Point $x \in C$&lt;/dt>
+&lt;dd>A point is an interior point if we can find &lt;strong>a&lt;/strong> ball around x which is completely inside C.&lt;/dd>
+&lt;dt>Open Set&lt;/dt>
+&lt;dd>A set is open, if all points are interior points.&lt;/dd>
+&lt;dt>Closed Set&lt;/dt>
+&lt;dd>A set is closed, if its complement is open.&lt;/dd>
+&lt;dt>Closure&lt;/dt>
+&lt;dd>Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure.&lt;/dd>
+&lt;dd>
+&lt;p>A point is in a closure, if for &lt;strong>every&lt;/strong> $\epsilon$, you can find a point from the original set within $\epsilon$ distance.&lt;/p>
+&lt;/dd>
+&lt;dt>Boundary&lt;/dt>
+&lt;dd>take the closure and remove the interior.&lt;/dd>
+&lt;/dl>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>For example, closure of (-1, 1) in real line is given by complement of the interior of the (-inf, 1] U [1, inf). Which is the complement of (-inf, 1) U (1, inf), which is [-1, 1].&lt;/p></content></item></channel></rss>
