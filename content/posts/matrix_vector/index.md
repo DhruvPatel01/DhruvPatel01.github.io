@@ -183,7 +183,7 @@ I ran both NumPy and BLIS based implementation on batches of [10, 50, 100, 500, 
 
 ![benchmark_result.png](./benchmark.png)
 
-Following table shows percentage improvement over `np.dot`. This was computed as $\frac{\text{numpy_time} - \text{numpy_time}}{\text{numpy_time}}$.
+Following table shows percentage improvement over `np.dot`. This was computed as $\frac{\text{numpy\\_time} - \text{my\\_time}}{\text{numpy\\_time}}$.
 
 | batch_size | %improvement |
 |------------|--------------:|

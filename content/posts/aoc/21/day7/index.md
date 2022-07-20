@@ -79,8 +79,7 @@ To explain why this would work, let's revisit the derivation. This time I will w
 $$
 \begin{aligned}
 L(X, x) &=
-\sum_{i \\; | \\; x_i  \\, \le \\, x} f(x_i, x) +  
-\sum_{i \\; | \\; x_i  \\,> \\,x} f(x_i, x) \\\\
+\sum_{i \\; | \\; x_i  \\, \le \\, x} f(x_i, x) +  \sum_{i \\; | \\; x_i  \\,> \\,x} f(x_i, x) \\\\
 &= \sum_{i \\; | \\; x_i  \\, \le \\, x} (x_i - x)^2 + x-x_i +
 \sum_{i \\; | \\; x_i  \\,> \\,x} (x_i - x)^2 + x_i - x \\\\
 &= \sum_{i=1}^N (x_i^2 + x^2 - 2x_ix) + 
