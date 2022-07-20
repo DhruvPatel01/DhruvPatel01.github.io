@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://DhruvPatel01.github.io/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Jul 2022 18:37:29 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Analysis (Not Rigorous) Notes</title><link>https://DhruvPatel01.github.io/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://DhruvPatel01.github.io/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sat, 16 Jul 2022 09:36:38 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Convex Optimization</title><link>https://DhruvPatel01.github.io/notes/maths/convex_optimization/</link><pubDate>Sat, 16 Jul 2022 09:36:38 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/convex_optimization/</guid><description>Note: These notes are not mathematically rigorous. These are meant for quick reference, please read the Convex Optimization book from Boyd and Vandenberghe for more rigorous treatment.
+Chapter 2: Convex Sets Sets Affine Sets Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.
+Draw a line passing through any two points, if the whole line is in the set, the set is affine.
+Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.</description><content>&lt;p>Note:
+These notes are not mathematically rigorous. These are meant for quick reference, please read the &lt;a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization book&lt;/a> from Boyd and Vandenberghe for more rigorous treatment.&lt;/p>
+&lt;h1 id="chapter-2-convex-sets">Chapter 2: Convex Sets&lt;/h1>
+&lt;h2 id="sets">Sets&lt;/h2>
+&lt;h3 id="affine-sets">Affine Sets&lt;/h3>
+&lt;p>Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.&lt;/p>
+&lt;p>Draw a line passing through any two points, if the whole line is in the set, the set is affine.&lt;/p>
+&lt;p>Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.&lt;/p>
+&lt;dl>
+&lt;dt>Affine Hull of C (&lt;strong>aff&lt;/strong> C)&lt;/dt>
+&lt;dd>Smallest affine set, which contains C.&lt;/dd>
+&lt;dt>Affine Dimension&lt;/dt>
+&lt;dd>Dimension of an affine hull.&lt;/dd>
+&lt;dt>Relative Interior&lt;/dt>
+&lt;dd>&lt;strong>relint&lt;/strong> C = {x ∈ C | B(x, r) ∩ aff C ⊆ C for some r &amp;gt; 0}.&lt;/dd>
+&lt;dt>Boundary&lt;/dt>
+&lt;dd>&lt;strong>cl&lt;/strong> C - &lt;strong>relint&lt;/strong> C&lt;/dd>
+&lt;/dl>
+&lt;h4 id="example">Example&lt;/h4>
+&lt;p>Let C = {$x \in R^3 | −1 \le x_1 \le 1, −1 \le x_2 \le 1, x_3 = 0$.} That is a square.&lt;/p>
+&lt;ul>
+&lt;li>Interior: Empty&lt;/li>
+&lt;li>Relative interior: square without the border&lt;/li>
+&lt;li>Boundary: the perimeter&lt;/li>
+&lt;/ul>
+&lt;h3 id="convex-sets">Convex Sets&lt;/h3>
+&lt;dl>
+&lt;dt>Convex combination&lt;/dt>
+&lt;dd>$\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$ and $\theta_i \ge 0$.&lt;/dd>
+&lt;/dl>
+&lt;p>Draw a line segment between any two points, if the whole line segment is in the set, the set is convex.&lt;/p>
+&lt;h3 id="cones">Cones&lt;/h3>
+&lt;dl>
+&lt;dt>Cone&lt;/dt>
+&lt;dd>A set C is called a cone, if for every x ∈ C and θ ≥ 0 we have $\theta x \in C$&lt;/dd>
+&lt;dt>Convex Cone&lt;/dt>
+&lt;dd>A set C is convex cone, if it is convex and a cone!&lt;/dd>
+&lt;dt>Conic Combination&lt;/dt>
+&lt;dd>$\sum_{i=1}^{i=N} \theta_i x_i$ such that $\theta_i \ge 0$.&lt;/dd>
+&lt;/dl>
+&lt;h2 id="some-important-examples">Some Important Examples&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>example&lt;/th>
+&lt;th>affine?&lt;/th>
+&lt;th>convex?&lt;/th>
+&lt;th>convex cone?&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>hyperplane&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;sup>1&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>halfspace&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;sup>1&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>norm ball&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>N&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>norm cones&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>polyhedra&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>positive definite cone&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>Only if 0 is in the set.&lt;/li>
+&lt;/ol>
+&lt;dl>
+&lt;dt>Hyperplane&lt;/dt>
+&lt;dd>$\{x | a^T x = b\} = \{x | a^T(x-x_0) = 0\}$ for constant vector a and scalar b. Where $x_0$ is any point in the hyperplane.&lt;/dd>
+&lt;dt>Closed Half spaces&lt;/dt>
+&lt;dd>$\{x | a^T x \le b\}$&lt;/dd>
+&lt;dt>Euclidean Ball&lt;/dt>
+&lt;dd>$B(x_c, r) = \{ x \, | \, \| x - x_c \|_2 \le r \} = \{ x_c + ru \, | \, \| u \|_2 \le 1\}$.&lt;/dd>
+&lt;dt>Ellipsoid&lt;/dt>
+&lt;dd>$ E = \{ x \, | \, (x - x_c)^T P^{-1} (x-x_c) \le 1 \} = \{ x_c + Au \, | \, \| u \|_2 \le 1 \}$. Where, P is positive definite matrix, and A is square and non singular matrix.&lt;/dd>
+&lt;dt>Norm Cones&lt;/dt>
+&lt;dd>$\{ (x, t) \, | \, \| x \| \le t\} \subset R^{n+1}$.&lt;/dd>
+&lt;dt>Second order cone (Lorentz cone)&lt;/dt>
+&lt;dd>Norm cone where norm is euclidean norm.&lt;/dd>
+&lt;dt>Polyhedron&lt;/dt>
+&lt;dd>A polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes.&lt;/dd>
+&lt;dt>Simplex&lt;/dt>
+&lt;dd>Simplex is a special polyhedron. If $v_0, \dots, v_k$ are affinely independent (that is $v_1-v_0, \dots , v_k-v_0$ are linearly independent) then simplex is just convex hull of $(v_0, \dots, v_k)$.&lt;/dd>
+&lt;/dl></content></item><item><title>Analysis (Not Rigorous) Notes</title><link>https://DhruvPatel01.github.io/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
 &lt;dl>
 &lt;dt>Interior Point $x \in C$&lt;/dt>
 &lt;dd>A point is an interior point if we can find &lt;strong>a&lt;/strong> ball around x which is completely inside C.&lt;/dd>

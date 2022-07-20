@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://DhruvPatel01.github.io/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Jul 2022 18:37:29 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Analysis (Not Rigorous) Notes</title><link>https://DhruvPatel01.github.io/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://DhruvPatel01.github.io/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sat, 16 Jul 2022 09:36:38 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Convex Optimization</title><link>https://DhruvPatel01.github.io/notes/maths/convex_optimization/</link><pubDate>Sat, 16 Jul 2022 09:36:38 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/convex_optimization/</guid><description>Note: These notes are not mathematically rigorous. These are meant for quick reference, please read the Convex Optimization book from Boyd and Vandenberghe for more rigorous treatment.
+Chapter 2: Convex Sets Sets Affine Sets Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.
+Draw a line passing through any two points, if the whole line is in the set, the set is affine.
+Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.</description><content>&lt;p>Note:
+These notes are not mathematically rigorous. These are meant for quick reference, please read the &lt;a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization book&lt;/a> from Boyd and Vandenberghe for more rigorous treatment.&lt;/p>
+&lt;h1 id="chapter-2-convex-sets">Chapter 2: Convex Sets&lt;/h1>
+&lt;h2 id="sets">Sets&lt;/h2>
+&lt;h3 id="affine-sets">Affine Sets&lt;/h3>
+&lt;p>Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.&lt;/p>
+&lt;p>Draw a line passing through any two points, if the whole line is in the set, the set is affine.&lt;/p>
+&lt;p>Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.&lt;/p>
+&lt;dl>
+&lt;dt>Affine Hull of C (&lt;strong>aff&lt;/strong> C)&lt;/dt>
+&lt;dd>Smallest affine set, which contains C.&lt;/dd>
+&lt;dt>Affine Dimension&lt;/dt>
+&lt;dd>Dimension of an affine hull.&lt;/dd>
+&lt;dt>Relative Interior&lt;/dt>
+&lt;dd>&lt;strong>relint&lt;/strong> C = {x ∈ C | B(x, r) ∩ aff C ⊆ C for some r &amp;gt; 0}.&lt;/dd>
+&lt;dt>Boundary&lt;/dt>
+&lt;dd>&lt;strong>cl&lt;/strong> C - &lt;strong>relint&lt;/strong> C&lt;/dd>
+&lt;/dl>
+&lt;h4 id="example">Example&lt;/h4>
+&lt;p>Let C = {$x \in R^3 | −1 \le x_1 \le 1, −1 \le x_2 \le 1, x_3 = 0$.} That is a square.&lt;/p>
+&lt;ul>
+&lt;li>Interior: Empty&lt;/li>
+&lt;li>Relative interior: square without the border&lt;/li>
+&lt;li>Boundary: the perimeter&lt;/li>
+&lt;/ul>
+&lt;h3 id="convex-sets">Convex Sets&lt;/h3>
+&lt;dl>
+&lt;dt>Convex combination&lt;/dt>
+&lt;dd>$\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$ and $\theta_i \ge 0$.&lt;/dd>
+&lt;/dl>
+&lt;p>Draw a line segment between any two points, if the whole line segment is in the set, the set is convex.&lt;/p>
+&lt;h3 id="cones">Cones&lt;/h3>
+&lt;dl>
+&lt;dt>Cone&lt;/dt>
+&lt;dd>A set C is called a cone, if for every x ∈ C and θ ≥ 0 we have $\theta x \in C$&lt;/dd>
+&lt;dt>Convex Cone&lt;/dt>
+&lt;dd>A set C is convex cone, if it is convex and a cone!&lt;/dd>
+&lt;dt>Conic Combination&lt;/dt>
+&lt;dd>$\sum_{i=1}^{i=N} \theta_i x_i$ such that $\theta_i \ge 0$.&lt;/dd>
+&lt;/dl>
+&lt;h2 id="some-important-examples">Some Important Examples&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>example&lt;/th>
+&lt;th>affine?&lt;/th>
+&lt;th>convex?&lt;/th>
+&lt;th>convex cone?&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>hyperplane&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;sup>1&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>halfspace&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;sup>1&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>norm ball&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>N&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>norm cones&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>polyhedra&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>positive definite cone&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>Only if 0 is in the set.&lt;/li>
+&lt;/ol>
+&lt;dl>
+&lt;dt>Hyperplane&lt;/dt>
+&lt;dd>$\{x | a^T x = b\} = \{x | a^T(x-x_0) = 0\}$ for constant vector a and scalar b. Where $x_0$ is any point in the hyperplane.&lt;/dd>
+&lt;dt>Closed Half spaces&lt;/dt>
+&lt;dd>$\{x | a^T x \le b\}$&lt;/dd>
+&lt;dt>Euclidean Ball&lt;/dt>
+&lt;dd>$B(x_c, r) = \{ x \, | \, \| x - x_c \|_2 \le r \} = \{ x_c + ru \, | \, \| u \|_2 \le 1\}$.&lt;/dd>
+&lt;dt>Ellipsoid&lt;/dt>
+&lt;dd>$ E = \{ x \, | \, (x - x_c)^T P^{-1} (x-x_c) \le 1 \} = \{ x_c + Au \, | \, \| u \|_2 \le 1 \}$. Where, P is positive definite matrix, and A is square and non singular matrix.&lt;/dd>
+&lt;dt>Norm Cones&lt;/dt>
+&lt;dd>$\{ (x, t) \, | \, \| x \| \le t\} \subset R^{n+1}$.&lt;/dd>
+&lt;dt>Second order cone (Lorentz cone)&lt;/dt>
+&lt;dd>Norm cone where norm is euclidean norm.&lt;/dd>
+&lt;dt>Polyhedron&lt;/dt>
+&lt;dd>A polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes.&lt;/dd>
+&lt;dt>Simplex&lt;/dt>
+&lt;dd>Simplex is a special polyhedron. If $v_0, \dots, v_k$ are affinely independent (that is $v_1-v_0, \dots , v_k-v_0$ are linearly independent) then simplex is just convex hull of $(v_0, \dots, v_k)$.&lt;/dd>
+&lt;/dl></content></item><item><title>Analysis (Not Rigorous) Notes</title><link>https://DhruvPatel01.github.io/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://DhruvPatel01.github.io/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
 &lt;dl>
 &lt;dt>Interior Point $x \in C$&lt;/dt>
 &lt;dd>A point is an interior point if we can find &lt;strong>a&lt;/strong> ball around x which is completely inside C.&lt;/dd>
@@ -37,8 +149,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="189235674" type="checkbox" checked />
-&lt;label for="189235674">
+&lt;input id="578649312" type="checkbox" checked />
+&lt;label for="578649312">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -77,8 +189,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="917325846" type="checkbox" />
-&lt;label for="917325846">
+&lt;input id="317586942" type="checkbox" />
+&lt;label for="317586942">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -188,7 +300,7 @@ y, 1);
 &lt;h2 id="benchmarking">Benchmarking&lt;/h2>
 &lt;p>I ran both NumPy and BLIS based implementation on batches of [10, 50, 100, 500, 1000] for vector size of 128. Following are the results.&lt;/p>
 &lt;p>&lt;img src="./benchmark.png" alt="benchmark_result.png">&lt;/p>
-&lt;p>Following table shows percentage improvement over &lt;code>np.dot&lt;/code>. This was computed as $\frac{\text{numpy_time} - \text{numpy_time}}{\text{numpy_time}}$.&lt;/p>
+&lt;p>Following table shows percentage improvement over &lt;code>np.dot&lt;/code>. This was computed as $\frac{\text{numpy\_time} - \text{my\_time}}{\text{numpy\_time}}$.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -285,8 +397,7 @@ $$&lt;/p>
 &lt;p>$$
 \begin{aligned}
 L(X, x) &amp;amp;=
-\sum_{i \; | \; x_i \, \le \, x} f(x_i, x) +&lt;br>
-\sum_{i \; | \; x_i \,&amp;gt; \,x} f(x_i, x) \\
+\sum_{i \; | \; x_i \, \le \, x} f(x_i, x) + \sum_{i \; | \; x_i \,&amp;gt; \,x} f(x_i, x) \\
 &amp;amp;= \sum_{i \; | \; x_i \, \le \, x} (x_i - x)^2 + x-x_i +
 \sum_{i \; | \; x_i \,&amp;gt; \,x} (x_i - x)^2 + x_i - x \\
 &amp;amp;= \sum_{i=1}^N (x_i^2 + x^2 - 2x_ix) +
@@ -319,8 +430,8 @@ $$&lt;/p>
 &lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://DhruvPatel01.github.io/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="154283796" type="checkbox" />
-&lt;label for="154283796">
+&lt;input id="386514279" type="checkbox" />
+&lt;label for="386514279">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -342,8 +453,8 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="613584927" type="checkbox" />
-&lt;label for="613584927">
+&lt;input id="635849721" type="checkbox" />
+&lt;label for="635849721">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -360,8 +471,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="359467821" type="checkbox" />
-&lt;label for="359467821">
+&lt;input id="932576418" type="checkbox" />
+&lt;label for="932576418">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -397,8 +508,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="396547128" type="checkbox" />
-&lt;label for="396547128">
+&lt;input id="238657941" type="checkbox" />
+&lt;label for="238657941">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -416,8 +527,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="397125648" type="checkbox" />
-&lt;label for="397125648">
+&lt;input id="124639857" type="checkbox" />
+&lt;label for="124639857">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -455,8 +566,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="328457916" type="checkbox" />
-&lt;label for="328457916">
+&lt;input id="291836745" type="checkbox" />
+&lt;label for="291836745">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>

@@ -44,8 +44,7 @@ $$&lt;/p>
 &lt;p>$$
 \begin{aligned}
 L(X, x) &amp;amp;=
-\sum_{i \; | \; x_i \, \le \, x} f(x_i, x) +&lt;br>
-\sum_{i \; | \; x_i \,&amp;gt; \,x} f(x_i, x) \\
+\sum_{i \; | \; x_i \, \le \, x} f(x_i, x) + \sum_{i \; | \; x_i \,&amp;gt; \,x} f(x_i, x) \\
 &amp;amp;= \sum_{i \; | \; x_i \, \le \, x} (x_i - x)^2 + x-x_i +
 \sum_{i \; | \; x_i \,&amp;gt; \,x} (x_i - x)^2 + x_i - x \\
 &amp;amp;= \sum_{i=1}^N (x_i^2 + x^2 - 2x_ix) +
