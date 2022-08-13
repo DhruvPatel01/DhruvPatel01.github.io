@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dhruv Patel</title><link>https://DhruvPatel01.github.io/posts/</link><description>Recent content in Posts on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Apr 2022 09:11:23 +0530</lastBuildDate><atom:link href="https://DhruvPatel01.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Can we do better than NumPy in special cases?</title><link>https://DhruvPatel01.github.io/posts/matrix_vector/</link><pubDate>Sun, 10 Apr 2022 09:11:23 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/matrix_vector/</guid><description>Can we? Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from GitHub repository.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dhruv Patel</title><link>https://dhruvpatel.dev/posts/</link><description>Recent content in Posts on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Apr 2022 09:11:23 +0530</lastBuildDate><atom:link href="https://dhruvpatel.dev/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Can we do better than NumPy in special cases?</title><link>https://dhruvpatel.dev/posts/matrix_vector/</link><pubDate>Sun, 10 Apr 2022 09:11:23 +0530</pubDate><guid>https://dhruvpatel.dev/posts/matrix_vector/</guid><description>Can we? Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from GitHub repository.
 Why would we? Good question. NumPy is great. It is fast. Beating it would be hard. Even if we beat it, will it be worth it? Probably not. You would quote Donald Knuth and say that premature optimization is the root of all evil. I am trying to justify this blog by asking What if this is not a premature optimization?</description><content>&lt;h2 id="can-we">Can we?&lt;/h2>
 &lt;p>Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from &lt;a href="https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec">GitHub repository.&lt;/a>&lt;/p>
 &lt;h2 id="why-would-we">Why would we?&lt;/h2>
@@ -20,8 +20,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="578649312" type="checkbox" checked />
-&lt;label for="578649312">
+&lt;input id="294516837" type="checkbox" checked />
+&lt;label for="294516837">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -60,8 +60,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="317586942" type="checkbox" />
-&lt;label for="317586942">
+&lt;input id="562897341" type="checkbox" />
+&lt;label for="562897341">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -222,7 +222,7 @@ y, 1);
 &lt;p>&lt;a href="https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec">https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec&lt;/a>&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;/div></content></item><item><title>Why the solution to part 2(AoC21-Day7) works?</title><link>https://DhruvPatel01.github.io/posts/aoc/21/day7/</link><pubDate>Tue, 07 Dec 2021 16:28:35 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/aoc/21/day7/</guid><description>Problem We are given an array of integers, $x_1, x_2, \dots, x_N.$ We want to find an $x$ (also an integer) that minimizes some cost function.
+&lt;/div></content></item><item><title>Why the solution to part 2(AoC21-Day7) works?</title><link>https://dhruvpatel.dev/posts/aoc/21/day7/</link><pubDate>Tue, 07 Dec 2021 16:28:35 +0530</pubDate><guid>https://dhruvpatel.dev/posts/aoc/21/day7/</guid><description>Problem We are given an array of integers, $x_1, x_2, \dots, x_N.$ We want to find an $x$ (also an integer) that minimizes some cost function.
 $$ argmin_x \sum_{i=1}^N f(x_i, x) $$
 Part 1 has a simple cost function, L1 distance. i.e. $f(x_i, x) = | x_i - x|$. Even with non-differentiability, there is a closed form solution to this function, a median. The proofs are there on the Internet, or the book Probability and Computing[1].</description><content>&lt;h2 id="problem">Problem&lt;/h2>
 &lt;p>We are given an array of integers, $x_1, x_2, \dots, x_N.$ We want to find an $x$ (also an integer) that minimizes some cost function.&lt;/p>
@@ -298,11 +298,11 @@ $$&lt;/p>
 &lt;h2 id="references">References&lt;/h2>
 &lt;ol>
 &lt;li>Mitzenmacher, Michael, and Eli Upfal. Probability and computing: Randomization and probabilistic techniques in algorithms and data analysis. Cambridge university press, 2017. (Chapter 3)&lt;/li>
-&lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://DhruvPatel01.github.io/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
+&lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="386514279" type="checkbox" />
-&lt;label for="386514279">
+&lt;input id="926718435" type="checkbox" />
+&lt;label for="926718435">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -320,12 +320,12 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 &lt;p>This vlog is complementary to the excellent &lt;a href="https://youtu.be/mmYv3Haj6uc">video description&lt;/a> from now archived Udacity CS344 course. The video explains the &amp;ldquo;how&amp;rdquo; of the algorithm very well, but I couldn&amp;rsquo;t easily find &amp;ldquo;why&amp;rdquo; of the algorithm, neither in that video nor in any other videos on the Internet. So here is my attempt to explain it.&lt;/p>
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/04QXOwzdIOg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
-&lt;/div></content></item><item><title>Python got me with circular imports!</title><link>https://DhruvPatel01.github.io/posts/python_circular_imports/</link><pubDate>Wed, 14 Apr 2021 21:51:48 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/python_circular_imports/</guid><description>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.
+&lt;/div></content></item><item><title>Python got me with circular imports!</title><link>https://dhruvpatel.dev/posts/python_circular_imports/</link><pubDate>Wed, 14 Apr 2021 21:51:48 +0530</pubDate><guid>https://dhruvpatel.dev/posts/python_circular_imports/</guid><description>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="635849721" type="checkbox" />
-&lt;label for="635849721">
+&lt;input id="528316749" type="checkbox" />
+&lt;label for="528316749">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -342,8 +342,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="932576418" type="checkbox" />
-&lt;label for="932576418">
+&lt;input id="493568217" type="checkbox" />
+&lt;label for="493568217">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -379,8 +379,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="238657941" type="checkbox" />
-&lt;label for="238657941">
+&lt;input id="893451672" type="checkbox" />
+&lt;label for="893451672">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -398,8 +398,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="124639857" type="checkbox" />
-&lt;label for="124639857">
+&lt;input id="279561438" type="checkbox" />
+&lt;label for="279561438">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -437,8 +437,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="291836745" type="checkbox" />
-&lt;label for="291836745">
+&lt;input id="731896524" type="checkbox" />
+&lt;label for="731896524">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -454,7 +454,7 @@ Before: {}
 After: {&amp;#39;answer&amp;#39;: 42}
 &lt;/code>&lt;/pre>&lt;p>Whooo! That worked.&lt;/p>
 &lt;h2 id="comments">Comments?&lt;/h2>
-&lt;p>You have any doubts? Any feedbacks? Please reach out to me at &lt;code>hello at domain&lt;/code> with subject line &lt;code>Comment: Post title&lt;/code>. I&amp;rsquo;ll get back to you as soon as possible.&lt;/p></content></item><item><title>NotAeroCalc Part 1: What is NotAeroCalc and how to use it?</title><link>https://DhruvPatel01.github.io/posts/notaerocalc/notaerocalc_part1/</link><pubDate>Sat, 03 Apr 2021 18:04:02 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/notaerocalc/notaerocalc_part1/</guid><description>I am a Computer Engineer by education and by training. Luckily, we computer engineers do not have to deal with different units. All our units are power of 2. We have sensible names, Kilo, Mega, Giga, you get it. When we get unlucky, there could be a confusion of whether Kilo in the context is $ 2^{10} $ or $ 10^3 $. But that is it.
+&lt;p>You have any doubts? Any feedbacks? Please reach out to me at &lt;code>hello at domain&lt;/code> with subject line &lt;code>Comment: Post title&lt;/code>. I&amp;rsquo;ll get back to you as soon as possible.&lt;/p></content></item><item><title>NotAeroCalc Part 1: What is NotAeroCalc and how to use it?</title><link>https://dhruvpatel.dev/posts/notaerocalc/notaerocalc_part1/</link><pubDate>Sat, 03 Apr 2021 18:04:02 +0530</pubDate><guid>https://dhruvpatel.dev/posts/notaerocalc/notaerocalc_part1/</guid><description>I am a Computer Engineer by education and by training. Luckily, we computer engineers do not have to deal with different units. All our units are power of 2. We have sensible names, Kilo, Mega, Giga, you get it. When we get unlucky, there could be a confusion of whether Kilo in the context is $ 2^{10} $ or $ 10^3 $. But that is it.
 But in other engineering (and science) branches this is not the case.</description><content>&lt;p>I am a Computer Engineer by education and by training. Luckily, we computer engineers do not have to deal with different units. All our units are power of 2. We have sensible names, Kilo, Mega, Giga, you get it. When we get unlucky, there could be a confusion of whether Kilo in the context is $ 2^{10} $ or $ 10^3 $. But that is it.&lt;/p>
 &lt;p>But in other engineering (and science) branches this is not the case. A while ago I was taking a course &amp;ldquo;Introduction Aeronautical Engineering&amp;rdquo; on edX (the course is from TUDelft). Honestly, the homework problems there were annoying, at least for me. I can understand that students in the Aero department might need to practice the conversion process.&lt;/p>
 &lt;p>There is a &lt;code>Newton&lt;/code>, which is also $\frac{kg * m}{s^2}$. There is an imperial unit for length called &lt;code>foot&lt;/code>, but you &lt;strong>have to&lt;/strong> convert that into SI units to be compatible with other units in the formula, because the constants in the formula use &lt;code>m&lt;/code>. Then there is &lt;code>Celsius&lt;/code> to &lt;code>Kelvin&lt;/code> mapping. You either have to memorize the conversion factors, or you have to make a long list of the conversion factors.&lt;/p>
@@ -504,7 +504,7 @@ $$&lt;/p>
 &lt;h2 id="what-is-next">What is next?&lt;/h2>
 &lt;p>As far as blogging goes, I plan to write the details of how NotAeroCalc was implemented, the nitty gritty details of Lex and Yacc, in the next part. It is not that difficult really.&lt;/p>
 &lt;p>In the NotAeroCalc itself, I plan to add some features like having a database of formulas, and solving for a particular variables using other user defined variables.&lt;/p>
-&lt;p>GitHub repository for this project can be found &lt;a href="https://github.com/DhruvPatel01/NotAeroCalc/">here&lt;/a>.&lt;/p></content></item><item><title>How to find the number of unique elements in a stream?</title><link>https://DhruvPatel01.github.io/posts/flajolet-martin/</link><pubDate>Mon, 29 Mar 2021 14:36:16 +0530</pubDate><guid>https://DhruvPatel01.github.io/posts/flajolet-martin/</guid><description>So, I&amp;rsquo;ve been reading about streaming algorithms. Seems like the journey to streaming algorithms(aka Algorithms for Big Data) starts with the Flajolet-Martin algorithm.
+&lt;p>GitHub repository for this project can be found &lt;a href="https://github.com/DhruvPatel01/NotAeroCalc/">here&lt;/a>.&lt;/p></content></item><item><title>How to find the number of unique elements in a stream?</title><link>https://dhruvpatel.dev/posts/flajolet-martin/</link><pubDate>Mon, 29 Mar 2021 14:36:16 +0530</pubDate><guid>https://dhruvpatel.dev/posts/flajolet-martin/</guid><description>So, I&amp;rsquo;ve been reading about streaming algorithms. Seems like the journey to streaming algorithms(aka Algorithms for Big Data) starts with the Flajolet-Martin algorithm.
 The Problem We are given a sequence &amp;lt;u_0, u_1, u_2, u_3, ... , u_n&amp;gt; of n elements. Each u_i comes from the fixed set U of some finite size. We want to see how many elements are unique.
 A simple Python code like below can solve the problem, if we have required memory.</description><content>&lt;p>So, I&amp;rsquo;ve been reading about streaming algorithms. Seems like the journey to streaming algorithms(aka Algorithms for Big Data) starts with the Flajolet-Martin algorithm.&lt;/p>
 &lt;h2 id="the-problem">The Problem&lt;/h2>
