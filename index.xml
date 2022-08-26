@@ -1,11 +1,215 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sat, 16 Jul 2022 09:36:38 +0530</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Convex Optimization</title><link>https://dhruvpatel.dev/notes/maths/convex_optimization/</link><pubDate>Sat, 16 Jul 2022 09:36:38 +0530</pubDate><guid>https://dhruvpatel.dev/notes/maths/convex_optimization/</guid><description>Note: These notes are not mathematically rigorous. These are meant for quick reference, please read the Convex Optimization book from Boyd and Vandenberghe for more rigorous treatment.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 26 Aug 2022 08:08:31 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>QM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Fri, 26 Aug 2022 08:08:31 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
+Even a specific particle is not completely specified by its position.
+Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
+&lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
+&lt;ol>
+&lt;li>States have different logical structure than CM.&lt;/li>
+&lt;li>States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM.&lt;/li>
+&lt;/ol>
+&lt;h2 id="spins">Spins&lt;/h2>
+&lt;p>Particles have properties attached to it. e.g. mass, electric charge.&lt;/p>
+&lt;p>Even a specific particle is not completely specified by its position.&lt;/p>
+&lt;p>Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.&lt;/p>
+&lt;h2 id="testing">Testing&lt;/h2>
+&lt;p>Propositions:
+$$
+\begin{align*}
+A &amp;amp;: \sigma_z = +1 \\
+B &amp;amp;: \sigma_x = +1 \\
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="classically">Classically,&lt;/h3>
+&lt;p>To test (A or B), one could first &lt;strong>gently&lt;/strong> test $\sigma_z$. If it is -1, one would &lt;strong>gently&lt;/strong> test $\sigma_x$. The result of doing it otherway (i.e. B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don&amp;rsquo;t change the state of the system.&lt;/p>
+&lt;h3 id="in-quantum-mechanics">In Quantum Mechanics,&lt;/h3>
+&lt;p>If some entity prepares the spin in $\sigma_z = +1$ state, and we measure &lt;code>A or B&lt;/code> (whether we use short circuit or not), we will measure it to be true. However, if we measure &lt;code>B or A&lt;/code>, there is 25% chance that we will measure it to be false.&lt;/p>
+&lt;p>What about &lt;code>A and B&lt;/code>? If we conclude that &lt;code>A and B&lt;/code> is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\sigma_x$, which ruined measurement of A. Thus we can&amp;rsquo;t confirm it. i.e. experiment is not reproducible.&lt;/p>
+&lt;h2 id="complex-numbers">Complex Numbers&lt;/h2>
+&lt;p>Two ways to represent them.&lt;/p>
+&lt;p>In cartesian coordinates, $z = x + iy$.&lt;/p>
+&lt;p>In polar coordinates, $z = re^{i\theta}$.&lt;/p>
+&lt;p>$ x_1 x_2 = (r_1e^{i\theta_1})(r_2e^{i\theta_2}) = r_1 r_2 e^{i(\theta_1 + \theta_2)}$.&lt;/p>
+&lt;p>$z = x + iy = re^{i\theta}$&lt;/p>
+&lt;p>$z^\ast = x - iy = re^{-i\theta}$&lt;/p>
+&lt;p>$z^\ast z = r^2$, i.e. a real number&lt;/p>
+&lt;h3 id="phase-factors">Phase Factors&lt;/h3>
+&lt;p>These are complex numbers whose r componenet is 1. Following holds for them,&lt;/p>
+&lt;p>$$
+\begin{align}
+z^\ast z &amp;amp;= 1 \\
+z &amp;amp;= e^{i\theta}\\
+z &amp;amp;= \cos\theta + i \sin\theta
+\end{align}
+$$&lt;/p>
+&lt;h2 id="vector-spaces">Vector Spaces&lt;/h2>
+&lt;p>Vector spaces is familiar concept from abstract linear algebra.&lt;/p>
+&lt;h3 id="complex-conjugate-of-space-v">Complex Conjugate of space V&lt;/h3>
+&lt;p>For every $\ket{A}$ there exists $\bra{A}$ in conjugate space. This space has following properties.&lt;/p>
+&lt;ol>
+&lt;li>The conjugate of $\ket{A} + \ket{B}$ is $\bra{A}+\bra{B}$.&lt;/li>
+&lt;li>Conjugate of $z\ket{A}$ is $z^\ast \bra{A} = \bra{A}z^\ast $.&lt;/li>
+&lt;/ol>
+&lt;p>In the concrete case where ket space is column vectors, bra space is denoted as row vectors.&lt;/p>
+&lt;p>i.e. if&lt;/p>
+&lt;p>$$
+\begin{align*}
+\ket{A} = \begin{bmatrix}
+\alpha_1 \\
+\alpha_2 \\
+\vdots \\
+\alpha_n
+\end{bmatrix}
+\end{align*}
+$$&lt;/p>
+&lt;p>then
+$$
+\begin{align*}
+\bra{A} = \begin{bmatrix}
+\alpha_1^\ast &amp;amp; \alpha_2^\ast &amp;amp; \dots &amp;amp; \alpha_n^\ast
+\end{bmatrix}.
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="inner-products">Inner Products&lt;/h3>
+&lt;p>Inner product is always between bras and kets. It is written like $\braket{B}{A}$. The result is a complex numbers.&lt;/p>
+&lt;h4 id="axioms-of-inner-product">Axioms of inner product.&lt;/h4>
+&lt;ol>
+&lt;li>Inner product is linear. $\bra{C} + (\ket{A}+\ket{B}) = \braket{C}{A} + \braket{C}{B}$.&lt;/li>
+&lt;li>$\braket{B}{A} = \braket{A}{B}^\ast $.&lt;/li>
+&lt;/ol>
+&lt;h4 id="special-vectors">Special vectors&lt;/h4>
+&lt;ol>
+&lt;li>Normalized: $\braket{A}{A} = 1$.&lt;/li>
+&lt;li>Orhthogonal: $\braket{B}{A} = 0$.&lt;/li>
+&lt;/ol>
+&lt;h3 id="orhtonormal-basis">Orhtonormal Basis.&lt;/h3>
+&lt;p>Let our space be N dimensional. And let the orthonomal basis denoted by $\ket{i}$.&lt;/p>
+&lt;p>$$
+\ket{A} = \sum_i \alpha_i \ket{i},
+$$&lt;/p>
+&lt;p>where, $\alpha_j = \braket{j}{A}$.&lt;/p>
+&lt;h1 id="states">States&lt;/h1>
+&lt;p>In CM, knowing the state means knowing everything that is necessary to predict the future.&lt;/p>
+&lt;p>In QM, knowing the state means knowing as much as can be known about how the system was prepared.&lt;/p>
+&lt;p>Apparatus $\cal{A}$ can be oriented on any axis. If we orient it along z axis, the measured spin will either be +1 or -1.&lt;/p>
+&lt;p>$\sigma_z = \pm 1$. We can denote +1 as state $\ket{u}$ and -1 as $\ket{d}$.&lt;/p>
+&lt;p>Similarly $\sigma_x = \pm 1$, can be denoted by $\ket{r}$ and -1 as $\ket{l}$. And $\sigma_y = \pm 1$, can be denoted by $\ket{o}$ and -1 as $\ket{i}$.&lt;/p>
+&lt;p>If two states are orthogonal than these two states can be determined together. For example, if $\sigma_z$ was prepared to be in $\ket{u}$, for any subsequent measurements probability that $\ket{d}$ is detected is 0. Thus for binary spin, the state space is two dimensional. For now we can take $\ket{u}, \ket{d}$ as the basis vectors.&lt;/p>
+&lt;p>Then, the generic state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$. Where $\alpha_i = \braket{i}{A}$.&lt;/p>
+&lt;p>The meaning of,&lt;/p>
+&lt;ul>
+&lt;li>$\alpha_u^\ast \alpha_u$: If the spin was prepared in $\ket{A}$ state, $\alpha_u^\ast \alpha_u$ is the probability that $\sigma_z = +1$.&lt;/li>
+&lt;li>$\alpha_d^\ast \alpha_d$: is the probability that $\sigma_z = -1$.&lt;/li>
+&lt;/ul>
+&lt;p>Since probabilities must add to 1, $\alpha_u^\ast \alpha_u + \alpha_d^\ast \alpha_d = 1$. It is equivalent to saying that $\ket{A}$ is normalized, i.e. $\braket{A}{A} = 1$.&lt;/p>
+&lt;p>General principle of quantum systems: the state of a system is represented by a unit (normalized) vector in a vector space of states. Moreover, the squared magnitudes of the components of the state-vector, &lt;strong>along particular basis vectors&lt;/strong>, represent probabilities for various experimental outcomes.&lt;/p>
+&lt;h3 id="representing-ketr-and-ketl-using-above-basis-vectors">Representing $\ket{r}$ and $\ket{l}$ using above basis vectors&lt;/h3>
+&lt;p>We know that if A initially prepares the state in $\ket{r}$, $\sigma_z = \pm 1$ with equal probability. Hence, $\alpha_u^\ast \alpha_u =\alpha_d^\ast \alpha_d = \frac{1}{2}$. One choice is to have $\alpha_u = \alpha_d = \frac{1}{\sqrt{2}}$.&lt;/p>
+&lt;p>$\ket{r} = \frac{1}{\sqrt{2}} \ket{u} + \frac{1}{\sqrt{2}} \ket{d}$. (There are is still ambiguity, called phase ambiguity.)&lt;/p>
+&lt;p>To solve for $\ket{l}$ the above process repeats. But, in addition, $\braket{l}{r} = 0$. One choice is $[\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}]$. But it is not the only choice. Even for fixed choice for $\ket{r}$, you can multiply above choice by a phase factor ($z = e^{i\theta}$), and still satisfy the two constraints. Later, we will find out that no measurable quantity is sensitive to the overall phase-factor, and therefore we can ignore it when specifying states.&lt;/p>
+&lt;h3 id="representing-keti-and-keto-using-above-basis-vectors">Representing $\ket{i}$ and $\ket{o}$ using above basis vectors&lt;/h3>
+&lt;p>To solve for $\ket{i}$ and $\ket{o}$, we need same conditions as we needed above. But we also need additional constrains. For example, if A prepares the state in $ket{i}$,$\sigma_x = \pm1$, with equal probability. Also $\braket{i}{o} = 0$.&lt;/p>
+&lt;p>The following solution solves for these constraints (up to phase-factor ambiguity).&lt;/p>
+&lt;p>$\ket{i} = \frac{1}{\sqrt{2}} \ket{u} + \frac{i}{\sqrt{2}} \ket{d}$.&lt;/p>
+&lt;p>$\ket{o} = \frac{1}{\sqrt{2}} \ket{u} - \frac{i}{\sqrt{2}} \ket{d}$.&lt;/p>
+&lt;p>With the previous discussion, the vectors can be represented in column format as below.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\ket{u} &amp;amp;= \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \ket{d} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="matricies">Matricies&lt;/h3>
+&lt;p>Axiom: Physical observables are described by linear operators.&lt;/p>
+&lt;p>observables are the things that we can measure. e.g. coordinates of a particle; the energy, momentum, or angular momentum of a system; or the electric field at a point in space.&lt;/p>
+&lt;p>$$
+\begin{align*}
+M \ket{A} &amp;amp;= \ket{B} \\
+M \sum_j \alpha_j \ket{j} &amp;amp;= \sum_j \beta_j \ket{j} \\
+\sum_j \alpha_j M\ket{j} &amp;amp;= \sum_j \beta_j \ket{j} &amp;lt;\text{assuming M is linear}&amp;gt; \\
+\sum_j \alpha_j \bra{k} M \ket{j} &amp;amp;= \sum_j \beta_j \braket{k}{j} &amp;lt;\text{multiply both sides by} \bra{k}&amp;gt; \\
+\sum_j \alpha_j m_{kj} &amp;amp;= \beta_k\\
+\end{align*}
+$$&lt;/p>
+&lt;p>Note that each $m_{kj}$ is a complex number. We can think of M in terms of matrix (defined by a choice of basis vectors).&lt;/p>
+&lt;h4 id="eigenvectors-and-eigenvalues">Eigenvectors and Eigenvalues&lt;/h4>
+&lt;p>$M \ket{\lambda} = \lambda \ket{\lambda}$. $\lambda$ is an eigenvalue, and $\ket{\lambda}$ is an eigenvector.&lt;/p>
+&lt;h4 id="linear-operators-on-bra-vectors">Linear operators on bra vectors&lt;/h4>
+&lt;p>$$
+\begin{align*}
+B^\ast &amp;amp;= \begin{bmatrix} b_1^\ast &amp;amp; b_2^\ast &amp;amp; b_3^\ast \end{bmatrix} \\
+M &amp;amp;= \begin{bmatrix}
+m_{11} &amp;amp; m_{12} &amp;amp; m_{13} \\
+m_{21} &amp;amp; m_{22} &amp;amp; m_{23} \\
+m_{31} &amp;amp; m_{32} &amp;amp; m_{33} \\
+\end{bmatrix}
+\end{align*}
+$$&lt;/p>
+&lt;p>Than $\bra{B} M$ is just row vector multiplied by matrix M.&lt;/p>
+&lt;h4 id="hermitian-conjugate">Hermitian Conjugate&lt;/h4>
+&lt;p>$$
+\begin{align*}
+M^\dagger &amp;amp;= (M^T)^\ast \\
+M \ket{A} &amp;amp;= \ket{B} \\
+\bra{A} M^\dagger &amp;amp;= \bra{B} \\
+\end{align*}
+$$&lt;/p>
+&lt;h4 id="hermitian-operators">Hermitian Operators&lt;/h4>
+&lt;ul>
+&lt;li>Observables quantities in classcial mechanics are real numbers. i.e. they are their own complex conjugate.&lt;/li>
+&lt;li>Observables in quantum mechanics (i.e. linear operators) are also their own complex conjugates. Such operators are called Hermitian Operators. $M^\dagger = M$.&lt;/li>
+&lt;/ul>
+&lt;h5 id="properties-of-hermitian-operators">Properties of Hermitian Operators&lt;/h5>
+&lt;ul>
+&lt;li>Their eigenvalues are real.&lt;/li>
+&lt;li>Their eigenvectors form an orthonormal basis. (i.e. their eigenvectors are orthonormal and they form a basis)&lt;/li>
+&lt;/ul>
+&lt;h2 id="principles">Principles&lt;/h2>
+&lt;ol>
+&lt;li>The observable or measurable quantities of QM are represented by a linear operator L.&lt;/li>
+&lt;li>The possible readings of the measurements are eigenvalues $\lambda_i$. The state for which reading is &lt;strong>unambiguously&lt;/strong> $\lambda_i$ is the corresponding eigenvector $\ket{\lambda_i}$.&lt;/li>
+&lt;li>Unambiguously distinguishable states are represented by orthogonal vectors. e.g. $\braket{u}{d} = 0$.&lt;/li>
+&lt;li>If $\ket{A}$ is the state vector of the system, and the observable L is measured, the probability of observing $\lambda_i$ is given by $\braket{A}{\lambda_i}\braket{\lambda_i}{A}$.&lt;/li>
+&lt;/ol>
+&lt;p>Since the readings (i.e. eigenvalues) are real and eigenvectors are orthogonal, the operator L must be hermitian.&lt;/p>
+&lt;h3 id="3-vector-operator-sigma">3-Vector Operator $\sigma$&lt;/h3>
+&lt;ul>
+&lt;li>Just as a spin-measuring apparatus can only answer questions about a spin&amp;rsquo;s orientation in a specific direction, a spin operator can only provide information about the spin component in a specific direction.&lt;/li>
+&lt;li>To physically measure spin in a different direction, we need to rotate the apparatus to point in the new direction. The same idea applies to the spin operator—if we want it to tell us about the spin component in a new direction, it too must be &amp;ldquo;rotated&amp;rdquo; but this kind of rotation is accomplished mathematically.&lt;/li>
+&lt;/ul>
+&lt;h3 id="operator-matrices">Operator Matrices&lt;/h3>
+&lt;p>Using above four principles, and solving linear equations, we can derive them.&lt;/p>
+&lt;p>$$
+\sigma_z = \begin{bmatrix}
+1 &amp;amp; 0 \\
+0 &amp;amp; -1
+\end{bmatrix}, \sigma_x = \begin{bmatrix}
+0 &amp;amp; 1 \\
+1 &amp;amp; 0
+\end{bmatrix}, \sigma_y = \begin{bmatrix}
+0 &amp;amp; -i \\
+i &amp;amp; 0
+\end{bmatrix} \text{.}
+$$&lt;/p>
+&lt;p>These along with Identity matrix are called Pauli Matrices.&lt;/p>
+&lt;p>IMPORTANT: Applying the operator L to state $\ket{A}$ does not change the state to $L\ket{A}$. $L\ket{A}$ is actually a supuerposition and tells us the probabilities of basis states. When we actually measure using L, the system is changed to one of the eignestates unambiguously.&lt;/p>
+&lt;p>There is nothing special about these three operators. We can take any direction $\hat{n} = (n_x, n_y, n_z)$, orient the apparatus A along $\hat n$, activate A, and measure the component of the spin along $\hat n$. That means there has to be an operator that represents this operation. Indeed, this operator is given by $\sigma_n = \sigma \cdot \hat n$, where $\sigma = (\sigma_x, \sigma_y, \sigma_z)$.&lt;/p>
+&lt;p>$$
+\sigma_n = \begin{bmatrix}
+n_z &amp;amp; (n_x - i n_y) \\
+(n_x + i n_y) &amp;amp; -n_z
+\end{bmatrix}
+$$&lt;/p>
+&lt;h3 id="spin-polarization-principle">Spin-Polarization Principle&lt;/h3>
+&lt;p>For any state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$, there exists some direction $\hat n$ such that $\sigma \cdot \hat n = \ket{A}$.&lt;/p>
+&lt;p>States of the spins are characterized by a polarization vector, and along the polarization vector the component of the spin is predictably +1.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Convex Optimization</title><link>https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/</link><pubDate>Fri, 26 Aug 2022 07:31:53 +0000</pubDate><guid>https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/</guid><description>Convex Optimization Note: These notes are not mathematically rigorous. These are meant for quick reference, please read the Convex Optimization book from Boyd and Vandenberghe for more rigorous treatment.
 Chapter 2: Convex Sets Sets Affine Sets Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.
 Draw a line passing through any two points, if the whole line is in the set, the set is affine.
-Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.</description><content>&lt;p>Note:
+Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.</description><content>&lt;h1 id="convex-optimization">Convex Optimization&lt;/h1>
+&lt;!--eofm-->
+&lt;p>Note:
 These notes are not mathematically rigorous. These are meant for quick reference, please read the &lt;a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization book&lt;/a> from Boyd and Vandenberghe for more rigorous treatment.&lt;/p>
-&lt;h1 id="chapter-2-convex-sets">Chapter 2: Convex Sets&lt;/h1>
-&lt;h2 id="sets">Sets&lt;/h2>
-&lt;h3 id="affine-sets">Affine Sets&lt;/h3>
+&lt;h2 id="chapter-2-convex-sets">Chapter 2: Convex Sets&lt;/h2>
+&lt;h3 id="sets">Sets&lt;/h3>
+&lt;h4 id="affine-sets">Affine Sets&lt;/h4>
 &lt;p>Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.&lt;/p>
 &lt;p>Draw a line passing through any two points, if the whole line is in the set, the set is affine.&lt;/p>
 &lt;p>Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.&lt;/p>
@@ -19,20 +223,20 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;dt>Boundary&lt;/dt>
 &lt;dd>&lt;strong>cl&lt;/strong> C - &lt;strong>relint&lt;/strong> C&lt;/dd>
 &lt;/dl>
-&lt;h4 id="example">Example&lt;/h4>
-&lt;p>Let C = {$x \in R^3 | −1 \le x_1 \le 1, −1 \le x_2 \le 1, x_3 = 0$.} That is a square.&lt;/p>
+&lt;h5 id="example">Example&lt;/h5>
+&lt;p>Let C = $\{x \in R^3 | −1 \le x_1 \le 1, −1 \le x_2 \le 1, x_3 = 0\}$. That is a square.&lt;/p>
 &lt;ul>
 &lt;li>Interior: Empty&lt;/li>
 &lt;li>Relative interior: square without the border&lt;/li>
 &lt;li>Boundary: the perimeter&lt;/li>
 &lt;/ul>
-&lt;h3 id="convex-sets">Convex Sets&lt;/h3>
+&lt;h4 id="convex-sets">Convex Sets&lt;/h4>
 &lt;dl>
 &lt;dt>Convex combination&lt;/dt>
 &lt;dd>$\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$ and $\theta_i \ge 0$.&lt;/dd>
 &lt;/dl>
 &lt;p>Draw a line segment between any two points, if the whole line segment is in the set, the set is convex.&lt;/p>
-&lt;h3 id="cones">Cones&lt;/h3>
+&lt;h4 id="cones">Cones&lt;/h4>
 &lt;dl>
 &lt;dt>Cone&lt;/dt>
 &lt;dd>A set C is called a cone, if for every x ∈ C and θ ≥ 0 we have $\theta x \in C$&lt;/dd>
@@ -41,7 +245,7 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;dt>Conic Combination&lt;/dt>
 &lt;dd>$\sum_{i=1}^{i=N} \theta_i x_i$ such that $\theta_i \ge 0$.&lt;/dd>
 &lt;/dl>
-&lt;h2 id="some-important-examples">Some Important Examples&lt;/h2>
+&lt;h3 id="some-important-examples">Some Important Examples&lt;/h3>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -85,8 +289,8 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;tr>
 &lt;td>positive definite cone&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Y&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -110,7 +314,295 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;dd>A polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes.&lt;/dd>
 &lt;dt>Simplex&lt;/dt>
 &lt;dd>Simplex is a special polyhedron. If $v_0, \dots, v_k$ are affinely independent (that is $v_1-v_0, \dots , v_k-v_0$ are linearly independent) then simplex is just convex hull of $(v_0, \dots, v_k)$.&lt;/dd>
-&lt;/dl></content></item><item><title>Analysis (Not Rigorous) Notes</title><link>https://dhruvpatel.dev/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://dhruvpatel.dev/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
+&lt;/dl>
+&lt;h3 id="operations-that-preseve-convexity">Operations that preseve convexity&lt;/h3>
+&lt;h4 id="intersection">Intersection&lt;/h4>
+&lt;p>If $S_\alpha$ is a convex set for for every $\alpha \in \cal{A}$ where $\cal{A}$ is any set (could be uncountable infinite), then $\cap_{\alpha \in \cal{A}} S_\alpha$ is also convex. Converse is also true. Every closed convex set S is a (usually infinite) intersection of halfspaces.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> matplotlib.pyplot &lt;span style="color:#66d9ef">as&lt;/span> plt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>x &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>, num&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">100&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ts &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(&lt;span style="color:#f92672">-&lt;/span>np&lt;span style="color:#f92672">.&lt;/span>pi&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>, np&lt;span style="color:#f92672">.&lt;/span>pi&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">3&lt;/span>, num&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">20&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">S&lt;/span>(t):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> c1, c2 &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array([np&lt;span style="color:#f92672">.&lt;/span>cos(t), np&lt;span style="color:#f92672">.&lt;/span>cos(&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">*&lt;/span>t)])
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> c, m &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">/&lt;/span>c2, c1&lt;span style="color:#f92672">/&lt;/span>c2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> (&lt;span style="color:#66d9ef">lambda&lt;/span> x: c &lt;span style="color:#f92672">-&lt;/span> m&lt;span style="color:#f92672">*&lt;/span>x, &lt;span style="color:#66d9ef">lambda&lt;/span> x: &lt;span style="color:#f92672">-&lt;/span>c &lt;span style="color:#f92672">-&lt;/span> m&lt;span style="color:#f92672">*&lt;/span>x)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> t &lt;span style="color:#f92672">in&lt;/span> ts:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y1, y2 &lt;span style="color:#f92672">=&lt;/span> S(t)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> plt&lt;span style="color:#f92672">.&lt;/span>plot(x, y1(x), &lt;span style="color:#e6db74">&amp;#39;k&amp;#39;&lt;/span>, lw&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;.5&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> plt&lt;span style="color:#f92672">.&lt;/span>plot(x, y2(x), &lt;span style="color:#e6db74">&amp;#39;k&amp;#39;&lt;/span>, lw&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;.5&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>ylim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/6308d101f9276630501d6171.png" alt="output image for above cell">&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 432x288 with 1 Axes&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="affine-functions">Affine Functions&lt;/h4>
+&lt;p>Function f is affine if f = Ax + b for some A and b.&lt;/p>
+&lt;p>If S is convex then the image of S under f (i.e. $f(S) = \{f(x) | x \in S\}$) is also convex.&lt;/p>
+&lt;p>If g is a function such that the image of g is S and S is convex, then the inverse image of S (i.e. $\{x | g(x) \in S\}$) is also convex.&lt;/p>
+&lt;dl>
+&lt;dt>Hyperbolic Cone&lt;/dt>
+&lt;dd>$\{ x | x^T P x \le (c^T x)^2, c^T x \ge 0 \}$&lt;/dd>
+&lt;/dl>
+&lt;h4 id="perspective-function">Perspective Function&lt;/h4>
+&lt;p>$P: R^{n+1} \to R^n$, where &lt;strong>dom&lt;/strong> P = $R^n \times R_{++}$. P is defined as $P(z, t) = z/t$.&lt;/p>
+&lt;p>If domain of P is convex then the image of P is also convex.&lt;/p>
+&lt;h4 id="linear-fractional-function">Linear Fractional Function&lt;/h4>
+&lt;p>Combination of Perspective and affine.&lt;/p>
+&lt;p>$$
+f(x) = \frac{Ax+b}{c^T x + d}
+$$&lt;/p>
+&lt;p>where $c^Tx+d &amp;gt; 0$.&lt;/p>
+&lt;p>If C is convex, then $f(C)$ is also convex.&lt;/p>
+&lt;p>If C is convex, then $f^{-1}(C)$ is also convex.&lt;/p>
+&lt;h3 id="generalized-inequalities">Generalized Inequalities&lt;/h3>
+&lt;dl>
+&lt;dt>Proper Cone&lt;/dt>
+&lt;dd>A cone is proper if it is convex, closed, solid (non empty interior) and is pointed (it does not contain a line).&lt;/dd>
+&lt;dt>Generalized inequality with respect to proper cone K&lt;/dt>
+&lt;dd>$ x \le_K y \iff y - x \in K$. Also $ x &amp;lt;_K y \iff y-x \in \textbf{int} K$&lt;/dd>
+&lt;/dl>
+&lt;p>Examples&lt;/p>
+&lt;ol>
+&lt;li>$ K = R^n_+ $. Then for vectors x and y, $x \le y$ iff $x_i \le y_i$ for all i.&lt;/li>
+&lt;li>$ K = S^n_+ $. Then for matrices A and B, $A \le B$ iff $B - A$ is positive semidefinite.&lt;/li>
+&lt;/ol>
+&lt;h4 id="minimum-and-minimal">Minimum and Minimal&lt;/h4>
+&lt;dl>
+&lt;dt>Minimum&lt;/dt>
+&lt;dd>$x \in S$ is the minimum if for every $y \in S$ we have $ x \le y$.&lt;/dd>
+&lt;dt>Minimal&lt;/dt>
+&lt;dd>$x \in S$ is a minimal if $y \in S, y \le x$ only if $y = x$.&lt;/dd>
+&lt;/dl>
+&lt;h3 id="separating-hyperplane">Separating Hyperplane&lt;/h3>
+&lt;p>If C and D are disjoint convex set, there exists a and b such that $a^T x \ge b$ for all x in D and $a^T x \le b$ for all x in C.&lt;/p>
+&lt;p>If C is a convex and $x_0 \notin C$. Then $x_0$ and C can be strictly separated.&lt;/p>
+&lt;p>Converse of above theorem is not true. That is there may exist convex sets C and D which are separated by a hyperplane, they still might intersect. Simple example is $C = D = \{0\} \subset R$. $x = 0$ separates C and D.&lt;/p>
+&lt;p>Converse holds if C and D are convex and C is open set.&lt;/p>
+&lt;p>Thus, any two convex sets C and D, at least one of which is open, are disjoint &lt;strong>iff&lt;/strong> there exists a separating hyperplane.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 24 Aug 2022 04:16:48 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
+If there are N particles in the system,
+Configration space: 3N dimensional space, records positions.
+State space: 6N dimensional space, records position and velocity.
+Phase space: 6N dimesnional space, records position and momentum.
+Newton&amp;rsquo;s second law gives us 6N equations.
+$$ \begin{align*} \dot{p}_i &amp;amp;= F_i(\{q\}) \\ \dot{q}_i &amp;amp;= \frac{p_i}{m_i} \end{align*} $$</description><content>&lt;h2 id="notation">Notation&lt;/h2>
+&lt;p>$ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.&lt;/p>
+&lt;p>If there are N particles in the system,&lt;/p>
+&lt;p>Configration space: 3N dimensional space, records positions.&lt;/p>
+&lt;p>State space: 6N dimensional space, records position and velocity.&lt;/p>
+&lt;p>Phase space: 6N dimesnional space, records position and momentum.&lt;/p>
+&lt;h2 id="newtons-second-law">Newton&amp;rsquo;s second law&lt;/h2>
+&lt;p>gives us 6N equations.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\dot{p}_i &amp;amp;= F_i(\{q\}) \\
+\dot{q}_i &amp;amp;= \frac{p_i}{m_i}
+\end{align*}
+$$&lt;/p>
+&lt;p>Thus, if forces are known, we can compute trajectory in 6N dimensional configration space.&lt;/p>
+&lt;p>if we denote $ p = \sum_{i=1}^{i=N} p_i $,&lt;/p>
+&lt;h2 id="newtons-third-law">Newton&amp;rsquo;s third law,&lt;/h2>
+&lt;pre>&lt;code>every force has equal and opposite reaction
+&lt;/code>&lt;/pre>
+&lt;p>can be used to derive conservation of momentum.&lt;/p>
+&lt;p>$\dot{p} = 0$.&lt;/p>
+&lt;p>What this tells us is if we start our trajectory at some 6N-D point in configration space, all the points in the trajectory have the same momentum. In some sense, system evolves on a contour of constant momentum.&lt;/p>
+&lt;h2 id="energy">Energy&lt;/h2>
+&lt;p>Potential Energy Principle: All forces derive from a potential energy function $V(\{q\})$.&lt;/p>
+&lt;p>For particle moving in 1 dimension,&lt;/p>
+&lt;p>$ F(q) = -\frac{dV(q)}{dq}$.&lt;/p>
+&lt;p>Potential energy can be computed as $V(q) = - \int_{-\infty}^q F(q&amp;rsquo;) dq&amp;rsquo;$.&lt;/p>
+&lt;p>Potential energy is not conserved. Sum of potential energy and kinetic energy are conserved.&lt;/p>
+&lt;p>Kinetic energy: $T = \frac{1}{2} mv^2$.&lt;/p>
+&lt;p>More than one particles, three dimensions. If the system has N particles, the i in $q_i$ can index any of the 3N elements of the configration space.&lt;/p>
+&lt;p>Principle:
+For &lt;strong>any&lt;/strong> system there exists a potential function $V(\{q\})$, such that,&lt;/p>
+&lt;p>$$
+F_i(\{q\}) = - \frac{\partial V(\{q\})}{\partial q_i}
+$$&lt;/p>
+&lt;p>In general mathematics such function need not exist for a collection of $F_i$s. This law represents conservation of energy.&lt;/p>
+&lt;h2 id="lagrangian">Lagrangian&lt;/h2>
+&lt;h3 id="for-one-particle-in-one-dimension">For one particle in one dimension&lt;/h3>
+&lt;p>We are given $q(t_0)$ and $q(t_1)$.&lt;/p>
+&lt;p>$L(q, \dot{q}) = T - V = \frac{1}{2}m\dot{q}^2 - V(\{q\})$&lt;/p>
+&lt;p>Action $A = \int_{t_0}^{t_1} L dt$.&lt;/p>
+&lt;p>Principle of least action tells that the particle chooses a trajectory (the function q) which minimizes the the action.&lt;/p>
+&lt;p>Principle of least action gives Euler-Lagrange equations.&lt;/p>
+&lt;p>$$
+\frac{d}{dt} \frac{\partial L}{\partial \dot{q}} - \frac{\partial L}{\partial {q}} = 0
+$$&lt;/p>
+&lt;h3 id="for-multidimensional-motion-of-many-particles">For multidimensional motion of many particles&lt;/h3>
+&lt;p>Euler-Lagrange equations are given by,&lt;/p>
+&lt;p>$L(\{q\}, \{\dot{q}\}) = \sum_i \frac{1}{2}m_i\dot{q}_i^2 - V(\{q\})$.&lt;/p>
+&lt;p>$$
+\frac{d}{dt} \frac{\partial L}{\partial \dot{q}_i} - \frac{\partial L}{\partial {q_i}} = 0
+$$&lt;/p>
+&lt;p>Lagrangian packs all the equations of the motions concisely.&lt;/p>
+&lt;p>$\frac{\partial L}{\partial \dot{q}_i}$ is called generalized momentum conjugate to $q_i$. This can be motiviated by thinking of $q_i$ as cartesian coordinates and $L = \frac{1}{2}m\dot{x}^2$. Depending upon the Lagrangian, conjugate momentum may not have familiar form, but it is always difined by the formula $p_i =\frac{\partial L}{\partial \dot{q}_i}$.&lt;/p>
+&lt;p>So, if the Lagrangian does not depend on $q_i$, $\dot{p}_i = 0$, i.e. the conjugate momentum is conserved. Such coordinates are called cyclic coordinates.&lt;/p>
+&lt;h4 id="another-example-of-cylic-coordinates">Another example of cylic coordinates&lt;/h4>
+&lt;p>$ L = \frac{m}{2}(\dot{x}&lt;em>1^2 + \dot{x}&lt;em>2^2 ) + V(x_1 - x_2)$. It does look like that L is a function of $x_1$ and $x_2$, so neither of these is cyclic coordinate. But, if we do change of variables,
+$$
+\begin{align*}
+x&lt;/em>+ &amp;amp;= \frac{x_1+x_2}{2} \\
+x&lt;/em>- &amp;amp;= \frac{x_1-x_2}{2}
+\end{align*}
+$$&lt;/p>
+&lt;p>the Lagrangian can be rewritten as, $L = m(\dot{x}&lt;em>+^2 + \dot{x}&lt;/em>-^2 ) + V(2x_-)$. Now the momentum conjugate to $x_+$ is conserved. $p_+ = 2m\dot{x}_+ = m(\dot{x}_1 + \dot{x}_2)$, so the total momentum is conserved.&lt;/p>
+&lt;p>If $ L = \frac{m}{2}(\dot{q_1}^2 + \dot{q_2}^2 ) + V(a q_1 - b q_2)$, then&lt;/p>
+&lt;p>$$
+\begin{align*}
+\dot{p}_1 &amp;amp;= -a V(a q_1 - b q_2) \\
+\dot{p}_2 &amp;amp;= b V(a q_1 - b q_2) \\
+\end{align*} \text{.}
+$$&lt;/p>
+&lt;p>Law of conservation of momentum has changed. Instead of conserving $p_1 + p_2$, $bp_1+ap_2$ is conserved. If V was a non linear function of $q_1, q_2$, there wouldn&amp;rsquo;t be law of conservation.&lt;/p>
+&lt;h2 id="symmetries">Symmetries&lt;/h2>
+&lt;p>$q_i&amp;rsquo; = q_i&amp;rsquo;(q_i)$. We are moving the whole system to the new location. This change changes the system. For example, potential energy(so the Lagrangian) may change.&lt;/p>
+&lt;p>Symmetry is the coordinate transformation that does not change the value of the Lagrangian.&lt;/p>
+&lt;h3 id="examples">Examples&lt;/h3>
+&lt;p>$L = \frac{1}{2} \dot{q}^2$. And the transformation $ q \rightarrow q + \delta$. Here the $\dot{q}$ does not change, so L also doesn&amp;rsquo;t change.&lt;/p>
+&lt;p>If the Lagrangian had a potential ($V(q)$) term in it, unless the potential is a constant independent of q, change in q changes the potential. In that case there is no symmetry.&lt;/p>
+&lt;h4 id="example-sym1">Example Sym.1&lt;/h4>
+&lt;p>If, potential was a function $V(q_1 - q_2)$, then under the transformation
+$$
+\begin{align*}
+q_1 &amp;amp;\rightarrow q_1 + \delta \\
+q_2 &amp;amp;\rightarrow q_2 + \delta
+\end{align*}
+$$
+L is symmetric.&lt;/p>
+&lt;h4 id="example-sym2">Example Sym.2&lt;/h4>
+&lt;p>If, potential was a function $V(aq_1 + bq_2)$, then under the transformation
+$$
+\begin{align*}
+q_1 &amp;amp;\rightarrow q_1 + b\delta \\
+q_2 &amp;amp;\rightarrow q_2 - a\delta
+\end{align*}
+$$
+L is symmetric.&lt;/p>
+&lt;h4 id="example-sym3">Example Sym.3&lt;/h4>
+&lt;p>If, $ L = \frac{1}{2} (\dot{x}^2 + \dot{y}^2) + V(x^2 + y^2)$, then there is rotational symmetry. That is, rotating the point around origin by angle $\theta$ does not change the lagrangian.&lt;/p>
+&lt;p>$$
+\begin{align*}
+x &amp;amp;\rightarrow x cos\theta + y sin\theta \\
+y &amp;amp;\rightarrow -x sin\theta + y cos\theta
+\end{align*}
+$$&lt;/p>
+&lt;p>For small angle $\delta$, $sin\delta = \delta$ and $cos\delta = 1$.
+$$
+\begin{align*}
+x &amp;amp;\rightarrow x + y \delta \\
+y \rightarrow -x \delta + y &amp;amp;= y - x\delta
+\end{align*}
+$$
+Plugging this into the lagrangian, we can see that (in the first order of $\delta$) lagrangian does not change.&lt;/p>
+&lt;h3 id="general-notion-of-symmetry">General notion of symmetry&lt;/h3>
+&lt;p>In general, the shift is parameterized by infinitesimal $\delta$ and is given by $\delta q_i = f_i(q) \delta$.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>example&lt;/th>
+&lt;th>$f_1$&lt;/th>
+&lt;th>$f_2$&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Sym.1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Sym.2&lt;/td>
+&lt;td>b&lt;/td>
+&lt;td>-a&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Sym.3&lt;/td>
+&lt;td>y&lt;/td>
+&lt;td>-x&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Change in velocity then is given by $\delta \dot{q_i} = \frac{d}{dt} \delta q_i$.&lt;/p>
+&lt;p>A continuous symmetry is an infinitesimal transformation of the coordinates for which the change in the Lagrangian is zero.&lt;/p>
+&lt;p>If we assume that system evolves along a trajectory that satisfies Euler-Lagrangian equations, we can prove that symmetry implies $\cal{Q}$ is conserved. Where $\cal{Q} = \sum_i p_i f_i(q)$.&lt;/p>
+&lt;p>Applying this to &lt;strong>Sym.3&lt;/strong>, we see that $l = p_x y - p_y x$, aka angular momentum, is conserved.&lt;/p>
+&lt;h2 id="time-translation-invariance">Time translation invariance&lt;/h2>
+&lt;p>A system is time-translation invariant if there is no explicit time dependence in its Lagrangian.&lt;/p>
+&lt;p>e.g. harmonic motion due to spring $L(x, \dot{x}) = \frac{1}{2} (m \dot{x}^2 - k x^2)$. Here neither the mass m, nor the spring constant k depend on the time.&lt;/p>
+&lt;p>If spring constant changes with time i.e. k(t), there would be no time translation invariance.&lt;/p>
+&lt;p>Now if $L = L(q_i, \dot{q}_i, t)$,&lt;/p>
+&lt;p>$$
+\frac{dL}{dt} = \sum_i \left( \frac{\partial{L}}{\partial{q_i}} \dot{q}_i + \frac{\partial{L}}{\partial{\dot{q}_i}} \ddot{q}_i \right) + \frac{\partial{L}}{\partial{t}}
+$$&lt;/p>
+&lt;p>Using Euler-Lagrangian equations, we can simplify above to&lt;/p>
+&lt;p>$$
+\frac{dL}{dt} = \frac{d}{dt} \sum_i p_i \dot{q}_i + \frac{\partial{L}}{\partial{t}} \text{.}
+$$&lt;/p>
+&lt;p>If we define $H = \sum_i p_i \dot{q}_i - L$, we see that
+$$\frac{dH}{dt} = -\frac{\partial{L}}{\partial{t}} \text{.}$$&lt;/p>
+&lt;p>Conclusion: H changes only if L has &lt;strong>explicit&lt;/strong> time dependence. In other words, if the system is time-translaction invariant then quantity H is conserved.&lt;/p>
+&lt;p>H is called Hamilonian, and is an energy of the system.&lt;/p>
+&lt;h3 id="example-motion-of-a-particle-in-a-potential">Example: Motion of a particle in a potential&lt;/h3>
+&lt;p>$$
+\begin{align*}
+L &amp;amp;= \frac{1}{2}m \dot{x}^2 - V(x) \\
+p &amp;amp;= \frac{\partial{L}}{\partial{\dot{x}}} = m \dot{x} \\
+H &amp;amp;= p \dot{x} - L \\
+&amp;amp;= m \dot{x}^2 - \frac{1}{2}m \dot{x}^2 + V(x) \\
+&amp;amp;= \frac{1}{2}m \dot{x}^2 + V(x) \\
+\end{align*}
+$$&lt;/p>
+&lt;p>There are systems for which the Lagrangian has a more intricate form than just T - V. For some of those cases, it is not possible to identify a clear separation into kinetic and potential energy.&lt;/p>
+&lt;p>General Definition of Energy: Energy equals Hamiltonian.&lt;/p>
+&lt;p>In Lagrangian formulation, the focus is on the trajectory in the configuration space. here, the equations are second order. So knowing just the $q_i$s is not enough. We also need initial velocities.&lt;/p>
+&lt;p>In Hamiltonian formulation, the focus in on the trajectory in the phase space.&lt;/p>
+&lt;p>The first step in the Hamiltonian formulation is to replace $\dot{q}$&amp;rsquo;s with $p$&amp;rsquo;s. This is easy to do in normal cartesian coordinates.&lt;/p>
+&lt;p>in the particle on a line, $ H = \frac{1}{2} m \dot{x}^2 + V(x)$. Replacing $\dot{x} = \frac{p}{m}$, we get, $ H = \frac{p^2}{2m} + V(x)$.&lt;/p>
+&lt;p>$$
+\frac{\partial H}{\partial x} = -\frac{dV}{dx}
+$$&lt;/p>
+&lt;p>Using $f = ma$ we can rewrite the above equations as
+$$
+\dot{p} = \frac{\partial H}{\partial x}
+$$&lt;/p>
+&lt;p>Thus we have two equations,&lt;/p>
+&lt;p>$$
+\begin{align*}
+-\frac{\partial H}{\partial x} &amp;amp;= \dot{p} \\
+\frac{\partial H}{\partial p} = \frac{p}{m} &amp;amp;= \dot{x}
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="general-system">General system&lt;/h3>
+&lt;p>$$
+\begin{align*}
+H &amp;amp;= H(q_i, p_i) \\
+\dot{p_i} &amp;amp;= -\frac{\partial H}{\partial q_i} \\
+\dot{q_i} &amp;amp;= \frac{\partial H}{\partial p}
+\end{align*}
+$$&lt;/p>
+&lt;p>So we see that for each direction in phase space, there is a single first-order equation.&lt;/p>
+&lt;h4 id="harmonic-oscillator">Harmonic Oscillator&lt;/h4>
+&lt;p>$$
+L = \frac{m \dot{x}^2}{2} - \frac{kx^2}{2}
+$$&lt;/p>
+&lt;p>With the change of variable $q = (km)^{\frac{1}{4}}$,&lt;/p>
+&lt;p>$$
+L = \frac{\dot{q}^2}{2\omega} - \frac{\omega q^2}{2}
+$$&lt;/p>
+&lt;p>The conjugate momentum $p = \frac{\partial L}{\partial \dot{q}} = \frac{\dot{q}}{\omega}$. This gives us $H = \frac{\omega}{2} (p^2 + q^2)$.&lt;/p>
+&lt;p>From that,&lt;/p>
+&lt;p>$$
+\begin{align}
+\dot{p} &amp;amp;= -\omega q \\
+\dot{q} &amp;amp;= \omega p
+\end{align}
+$$&lt;/p>
+&lt;p>Thus Hamiltonian formulation gives us two first order equations.&lt;/p>
+&lt;p>Solving Euler-Lagrangian equation, on the other hand gives us single second order equation. $\ddot{q} = \omega \dot{p}$. These two are equivalent, and can be seen by substituting the first equation in the time derivative of the second equation of the Hamiltonian.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Analysis (Not Rigorous) Notes</title><link>https://dhruvpatel.dev/notes/maths/analysis/</link><pubDate>Sun, 10 Jul 2022 18:37:29 +0530</pubDate><guid>https://dhruvpatel.dev/notes/maths/analysis/</guid><description>Definitions Interior Point $x \in C$ A point is an interior point if we can find a ball around x which is completely inside C. Open Set A set is open, if all points are interior points. Closed Set A set is closed, if its complement is open. Closure Take the set&amp;rsquo;s complement. Find its interior. Take the complement of it. You got a closure. A point is in a closure, if for every $\epsilon$, you can find a point from the original set within $\epsilon$ distance.</description><content>&lt;h2 id="definitions">Definitions&lt;/h2>
 &lt;dl>
 &lt;dt>Interior Point $x \in C$&lt;/dt>
 &lt;dd>A point is an interior point if we can find &lt;strong>a&lt;/strong> ball around x which is completely inside C.&lt;/dd>
@@ -149,8 +641,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="426358917" type="checkbox" checked />
-&lt;label for="426358917">
+&lt;input id="769128354" type="checkbox" checked />
+&lt;label for="769128354">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -189,8 +681,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="796283145" type="checkbox" />
-&lt;label for="796283145">
+&lt;input id="519742386" type="checkbox" />
+&lt;label for="519742386">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -430,8 +922,8 @@ $$&lt;/p>
 &lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="258479163" type="checkbox" />
-&lt;label for="258479163">
+&lt;input id="653149278" type="checkbox" />
+&lt;label for="653149278">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -453,8 +945,8 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="712358649" type="checkbox" />
-&lt;label for="712358649">
+&lt;input id="792431568" type="checkbox" />
+&lt;label for="792431568">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -471,8 +963,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="912758643" type="checkbox" />
-&lt;label for="912758643">
+&lt;input id="346187295" type="checkbox" />
+&lt;label for="346187295">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -508,8 +1000,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="874123956" type="checkbox" />
-&lt;label for="874123956">
+&lt;input id="475692813" type="checkbox" />
+&lt;label for="475692813">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -527,8 +1019,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="635719842" type="checkbox" />
-&lt;label for="635719842">
+&lt;input id="931475862" type="checkbox" />
+&lt;label for="931475862">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -566,8 +1058,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="428567931" type="checkbox" />
-&lt;label for="428567931">
+&lt;input id="632917854" type="checkbox" />
+&lt;label for="632917854">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
