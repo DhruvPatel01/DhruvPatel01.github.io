@@ -23,20 +23,20 @@ Attached to electron is an extra degree of freedom, called spin. Spin is as quan
 Propositions: 
 $$
 \\begin{align*}
-A &: \\sigma_z = +1 \\\\
-B &: \\sigma_x = +1 \\\\
+A &: \\sigma\_z = +1 \\\\
+B &: \\sigma\_x = +1 \\\\
 \\end{align*}
 $$
 
 ### Classically,
 
-To test (A or B), one could first **gently** test $\\sigma_z$. If it is -1, one would **gently** test $\\sigma_x$. The result of doing it otherway (i.e. B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don't change the state of the system.
+To test (A or B), one could first **gently** test $\\sigma\_z$. If it is -1, one would **gently** test $\\sigma\_x$. The result of doing it otherway (i.e. B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don't change the state of the system.
 
 ### In Quantum Mechanics,
 
-If some entity prepares the spin in $\\sigma_z = +1$ state, and we measure `A or B` (whether we use short circuit or not), we will measure it to be true. However, if we measure `B or A`, there is 25% chance that we will measure it to be false.
+If some entity prepares the spin in $\\sigma\_z = +1$ state, and we measure `A or B` (whether we use short circuit or not), we will measure it to be true. However, if we measure `B or A`, there is 25% chance that we will measure it to be false.
 
-What about `A and B`? If we conclude that `A and B` is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\\sigma_x$, which ruined measurement of A. Thus we can't confirm it. i.e. experiment is not reproducible.
+What about `A and B`? If we conclude that `A and B` is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\\sigma\_x$, which ruined measurement of A. Thus we can't confirm it. i.e. experiment is not reproducible.
 
 
 ## Complex Numbers
@@ -48,7 +48,7 @@ In cartesian coordinates, $z = x + iy$.
 
 In polar coordinates, $z = re^{i\\theta}$.
 
-$ x_1 x_2 = (r_1e^{i\\theta_1})(r_2e^{i\\theta_2}) = r_1 r_2 e^{i(\\theta_1 + \\theta_2)}$.
+$ x\_1 x\_2 = (r\_1e^{i\\theta\_1})(r\_2e^{i\\theta\_2}) = r\_1 r\_2 e^{i(\\theta\_1 + \\theta\_2)}$.
 
 $z = x + iy = re^{i\\theta}$ 
 
@@ -88,10 +88,10 @@ i.e. if
 $$
 \\begin{align*}
 \\ket{A} = \\begin{bmatrix}
-\\alpha_1 \\\\
-\\alpha_2 \\\\
+\\alpha\_1 \\\\
+\\alpha\_2 \\\\
 \\vdots \\\\
-\\alpha_n
+\\alpha\_n
 \\end{bmatrix}
 \\end{align*}
 $$
@@ -100,7 +100,7 @@ then
 $$
 \\begin{align*}
 \\bra{A} = \\begin{bmatrix}
-\\alpha_1^\\ast  & \\alpha_2^\\ast  & \\dots & \\alpha_n^\\ast 
+\\alpha\_1^\\ast  & \\alpha\_2^\\ast  & \\dots & \\alpha\_n^\\ast 
 \\end{bmatrix}.
 \\end{align*}
 $$
@@ -126,10 +126,10 @@ Inner product is always between bras and kets. It is written like $\\braket{B}{A
 Let our space be N dimensional. And let the orthonomal basis denoted by $\\ket{i}$.
 
 $$
-\\ket{A} = \\sum_i \\alpha_i \\ket{i},
+\\ket{A} = \\sum\_i \\alpha\_i \\ket{i},
 $$
 
-where, $\\alpha_j = \\braket{j}{A}$.
+where, $\\alpha\_j = \\braket{j}{A}$.
 
 
 # States
@@ -142,26 +142,26 @@ In QM, knowing the state means knowing as much as can be known about how the sys
 
 Apparatus $\\cal{A}$ can be oriented on any axis. If we orient it along z axis, the measured spin will either be +1 or -1. 
 
-$\\sigma_z = \\pm 1$. We can denote +1 as state $\\ket{u}$ and -1 as $\\ket{d}$.
+$\\sigma\_z = \\pm 1$. We can denote +1 as state $\\ket{u}$ and -1 as $\\ket{d}$.
 
-Similarly $\\sigma_x = \\pm 1$, can be denoted by  $\\ket{r}$ and -1 as $\\ket{l}$. And $\\sigma_y = \\pm 1$, can be denoted by  $\\ket{o}$ and -1 as $\\ket{i}$.
+Similarly $\\sigma\_x = \\pm 1$, can be denoted by  $\\ket{r}$ and -1 as $\\ket{l}$. And $\\sigma\_y = \\pm 1$, can be denoted by  $\\ket{o}$ and -1 as $\\ket{i}$.
 
-If two states are orthogonal than these two states can be determined together. For example, if $\\sigma_z$ was prepared to be in $\\ket{u}$, for any subsequent measurements probability that $\\ket{d}$ is detected is 0. Thus for binary spin, the state space is two dimensional. For now we can take $\\ket{u}, \\ket{d}$ as the basis vectors.
+If two states are orthogonal than these two states can be determined together. For example, if $\\sigma\_z$ was prepared to be in $\\ket{u}$, for any subsequent measurements probability that $\\ket{d}$ is detected is 0. Thus for binary spin, the state space is two dimensional. For now we can take $\\ket{u}, \\ket{d}$ as the basis vectors.
 
-Then, the generic state $\\ket{A} = \\alpha_u \\ket{u} + \\alpha_d \\ket{d}$. Where $\\alpha_i = \\braket{i}{A}$.
+Then, the generic state $\\ket{A} = \\alpha\_u \\ket{u} + \\alpha\_d \\ket{d}$. Where $\\alpha\_i = \\braket{i}{A}$.
 
 The meaning of,
-- $\\alpha_u^\\ast \\alpha_u$: If the spin was prepared in $\\ket{A}$ state, $\\alpha_u^\\ast \\alpha_u$ is the probability that $\\sigma_z = +1$.
-- $\\alpha_d^\\ast \\alpha_d$: is the probability that $\\sigma_z = -1$.
+- $\\alpha\_u^\\ast \\alpha\_u$: If the spin was prepared in $\\ket{A}$ state, $\\alpha\_u^\\ast \\alpha\_u$ is the probability that $\\sigma\_z = +1$.
+- $\\alpha\_d^\\ast \\alpha\_d$: is the probability that $\\sigma\_z = -1$.
 
-Since probabilities must add to 1, $\\alpha_u^\\ast \\alpha_u + \\alpha_d^\\ast \\alpha_d = 1$. It is equivalent to saying that $\\ket{A}$ is normalized, i.e. $\\braket{A}{A} = 1$.
+Since probabilities must add to 1, $\\alpha\_u^\\ast \\alpha\_u + \\alpha\_d^\\ast \\alpha\_d = 1$. It is equivalent to saying that $\\ket{A}$ is normalized, i.e. $\\braket{A}{A} = 1$.
 
 General principle of quantum systems: the state of a system is represented by a unit (normalized) vector in a vector space of states. Moreover, the squared magnitudes of the components of the state-vector, **along particular basis vectors**, represent probabilities for various experimental outcomes. 
 
 
 ### Representing $\\ket{r}$ and $\\ket{l}$ using above basis vectors
 
-We know that if A initially prepares the state in $\\ket{r}$, $\\sigma_z = \\pm 1$ with equal probability. Hence, $\\alpha_u^\\ast \\alpha_u =\\alpha_d^\\ast \\alpha_d = \\frac{1}{2}$. One choice is to have $\\alpha_u = \\alpha_d = \\frac{1}{\\sqrt{2}}$.
+We know that if A initially prepares the state in $\\ket{r}$, $\\sigma\_z = \\pm 1$ with equal probability. Hence, $\\alpha\_u^\\ast \\alpha\_u =\\alpha\_d^\\ast \\alpha\_d = \\frac{1}{2}$. One choice is to have $\\alpha\_u = \\alpha\_d = \\frac{1}{\\sqrt{2}}$.
 
 $\\ket{r} = \\frac{1}{\\sqrt{2}} \\ket{u} + \\frac{1}{\\sqrt{2}} \\ket{d}$. (There are is still ambiguity, called phase ambiguity.)
 
@@ -169,7 +169,7 @@ To solve for $\\ket{l}$ the above process repeats. But, in addition, $\\braket{l
 
 ### Representing $\\ket{i}$ and $\\ket{o}$ using above basis vectors
 
-To solve for $\\ket{i}$ and $\\ket{o}$, we need same conditions as we needed above. But we also need additional constrains. For example, if A prepares the state in $ket{i}$,$\\sigma_x = \\pm1$, with equal probability. Also $\\braket{i}{o} = 0$.
+To solve for $\\ket{i}$ and $\\ket{o}$, we need same conditions as we needed above. But we also need additional constrains. For example, if A prepares the state in $ket{i}$,$\\sigma\_x = \\pm1$, with equal probability. Also $\\braket{i}{o} = 0$.
 
 The following solution solves for these constraints (up to phase-factor ambiguity).
 
@@ -197,14 +197,14 @@ observables are the things that we can measure. e.g. coordinates of a particle; 
 $$
 \\begin{align*}
 M \\ket{A} &= \\ket{B} \\\\
-M \\sum_j \\alpha_j \\ket{j} &= \\sum_j \\beta_j \\ket{j} \\\\
-\\sum_j \\alpha_j M\\ket{j} &= \\sum_j \\beta_j \\ket{j} <\\text{assuming M is linear}> \\\\
-\\sum_j \\alpha_j \\bra{k} M \\ket{j} &= \\sum_j \\beta_j \\braket{k}{j} <\\text{multiply both sides by} \\bra{k}> \\\\
-\\sum_j \\alpha_j m_{kj} &= \\beta_k\\\\
+M \\sum\_j \\alpha\_j \\ket{j} &= \\sum\_j \\beta\_j \\ket{j} \\\\
+\\sum\_j \\alpha\_j M\\ket{j} &= \\sum\_j \\beta\_j \\ket{j} <\\text{assuming M is linear}> \\\\
+\\sum\_j \\alpha\_j \\bra{k} M \\ket{j} &= \\sum\_j \\beta\_j \\braket{k}{j} <\\text{multiply both sides by} \\bra{k}> \\\\
+\\sum\_j \\alpha\_j m\_{kj} &= \\beta\_k\\\\
 \\end{align*}
 $$
 
-Note that each $m_{kj}$ is a complex number. We can think of M in terms of matrix (defined by a choice of basis vectors).
+Note that each $m\_{kj}$ is a complex number. We can think of M in terms of matrix (defined by a choice of basis vectors).
 
 #### Eigenvectors and Eigenvalues
 
@@ -214,11 +214,11 @@ $M \\ket{\\lambda} = \\lambda \\ket{\\lambda}$. $\\lambda$ is an eigenvalue, and
 
 $$ 
 \\begin{align*}
-B^\\ast  &= \\begin{bmatrix} b_1^\\ast  & b_2^\\ast  & b_3^\\ast \\end{bmatrix} \\\\
+B^\\ast  &= \\begin{bmatrix} b\_1^\\ast  & b\_2^\\ast  & b\_3^\\ast \\end{bmatrix} \\\\
 M &= \\begin{bmatrix}
-m_{11} & m_{12} & m_{13} \\\\
-m_{21} & m_{22} & m_{23} \\\\
-m_{31} & m_{32} & m_{33} \\\\
+m\_{11} & m\_{12} & m\_{13} \\\\
+m\_{21} & m\_{22} & m\_{23} \\\\
+m\_{31} & m\_{32} & m\_{33} \\\\
 \\end{bmatrix}
 \\end{align*}
 $$
@@ -245,9 +245,9 @@ $$
 
 ## Principles
 1. The observable or measurable quantities of QM are represented by a linear operator L. 
-2. The possible readings of the measurements are eigenvalues $\\lambda_i$. The state for which reading is **unambiguously** $\\lambda_i$ is the corresponding eigenvector $\\ket{\\lambda_i}$.
+2. The possible readings of the measurements are eigenvalues $\\lambda\_i$. The state for which reading is **unambiguously** $\\lambda\_i$ is the corresponding eigenvector $\\ket{\\lambda\_i}$.
 3. Unambiguously distinguishable states are represented by orthogonal vectors. e.g. $\\braket{u}{d} = 0$.
-4. If $\\ket{A}$ is the state vector of the system, and the observable L is measured, the probability of observing $\\lambda_i$ is given by $\\braket{A}{\\lambda_i}\\braket{\\lambda_i}{A}$.
+4. If $\\ket{A}$ is the state vector of the system, and the observable L is measured, the probability of observing $\\lambda\_i$ is given by $\\braket{A}{\\lambda\_i}\\braket{\\lambda\_i}{A}$.
 
 Since the readings (i.e. eigenvalues) are real and eigenvectors are orthogonal, the operator L must be hermitian.
 
@@ -261,13 +261,13 @@ Since the readings (i.e. eigenvalues) are real and eigenvectors are orthogonal, 
 Using above four principles, and solving linear equations, we can derive them.
 
 $$
-\\sigma_z = \\begin{bmatrix}
+\\sigma\_z = \\begin{bmatrix}
 1 & 0 \\\\
 0 & -1 
-\\end{bmatrix}, \\sigma_x = \\begin{bmatrix}
+\\end{bmatrix}, \\sigma\_x = \\begin{bmatrix}
 0 & 1 \\\\
 1 & 0 
-\\end{bmatrix}, \\sigma_y = \\begin{bmatrix}
+\\end{bmatrix}, \\sigma\_y = \\begin{bmatrix}
 0 & -i \\\\
 i & 0 
 \\end{bmatrix} \\text{.}
@@ -277,19 +277,19 @@ These along with Identity matrix are called Pauli Matrices.
 
 IMPORTANT: Applying the operator L to state $\\ket{A}$ does not change the state to $L\\ket{A}$. $L\\ket{A}$ is actually a supuerposition and tells us the probabilities of basis states. When we actually measure using L, the system is changed to one of the eignestates unambiguously.
 
-There is nothing special about these three operators. We can take any direction $\\hat{n} = (n_x, n_y, n_z)$, orient the apparatus A along $\\hat n$, activate A, and measure the component of the spin along $\\hat n$. That means there has to be an operator that represents this operation. Indeed, this operator is given by $\\sigma_n = \\sigma \\cdot \\hat n$, where $\\sigma = (\\sigma_x, \\sigma_y, \\sigma_z)$.
+There is nothing special about these three operators. We can take any direction $\\hat{n} = (n\_x, n\_y, n\_z)$, orient the apparatus A along $\\hat n$, activate A, and measure the component of the spin along $\\hat n$. That means there has to be an operator that represents this operation. Indeed, this operator is given by $\\sigma\_n = \\sigma \\cdot \\hat n$, where $\\sigma = (\\sigma\_x, \\sigma\_y, \\sigma\_z)$.
 
 $$
-\\sigma_n = \\begin{bmatrix}
-n_z & (n_x - i n_y) \\\\
-(n_x + i n_y) & -n_z
+\\sigma\_n = \\begin{bmatrix}
+n\_z & (n\_x - i n\_y) \\\\
+(n\_x + i n\_y) & -n\_z
 \\end{bmatrix}
 $$
 
 
 ### Spin-Polarization Principle
 
-For any state $\\ket{A} = \\alpha_u \\ket{u} + \\alpha_d \\ket{d}$, there exists some direction $\\hat n$ such that $\\sigma \\cdot \\hat n = \\ket{A}$.
+For any state $\\ket{A} = \\alpha\_u \\ket{u} + \\alpha\_d \\ket{d}$, there exists some direction $\\hat n$ such that $\\sigma \\cdot \\hat n = \\ket{A}$.
 
 States of the spins are characterized by a polarization vector, and along the polarization vector the component of the spin is predictably +1.
 

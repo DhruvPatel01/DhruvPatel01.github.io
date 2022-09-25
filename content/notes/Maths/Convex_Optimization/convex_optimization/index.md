@@ -23,11 +23,11 @@ These notes are not mathematically rigorous. These are meant for quick reference
 #### Affine Sets
 
 
-Affine combination: $\\sum_{i=1}^{i=N} \\theta_i x_i$ such that $\\sum_{i=1}^{i=N} \\theta_i = 1$.
+Affine combination: $\\sum\_{i=1}^{i=N} \\theta\_i x\_i$ such that $\\sum\_{i=1}^{i=N} \\theta\_i = 1$.
 
 Draw a line passing through any two points, if the whole line is in the set, the set is affine.
 
-Every affine set C can be written as $C = V + x_0$ for any $x_0 \\in C$, where V is a subspace.
+Every affine set C can be written as $C = V + x\_0$ for any $x\_0 \\in C$, where V is a subspace.
 
 Affine Hull of C (**aff** C)
 : Smallest affine set, which contains C.
@@ -43,7 +43,7 @@ Boundary
 
 ##### Example
 
-Let C = $\\{x \\in R^3 | −1 \\le x_1 \\le 1, −1 \\le x_2 \\le 1, x_3 = 0\\}$. That is a square.
+Let C = $\\{x \\in R^3 | −1 \\le x\_1 \\le 1, −1 \\le x\_2 \\le 1, x\_3 = 0\\}$. That is a square.
 
 - Interior: Empty
 - Relative interior: square without the border
@@ -53,7 +53,7 @@ Let C = $\\{x \\in R^3 | −1 \\le x_1 \\le 1, −1 \\le x_2 \\le 1, x_3 = 0\\}$
 #### Convex Sets
 
 Convex combination
-: $\\sum_{i=1}^{i=N} \\theta_i x_i$ such that $\\sum_{i=1}^{i=N} \\theta_i = 1$ and $\\theta_i \\ge 0$.
+: $\\sum\_{i=1}^{i=N} \\theta\_i x\_i$ such that $\\sum\_{i=1}^{i=N} \\theta\_i = 1$ and $\\theta\_i \\ge 0$.
 
 Draw a line segment between any two points, if the whole line segment is in the set, the set is convex.
 
@@ -67,7 +67,7 @@ Convex Cone
 : A set C is convex cone, if it is convex and a cone!
 
 Conic Combination
-:  $\\sum_{i=1}^{i=N} \\theta_i x_i$ such that $\\theta_i \\ge 0$.
+:  $\\sum\_{i=1}^{i=N} \\theta\_i x\_i$ such that $\\theta\_i \\ge 0$.
 
 
 ### Some Important Examples
@@ -85,16 +85,16 @@ Conic Combination
 
 
 Hyperplane
-: $\\{x | a^T x = b\\} = \\{x | a^T(x-x_0) = 0\\}$ for constant vector a and scalar b. Where $x_0$ is any point in the hyperplane.
+: $\\{x | a^T x = b\\} = \\{x | a^T(x-x\_0) = 0\\}$ for constant vector a and scalar b. Where $x\_0$ is any point in the hyperplane.
 
 Closed Half spaces
 : $\\{x | a^T x \\le b\\}$
 
 Euclidean Ball
-: $B(x_c, r) = \\{ x \\, | \\, \\| x - x_c \\|_2 \\le r \\} = \\{  x_c + ru \\, | \\, \\| u \\|_2 \\le 1\\}$.
+: $B(x\_c, r) = \\{ x \\, | \\, \\| x - x\_c \\|\_2 \\le r \\} = \\{  x\_c + ru \\, | \\, \\| u \\|\_2 \\le 1\\}$.
 
 Ellipsoid
-: $ E = \\{ x \\, | \\, (x - x_c)^T P^{-1} (x-x_c) \\le 1 \\} = \\{ x_c + Au \\, | \\, \\| u \\|_2 \\le 1 \\}$. Where, P is positive definite matrix, and A is square and non singular matrix.
+: $ E = \\{ x \\, | \\, (x - x\_c)^T P^{-1} (x-x\_c) \\le 1 \\} = \\{ x\_c + Au \\, | \\, \\| u \\|\_2 \\le 1 \\}$. Where, P is positive definite matrix, and A is square and non singular matrix.
 
 Norm Cones
 : $\\{ (x, t) \\, | \\, \\| x \\| \\le t\\} \\subset R^{n+1}$.
@@ -106,7 +106,7 @@ Polyhedron
 : A polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes.
 
 Simplex
-: Simplex is a special polyhedron. If $v_0, \\dots, v_k$ are affinely independent (that is $v_1-v_0, \\dots , v_k-v_0$ are linearly independent) then simplex is just convex hull of $(v_0, \\dots, v_k)$.
+: Simplex is a special polyhedron. If $v\_0, \\dots, v\_k$ are affinely independent (that is $v\_1-v\_0, \\dots , v\_k-v\_0$ are linearly independent) then simplex is just convex hull of $(v\_0, \\dots, v\_k)$.
 
 
 
@@ -116,7 +116,7 @@ Simplex
 
 #### Intersection
 
-If $S_\\alpha$ is a convex set for for every $\\alpha \\in \\cal{A}$ where $\\cal{A}$ is any set (could be uncountable infinite), then $\\cap_{\\alpha \\in \\cal{A}} S_\\alpha$ is also convex. Converse is also true. Every closed convex set S is a (usually infinite) intersection of halfspaces.
+If $S\_\\alpha$ is a convex set for for every $\\alpha \\in \\cal{A}$ where $\\cal{A}$ is any set (could be uncountable infinite), then $\\cap\_{\\alpha \\in \\cal{A}} S\_\\alpha$ is also convex. Converse is also true. Every closed convex set S is a (usually infinite) intersection of halfspaces.
 
 
 ```python
@@ -147,7 +147,7 @@ plt.ylim(-2, 2);
 plt.xlim(-2, 2);
 
 ```
-![output image for above cell](images/631c5669dec7ed0e8b5c8495.png)
+![output image for above cell](images/632fe312911e242edea4d5ea.png)
 ```text
 <Figure size 432x288 with 1 Axes>
 
@@ -168,7 +168,7 @@ Hyperbolic Cone
 
 #### Perspective Function
 
-$P: R^{n+1} \\to R^n$, where **dom** P = $R^n \\times R_{++}$. P is defined as $P(z, t) = z/t$.
+$P: R^{n+1} \\to R^n$, where **dom** P = $R^n \\times R\_{++}$. P is defined as $P(z, t) = z/t$.
 
 If domain of P is convex then the image of P is also convex.
 
@@ -195,12 +195,12 @@ Proper Cone
 : A cone is proper if it is convex, closed, solid (non empty interior) and is pointed (it does not contain a line).
 
 Generalized inequality with respect to proper cone K
-: $ x \\le_K y \\iff y - x \\in K$. Also $ x <_K y \\iff y-x \\in \\textbf{int} K$
+: $ x \\le\_K y \\iff y - x \\in K$. Also $ x <\_K y \\iff y-x \\in \\textbf{int} K$
 
 
 Examples
-1. $ K = R^n_+ $. Then for vectors x and y,  $x \\le y$ iff $x_i \\le y_i$ for all i.
-2. $ K = S^n_+ $. Then for matrices A and B, $A \\le B$ iff $B - A$ is positive semidefinite.
+1. $ K = R^n\_+ $. Then for vectors x and y,  $x \\le y$ iff $x\_i \\le y\_i$ for all i.
+2. $ K = S^n\_+ $. Then for matrices A and B, $A \\le B$ iff $B - A$ is positive semidefinite.
 
 
 #### Minimum and Minimal
@@ -216,7 +216,7 @@ Minimal
 
 If C and D are disjoint convex set, there exists a and b such that $a^T x \\ge b$ for all x in D and $a^T x \\le b$ for all x in C.
 
-If C is a convex and $x_0 \\notin C$. Then $x_0$ and C can be strictly separated.
+If C is a convex and $x\_0 \\notin C$. Then $x\_0$ and C can be strictly separated.
 
 
 Converse of above theorem is not true. That is there may exist convex sets C and D which are separated by a hyperplane, they still might intersect. Simple example is $C = D = \\{0\\} \\subset R$. $x = 0$ separates C and D.
