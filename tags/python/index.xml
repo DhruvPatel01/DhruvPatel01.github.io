@@ -20,8 +20,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="349562871" type="checkbox" checked />
-&lt;label for="349562871">
+&lt;input id="439876512" type="checkbox" checked />
+&lt;label for="439876512">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -60,8 +60,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="185324697" type="checkbox" />
-&lt;label for="185324697">
+&lt;input id="964785213" type="checkbox" />
+&lt;label for="964785213">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -226,8 +226,8 @@ y, 1);
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="187345692" type="checkbox" />
-&lt;label for="187345692">
+&lt;input id="296358471" type="checkbox" />
+&lt;label for="296358471">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -244,8 +244,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="493527816" type="checkbox" />
-&lt;label for="493527816">
+&lt;input id="638174592" type="checkbox" />
+&lt;label for="638174592">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -281,8 +281,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="726589431" type="checkbox" />
-&lt;label for="726589431">
+&lt;input id="587361924" type="checkbox" />
+&lt;label for="587361924">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -300,8 +300,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="239418765" type="checkbox" />
-&lt;label for="239418765">
+&lt;input id="435726981" type="checkbox" />
+&lt;label for="435726981">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -339,8 +339,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="398417526" type="checkbox" />
-&lt;label for="398417526">
+&lt;input id="653298471" type="checkbox" />
+&lt;label for="653298471">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
