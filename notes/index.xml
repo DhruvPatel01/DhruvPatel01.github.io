@@ -157,7 +157,7 @@ Using calculus, $k \approx (ln 2) b$.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>fpve_rate
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>[0.1551, 0.0211, 0.0024, 0.0003]
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>at b=12, false positive rate is already less than 1%&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Sat, 24 Sep 2022 09:58:31 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 28 Sep 2022 01:08:59 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
 Configration space: 3N dimensional space, records positions.
 State space: 6N dimensional space, records position and velocity.
@@ -381,7 +381,27 @@ $$&lt;/p>
 &lt;p>Thus Hamiltonian formulation gives us two first order equations.&lt;/p>
 &lt;p>Solving Euler-Lagrangian equation, on the other hand gives us single second order equation. $\ddot{q} = \omega \dot{p}$. These two are equivalent, and can be seen by substituting the first equation in the time derivative of the second equation of the Hamiltonian.&lt;/p>
 &lt;p>Notice that because of constant energy, in the phase space the particle moves along a circle of fixed radius.&lt;/p>
-&lt;p>&lt;img src="attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img src="images/attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png" alt="image.png">&lt;/p>
+&lt;h2 id="phase-space-fluid">Phase Space Fluid&lt;/h2>
+&lt;p>One can imagine a trajectory starting with arbitrary point &lt;code>(p, q)&lt;/code> in the phase following the hamiltonian equations.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\dot{p_i} &amp;amp;= -\frac{\partial H}{\partial q_i} \\
+\dot{q_i} &amp;amp;= \frac{\partial H}{\partial p}
+\end{align*}
+$$&lt;/p>
+&lt;p>We can imagine the phase space made of infinite points. This can be seen as a fluid in a phase space. The fluid moves using hamiltonian equations.&lt;/p>
+&lt;p>This flow has certain features.&lt;/p>
+&lt;ol>
+&lt;li>If a point starts at given energy H(q, p), it remains with the same value of energy.
+The surfaces of the energy are defined by $H(q, p) = E$. For each value of E, we have a surface.&lt;/li>
+&lt;/ol>
+&lt;p>In ordinary 3-d space, a flow can be described as a velocity field $\vec{v}(x, y, z)$. For each point, it defines a velocity at that point. This can also be a function of time.&lt;/p>
+&lt;p>&lt;img src="images/attachment:beee651f-3d52-42fb-95fb-028ec81d6cf7.png" alt="image.png">&lt;/p>
+&lt;dl>
+&lt;dt>Incompressible fluid&lt;/dt>
+&lt;dd>a given amount of the fluid always occupies the same volume. It also means that the density of the fluid—the number of molecules per unit volume—is uniform and stays that way forever.&lt;/dd>
+&lt;/dl>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Power and Politics in Today’s World</title><link>https://dhruvpatel.dev/notes/politics/power/</link><pubDate>Sat, 10 Sep 2022 09:07:23 +0000</pubDate><guid>https://dhruvpatel.dev/notes/politics/power/</guid><description>Lecture 2 Aug 19, 1991 Moskow: Coup d&amp;rsquo;etat against Mikhail Gorbichov (came power in Feb 1985)
 When came to power in 1985, west thought what would become of Soviet Union?
 Gorbachev was younger, talked like a western politician, allowed criticism of the regime. His policies were more open. It seemed like it was starting to change. In 1989 while revolution in Eastern Europe, Russia didn&amp;rsquo;t intervene; this was opposite to Russia&amp;rsquo;s earlier policies.</description><content>&lt;h1 id="lecture-2">Lecture 2&lt;/h1>
@@ -845,7 +865,7 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> plt&lt;span style="color:#f92672">.&lt;/span>plot(x, y2(x), &lt;span style="color:#e6db74">&amp;#39;k&amp;#39;&lt;/span>, lw&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;.5&amp;#39;&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>ylim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/632fe312911e242edea4d5ea.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/5c5d61291f1a421f53dc37afdf5908e5.png" alt="output image for above cell">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 432x288 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="affine-functions">Affine Functions&lt;/h4>
 &lt;p>Function f is affine if f = Ax + b for some A and b.&lt;/p>
