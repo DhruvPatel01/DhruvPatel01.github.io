@@ -1,7 +1,7 @@
 {
   "title": "CM-Notes",
-  "date": "2022-09-24T09:58:31Z",
-  "lastmod": "2022-09-24T09:58:31Z"
+  "date": "2022-09-28T01:08:59Z",
+  "lastmod": "2022-09-28T01:08:59Z"
 }
 
 
@@ -327,10 +327,39 @@ Solving Euler-Lagrangian equation, on the other hand gives us single second orde
 Notice that because of constant energy, in the phase space the particle moves along a circle of fixed radius.
 
 
-![image.png](attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png)
+![image.png](images/attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png)
+
+
+## Phase Space Fluid
+
+One can imagine a trajectory starting with arbitrary point `(p, q)` in the phase following the hamiltonian equations.
+
+$$
+\\begin{align*} 
+\\dot{p\_i} &= -\\frac{\\partial H}{\\partial q\_i} \\\\
+\\dot{q\_i} &= \\frac{\\partial H}{\\partial p}
+\\end{align*}
+$$
+
+We can imagine the phase space made of infinite points. This can be seen as a fluid in a phase space. The fluid moves using hamiltonian equations.
+
+This flow has certain features.
+
+1. If a point starts at given energy H(q, p), it remains with the same value of energy.
+The surfaces of the energy are defined by $H(q, p) = E$. For each value of E, we have a surface.
+
+
+In ordinary 3-d space, a flow can be described as a velocity field $\\vec{v}(x, y, z)$. For each point, it defines a velocity at that point. This can also be a function of time. 
+
+![image.png](images/attachment:beee651f-3d52-42fb-95fb-028ec81d6cf7.png)
+
+
+Incompressible fluid 
+: a given amount of the fluid always occupies the same volume. It also means that the density of the fluid—the number of  molecules  per  unit  volume—is  uniform  and  stays  that  way forever.
 
 
 ```python
+
 
 
 ```

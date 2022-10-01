@@ -147,7 +147,7 @@ plt.ylim(-2, 2);
 plt.xlim(-2, 2);
 
 ```
-![output image for above cell](images/632fe312911e242edea4d5ea.png)
+![output image for above cell](images/5c5d61291f1a421f53dc37afdf5908e5.png)
 ```text
 <Figure size 432x288 with 1 Axes>
 
