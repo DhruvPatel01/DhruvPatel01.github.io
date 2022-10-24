@@ -1,163 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://dhruvpatel.dev/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Thu, 29 Sep 2022 04:07:39 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Bloom Filters</title><link>https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/</link><pubDate>Thu, 29 Sep 2022 04:07:39 +0000</pubDate><guid>https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/</guid><description>API bf.add(x): adds x in the data structure x in bf: tests if x is in the data structure. Why not use Set or Dict? Bloom filters are more space efficients. They take memory lesser than the keys themselves. Cons can&amp;rsquo;t store associated data. does not support deletions. It is probabilistic data structure. That means, x in bf might have false positives. There are no false negatives. Applications Spell checkers: (40 years ago) Add the dictionary into the filter.</description><content>&lt;h2 id="api">API&lt;/h2>
-&lt;ul>
-&lt;li>&lt;code>bf.add(x)&lt;/code>: adds x in the data structure&lt;/li>
-&lt;li>&lt;code>x in bf&lt;/code>: tests if x is in the data structure.&lt;/li>
-&lt;/ul>
-&lt;h2 id="why-not-use-set-or-dict">Why not use Set or Dict?&lt;/h2>
-&lt;ul>
-&lt;li>Bloom filters are more space efficients. They take memory lesser than the keys themselves.&lt;/li>
-&lt;/ul>
-&lt;h2 id="cons">Cons&lt;/h2>
-&lt;ul>
-&lt;li>can&amp;rsquo;t store associated data.&lt;/li>
-&lt;li>does not support deletions.&lt;/li>
-&lt;li>It is probabilistic data structure. That means, &lt;code>x in bf&lt;/code> might have false positives. There are no false negatives.&lt;/li>
-&lt;/ul>
-&lt;h2 id="applications">Applications&lt;/h2>
-&lt;ul>
-&lt;li>Spell checkers: (40 years ago) Add the dictionary into the filter. If the word is in the bloom filter, it is higly likely tobe correctly spelled word.&lt;/li>
-&lt;li>list of forbidden password. E.g., too common password.&lt;/li>
-&lt;li>Modern applications: Routers, a lot of packets incoming.&lt;/li>
-&lt;/ul>
-&lt;h2 id="how-does-it-work">How does it work?&lt;/h2>
-&lt;ul>
-&lt;li>we have a data set &lt;code>S&lt;/code> of size &lt;code>|S|&lt;/code>.&lt;/li>
-&lt;li>have an array of &lt;code>n&lt;/code> bits.&lt;/li>
-&lt;li>$b = \frac{n}{|S|}$ bits per element.&lt;/li>
-&lt;li>have &lt;code>k&lt;/code> hash functions.&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">BitArray&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, n):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>zeros((n &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, dtype&lt;span style="color:#f92672">=&lt;/span>np&lt;span style="color:#f92672">.&lt;/span>uint8)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">set&lt;/span>(self, i):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i, j &lt;span style="color:#f92672">=&lt;/span> divmod(i, &lt;span style="color:#ae81ff">8&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array[i] &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>array[i] &lt;span style="color:#f92672">|&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> j)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get&lt;/span>(self, i):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i, j &lt;span style="color:#f92672">=&lt;/span> divmod(i, &lt;span style="color:#ae81ff">8&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> bool(self&lt;span style="color:#f92672">.&lt;/span>array[i] &lt;span style="color:#f92672">&amp;amp;&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> j))
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> xxhash
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get_hashes_for_str&lt;/span>(x, k):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Only h1 and h2 are computed afresh. Remaining hash &lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># functions are just linear combinations of h1 and h2.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">assert&lt;/span> k &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> h1 &lt;span style="color:#f92672">=&lt;/span> xxhash&lt;span style="color:#f92672">.&lt;/span>xxh64_intdigest(x, seed&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">42&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> h2 &lt;span style="color:#f92672">=&lt;/span> xxhash&lt;span style="color:#f92672">.&lt;/span>xxh64_intdigest(x, seed&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">84&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> hashes &lt;span style="color:#f92672">=&lt;/span> [h1, h2]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">2&lt;/span>, k):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> hashes&lt;span style="color:#f92672">.&lt;/span>append(h1 &lt;span style="color:#f92672">+&lt;/span> i&lt;span style="color:#f92672">*&lt;/span>h2)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> hashes
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">BloomFilter&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, n, k):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array &lt;span style="color:#f92672">=&lt;/span> BitArray(n)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>k &lt;span style="color:#f92672">=&lt;/span> k
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>n &lt;span style="color:#f92672">=&lt;/span> n
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>(self, key):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> h &lt;span style="color:#f92672">in&lt;/span> get_hashes_for_str(key, self&lt;span style="color:#f92672">.&lt;/span>k):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array&lt;span style="color:#f92672">.&lt;/span>set(h &lt;span style="color:#f92672">%&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>n)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> __contains__(self, key):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> h &lt;span style="color:#f92672">in&lt;/span> get_hashes_for_str(key, self&lt;span style="color:#f92672">.&lt;/span>k):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">not&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>array&lt;span style="color:#f92672">.&lt;/span>get(h &lt;span style="color:#f92672">%&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>n):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">False&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">True&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>text &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;correct incorrect&amp;#34;&lt;/span>&lt;span style="color:#f92672">.&lt;/span>split()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bm &lt;span style="color:#f92672">=&lt;/span> BloomFilter(&lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> word &lt;span style="color:#f92672">in&lt;/span> text:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bm&lt;span style="color:#f92672">.&lt;/span>add(word)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> word &lt;span style="color:#f92672">in&lt;/span> text:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">assert&lt;/span> word &lt;span style="color:#f92672">in&lt;/span> bm
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">assert&lt;/span> &lt;span style="color:#e6db74">&amp;#34;notcorrect&amp;#34;&lt;/span> &lt;span style="color:#f92672">not&lt;/span> &lt;span style="color:#f92672">in&lt;/span> bm
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="analysis">Analysis&lt;/h2>
-&lt;p>Trade off between erro rate and space required. Data structre will be useful when there is a sweetspot on the tradeoff curve.&lt;/p>
-&lt;p>Assumption: The hash functions are independent and they distribute the data uniformly.&lt;/p>
-&lt;p>Out of n bits, focus on a particular bit. What is the probability that it has been set?&lt;/p>
-&lt;p>It is probability of 1 minus it hasn&amp;rsquo;t been set by any of the &lt;code>|S|&lt;/code> elements, for any of the &lt;code>k&lt;/code> hash functions.&lt;/p>
-&lt;p>$p = 1 - (1 - \frac{1}{n})^{k|S|}$.&lt;/p>
-&lt;p>As can be seen by the plot below, $1+x$ can be approximated by $e^x$ when x is close to zero. In all cases, $e^x$ is an overestimate of $1+x$.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> matplotlib.pyplot &lt;span style="color:#66d9ef">as&lt;/span> plt
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>x &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">+&lt;/span>x, label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$1 +x$&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, np&lt;span style="color:#f92672">.&lt;/span>exp(x), label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$e^x$&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc91.png" alt="output image for above cell">&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Thus, $p \approx 1 - e^{\frac{-k|S|}{n}} = 1 - e^{\frac{-k}{b}}$. Remember, b is the bits per element.&lt;/p>
-&lt;p>As $b \to \inf$, $p \to 0$.&lt;/p>
-&lt;p>Thus, the probability of false positive is $\epsilon = (1-e^{\frac{-k}{b}})^k$.&lt;/p>
-&lt;h2 id="how-to-set-k">How to set K?&lt;/h2>
-&lt;p>Set K optimally. Fix the b, then set k to minimize the error.
-Using calculus, $k \approx (ln 2) b$.&lt;/p>
-&lt;p>When we plug this back into the p, we get $\epsilon \approx (\frac{1}{2})^\left((ln 2) b\right)$. Notice that error rate is exponential in b.&lt;/p>
-&lt;p>Using little bit of algebra we can get $b \approx 1.44 log_2{\frac{1}{\epsilon}}$. (Hint: $1.44 \approx \frac{1}{ln2}$.)&lt;/p>
-&lt;h2 id="how-does-theory-differ-from-practice">How does theory differ from practice&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> string
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> random
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>letters &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array(list(string&lt;span style="color:#f92672">.&lt;/span>ascii_letters &lt;span style="color:#f92672">+&lt;/span> string&lt;span style="color:#f92672">.&lt;/span>digits))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">random_str&lt;/span>():
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&lt;/span>&lt;span style="color:#f92672">.&lt;/span>join(np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>choice(letters, np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randint(&lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">9&lt;/span>)))
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Generate 1M keys, and insert them in the bloom filter. Just for sanity check, I will test if there is no false negative. Then I will generate keys at random, check if it is in actually there, and how often does bloom filter give false positive. Recall that error rate as a function of b = n/10M is $\approx (\frac{1}{2})^\left((ln 2) b\right)$.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>actually_there &lt;span style="color:#f92672">=&lt;/span> set()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set_size &lt;span style="color:#f92672">=&lt;/span> int(&lt;span style="color:#ae81ff">1e6&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">while&lt;/span> len(actually_there) &lt;span style="color:#f92672">!=&lt;/span> set_size:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> actually_there&lt;span style="color:#f92672">.&lt;/span>add(random_str())
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> tqdm.auto &lt;span style="color:#f92672">import&lt;/span> tqdm
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>bs &lt;span style="color:#f92672">=&lt;/span> [&lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">8&lt;/span>, &lt;span style="color:#ae81ff">12&lt;/span>, &lt;span style="color:#ae81ff">16&lt;/span>]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fpve_rate &lt;span style="color:#f92672">=&lt;/span> []
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>theory &lt;span style="color:#f92672">=&lt;/span> []
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> b &lt;span style="color:#f92672">in&lt;/span> bs:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> theory&lt;span style="color:#f92672">.&lt;/span>append(&lt;span style="color:#ae81ff">.5&lt;/span>&lt;span style="color:#f92672">**&lt;/span>(np&lt;span style="color:#f92672">.&lt;/span>log(&lt;span style="color:#ae81ff">2&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>b))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bm &lt;span style="color:#f92672">=&lt;/span> BloomFilter(b&lt;span style="color:#f92672">*&lt;/span>set_size, k&lt;span style="color:#f92672">=&lt;/span>int(np&lt;span style="color:#f92672">.&lt;/span>log(&lt;span style="color:#ae81ff">2&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>b))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> tqdm(actually_there, &lt;span style="color:#e6db74">&amp;#34;Inserting&amp;#34;&lt;/span>):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bm&lt;span style="color:#f92672">.&lt;/span>add(key)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> tqdm(actually_there, &lt;span style="color:#e6db74">&amp;#34;Sanity Checking&amp;#34;&lt;/span>):
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">assert&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> bm
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fpve, total &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> total &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">10_000&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> key &lt;span style="color:#f92672">=&lt;/span> random_str()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> actually_there: &lt;span style="color:#66d9ef">continue&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> bm:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fpve &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> total &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fpve_rate&lt;span style="color:#f92672">.&lt;/span>append(fpve&lt;span style="color:#f92672">/&lt;/span>total)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>bs_lin &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(bs[&lt;span style="color:#ae81ff">0&lt;/span>], bs[&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>])
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(bs_lin, &lt;span style="color:#ae81ff">.5&lt;/span>&lt;span style="color:#f92672">**&lt;/span>(np&lt;span style="color:#f92672">.&lt;/span>log(&lt;span style="color:#ae81ff">2&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>bs_lin), label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Theory&amp;#34;&lt;/span>, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;b&amp;#39;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(bs, theory, &lt;span style="color:#e6db74">&amp;#39;o&amp;#39;&lt;/span>, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;b&amp;#39;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(bs, fpve_rate, &lt;span style="color:#e6db74">&amp;#39;-x&amp;#39;&lt;/span>, label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Practice&amp;#34;&lt;/span>, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;orange&amp;#39;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlabel(&lt;span style="color:#e6db74">&amp;#34;bits per element&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Text(0.5, 0, &amp;#39;bits per element&amp;#39;)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc92.png" alt="output image for above cell">&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>fpve_rate
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>[0.1551, 0.0211, 0.0024, 0.0003]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>at b=12, false positive rate is already less than 1%&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 28 Sep 2022 01:08:59 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://dhruvpatel.dev/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Wed, 05 Oct 2022 02:01:42 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
 Configration space: 3N dimensional space, records positions.
 State space: 6N dimensional space, records position and velocity.
@@ -402,6 +243,202 @@ The surfaces of the energy are defined by $H(q, p) = E$. For each value of E, we
 &lt;dt>Incompressible fluid&lt;/dt>
 &lt;dd>a given amount of the fluid always occupies the same volume. It also means that the density of the fluid—the number of molecules per unit volume—is uniform and stays that way forever.&lt;/dd>
 &lt;/dl>
+&lt;p>Divergence of the vector field $\vec{v(t)}$, is defined to be,&lt;/p>
+&lt;p>$$
+\nabla \cdot \vec{v} = \left( \frac{\partial{v_x}}{\partial{x}} + \frac{\partial{v_y}}{\partial{y}} + \frac{\partial{v_z}}{\partial{z}} \right)
+$$&lt;/p>
+&lt;p>So in the small cube, if velocity along all three axis remains constant, divergence is zero. Incompressible fluid will have zero divergence.&lt;/p>
+&lt;p>But, is the flow through phase space incompressible? &lt;strong>Liouville&amp;rsquo;s Theorem&lt;/strong> says that yes, if the system satisfies Hamilton&amp;rsquo;s equations.&lt;/p>
+&lt;p>Example: $H = pq$&lt;/p>
+&lt;p>$$
+\begin{align*}
+\dot{q} &amp;amp;= q \\
+\dot{p} &amp;amp;= -p
+\end{align*}
+$$&lt;/p>
+&lt;p>The flow decreases exponentially in p axis, and increases exponentially in q axis. The blob changes the shape extremely, but volume remains constant.&lt;/p>
+&lt;p>Lioville&amp;rsquo;s theorem in quantum mechanics is replaced by unitarity.&lt;/p>
+&lt;h2 id="poisson-brackets">Poisson Brackets&lt;/h2>
+&lt;p>Let $F(q, p)$ be the generic function of q&amp;rsquo;s and p&amp;rsquo;s. E.g., it could be potential energy, kinetic energy, angular momentum, etc.&lt;/p>
+&lt;p>As we follow a point in a phase space, we get a trajectory of F. i.e., F is a function of time.&lt;/p>
+&lt;p>$$
+\begin{align}
+\dot{F} &amp;amp;= \sum_{i} \left( \frac{\partial F}{\partial q_i} \dot{q_i} + \frac{\partial F}{\partial p_i} \dot{p_i} \right) \\
+\dot{F} &amp;amp;= \sum_{i} \left( \frac{\partial F}{\partial q_i} \frac{\partial H}{\partial p_i} -
+\frac{\partial F}{\partial p_i} \frac{\partial H}{\partial q_i} \right)
+\end{align}
+$$&lt;/p>
+&lt;p>For &lt;strong>any&lt;/strong> two functions F, and G in a phase space, Poisson Bracket is defined as,
+$$
+\{F, G\} = \sum_{i} \left( \frac{\partial F}{\partial q_i} \frac{\partial G}{\partial p_i} -
+\frac{\partial F}{\partial p_i} \frac{\partial G}{\partial q_i} \right)
+$$&lt;/p>
+&lt;p>Thus, $\dot{F}$ could be rewritten as $\{F, H\}$.&lt;/p>
+&lt;p>The time derivative of &lt;strong>anything&lt;/strong> is a poisson bracket of itself with the Hamiltonian.&lt;/p>
+&lt;ul>
+&lt;li>$\dot{q_k} = \{q_k, H\} = \frac{\partial H}{\partial p}$. (Simple application of the notation.)&lt;/li>
+&lt;li>$\dot{p_k} = \{p_k, H\} = -\frac{\partial H}{\partial q}$. (Simple application of the notation.)&lt;/li>
+&lt;/ul>
+&lt;p>Thus, Poisson bracket gives Hamilton&amp;rsquo;s equations back.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Bloom Filters</title><link>https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/</link><pubDate>Thu, 29 Sep 2022 04:07:39 +0000</pubDate><guid>https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/</guid><description>API bf.add(x): adds x in the data structure x in bf: tests if x is in the data structure. Why not use Set or Dict? Bloom filters are more space efficients. They take memory lesser than the keys themselves. Cons can&amp;rsquo;t store associated data. does not support deletions. It is probabilistic data structure. That means, x in bf might have false positives. There are no false negatives. Applications Spell checkers: (40 years ago) Add the dictionary into the filter.</description><content>&lt;h2 id="api">API&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>bf.add(x)&lt;/code>: adds x in the data structure&lt;/li>
+&lt;li>&lt;code>x in bf&lt;/code>: tests if x is in the data structure.&lt;/li>
+&lt;/ul>
+&lt;h2 id="why-not-use-set-or-dict">Why not use Set or Dict?&lt;/h2>
+&lt;ul>
+&lt;li>Bloom filters are more space efficients. They take memory lesser than the keys themselves.&lt;/li>
+&lt;/ul>
+&lt;h2 id="cons">Cons&lt;/h2>
+&lt;ul>
+&lt;li>can&amp;rsquo;t store associated data.&lt;/li>
+&lt;li>does not support deletions.&lt;/li>
+&lt;li>It is probabilistic data structure. That means, &lt;code>x in bf&lt;/code> might have false positives. There are no false negatives.&lt;/li>
+&lt;/ul>
+&lt;h2 id="applications">Applications&lt;/h2>
+&lt;ul>
+&lt;li>Spell checkers: (40 years ago) Add the dictionary into the filter. If the word is in the bloom filter, it is higly likely tobe correctly spelled word.&lt;/li>
+&lt;li>list of forbidden password. E.g., too common password.&lt;/li>
+&lt;li>Modern applications: Routers, a lot of packets incoming.&lt;/li>
+&lt;/ul>
+&lt;h2 id="how-does-it-work">How does it work?&lt;/h2>
+&lt;ul>
+&lt;li>we have a data set &lt;code>S&lt;/code> of size &lt;code>|S|&lt;/code>.&lt;/li>
+&lt;li>have an array of &lt;code>n&lt;/code> bits.&lt;/li>
+&lt;li>$b = \frac{n}{|S|}$ bits per element.&lt;/li>
+&lt;li>have &lt;code>k&lt;/code> hash functions.&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">BitArray&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, n):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>zeros((n &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, dtype&lt;span style="color:#f92672">=&lt;/span>np&lt;span style="color:#f92672">.&lt;/span>uint8)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">set&lt;/span>(self, i):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i, j &lt;span style="color:#f92672">=&lt;/span> divmod(i, &lt;span style="color:#ae81ff">8&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array[i] &lt;span style="color:#f92672">=&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>array[i] &lt;span style="color:#f92672">|&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> j)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get&lt;/span>(self, i):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i, j &lt;span style="color:#f92672">=&lt;/span> divmod(i, &lt;span style="color:#ae81ff">8&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> bool(self&lt;span style="color:#f92672">.&lt;/span>array[i] &lt;span style="color:#f92672">&amp;amp;&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> j))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> xxhash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get_hashes_for_str&lt;/span>(x, k):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Only h1 and h2 are computed afresh. Remaining hash &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># functions are just linear combinations of h1 and h2.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">assert&lt;/span> k &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> h1 &lt;span style="color:#f92672">=&lt;/span> xxhash&lt;span style="color:#f92672">.&lt;/span>xxh64_intdigest(x, seed&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">42&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> h2 &lt;span style="color:#f92672">=&lt;/span> xxhash&lt;span style="color:#f92672">.&lt;/span>xxh64_intdigest(x, seed&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">84&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> hashes &lt;span style="color:#f92672">=&lt;/span> [h1, h2]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">2&lt;/span>, k):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> hashes&lt;span style="color:#f92672">.&lt;/span>append(h1 &lt;span style="color:#f92672">+&lt;/span> i&lt;span style="color:#f92672">*&lt;/span>h2)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> hashes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">BloomFilter&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> __init__(self, n, k):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array &lt;span style="color:#f92672">=&lt;/span> BitArray(n)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>k &lt;span style="color:#f92672">=&lt;/span> k
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>n &lt;span style="color:#f92672">=&lt;/span> n
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>(self, key):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> h &lt;span style="color:#f92672">in&lt;/span> get_hashes_for_str(key, self&lt;span style="color:#f92672">.&lt;/span>k):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>array&lt;span style="color:#f92672">.&lt;/span>set(h &lt;span style="color:#f92672">%&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>n)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> __contains__(self, key):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> h &lt;span style="color:#f92672">in&lt;/span> get_hashes_for_str(key, self&lt;span style="color:#f92672">.&lt;/span>k):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">not&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>array&lt;span style="color:#f92672">.&lt;/span>get(h &lt;span style="color:#f92672">%&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>n):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">False&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">True&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>text &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;correct incorrect&amp;#34;&lt;/span>&lt;span style="color:#f92672">.&lt;/span>split()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bm &lt;span style="color:#f92672">=&lt;/span> BloomFilter(&lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> word &lt;span style="color:#f92672">in&lt;/span> text:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bm&lt;span style="color:#f92672">.&lt;/span>add(word)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> word &lt;span style="color:#f92672">in&lt;/span> text:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">assert&lt;/span> word &lt;span style="color:#f92672">in&lt;/span> bm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">assert&lt;/span> &lt;span style="color:#e6db74">&amp;#34;notcorrect&amp;#34;&lt;/span> &lt;span style="color:#f92672">not&lt;/span> &lt;span style="color:#f92672">in&lt;/span> bm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="analysis">Analysis&lt;/h2>
+&lt;p>Trade off between erro rate and space required. Data structre will be useful when there is a sweetspot on the tradeoff curve.&lt;/p>
+&lt;p>Assumption: The hash functions are independent and they distribute the data uniformly.&lt;/p>
+&lt;p>Out of n bits, focus on a particular bit. What is the probability that it has been set?&lt;/p>
+&lt;p>It is probability of 1 minus it hasn&amp;rsquo;t been set by any of the &lt;code>|S|&lt;/code> elements, for any of the &lt;code>k&lt;/code> hash functions.&lt;/p>
+&lt;p>$p = 1 - (1 - \frac{1}{n})^{k|S|}$.&lt;/p>
+&lt;p>As can be seen by the plot below, $1+x$ can be approximated by $e^x$ when x is close to zero. In all cases, $e^x$ is an overestimate of $1+x$.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> matplotlib.pyplot &lt;span style="color:#66d9ef">as&lt;/span> plt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>x &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">+&lt;/span>x, label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$1 +x$&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, np&lt;span style="color:#f92672">.&lt;/span>exp(x), label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$e^x$&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc91.png" alt="output image for above cell">&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Thus, $p \approx 1 - e^{\frac{-k|S|}{n}} = 1 - e^{\frac{-k}{b}}$. Remember, b is the bits per element.&lt;/p>
+&lt;p>As $b \to \inf$, $p \to 0$.&lt;/p>
+&lt;p>Thus, the probability of false positive is $\epsilon = (1-e^{\frac{-k}{b}})^k$.&lt;/p>
+&lt;h2 id="how-to-set-k">How to set K?&lt;/h2>
+&lt;p>Set K optimally. Fix the b, then set k to minimize the error.
+Using calculus, $k \approx (ln 2) b$.&lt;/p>
+&lt;p>When we plug this back into the p, we get $\epsilon \approx (\frac{1}{2})^\left((ln 2) b\right)$. Notice that error rate is exponential in b.&lt;/p>
+&lt;p>Using little bit of algebra we can get $b \approx 1.44 log_2{\frac{1}{\epsilon}}$. (Hint: $1.44 \approx \frac{1}{ln2}$.)&lt;/p>
+&lt;h2 id="how-does-theory-differ-from-practice">How does theory differ from practice&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> string
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> random
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>letters &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array(list(string&lt;span style="color:#f92672">.&lt;/span>ascii_letters &lt;span style="color:#f92672">+&lt;/span> string&lt;span style="color:#f92672">.&lt;/span>digits))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">random_str&lt;/span>():
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&lt;/span>&lt;span style="color:#f92672">.&lt;/span>join(np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>choice(letters, np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randint(&lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">9&lt;/span>)))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Generate 1M keys, and insert them in the bloom filter. Just for sanity check, I will test if there is no false negative. Then I will generate keys at random, check if it is in actually there, and how often does bloom filter give false positive. Recall that error rate as a function of b = n/10M is $\approx (\frac{1}{2})^\left((ln 2) b\right)$.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>actually_there &lt;span style="color:#f92672">=&lt;/span> set()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set_size &lt;span style="color:#f92672">=&lt;/span> int(&lt;span style="color:#ae81ff">1e6&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">while&lt;/span> len(actually_there) &lt;span style="color:#f92672">!=&lt;/span> set_size:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> actually_there&lt;span style="color:#f92672">.&lt;/span>add(random_str())
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> tqdm.auto &lt;span style="color:#f92672">import&lt;/span> tqdm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>bs &lt;span style="color:#f92672">=&lt;/span> [&lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#ae81ff">8&lt;/span>, &lt;span style="color:#ae81ff">12&lt;/span>, &lt;span style="color:#ae81ff">16&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fpve_rate &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>theory &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> b &lt;span style="color:#f92672">in&lt;/span> bs:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> theory&lt;span style="color:#f92672">.&lt;/span>append(&lt;span style="color:#ae81ff">.5&lt;/span>&lt;span style="color:#f92672">**&lt;/span>(np&lt;span style="color:#f92672">.&lt;/span>log(&lt;span style="color:#ae81ff">2&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>b))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bm &lt;span style="color:#f92672">=&lt;/span> BloomFilter(b&lt;span style="color:#f92672">*&lt;/span>set_size, k&lt;span style="color:#f92672">=&lt;/span>int(np&lt;span style="color:#f92672">.&lt;/span>log(&lt;span style="color:#ae81ff">2&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>b))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> tqdm(actually_there, &lt;span style="color:#e6db74">&amp;#34;Inserting&amp;#34;&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bm&lt;span style="color:#f92672">.&lt;/span>add(key)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> tqdm(actually_there, &lt;span style="color:#e6db74">&amp;#34;Sanity Checking&amp;#34;&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">assert&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> bm
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fpve, total &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> total &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">10_000&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> key &lt;span style="color:#f92672">=&lt;/span> random_str()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> actually_there: &lt;span style="color:#66d9ef">continue&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> key &lt;span style="color:#f92672">in&lt;/span> bm:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fpve &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> total &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fpve_rate&lt;span style="color:#f92672">.&lt;/span>append(fpve&lt;span style="color:#f92672">/&lt;/span>total)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Inserting: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Sanity Checking: 0%| | 0/1000000 [00:00&amp;lt;?, ?it/s]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>bs_lin &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>linspace(bs[&lt;span style="color:#ae81ff">0&lt;/span>], bs[&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>])
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(bs_lin, &lt;span style="color:#ae81ff">.5&lt;/span>&lt;span style="color:#f92672">**&lt;/span>(np&lt;span style="color:#f92672">.&lt;/span>log(&lt;span style="color:#ae81ff">2&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>bs_lin), label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Theory&amp;#34;&lt;/span>, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;b&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(bs, theory, &lt;span style="color:#e6db74">&amp;#39;o&amp;#39;&lt;/span>, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;b&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(bs, fpve_rate, &lt;span style="color:#e6db74">&amp;#39;-x&amp;#39;&lt;/span>, label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Practice&amp;#34;&lt;/span>, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;orange&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlabel(&lt;span style="color:#e6db74">&amp;#34;bits per element&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Text(0.5, 0, &amp;#39;bits per element&amp;#39;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc92.png" alt="output image for above cell">&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>fpve_rate
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>[0.1551, 0.0211, 0.0024, 0.0003]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>at b=12, false positive rate is already less than 1%&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Power and Politics in Today’s World</title><link>https://dhruvpatel.dev/notes/politics/power/</link><pubDate>Sat, 10 Sep 2022 09:07:23 +0000</pubDate><guid>https://dhruvpatel.dev/notes/politics/power/</guid><description>Lecture 2 Aug 19, 1991 Moskow: Coup d&amp;rsquo;etat against Mikhail Gorbichov (came power in Feb 1985)
 When came to power in 1985, west thought what would become of Soviet Union?
 Gorbachev was younger, talked like a western politician, allowed criticism of the regime. His policies were more open. It seemed like it was starting to change. In 1989 while revolution in Eastern Europe, Russia didn&amp;rsquo;t intervene; this was opposite to Russia&amp;rsquo;s earlier policies.</description><content>&lt;h1 id="lecture-2">Lecture 2&lt;/h1>
