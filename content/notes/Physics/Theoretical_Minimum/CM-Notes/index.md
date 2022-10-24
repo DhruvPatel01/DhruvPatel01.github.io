@@ -1,7 +1,7 @@
 {
   "title": "CM-Notes",
-  "date": "2022-09-28T01:08:59Z",
-  "lastmod": "2022-09-28T01:08:59Z"
+  "date": "2022-10-05T02:01:42Z",
+  "lastmod": "2022-10-05T02:01:42Z"
 }
 
 
@@ -358,8 +358,64 @@ Incompressible fluid
 : a given amount of the fluid always occupies the same volume. It also means that the density of the fluid—the number of  molecules  per  unit  volume—is  uniform  and  stays  that  way forever.
 
 
-```python
+Divergence of the vector field $\\vec{v(t)}$, is defined to be,
 
+$$
+\\nabla \\cdot \\vec{v} = \\left( \\frac{\\partial{v\_x}}{\\partial{x}} + \\frac{\\partial{v\_y}}{\\partial{y}} + \\frac{\\partial{v\_z}}{\\partial{z}} \\right)
+$$
+
+
+So in the small cube, if velocity along all three axis remains constant, divergence is zero. Incompressible fluid will have zero divergence.
+
+But, is the flow through phase space incompressible? **Liouville's Theorem** says that yes, if the system satisfies Hamilton's equations.
+
+
+Example: $H = pq$
+
+$$
+\\begin{align*}
+\\dot{q} &= q \\\\
+\\dot{p} &= -p 
+\\end{align*}
+$$
+
+The flow decreases exponentially in p axis, and increases exponentially in q axis. The blob changes the shape extremely, but volume remains constant.
+
+Lioville's theorem in quantum mechanics is replaced by unitarity.
+
+
+## Poisson Brackets
+
+
+Let $F(q, p)$ be the generic function of q's and p's. E.g., it could be potential energy, kinetic energy, angular momentum, etc.
+
+As we follow a point in a phase space, we get a trajectory of F. i.e., F is a function of time.
+
+$$
+\\begin{align}
+\\dot{F} &= \\sum\_{i} \\left( \\frac{\\partial F}{\\partial q\_i} \\dot{q\_i} +  \\frac{\\partial F}{\\partial p\_i} \\dot{p\_i} \\right) \\\\
+\\dot{F} &= \\sum\_{i} \\left( \\frac{\\partial F}{\\partial q\_i} \\frac{\\partial H}{\\partial p\_i} -
+                           \\frac{\\partial F}{\\partial p\_i} \\frac{\\partial H}{\\partial q\_i} \\right)
+\\end{align}
+$$
+
+For **any** two functions F, and G in a phase space, Poisson Bracket is defined as, 
+$$
+\\{F, G\\} = \\sum\_{i} \\left( \\frac{\\partial F}{\\partial q\_i} \\frac{\\partial G}{\\partial p\_i} -
+                         \\frac{\\partial F}{\\partial p\_i} \\frac{\\partial G}{\\partial q\_i} \\right)
+$$
+
+Thus, $\\dot{F}$ could be rewritten as $\\{F, H\\}$.
+
+The time derivative of **anything** is a poisson bracket of itself with the Hamiltonian.
+
+- $\\dot{q\_k} = \\{q\_k, H\\} = \\frac{\\partial H}{\\partial p}$. (Simple application of the notation.)
+- $\\dot{p\_k} = \\{p\_k, H\\} = -\\frac{\\partial H}{\\partial q}$. (Simple application of the notation.)
+
+Thus, Poisson bracket gives Hamilton's equations back.
+
+
+```python
 
 
 ```
