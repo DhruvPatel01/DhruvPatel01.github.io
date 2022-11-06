@@ -1,4 +1,376 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Wed, 05 Oct 2022 02:01:42 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 06 Nov 2022 14:46:19 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Sun, 06 Nov 2022 14:46:19 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
+Even a specific particle is not completely specified by its position.
+Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
+&lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
+&lt;ol>
+&lt;li>States have different logical structure than CM.&lt;/li>
+&lt;li>States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM.&lt;/li>
+&lt;/ol>
+&lt;h2 id="spins">Spins&lt;/h2>
+&lt;p>Particles have properties attached to it. e.g. mass, electric charge.&lt;/p>
+&lt;p>Even a specific particle is not completely specified by its position.&lt;/p>
+&lt;p>Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.&lt;/p>
+&lt;h2 id="testing">Testing&lt;/h2>
+&lt;p>Propositions:
+$$
+\begin{align*}
+A &amp;amp;: \sigma_z = +1 \\
+B &amp;amp;: \sigma_x = +1 \\
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="classically">Classically,&lt;/h3>
+&lt;p>To test (A or B), one could first &lt;strong>gently&lt;/strong> test $\sigma_z$. If it is -1, one would &lt;strong>gently&lt;/strong> test $\sigma_x$. The result of doing it otherway (i.e. B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don&amp;rsquo;t change the state of the system.&lt;/p>
+&lt;h3 id="in-quantum-mechanics">In Quantum Mechanics,&lt;/h3>
+&lt;p>If some entity prepares the spin in $\sigma_z = +1$ state, and we measure &lt;code>A or B&lt;/code> (whether we use short circuit or not), we will measure it to be true. However, if we measure &lt;code>B or A&lt;/code>, there is 25% chance that we will measure it to be false.&lt;/p>
+&lt;p>What about &lt;code>A and B&lt;/code>? If we conclude that &lt;code>A and B&lt;/code> is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\sigma_x$, which ruined measurement of A. Thus we can&amp;rsquo;t confirm it. i.e. experiment is not reproducible.&lt;/p>
+&lt;h2 id="complex-numbers">Complex Numbers&lt;/h2>
+&lt;p>Two ways to represent them.&lt;/p>
+&lt;p>In cartesian coordinates, $z = x + iy$.&lt;/p>
+&lt;p>In polar coordinates, $z = re^{i\theta}$.&lt;/p>
+&lt;p>$ x_1 x_2 = (r_1e^{i\theta_1})(r_2e^{i\theta_2}) = r_1 r_2 e^{i(\theta_1 + \theta_2)}$.&lt;/p>
+&lt;p>$z = x + iy = re^{i\theta}$&lt;/p>
+&lt;p>$z^\ast = x - iy = re^{-i\theta}$&lt;/p>
+&lt;p>$z^\ast z = r^2$, i.e. a real number&lt;/p>
+&lt;h3 id="phase-factors">Phase Factors&lt;/h3>
+&lt;p>These are complex numbers whose r componenet is 1. Following holds for them,&lt;/p>
+&lt;p>$$
+\begin{align}
+z^\ast z &amp;amp;= 1 \\
+z &amp;amp;= e^{i\theta}\\
+z &amp;amp;= \cos\theta + i \sin\theta
+\end{align}
+$$&lt;/p>
+&lt;p>$$\renewcommand{\bra}[1]{\left\langle{#1}\right|}$$
+$$\renewcommand{\ket}[1]{\left|{#1}\right\rangle}$$
+$$\renewcommand{\braket}[1]{\left\langle{#1}\right\rangle}$$&lt;/p>
+&lt;h2 id="vector-spaces">Vector Spaces&lt;/h2>
+&lt;p>Vector spaces is familiar concept from abstract linear algebra.&lt;/p>
+&lt;h3 id="complex-conjugate-of-space-v">Complex Conjugate of space V&lt;/h3>
+&lt;p>For every $\ket{A}$ there exists $\bra{A}$ in conjugate space. This space has following properties.&lt;/p>
+&lt;ol>
+&lt;li>The conjugate of $\ket{A} + \ket{B}$ is $\bra{A}+\bra{B}$.&lt;/li>
+&lt;li>Conjugate of $z\ket{A}$ is $z^\ast \bra{A} = \bra{A}z^\ast $.&lt;/li>
+&lt;/ol>
+&lt;p>In the concrete case where ket space is column vectors, bra space is denoted as row vectors.&lt;/p>
+&lt;p>i.e. if&lt;/p>
+&lt;p>$$
+\begin{align*}
+\ket{A} = \begin{bmatrix}
+\alpha_1 \\
+\alpha_2 \\
+\vdots \\
+\alpha_n
+\end{bmatrix}
+\end{align*}
+$$&lt;/p>
+&lt;p>then
+$$
+\begin{align*}
+\bra{A} = \begin{bmatrix}
+\alpha_1^\ast &amp;amp; \alpha_2^\ast &amp;amp; \dots &amp;amp; \alpha_n^\ast
+\end{bmatrix}.
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="inner-products">Inner Products&lt;/h3>
+&lt;p>Inner product is always between bras and kets. It is written like $\braket{B|A}$. The result is a complex numbers.&lt;/p>
+&lt;h4 id="axioms-of-inner-product">Axioms of inner product.&lt;/h4>
+&lt;ol>
+&lt;li>Inner product is linear. $\bra{C} + (\ket{A}+\ket{B}) = \braket{C|A} + \braket{C|B}$.&lt;/li>
+&lt;li>$\braket{B|A} = \braket{A|B}^\ast $.&lt;/li>
+&lt;/ol>
+&lt;h4 id="special-vectors">Special vectors&lt;/h4>
+&lt;ol>
+&lt;li>Normalized: $\braket{A|A} = 1$.&lt;/li>
+&lt;li>Orhthogonal: $\braket{B|A} = 0$.&lt;/li>
+&lt;/ol>
+&lt;h3 id="orhtonormal-basis">Orhtonormal Basis.&lt;/h3>
+&lt;p>Let our space be N dimensional. And let the orthonomal basis denoted by $\ket{i}$.&lt;/p>
+&lt;p>$$
+\ket{A} = \sum_i \alpha_i \ket{i},
+$$&lt;/p>
+&lt;p>where, $\alpha_j = \braket{j|A}$. (To derive this, multiply both sides by $\bra{j}$.&lt;/p>
+&lt;h1 id="states">States&lt;/h1>
+&lt;p>In CM, knowing the state means knowing everything that is necessary to predict the future.&lt;/p>
+&lt;p>In QM, knowing the state means knowing as much as can be known about how the system was prepared.&lt;/p>
+&lt;p>Apparatus $\cal{A}$ can be oriented on any axis. If we orient it along z axis, the measured spin will either be +1 or -1.&lt;/p>
+&lt;p>$\sigma_z = \pm 1$. We can denote +1 as state $\ket{u}$ and -1 as $\ket{d}$.&lt;/p>
+&lt;p>Similarly $\sigma_x = \pm 1$, can be denoted by $\ket{r}$ and -1 as $\ket{l}$. And $\sigma_y = \pm 1$, can be denoted by $\ket{o}$ and -1 as $\ket{i}$.&lt;/p>
+&lt;p>If two states are orthogonal than these two states can be determined together. For example, if $\sigma_z$ was prepared to be in $\ket{u}$, for any subsequent measurements probability that $\ket{d}$ is detected is 0. Thus for binary spin, the state space is two dimensional. For now we can take $\ket{u}, \ket{d}$ as the basis vectors.&lt;/p>
+&lt;p>Then, the generic state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$. Where $\alpha_i = \braket{i|A}$.&lt;/p>
+&lt;p>The meaning of,&lt;/p>
+&lt;ul>
+&lt;li>$\alpha_u^\ast \alpha_u$: If the spin was prepared in $\ket{A}$ state, $\alpha_u^\ast \alpha_u$ is the probability that $\sigma_z = +1$.&lt;/li>
+&lt;li>$\alpha_d^\ast \alpha_d$: is the probability that $\sigma_z = -1$.&lt;/li>
+&lt;/ul>
+&lt;p>Since probabilities must add to 1, $\alpha_u^\ast \alpha_u + \alpha_d^\ast \alpha_d = 1$. It is equivalent to saying that $\ket{A}$ is normalized, i.e. $\braket{A|A} = 1$.&lt;/p>
+&lt;p>General principle of quantum systems: the state of a system is represented by a unit (normalized) vector in a vector space of states. Moreover, the squared magnitudes of the components of the state-vector, &lt;strong>along particular basis vectors&lt;/strong>, represent probabilities for various experimental outcomes.&lt;/p>
+&lt;h3 id="representing-ketr-and-ketl-using-above-basis-vectors">Representing $\ket{r}$ and $\ket{l}$ using above basis vectors&lt;/h3>
+&lt;p>We know that if A initially prepares the state in $\ket{r}$, $\sigma_z = \pm 1$ with equal probability. Hence, $\alpha_u^\ast \alpha_u =\alpha_d^\ast \alpha_d = \frac{1}{2}$. One choice is to have $\alpha_u = \alpha_d = \frac{1}{\sqrt{2}}$.&lt;/p>
+&lt;p>$\ket{r} = \frac{1}{\sqrt{2}} \ket{u} + \frac{1}{\sqrt{2}} \ket{d}$. (There are is still ambiguity, called phase ambiguity.)&lt;/p>
+&lt;p>To solve for $\ket{l}$ the above process repeats. But, in addition, $\braket{l|r} = 0$. One choice is $[\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}]$. But it is not the only choice. Even for fixed choice for $\ket{r}$, you can multiply above choice by a phase factor ($z = e^{i\theta}$), and still satisfy the two constraints. Later, we will find out that no measurable quantity is sensitive to the overall phase-factor, and therefore we can ignore it when specifying states.&lt;/p>
+&lt;h3 id="representing-keti-and-keto-using-above-basis-vectors">Representing $\ket{i}$ and $\ket{o}$ using above basis vectors&lt;/h3>
+&lt;p>To solve for $\ket{i}$ and $\ket{o}$, we need same conditions as we needed above. But we also need additional constrains. For example, if A prepares the state in $\ket{i}$,$\sigma_x = \pm1$, with equal probability. Also $\braket{i|o} = 0$.&lt;/p>
+&lt;p>The following solution solves for these constraints (up to phase-factor ambiguity).&lt;/p>
+&lt;p>$\ket{i} = \frac{1}{\sqrt{2}} \ket{u} + \frac{i}{\sqrt{2}} \ket{d}$.&lt;/p>
+&lt;p>$\ket{o} = \frac{1}{\sqrt{2}} \ket{u} - \frac{i}{\sqrt{2}} \ket{d}$.&lt;/p>
+&lt;p>With the previous discussion, the vectors can be represented in column format as below.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\ket{u} &amp;amp;= \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \ket{d} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+\end{align*}
+$$&lt;/p>
+&lt;h3 id="matricies">Matricies&lt;/h3>
+&lt;p>If we have a basis $\ket{i}$, a vector $\ket{A}$ can be rewritten as,&lt;/p>
+&lt;p>$$ \ket{A} = \sum_i \alpha_i \ket{i} = \sum_i \ket{i} \braket{i|A} $$.&lt;/p>
+&lt;p>Similarly,
+$$ \bra{A} = \sum_i \braket{A|i}\bra{i} $$.&lt;/p>
+&lt;p>Axiom: Physical observables are described by linear operators.&lt;/p>
+&lt;p>Observables are the things that we can measure. e.g., coordinates of a particle; the energy, momentum, or angular momentum of a system; or the electric field at a point in space.&lt;/p>
+&lt;p>$$
+\begin{align*}
+M \ket{A} &amp;amp;= \ket{B} \\
+M \sum_j \alpha_j \ket{j} &amp;amp;= \sum_j \beta_j \ket{j} \\
+\sum_j \alpha_j M\ket{j} &amp;amp;= \sum_j \beta_j \ket{j} \text{;;assuming M is linear} \\
+\sum_j \alpha_j \bra{k} M \ket{j} &amp;amp;= \sum_j \beta_j \braket{k|j} \text{;;multiply both sides by} \bra{k} \\
+\sum_j \alpha_j m_{kj} &amp;amp;= \beta_k\\
+\end{align*}
+$$&lt;/p>
+&lt;p>Note that each $m_{kj}$ is a complex number. We can think of M in terms of matrix (defined by a choice of basis vectors).&lt;/p>
+&lt;h4 id="eigenvectors-and-eigenvalues">Eigenvectors and Eigenvalues&lt;/h4>
+&lt;p>$M \ket{\lambda} = \lambda \ket{\lambda}$. $\lambda$ is an eigenvalue, and $\ket{\lambda}$ is an eigenvector.&lt;/p>
+&lt;h4 id="linear-operators-on-bra-vectors">Linear operators on bra vectors&lt;/h4>
+&lt;p>$$
+\begin{align*}
+\bra{B} &amp;amp;= \begin{bmatrix} b_1^\ast &amp;amp; b_2^\ast &amp;amp; b_3^\ast \end{bmatrix} \\
+M &amp;amp;= \begin{bmatrix}
+m_{11} &amp;amp; m_{12} &amp;amp; m_{13} \\
+m_{21} &amp;amp; m_{22} &amp;amp; m_{23} \\
+m_{31} &amp;amp; m_{32} &amp;amp; m_{33} \\
+\end{bmatrix}
+\end{align*}
+$$&lt;/p>
+&lt;p>Than $\bra{B} M$ is just row vector multiplied by matrix M.&lt;/p>
+&lt;h4 id="hermitian-conjugate">Hermitian Conjugate&lt;/h4>
+&lt;p>$$
+\begin{align*}
+M^\dagger &amp;amp;= (M^T)^\ast \\
+M \ket{A} &amp;amp;= \ket{B} \\
+\bra{A} M^\dagger &amp;amp;= \bra{B} \\
+\end{align*}
+$$&lt;/p>
+&lt;h4 id="hermitian-operators">Hermitian Operators&lt;/h4>
+&lt;ul>
+&lt;li>Observables quantities in classcial mechanics are real numbers. i.e. they are their own complex conjugate.&lt;/li>
+&lt;li>Observables in quantum mechanics (i.e. linear operators) are also their own complex conjugates. Such operators are called Hermitian Operators. $M^\dagger = M$.&lt;/li>
+&lt;/ul>
+&lt;h5 id="properties-of-hermitian-operators">Properties of Hermitian Operators&lt;/h5>
+&lt;ul>
+&lt;li>Their eigenvalues are real.&lt;/li>
+&lt;li>Their eigenvectors form an orthonormal basis. (i.e. their eigenvectors are orthonormal and they form a basis)&lt;/li>
+&lt;/ul>
+&lt;h2 id="principles">Principles&lt;/h2>
+&lt;ol>
+&lt;li>The observable or measurable quantities of QM are represented by a linear operator L.&lt;/li>
+&lt;li>The possible readings of the measurements are eigenvalues $\lambda_i$. The state for which reading is &lt;strong>unambiguously&lt;/strong> $\lambda_i$ is the corresponding eigenvector $\ket{\lambda_i}$.&lt;/li>
+&lt;li>Unambiguously distinguishable states are represented by orthogonal vectors. e.g. $\braket{u|d} = 0$.&lt;/li>
+&lt;li>If $\ket{A}$ is the state vector of the system, and the observable L is measured, the probability of observing $\lambda_i$ is given by $\braket{A|\lambda_i}\braket{\lambda_i|A}$.&lt;/li>
+&lt;/ol>
+&lt;p>Since the readings (i.e., eigenvalues) are real and eigenvectors are orthogonal, the operator L must be hermitian.&lt;/p>
+&lt;p>P1 says that $\sigma_x, \sigma_y, \text{and} \sigma_z$ are identified with a specific linear operator in 2D space of states describing the states.
+P2 says that the actual measurments can take discrete values. E.g., energy of atom will be one of the established energy levels of the atom.&lt;/p>
+&lt;h3 id="3-vector-operator-sigma">3-Vector Operator $\sigma$&lt;/h3>
+&lt;ul>
+&lt;li>Just as a spin-measuring apparatus can only answer questions about a spin&amp;rsquo;s orientation in a specific direction, a spin operator can only provide information about the spin component in a specific direction.&lt;/li>
+&lt;li>To physically measure spin in a different direction, we need to rotate the apparatus to point in the new direction. The same idea applies to the spin operator—if we want it to tell us about the spin component in a new direction, it too must be &amp;ldquo;rotated&amp;rdquo; but this kind of rotation is accomplished mathematically.&lt;/li>
+&lt;/ul>
+&lt;h3 id="operator-matrices">Operator Matrices&lt;/h3>
+&lt;p>Using above four principles, and solving linear equations, we can derive them.&lt;/p>
+&lt;p>$$
+\sigma_z = \begin{bmatrix}
+1 &amp;amp; 0 \\
+0 &amp;amp; -1
+\end{bmatrix}, \sigma_x = \begin{bmatrix}
+0 &amp;amp; 1 \\
+1 &amp;amp; 0
+\end{bmatrix}, \sigma_y = \begin{bmatrix}
+0 &amp;amp; -i \\
+i &amp;amp; 0
+\end{bmatrix} \text{.}
+$$&lt;/p>
+&lt;p>These along with Identity matrix are called Pauli Matrices.&lt;/p>
+&lt;p>IMPORTANT: Applying the operator L to state $\ket{A}$ does not change the state to $L\ket{A}$. $L\ket{A}$ is actually a supuerposition and tells us the probabilities of basis states. When we actually measure using L, the system is changed to one of the eignestates unambiguously.&lt;/p>
+&lt;p>There is nothing special about these three operators. We can take any direction $\hat{n} = (n_x, n_y, n_z)$, orient the apparatus A along $\hat n$, activate A, and measure the component of the spin along $\hat n$. That means there has to be an operator that represents this operation. Indeed, this operator is given by $\sigma_n = \sigma \cdot \hat n$, where $\sigma = (\sigma_x, \sigma_y, \sigma_z)$.&lt;/p>
+&lt;p>$$
+\sigma_n = \begin{bmatrix}
+n_z &amp;amp; (n_x - i n_y) \\
+(n_x + i n_y) &amp;amp; -n_z
+\end{bmatrix}
+$$&lt;/p>
+&lt;h3 id="spin-polarization-principle">Spin-Polarization Principle&lt;/h3>
+&lt;p>For any state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$, there exists some direction $\hat n$ such that $\sigma \cdot \hat n = \ket{A}$.&lt;/p>
+&lt;p>States of the spins are characterized by a polarization vector, and along the polarization vector the component of the spin is predictably +1.&lt;/p>
+&lt;p>General spin state is $cos(\frac{\beta}{2}) \ket{u} + e^{i\phi} sin(\frac{\beta}{2}) \ket{d}$.&lt;/p>
+&lt;h3 id="time-development-operator">Time Development Operator&lt;/h3>
+&lt;p>Let the closed system be in state $\ket{\Psi(t)}$. Thus, state can be different at different times.&lt;/p>
+&lt;p>The time development operator $U(t)$ tells us how the system evolves with time.&lt;/p>
+&lt;p>$$\ket{\Psi(t)} = U(t) \ket{\Psi(0)}$$.&lt;/p>
+&lt;p>Thus, the time evolution of the state is deterministic.&lt;/p>
+&lt;p>Quantum mechanics assumes,&lt;/p>
+&lt;ol>
+&lt;li>that U(t) is a linear operator.&lt;/li>
+&lt;li>If two states are orthonormal, they remain orthonormal in the evolution. i.e., $\braket{\Psi(0)|\Phi(0)} =0 \implies \braket{\Psi(t)|\Phi(t)} = 0$.&lt;/li>
+&lt;/ol>
+&lt;p>As a consequence of these two assumptions, it is easy to prove that $U(t)^{\dagger}U(t) = I$. Such operator is called unitary operator.&lt;/p>
+&lt;p>Principle 5: Time evolution of state vectors is unitary.&lt;/p>
+&lt;p>Unitarity also implies that as time evolves, the overlap (inner product) between two states remains the same.&lt;/p>
+&lt;p>Quantum Mechanics also assumes that time evolution is continuous.&lt;/p>
+&lt;p>Thus, for small time $\epsilon, U(\epsilon) = I - i \epsilon H$. Using the unitarity condition $U(t)^{\dagger}U(t) = I$, we can show that $H^{\dagger} = H$.&lt;/p>
+&lt;p>Thus, H is hermitian. i.e., it is an obeservable, and has complete set of orthonormal eigenvectors.&lt;/p>
+&lt;p>We will see that, the eigenvalues of H are the values that result from measuring the energy levels of the quantum system. Thus, it has resemblance to the hamiltonian from the classical mechanics.&lt;/p>
+&lt;p>Using the continuity assumption inside $\ket{\Psi(t)} = U(t) \ket{\Psi(0)}$, we can derive,&lt;/p>
+&lt;p>$$ \frac{d \ket{\Psi}}{dt} = -iH\ket{\Psi}$$.&lt;/p>
+&lt;p>This equation is known as Generalized Schrodinger equation or time-dependent schrodinger&amp;rsquo;s equation. If we know the Hamiltonian of the system, we can know how the state of the undisturbed system evolves with the time.&lt;/p>
+&lt;h4 id="planks-constant">Plank&amp;rsquo;s constant&lt;/h4>
+&lt;p>h = 6.6 * 1e-34 kgm^2/s1.&lt;/p>
+&lt;p>$\hbar = \frac{h}{2\pi} = 1.054571726 \dots x 10^{-34} \frac{kgm^2}{s}$&lt;/p>
+&lt;p>In the gen. schrodinger&amp;rsquo;s eqn, lhs has units of 1/time, whereas rhs has units of energy (kgm^2/s^2, because H is hamiltonian). This is wrong. However multiplying lhs by Plank&amp;rsquo;s constant, units are proper. Thus, the correct Generalized schrodinger&amp;rsquo;s equation is $$ \hbar \frac{d \ket{\Psi}}{dt} = -iH\ket{\Psi}$$.&lt;/p>
+&lt;h4 id="expectation">Expectation&lt;/h4>
+&lt;p>If L is an observable, the expectation is defined as $\braket{L} = \sum_i P(\lambda_i) \lambda_i$.&lt;/p>
+&lt;p>When state of the system is $\ket{A} = \sum_i \alpha_i \lambda_i$, the expecation can be computed as $\braket{L} = \sum_i \alpha_i^\ast \alpha_i \lambda_i = \braket{A|L|A}$.&lt;/p>
+&lt;p>Try to apply this for state $\ket{r}$ and observable =$\sigma_z$. The arithmetic should result in value 0.&lt;/p>
+&lt;h4 id="effect-of-the-phase-factor">Effect of the phase factor.&lt;/h4>
+&lt;p>We can multiply the state vectors by a phase factor $e^{i\theta}$ for any $\theta$. This does no make any difference. Although, probability amplitude will change i.e., $\alpha_i \to e^{i\theta} \alpha_i$, the probability does not change, i.e., $\alpha_i^\ast \alpha_i$ remains unchanged. Similarly, the expectation of the observable does not change.&lt;/p>
+&lt;h4 id="change-in-the-expectation">Change in the expectation&lt;/h4>
+&lt;p>$\frac{d \braket{\Psi(t)|L|\Psi(t)}}{dt} = \braket{\dot\Psi(t)|L|\Psi(t)} + \braket{\Psi(t)|L|\dot\Psi(t)}$. Using generalized schrodinger&amp;rsquo;s equations,&lt;/p>
+&lt;p>$\frac{d \braket{\Psi(t)|L|\Psi(t)}}{dt} = \frac{i}{\hbar} \braket{\Psi(t)|HL - LH|\Psi(t)}$.&lt;/p>
+&lt;p>Linear operators don&amp;rsquo;t commute, so HL != LH.&lt;/p>
+&lt;p>&lt;strong>Commutator&lt;/strong>: Given two operators L, and M, LM - ML is called the commutator of L with M, and is denoted by [L, M]. Note that [L, M] = -[M, L].&lt;/p>
+&lt;p>Thus, $\frac{d}{dt} \braket{L} = \frac{-i}{\hbar} \braket{[L, H]}$.&lt;/p>
+&lt;p>It is easy to prove that $i[L, H]$ is also Hermitian. Thus, a valid observable.&lt;/p>
+&lt;p>This has resemblance to classical mechanics. $\dot{F} = \{F, H\}$.&lt;/p>
+&lt;h3 id="conservation-in-quantum-mechanics">Conservation in quantum mechanics&lt;/h3>
+&lt;p>To say that an observable Q is conserved is to say that expected value $\braket{Q}$ does not change with time. A stronger condition is that any moment $\braket{Q^m}$ does not change with time.&lt;/p>
+&lt;p>$\braket{Q}$ does not change ammounts to $[Q, H] = 0$. That is Q commutes with H. Using the properties of commutator, it is easy to prove that $[Q^m, H] = 0$ for any $m \ge 1$.&lt;/p>
+&lt;p>It turns out that if $[Q, H] = 0$ then for &lt;strong>any&lt;/strong> function of Q, $[f(Q), H] = 0$.&lt;/p>
+&lt;p>H is also conserved, as $[H, H] = 0$. H is defined to be the energy of the quantum system.&lt;/p>
+&lt;h3 id="solving-schrodingers-equation">Solving Schrodinger&amp;rsquo;s equation&lt;/h3>
+&lt;p>Time dependent Schrodinger&amp;rsquo;s equation is $ \hbar \frac{d \ket{\Psi}}{dt} = -iH\ket{\Psi}$.&lt;/p>
+&lt;p>Since H represents enrgy, the oberservable values of energy are eigenvalues of H. Call them $\ket{E_j}$ and $E_j$.&lt;/p>
+&lt;p>$$
+H \ket{E_j} = E_j \ket{E_j}
+$$&lt;/p>
+&lt;p>These are call time-independent schrodinger&amp;rsquo;s equations.&lt;/p>
+&lt;p>We can write $\ket{\Psi{(t)}} = \sum_j \alpha_j(t) \ket{E_j}$.&lt;/p>
+&lt;p>Thus, $\ket{\dot\Psi{(t)}} = \sum_j \dot\alpha_j(t) \ket{E_j}$.&lt;/p>
+&lt;p>Using time-dependent Schrodinger&amp;rsquo;s equation, we can solve for $\dot\alpha_j(t)$. It has the form $\dot\alpha_j(t) = -\frac{i}{\hbar}E_j \alpha_j(t)$. Which has the solution $\alpha_j(t) = \alpha_j(0) e^{\frac{-i}{\hbar} E_j t}$.&lt;/p>
+&lt;p>But, $\alpha_j(0) = \braket{E_j|\Psi(0)}$.&lt;/p>
+&lt;p>So, $\Psi(t) = \sum_j \ket{E_j}\braket{E_j|\Psi(0)} e^{-\frac{i}{\hbar}E_j t}$.&lt;/p>
+&lt;h4 id="general-recipe">General Recipe&lt;/h4>
+&lt;ol>
+&lt;li>Get the H somehow.&lt;/li>
+&lt;li>Find the $\ket{E_j}$ and $E_j$.&lt;/li>
+&lt;li>Prepare the system in initial state $\Psi(0)$.&lt;/li>
+&lt;li>Use above solution to find the state at any later time.&lt;/li>
+&lt;li>If you have some other operator L, you can &amp;ldquo;predict&amp;rdquo; the outcome of measuring future state using the eigenvectors of L. i.e., the probability the outcome of measuring L is $\lambda_i$ is precisely $|\braket{\lambda_i|\Psi(t)}|^2$.&lt;/li>
+&lt;/ol>
+&lt;h2 id="complex-systems">Complex systems&lt;/h2>
+&lt;p>There are systems for which there are more than two observables, and they all can be measured simultaneously. Single spin is &lt;strong>not&lt;/strong> such system. Though there are three observables $\sigma_{\{x,y,z\}}$. Only one of them can be observed at a time.&lt;/p>
+&lt;p>Particle moving in three dimensions, all three dimensions x, y, and z can be measured simultaneously.&lt;/p>
+&lt;p>Other such system is a system of two particles. Let&amp;rsquo;s denote these two observables as L and M.
+If we measure both spins, we leave the system in a state which is simultaneously eigenvector of both L and M. Let the eigenvectors of L be denoted as $\lambda_i$ and same for M with $\mu_a$.&lt;/p>
+&lt;p>In order to have simultaneous eigenvectors $\ket{\lambda, \mu}$, L and M must commute with each other. i.e., $LM \ket{\lambda, \mu} = ML\ket{\lambda, \mu}$. i.e., $[L, M]\ket{\lambda, \mu} = 0$. Since this statement is true of any basis eigenvector $\ket{\lambda, \mu}$, we know that $[L, M] = 0$.&lt;/p>
+&lt;p>Thus, if we have complete basis of simultaneous eigenvectors, the observables commute. Converse is also true. If observables commute, they have a complete basis of simultaneous eigenvectors. This statement is true for any number of observables in the system, and not just two.&lt;/p>
+&lt;p>Suppose, we have a basis of states $\ket{a,b,c, \dots}$ for some complex system.&lt;/p>
+&lt;p>$$\ket{\Psi} = \sum_{a,b,c,\dots} \psi{(a,b,c, \dots)} \ket{a,b,c, \dots}$$&lt;/p>
+&lt;p>Where, $\psi{(a,b,c, \dots)} = \braket{a,b,c, \dots|\Psi}$. This $\psi$ is called a wave function.&lt;/p>
+&lt;p>$P(a,b,c, \dots) = \psi^\ast{(a,b,c, \dots)} \psi{(a,b,c, \dots)}$. This is the probability of observing the value $a,b,c,\dots$ of commuting observables $A,B,C,\dots$.&lt;/p>
+&lt;p>If a state is an eigenvector of operator A, which does not commute with B, then it will not be an eigenvector for B. Thus, if A and B don&amp;rsquo;t commute, there will be uncertainity in either A or B if not both.&lt;/p>
+&lt;h3 id="quantifying-uncertainty">Quantifying Uncertainty&lt;/h3>
+&lt;p>The system is in state $\ket\Psi$. We want to observe some A. A can be thought as a random variable. The possible outcomes are eigenvalues of A, with predefined probabilities. Thus $\braket{A}$ is well defined, and is the expected value of A. We can also find the variance of A! This quantifies the uncertainty of A.&lt;/p>
+&lt;p>First define $\bar{A} = A - \braket{A}I$. This is also an Hermitian operator, so has real eigenvalues. If $a$ is an eigenvalue of A, $\bar{a} = a - \braket{A}$ is an eigenvalue of $\bar{A}$.&lt;/p>
+&lt;p>Thus the variance, denoted as $(\Delta A)^2 = \sum_a \bar{a}^2 P(a)$.&lt;/p>
+&lt;p>A little bit of algebra shows that this is equivalent to $\braket{\bar{A}^2} = \braket{\Psi|\bar{A}^2|\Psi}$.&lt;/p>
+&lt;h3 id="uncertainty-principle">Uncertainty Principle&lt;/h3>
+&lt;p>From triangle inequality $|x| + |y| \ge |x+y|$, one can derive $2|x||y| \ge |\braket{x|y} + \braket{y|x}|$. (Hint: Square both sides, and expand).&lt;/p>
+&lt;p>Putting, $x = A\ket\Psi$ and $y = iB\ket\Psi$, we get $\Delta{A} \Delta{B} \ge \frac{1}{2} | \braket{\Psi|[A, B]|\Psi}$. (Hint: Though formula is true in general, it is easy to derive by assuming that $\braket{A} = \braket{B} = 0$, in which case $(\Delta{A})^2 = \braket{A^2}$.&lt;/p>
+&lt;h2 id="composite-system">Composite System&lt;/h2>
+&lt;p>Atom is made of nucleons and electrons, each is a quantum system of it&amp;rsquo;s own. We want to study composite system.&lt;/p>
+&lt;p>For the moment we assume there are two systems, A and B (a.k.a. Alices&amp;rsquo;s sytem and Bob&amp;rsquo;s sytem, respectively).
+A has states from staet space $S_A$, which has dimensionality of $N_A$. Same for system B.&lt;/p>
+&lt;p>The combined system has statespace $S = S_A \otimes S_B$, which has dimensionality $N_A N_B$. $\otimes$ is a tensor product. The states of S are denoted as $\ket{ab}$, where $a \in S_A$ and $b \in S_B$.&lt;/p>
+&lt;p>If an operator M acts on the states of the composite system, M has $N_A N_B$ rows and colums. The entry $M_{a&amp;rsquo;b&amp;rsquo;, ab}$ is given by $\braket{a&amp;rsquo;b&amp;rsquo;|M|ab}$. The basis vectors $\ket{ab}$ are taken to be orthonormal. $\braket{ab|a&amp;rsquo;b&amp;rsquo;} = [a = a&amp;rsquo;, b = b&amp;rsquo;]$.&lt;/p>
+&lt;p>Thus, any state in the composite system is written as $\ket\Psi = \sum_{a,b} \psi(a, b) \ket{ab}$.&lt;/p>
+&lt;h3 id="two-spin-system">Two Spin System&lt;/h3>
+&lt;p>Let&amp;rsquo;s have four state vectors $\ket{uu}, \ket{ud}, \ket{du}, \ket{dd}$.&lt;/p>
+&lt;h4 id="product-state">Product State&lt;/h4>
+&lt;p>A product state is the result of completely independent preparations of two spins, each with its&amp;rsquo; own apparatus to prepare a spin.&lt;/p>
+&lt;p>Suppose spin A is prepared in $\alpha_u \ket{u} + \alpha_d \ket{d}$ and B is prepared in $\beta_u \ket{u} + \beta_d \ket{d}$ Where $\alpha^\ast_u \alpha_u + \alpha^\ast_d \alpha_d = \beta^\ast_u \beta_u + \beta^\ast_d \beta_d = 1$. In such case we need 4 real parameters to define the state (2 for each spin).&lt;/p>
+&lt;p>Thus, the combined product state is written as $\{\alpha_u \ket{u} + \alpha_d \ket{d} \} \otimes \{ \beta_u \ket{u} + \beta_d \ket{d} \}$. This can be expanded, to rewrite in the basis vectors of the combined system, as $\alpha_u \beta_u \ket{uu} + \alpha_u \beta_d \ket{ud} + \alpha_d \beta_u \ket{du} + \alpha_d \beta_d \ket{dd}$.&lt;/p>
+&lt;p>The main feature of a product state is that each subsystem behaves independently of the other.&lt;/p>
+&lt;h4 id="general-tensor-product-space">General Tensor product space.&lt;/h4>
+&lt;p>The general space is written as $\psi_{uu} \ket{uu} + \psi_{ud} \ket{ud} + \psi_{du} \ket{du} + \psi_{dd} \ket{dd}$. Unlike product space, we need 6 real parameters (8(to define complex numbers) - 1 (normalization) - 1(phase factor)).&lt;/p>
+&lt;p>Thus, there has to be some states which can not be written as product state. Singlet, and triplets are such states.&lt;/p>
+&lt;p>Singlet: $\ket{sing} = \frac{1}{\sqrt{2}} (\ket{ud} - \ket{du})$.&lt;/p>
+&lt;p>Triplets:&lt;/p>
+&lt;ol>
+&lt;li>$T_1 = \frac{1}{\sqrt{2}} (\ket{ud} + \ket{du})$.&lt;/li>
+&lt;li>$T_2 = \frac{1}{\sqrt{2}} (\ket{uu} + \ket{dd})$.&lt;/li>
+&lt;li>$T_3 = \frac{1}{\sqrt{2}} (\ket{uu} - \ket{dd})$.&lt;/li>
+&lt;/ol>
+&lt;p>It is easy to prove that these states can&amp;rsquo;t be written as product states. (Hint: for product state you have to show that $\alpha_x \beta_y = c$, but this will be impossible as some other requirement $\alpha_x \beta_w = 0$ or $\alpha_z \beta_y = 0$ will be violated.)&lt;/p>
+&lt;p>These states are maximally entangled.&lt;/p>
+&lt;h3 id="observables-in-combined-system">Observables in combined system.&lt;/h3>
+&lt;p>The observables in the case of single sping system, still apply in the combined system. They just modify their half.&lt;/p>
+&lt;p>E.g. if $\sigma_x$ is observable of spin A, $\sigma_x \ket{ud} = \ket{dd}$.&lt;/p>
+&lt;p>Note that $\sigma_x$ for single spin system and $\sigma_x$ for combined systems are different operators. This is easy to see in the matrix forms. The two matrices are different.&lt;/p>
+&lt;p>In the case of single spin system (or product state), there is a direction where the measurement is guaranteed to be +1. Thus, $\braket{\vec{\sigma} \cdot \vec{n}} = \braket{\Psi|\vec{\sigma} \cdot \vec{n}|\Psi} = 1$, for that particular $\vec{n}$. Thus we know that none of the $\braket{\sigma_x}, \braket{\sigma_y}, \braket{\sigma_z}$ can be zero(which would lead to contradiction).&lt;/p>
+&lt;p>On the other hand, if you compute $\braket{\sigma_x}$ for $\ket{sing}$, you will find it to be zero. In fact, for singlet state, $\braket{\sigma_x} = \braket{\sigma_y} = \braket{\sigma_z} = 0$. Since the components are zero on expectation, we are equaly likely to get +1 and -1 for any measurement. Thus, although the state is known, we don&amp;rsquo;t know the outcome.&lt;/p>
+&lt;hr>
+&lt;p>The operators that act on the two separate factors commute with one another.&lt;/p>
+&lt;p>The operator $\tau_z \sigma_z$, is a product of two oprators. Little math tells us that $\ket{sing}$ is an eigenvector for $\tau_z \sigma_z$. $\tau_z \sigma_z \ket{sing} = -\ket{sing}$. This means that the product of observations is always -1. Thus both measurements always have opposite signs. In fact, $\ket{sing}$ is also an eigenvector for operators $\tau_x \sigma_x$ and $\tau_y \sigma_y$, with eigenvalue -1.&lt;/p>
+&lt;p>On the other hand if you try to compute $\braket{\tau_x \sigma_y}$, you will find that to be 0.&lt;/p>
+&lt;p>For the triplets:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>$\ket{sing}$&lt;/th>
+&lt;th>$\ket{T_1}$&lt;/th>
+&lt;th>$\ket{T_2}$&lt;/th>
+&lt;th>$\ket{T_3}$&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>$\braket{\sigma_z \tau_z}$&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>+1&lt;/td>
+&lt;td>+1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\braket{\sigma_x \tau_x}$&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>+1&lt;/td>
+&lt;td>+1&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\braket{\sigma_y \tau_y}$&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>+1&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;td>+1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Thus, singlet and triplets are eigenvalues for the product operators.&lt;/p>
+&lt;hr>
+&lt;p>$\vec{\sigma} \cdot \vec{\tau}$ is an observable that can not be measured by measuring two spins by individual apparatuses. How can we measure such thing? Some atoms have spins. When two of these atoms are close to each other (e.g., in a lattice), in some situations their Hamiltonian is proportional to $\vec{\sigma} \cdot \vec{\tau}$.&lt;/p>
+&lt;p>The four vectors above are eigenvectors for $\vec{\sigma} \cdot \vec{\tau}$. The singlet has eigenvalue -3 and each triplet has eigenvalue +1.&lt;/p>
+&lt;p>Comment: Generating singlet state is easy. Two spins prefer to be anti-aligned. Now bring these two spins together, they will radiate a photon and result in this state, as this state has low energy.&lt;/p>
+&lt;p>For product state it is easy to prove $\braket{AB} = \braket{A} \braket{B}$. Thus, we can see that $\braket{\sigma_w \tau_w}$ can not be product states. Because for them $\braket{\sigma_w} = 0$.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
 Configration space: 3N dimensional space, records positions.
 State space: 6N dimensional space, records position and velocity.
@@ -567,209 +939,7 @@ Comment from audience: Elites found ways to protect themselves from a collapse.&
 &lt;li>Beneficiaries like it this way.&lt;/li>
 &lt;li>Government needs it: weak state&lt;/li>
 &lt;li>A source of geopolitical power (e.g. germany was a top importer from Russia)&lt;/li>
-&lt;/ul></content></item><item><title>QM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Fri, 26 Aug 2022 08:08:31 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
-Even a specific particle is not completely specified by its position.
-Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
-&lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
-&lt;ol>
-&lt;li>States have different logical structure than CM.&lt;/li>
-&lt;li>States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM.&lt;/li>
-&lt;/ol>
-&lt;h2 id="spins">Spins&lt;/h2>
-&lt;p>Particles have properties attached to it. e.g. mass, electric charge.&lt;/p>
-&lt;p>Even a specific particle is not completely specified by its position.&lt;/p>
-&lt;p>Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.&lt;/p>
-&lt;h2 id="testing">Testing&lt;/h2>
-&lt;p>Propositions:
-$$
-\begin{align*}
-A &amp;amp;: \sigma_z = +1 \\
-B &amp;amp;: \sigma_x = +1 \\
-\end{align*}
-$$&lt;/p>
-&lt;h3 id="classically">Classically,&lt;/h3>
-&lt;p>To test (A or B), one could first &lt;strong>gently&lt;/strong> test $\sigma_z$. If it is -1, one would &lt;strong>gently&lt;/strong> test $\sigma_x$. The result of doing it otherway (i.e. B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don&amp;rsquo;t change the state of the system.&lt;/p>
-&lt;h3 id="in-quantum-mechanics">In Quantum Mechanics,&lt;/h3>
-&lt;p>If some entity prepares the spin in $\sigma_z = +1$ state, and we measure &lt;code>A or B&lt;/code> (whether we use short circuit or not), we will measure it to be true. However, if we measure &lt;code>B or A&lt;/code>, there is 25% chance that we will measure it to be false.&lt;/p>
-&lt;p>What about &lt;code>A and B&lt;/code>? If we conclude that &lt;code>A and B&lt;/code> is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\sigma_x$, which ruined measurement of A. Thus we can&amp;rsquo;t confirm it. i.e. experiment is not reproducible.&lt;/p>
-&lt;h2 id="complex-numbers">Complex Numbers&lt;/h2>
-&lt;p>Two ways to represent them.&lt;/p>
-&lt;p>In cartesian coordinates, $z = x + iy$.&lt;/p>
-&lt;p>In polar coordinates, $z = re^{i\theta}$.&lt;/p>
-&lt;p>$ x_1 x_2 = (r_1e^{i\theta_1})(r_2e^{i\theta_2}) = r_1 r_2 e^{i(\theta_1 + \theta_2)}$.&lt;/p>
-&lt;p>$z = x + iy = re^{i\theta}$&lt;/p>
-&lt;p>$z^\ast = x - iy = re^{-i\theta}$&lt;/p>
-&lt;p>$z^\ast z = r^2$, i.e. a real number&lt;/p>
-&lt;h3 id="phase-factors">Phase Factors&lt;/h3>
-&lt;p>These are complex numbers whose r componenet is 1. Following holds for them,&lt;/p>
-&lt;p>$$
-\begin{align}
-z^\ast z &amp;amp;= 1 \\
-z &amp;amp;= e^{i\theta}\\
-z &amp;amp;= \cos\theta + i \sin\theta
-\end{align}
-$$&lt;/p>
-&lt;h2 id="vector-spaces">Vector Spaces&lt;/h2>
-&lt;p>Vector spaces is familiar concept from abstract linear algebra.&lt;/p>
-&lt;h3 id="complex-conjugate-of-space-v">Complex Conjugate of space V&lt;/h3>
-&lt;p>For every $\ket{A}$ there exists $\bra{A}$ in conjugate space. This space has following properties.&lt;/p>
-&lt;ol>
-&lt;li>The conjugate of $\ket{A} + \ket{B}$ is $\bra{A}+\bra{B}$.&lt;/li>
-&lt;li>Conjugate of $z\ket{A}$ is $z^\ast \bra{A} = \bra{A}z^\ast $.&lt;/li>
-&lt;/ol>
-&lt;p>In the concrete case where ket space is column vectors, bra space is denoted as row vectors.&lt;/p>
-&lt;p>i.e. if&lt;/p>
-&lt;p>$$
-\begin{align*}
-\ket{A} = \begin{bmatrix}
-\alpha_1 \\
-\alpha_2 \\
-\vdots \\
-\alpha_n
-\end{bmatrix}
-\end{align*}
-$$&lt;/p>
-&lt;p>then
-$$
-\begin{align*}
-\bra{A} = \begin{bmatrix}
-\alpha_1^\ast &amp;amp; \alpha_2^\ast &amp;amp; \dots &amp;amp; \alpha_n^\ast
-\end{bmatrix}.
-\end{align*}
-$$&lt;/p>
-&lt;h3 id="inner-products">Inner Products&lt;/h3>
-&lt;p>Inner product is always between bras and kets. It is written like $\braket{B}{A}$. The result is a complex numbers.&lt;/p>
-&lt;h4 id="axioms-of-inner-product">Axioms of inner product.&lt;/h4>
-&lt;ol>
-&lt;li>Inner product is linear. $\bra{C} + (\ket{A}+\ket{B}) = \braket{C}{A} + \braket{C}{B}$.&lt;/li>
-&lt;li>$\braket{B}{A} = \braket{A}{B}^\ast $.&lt;/li>
-&lt;/ol>
-&lt;h4 id="special-vectors">Special vectors&lt;/h4>
-&lt;ol>
-&lt;li>Normalized: $\braket{A}{A} = 1$.&lt;/li>
-&lt;li>Orhthogonal: $\braket{B}{A} = 0$.&lt;/li>
-&lt;/ol>
-&lt;h3 id="orhtonormal-basis">Orhtonormal Basis.&lt;/h3>
-&lt;p>Let our space be N dimensional. And let the orthonomal basis denoted by $\ket{i}$.&lt;/p>
-&lt;p>$$
-\ket{A} = \sum_i \alpha_i \ket{i},
-$$&lt;/p>
-&lt;p>where, $\alpha_j = \braket{j}{A}$.&lt;/p>
-&lt;h1 id="states">States&lt;/h1>
-&lt;p>In CM, knowing the state means knowing everything that is necessary to predict the future.&lt;/p>
-&lt;p>In QM, knowing the state means knowing as much as can be known about how the system was prepared.&lt;/p>
-&lt;p>Apparatus $\cal{A}$ can be oriented on any axis. If we orient it along z axis, the measured spin will either be +1 or -1.&lt;/p>
-&lt;p>$\sigma_z = \pm 1$. We can denote +1 as state $\ket{u}$ and -1 as $\ket{d}$.&lt;/p>
-&lt;p>Similarly $\sigma_x = \pm 1$, can be denoted by $\ket{r}$ and -1 as $\ket{l}$. And $\sigma_y = \pm 1$, can be denoted by $\ket{o}$ and -1 as $\ket{i}$.&lt;/p>
-&lt;p>If two states are orthogonal than these two states can be determined together. For example, if $\sigma_z$ was prepared to be in $\ket{u}$, for any subsequent measurements probability that $\ket{d}$ is detected is 0. Thus for binary spin, the state space is two dimensional. For now we can take $\ket{u}, \ket{d}$ as the basis vectors.&lt;/p>
-&lt;p>Then, the generic state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$. Where $\alpha_i = \braket{i}{A}$.&lt;/p>
-&lt;p>The meaning of,&lt;/p>
-&lt;ul>
-&lt;li>$\alpha_u^\ast \alpha_u$: If the spin was prepared in $\ket{A}$ state, $\alpha_u^\ast \alpha_u$ is the probability that $\sigma_z = +1$.&lt;/li>
-&lt;li>$\alpha_d^\ast \alpha_d$: is the probability that $\sigma_z = -1$.&lt;/li>
-&lt;/ul>
-&lt;p>Since probabilities must add to 1, $\alpha_u^\ast \alpha_u + \alpha_d^\ast \alpha_d = 1$. It is equivalent to saying that $\ket{A}$ is normalized, i.e. $\braket{A}{A} = 1$.&lt;/p>
-&lt;p>General principle of quantum systems: the state of a system is represented by a unit (normalized) vector in a vector space of states. Moreover, the squared magnitudes of the components of the state-vector, &lt;strong>along particular basis vectors&lt;/strong>, represent probabilities for various experimental outcomes.&lt;/p>
-&lt;h3 id="representing-ketr-and-ketl-using-above-basis-vectors">Representing $\ket{r}$ and $\ket{l}$ using above basis vectors&lt;/h3>
-&lt;p>We know that if A initially prepares the state in $\ket{r}$, $\sigma_z = \pm 1$ with equal probability. Hence, $\alpha_u^\ast \alpha_u =\alpha_d^\ast \alpha_d = \frac{1}{2}$. One choice is to have $\alpha_u = \alpha_d = \frac{1}{\sqrt{2}}$.&lt;/p>
-&lt;p>$\ket{r} = \frac{1}{\sqrt{2}} \ket{u} + \frac{1}{\sqrt{2}} \ket{d}$. (There are is still ambiguity, called phase ambiguity.)&lt;/p>
-&lt;p>To solve for $\ket{l}$ the above process repeats. But, in addition, $\braket{l}{r} = 0$. One choice is $[\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}]$. But it is not the only choice. Even for fixed choice for $\ket{r}$, you can multiply above choice by a phase factor ($z = e^{i\theta}$), and still satisfy the two constraints. Later, we will find out that no measurable quantity is sensitive to the overall phase-factor, and therefore we can ignore it when specifying states.&lt;/p>
-&lt;h3 id="representing-keti-and-keto-using-above-basis-vectors">Representing $\ket{i}$ and $\ket{o}$ using above basis vectors&lt;/h3>
-&lt;p>To solve for $\ket{i}$ and $\ket{o}$, we need same conditions as we needed above. But we also need additional constrains. For example, if A prepares the state in $ket{i}$,$\sigma_x = \pm1$, with equal probability. Also $\braket{i}{o} = 0$.&lt;/p>
-&lt;p>The following solution solves for these constraints (up to phase-factor ambiguity).&lt;/p>
-&lt;p>$\ket{i} = \frac{1}{\sqrt{2}} \ket{u} + \frac{i}{\sqrt{2}} \ket{d}$.&lt;/p>
-&lt;p>$\ket{o} = \frac{1}{\sqrt{2}} \ket{u} - \frac{i}{\sqrt{2}} \ket{d}$.&lt;/p>
-&lt;p>With the previous discussion, the vectors can be represented in column format as below.&lt;/p>
-&lt;p>$$
-\begin{align*}
-\ket{u} &amp;amp;= \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \ket{d} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
-\end{align*}
-$$&lt;/p>
-&lt;h3 id="matricies">Matricies&lt;/h3>
-&lt;p>Axiom: Physical observables are described by linear operators.&lt;/p>
-&lt;p>observables are the things that we can measure. e.g. coordinates of a particle; the energy, momentum, or angular momentum of a system; or the electric field at a point in space.&lt;/p>
-&lt;p>$$
-\begin{align*}
-M \ket{A} &amp;amp;= \ket{B} \\
-M \sum_j \alpha_j \ket{j} &amp;amp;= \sum_j \beta_j \ket{j} \\
-\sum_j \alpha_j M\ket{j} &amp;amp;= \sum_j \beta_j \ket{j} &amp;lt;\text{assuming M is linear}&amp;gt; \\
-\sum_j \alpha_j \bra{k} M \ket{j} &amp;amp;= \sum_j \beta_j \braket{k}{j} &amp;lt;\text{multiply both sides by} \bra{k}&amp;gt; \\
-\sum_j \alpha_j m_{kj} &amp;amp;= \beta_k\\
-\end{align*}
-$$&lt;/p>
-&lt;p>Note that each $m_{kj}$ is a complex number. We can think of M in terms of matrix (defined by a choice of basis vectors).&lt;/p>
-&lt;h4 id="eigenvectors-and-eigenvalues">Eigenvectors and Eigenvalues&lt;/h4>
-&lt;p>$M \ket{\lambda} = \lambda \ket{\lambda}$. $\lambda$ is an eigenvalue, and $\ket{\lambda}$ is an eigenvector.&lt;/p>
-&lt;h4 id="linear-operators-on-bra-vectors">Linear operators on bra vectors&lt;/h4>
-&lt;p>$$
-\begin{align*}
-B^\ast &amp;amp;= \begin{bmatrix} b_1^\ast &amp;amp; b_2^\ast &amp;amp; b_3^\ast \end{bmatrix} \\
-M &amp;amp;= \begin{bmatrix}
-m_{11} &amp;amp; m_{12} &amp;amp; m_{13} \\
-m_{21} &amp;amp; m_{22} &amp;amp; m_{23} \\
-m_{31} &amp;amp; m_{32} &amp;amp; m_{33} \\
-\end{bmatrix}
-\end{align*}
-$$&lt;/p>
-&lt;p>Than $\bra{B} M$ is just row vector multiplied by matrix M.&lt;/p>
-&lt;h4 id="hermitian-conjugate">Hermitian Conjugate&lt;/h4>
-&lt;p>$$
-\begin{align*}
-M^\dagger &amp;amp;= (M^T)^\ast \\
-M \ket{A} &amp;amp;= \ket{B} \\
-\bra{A} M^\dagger &amp;amp;= \bra{B} \\
-\end{align*}
-$$&lt;/p>
-&lt;h4 id="hermitian-operators">Hermitian Operators&lt;/h4>
-&lt;ul>
-&lt;li>Observables quantities in classcial mechanics are real numbers. i.e. they are their own complex conjugate.&lt;/li>
-&lt;li>Observables in quantum mechanics (i.e. linear operators) are also their own complex conjugates. Such operators are called Hermitian Operators. $M^\dagger = M$.&lt;/li>
-&lt;/ul>
-&lt;h5 id="properties-of-hermitian-operators">Properties of Hermitian Operators&lt;/h5>
-&lt;ul>
-&lt;li>Their eigenvalues are real.&lt;/li>
-&lt;li>Their eigenvectors form an orthonormal basis. (i.e. their eigenvectors are orthonormal and they form a basis)&lt;/li>
-&lt;/ul>
-&lt;h2 id="principles">Principles&lt;/h2>
-&lt;ol>
-&lt;li>The observable or measurable quantities of QM are represented by a linear operator L.&lt;/li>
-&lt;li>The possible readings of the measurements are eigenvalues $\lambda_i$. The state for which reading is &lt;strong>unambiguously&lt;/strong> $\lambda_i$ is the corresponding eigenvector $\ket{\lambda_i}$.&lt;/li>
-&lt;li>Unambiguously distinguishable states are represented by orthogonal vectors. e.g. $\braket{u}{d} = 0$.&lt;/li>
-&lt;li>If $\ket{A}$ is the state vector of the system, and the observable L is measured, the probability of observing $\lambda_i$ is given by $\braket{A}{\lambda_i}\braket{\lambda_i}{A}$.&lt;/li>
-&lt;/ol>
-&lt;p>Since the readings (i.e. eigenvalues) are real and eigenvectors are orthogonal, the operator L must be hermitian.&lt;/p>
-&lt;h3 id="3-vector-operator-sigma">3-Vector Operator $\sigma$&lt;/h3>
-&lt;ul>
-&lt;li>Just as a spin-measuring apparatus can only answer questions about a spin&amp;rsquo;s orientation in a specific direction, a spin operator can only provide information about the spin component in a specific direction.&lt;/li>
-&lt;li>To physically measure spin in a different direction, we need to rotate the apparatus to point in the new direction. The same idea applies to the spin operator—if we want it to tell us about the spin component in a new direction, it too must be &amp;ldquo;rotated&amp;rdquo; but this kind of rotation is accomplished mathematically.&lt;/li>
-&lt;/ul>
-&lt;h3 id="operator-matrices">Operator Matrices&lt;/h3>
-&lt;p>Using above four principles, and solving linear equations, we can derive them.&lt;/p>
-&lt;p>$$
-\sigma_z = \begin{bmatrix}
-1 &amp;amp; 0 \\
-0 &amp;amp; -1
-\end{bmatrix}, \sigma_x = \begin{bmatrix}
-0 &amp;amp; 1 \\
-1 &amp;amp; 0
-\end{bmatrix}, \sigma_y = \begin{bmatrix}
-0 &amp;amp; -i \\
-i &amp;amp; 0
-\end{bmatrix} \text{.}
-$$&lt;/p>
-&lt;p>These along with Identity matrix are called Pauli Matrices.&lt;/p>
-&lt;p>IMPORTANT: Applying the operator L to state $\ket{A}$ does not change the state to $L\ket{A}$. $L\ket{A}$ is actually a supuerposition and tells us the probabilities of basis states. When we actually measure using L, the system is changed to one of the eignestates unambiguously.&lt;/p>
-&lt;p>There is nothing special about these three operators. We can take any direction $\hat{n} = (n_x, n_y, n_z)$, orient the apparatus A along $\hat n$, activate A, and measure the component of the spin along $\hat n$. That means there has to be an operator that represents this operation. Indeed, this operator is given by $\sigma_n = \sigma \cdot \hat n$, where $\sigma = (\sigma_x, \sigma_y, \sigma_z)$.&lt;/p>
-&lt;p>$$
-\sigma_n = \begin{bmatrix}
-n_z &amp;amp; (n_x - i n_y) \\
-(n_x + i n_y) &amp;amp; -n_z
-\end{bmatrix}
-$$&lt;/p>
-&lt;h3 id="spin-polarization-principle">Spin-Polarization Principle&lt;/h3>
-&lt;p>For any state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$, there exists some direction $\hat n$ such that $\sigma \cdot \hat n = \ket{A}$.&lt;/p>
-&lt;p>States of the spins are characterized by a polarization vector, and along the polarization vector the component of the spin is predictably +1.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>Convex Optimization</title><link>https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/</link><pubDate>Fri, 26 Aug 2022 07:31:53 +0000</pubDate><guid>https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/</guid><description>Convex Optimization Note: These notes are not mathematically rigorous. These are meant for quick reference, please read the Convex Optimization book from Boyd and Vandenberghe for more rigorous treatment.
+&lt;/ul></content></item><item><title>Convex Optimization</title><link>https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/</link><pubDate>Fri, 26 Aug 2022 07:31:53 +0000</pubDate><guid>https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/</guid><description>Convex Optimization Note: These notes are not mathematically rigorous. These are meant for quick reference, please read the Convex Optimization book from Boyd and Vandenberghe for more rigorous treatment.
 Chapter 2: Convex Sets Sets Affine Sets Affine combination: $\sum_{i=1}^{i=N} \theta_i x_i$ such that $\sum_{i=1}^{i=N} \theta_i = 1$.
 Draw a line passing through any two points, if the whole line is in the set, the set is affine.
 Every affine set C can be written as $C = V + x_0$ for any $x_0 \in C$, where V is a subspace.</description><content>&lt;h1 id="convex-optimization">Convex Optimization&lt;/h1>
@@ -987,8 +1157,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="741538692" type="checkbox" checked />
-&lt;label for="741538692">
+&lt;input id="861325794" type="checkbox" checked />
+&lt;label for="861325794">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1027,8 +1197,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="214765839" type="checkbox" />
-&lt;label for="214765839">
+&lt;input id="196478253" type="checkbox" />
+&lt;label for="196478253">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1268,8 +1438,8 @@ $$&lt;/p>
 &lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="169428735" type="checkbox" />
-&lt;label for="169428735">
+&lt;input id="259786134" type="checkbox" />
+&lt;label for="259786134">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1291,8 +1461,8 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="215369478" type="checkbox" />
-&lt;label for="215369478">
+&lt;input id="481725639" type="checkbox" />
+&lt;label for="481725639">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1309,8 +1479,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="315627489" type="checkbox" />
-&lt;label for="315627489">
+&lt;input id="728659134" type="checkbox" />
+&lt;label for="728659134">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1346,8 +1516,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="618792345" type="checkbox" />
-&lt;label for="618792345">
+&lt;input id="984623571" type="checkbox" />
+&lt;label for="984623571">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1365,8 +1535,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="563782194" type="checkbox" />
-&lt;label for="563782194">
+&lt;input id="928176543" type="checkbox" />
+&lt;label for="928176543">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1404,8 +1574,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="259687413" type="checkbox" />
-&lt;label for="259687413">
+&lt;input id="894637521" type="checkbox" />
+&lt;label for="894637521">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
