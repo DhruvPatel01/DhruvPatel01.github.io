@@ -1,7 +1,7 @@
 {
   "title": "Quantum Mechanics Notes",
-  "date": "2022-11-06T14:46:19Z",
-  "lastmod": "2022-11-06T14:46:19Z"
+  "date": "2022-11-18T04:16:24Z",
+  "lastmod": "2022-11-18T04:16:24Z"
 }
 
 
@@ -489,7 +489,14 @@ A has states from staet space $S\_A$, which has dimensionality of $N\_A$. Same f
 
 The combined system has statespace $S = S\_A \\otimes S\_B$, which has dimensionality $N\_A N\_B$. $\\otimes$ is a tensor product. The states of S are denoted as $\\ket{ab}$, where $a \\in S\_A$ and $b \\in S\_B$.
 
-If an operator M acts on the states of the composite system, M has $N\_A N\_B$ rows and colums. The entry $M\_{a'b', ab}$ is given by $\\braket{a'b'|M|ab}$. The basis vectors $\\ket{ab}$ are taken to be orthonormal. $\\braket{ab|a'b'} = [a = a', b = b']$.
+If an operator M acts on the states of the composite system, M has $N\_A N\_B$ rows and colums. The entry $M\_{a'b', ab}$ is given by $\\braket{a'b'|M|ab}$. 
+
+If A, and B are 2x2 matrices, their product is defined as 
+$$\\left[\\begin{matrix}A\_{11} B\_{11} & A\_{11} B\_{12} & A\_{12} B\_{11} & A\_{12} B\_{12}\\\\ A\_{11} B\_{21} & A\_{11} B\_{22} & A\_{12} B\_{21} & A\_{12} B\_{22}\\\\ A\_{21} B\_{11} & A\_{21} B\_{12} & A\_{22} B\_{11} & A\_{22} B\_{12}\\\\ A\_{21} B\_{21} & A\_{21} B\_{22} & A\_{22} B\_{21} & A\_{22} B\_{22}\\end{matrix}\\right]
+$$
+
+
+The basis vectors $\\ket{ab}$ are taken to be orthonormal. $\\braket{ab|a'b'} = [a = a', b = b']$.
 
 Thus, any state in the composite system is written as $\\ket\\Psi = \\sum\_{a,b} \\psi(a, b) \\ket{ab}$.
 
@@ -500,7 +507,7 @@ Let's have four state vectors $\\ket{uu}, \\ket{ud}, \\ket{du}, \\ket{dd}$.
 
 
 #### Product State
-A product state is the result of completely independent preparations of two spins, each with its' own apparatus to prepare a spin. 
+A product state is the result of completely independent preparations of two spins, each with its' own apparatus to prepare a spin. If the state is not a product state than it is entangled.
 
 Suppose spin A is prepared in $\\alpha\_u \\ket{u} + \\alpha\_d \\ket{d}$ and B is prepared in $\\beta\_u \\ket{u} + \\beta\_d \\ket{d}$ Where $\\alpha^\\ast\_u \\alpha\_u + \\alpha^\\ast\_d \\alpha\_d = \\beta^\\ast\_u \\beta\_u + \\beta^\\ast\_d \\beta\_d = 1$. In such case we need 4 real parameters to define the state (2 for each spin).
 
@@ -570,6 +577,231 @@ The four vectors above are eigenvectors for $\\vec{\\sigma} \\cdot \\vec{\\tau}$
 Comment: Generating singlet state is easy. Two spins prefer to be anti-aligned. Now bring these two spins together, they will radiate a photon and result in this state, as this state has low energy.
 
 For product state it is easy to prove $\\braket{AB} = \\braket{A} \\braket{B}$. Thus, we can see that $\\braket{\\sigma\_w \\tau\_w}$ can not be product states. Because for them $\\braket{\\sigma\_w} = 0$.
+
+
+
+### Outer Products
+
+$\\ket{\\Psi} \\bra{\\Phi}$ is an operator. Which can be applied to bras or kets.
+
+$\\ket{\\Psi} \\bra{\\Phi} \\ket{A} = \\ket{\\Psi} \\braket{\\Phi|A}$
+
+Specificaly if $\\ket\\Psi$ is normalized, **Projection Operator** is defined as $\\ket{\\Psi}\\bra{\\Psi}$.
+
+Properties of Projection Operators.
+- They are Hermitian.
+- $\\Psi$ is an eigenvector with eigenvalue +1.
+- All perpendicular vectors to $\\Psi$ are eigenvectors with eigenvalue 0.
+- Square of projection operator is the projection operator itself. $(\\ket\\Psi \\bra\\Psi)^2 = \\ket\\Psi \\bra\\Psi$.
+- Trace($Tr(L) = \\sum\_i \\braket{i|L|i})$ of projection operator is 1.
+- If we add all proj. operators for all basis vectors we get identity operator. $\\sum\_i \\ket{i}\\bra{i} = I$.
+- Expectation of any operator L, for state $\\Psi$ is $Tr (\\ket\\Psi \\bra\\Psi L)$.
+
+
+### Density Matrix
+
+Suppose we don't know the exact state of the system, but we know that it is either $\\Psi$ of $\\Phi$ with equal probability. Then, the expected value is $ \\frac{\\braket{\\Psi|L|\\Psi} + \\braket{\\Phi|L|\\Phi}}{2}$. If we define a new operator $\\rho = \\frac{1}{2}\\ket\\Psi \\bra\\Psi + \\frac{1}{2} \\ket\\Phi \\bra\\Phi$, the expected value can be computed as $Tr (\\rho L)$.
+
+The definition for $\\rho$ is general, and holds for more than two states. On the other hand, if we knew exactly that the state is $\\Psi$, the last property of the projection operator still applies. In any case, $\\braket{L} = Tr (\\rho L)$.
+
+In a pure state, density matrix is just a projection operator. In a mixed state, it is a combination of multiple projection operators.
+
+In the matrix form, for particular basis, $\\rho\_{aa'} = \\braket{a|\\rho|a'}$. In this basis, $\\braket{L} = \\sum\_{a,a'} \\rho\_{aa'} L\_{a'a}$.
+
+
+In classical system, two particles in a line for example, if we know state of the complete system (i.e., $x\_1, x\_2, p\_1, p\_2$), we know the state of the constituents (i.e., $x\_1, p\_1$ and $x\_2, p\_2$). 
+(Comment: This is classical pure state. But, sometimes we don't know the exact $x\_1, x\_2, p\_1, p\_2$, but have some distribution of $\\rho(x\_1, x\_2, p\_1, p\_2)$. This is mixed state.)
+
+This is not true in QM when there is entanglement. In such cases, even if the combined system can be in pure state $\\psi(a,b)$, each of it's constituent states must be described by a mixed state (unlike classical setting).
+
+Say we have the full knowledge of the combined system(A, B). That is we know $\\psi(a, b)$ of the combined system. And we want to know what we can about A. Let's pick an operator L which only acts on A.
+
+Here, $\\braket{L} = \\sum\_{ab, a'b'} \\psi^{\\ast}{(a'b')} L\_{a'b', ab} \\psi{(ab)}$.
+
+Using the rules of matrix construction(Kronecker Product), $L\_{a'b', ab} = L\_{a'a} \\delta\_{b'b}$.
+
+Thus, $$
+\\begin{align*}
+\\braket{L} &= \\sum\_{a, b, a'} \\psi^{\\ast}{(a'b)} L\_{a'a} \\psi{(ab)} \\\\
+           &= \\sum\_{a, a'} L\_{a'a} \\sum\_{b}\\psi^{\\ast}{(a'b')}  \\psi{(ab)}  \\\\
+           &= \\sum\_{a, a'} \\rho\_{aa'} L\_{a'a}   \\psi{(ab)}  \\\\
+\\end{align*}
+$$
+
+Where, we defined $\\rho\_{aa'} = \\sum\_{b}\\psi^{\\ast}{(a'b)}  \\psi{(ab)}$.
+
+Note the difference in the definition of the $\\rho$s. If in the above equation, we had product state (i.e., non entangled state $\\psi(a, b) = \\psi(a) \\phi(b)$), we will get $\\rho\_{aa'} = \\psi^{\\ast}{(a')}  \\psi{(a)} \\sum\_{b}\\phi^{\\ast}{(b)}  \\phi{(b)} = \\psi^{\\ast}{(a')}  \\psi{(a)}$. Thus, we get our projection operator (i.e., pure state density matrix) back.
+
+But in general, even if we had pure state for combined system ($\\psi(a, b)$), we may not get pure state for constituent system.
+
+For a single spin system, with pure state, the density matrix looks like below.
+
+$$\\left(\\begin{matrix}
+\\alpha^\\ast \\alpha && \\alpha \\beta^\\ast \\\\
+\\alpha^\\ast \\beta && \\beta^\\ast \\beta
+\\end{matrix}\\right)
+$$
+
+
+
+
+#### Properties of Density Matrix
+
+1. Diagonal entries tell us the probability of the observation. That is, $P(a) = \\rho\_{aa}$. This is in line with traditional probability theory. The probability of observing eigenvalues for a, b is $P(a, b) = \\psi^\\ast(ab) \\psi(ab)$. Marginalizing out b gives us $P(a) = \\sum\_b \\psi^\\ast(ab) \\psi(ab)$. This is also easy to see in the density matrix for pure state shown above.
+2. Density matrix is Hermitian.
+3. Trace of density matrix is 1.
+4. All Eigenvalues are between 0 and 1 inclusive. Since the trace is 1, if one eigenvalue is 1, the rest are 0.
+5. For a **pure** state, $\\rho^2 = \\rho$ and $Tr(\\rho^2) = 1$.
+6. For a mixed or entangled state, $\\rho^2 \\ne \\rho$ and $Tr(\\rho^2) < 1$.
+
+Proving 5 is easy. Simple algebra. But, I found proving 6 to be little bit difficult. So here is the proof.
+
+
+
+
+<details>
+    <summary> Proof for point 6</summary>
+    
+
+We will first prove that $Tr(\\rho^2) < 1$. 
+    
+Assume that our mixed state is $\\sum\_i p\_i \\ket{i} \\bra{i}$.
+
+$$
+\\begin{align*}
+\\rho^2 &= \\sum\_{i, j} p\_i p\_j \\ket{i} \\bra{i} \\ket{j} \\bra{j} \\\\
+       &= \\sum\_{i,j} p\_i p\_j \\braket{i|j} \\ket{i} \\bra{j} \\\\ 
+Tr(\\rho^2) &= \\sum\_{i, j}  p\_i p\_j \\braket{i|j} Tr(\\ket{i} \\bra{j}) \\text{ // linearity of trace} \\\\
+           &= \\sum\_{i, j}  p\_i p\_j \\braket{i|j} \\sum\_k (i\_k j^\\ast\_k) \\\\
+           &= \\sum\_{i, j}  p\_i p\_j \\braket{i|j} \\braket{j|i} \\\\
+           &= \\sum\_{i, j}  p\_i p\_j |\\braket{i|j}|^2 \\\\
+           &< \\sum\_{i, j}  p\_i p\_j \\text{ //Cauchy Schwarz Inequalty} \\\\
+           &= \\sum\_i p\_i \\sum\_j p\_j \\\\
+           &= 1 \\blacksquare
+\\end{align*}
+$$
+    
+Now, $\\rho^2 = \\rho$ would imply that $Tr(\\rho^2) = Tr(\\rho) = 1$. Which contradicts what we just proved. So $\\rho^2 \\ne \\rho$.
+
+
+Some facts used in this proof are,
+- [Trace is a linear operator.](https://en.wikipedia.org/wiki/Trace_(linear_algebra))
+- [Cauchy-Swartz Inequality](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality)
+ $ |\\braket{i|j}|^2 \\le \\braket{i|i} \\braket{j|j}$ Moreover, equality holds only when both vectors are linearly dependent. 
+    
+</details>
+
+
+<details>
+    <summary> Examples of Density matrix (Exercise 7.8)</summary>
+
+1. $\\ket{\\Psi\_1} =  \\frac{1}{2}(\\ket{uu} + \\ket{ud} + \\ket{du} + \\ket{dd})$
+Density matrix for system A
+
+$$
+\\left(\\begin{matrix} 
+\\frac{1}{2} && \\frac{1}{2} \\\\ 
+\\frac{1}{2} && \\frac{1}{2} \\\\ 
+\\end{matrix}\\right) 
+$$
+
+Density matrix for system B
+
+$$
+\\left(\\begin{matrix} 
+\\frac{1}{2} && \\frac{1}{2} \\\\ 
+\\frac{1}{2} && \\frac{1}{2} \\\\ 
+\\end{matrix}\\right) 
+$$
+
+For both the systems $\\rho^2 = \\rho$. So is pure state.
+
+2. $\\ket{\\Psi\_2} =  \\frac{1}{\\sqrt2}(\\ket{uu} + \\ket{dd}) $
+
+Density matrix for system A
+
+$$
+\\left(\\begin{matrix} 
+\\frac{1}{2} && 0 \\\\ 
+0 && \\frac{1}{2} \\\\ 
+\\end{matrix}\\right) 
+$$
+
+Density matrix for system B
+
+$$
+\\left(\\begin{matrix} 
+\\frac{1}{2} && 0 \\\\ 
+0 && \\frac{1}{2} \\\\ 
+\\end{matrix}\\right) 
+$$
+
+For both the systems $\\rho^2 \\ne \\rho$. So is mixed state.
+
+3. $\\ket{\\Psi\_3} =  \\frac{1}{5}(3\\ket{uu} + 4\\ket{ud})$
+
+$$
+\\left(\\begin{matrix} 
+1 && 0 \\\\ 
+0 && 0 \\\\ 
+\\end{matrix}\\right) 
+$$
+
+Density matrix for system B
+
+$$
+\\left(\\begin{matrix} 
+\\frac{9}{25} && \\frac{12}{25} \\\\ 
+\\frac{12}{25} && \\frac{16}{25} \\\\ 
+\\end{matrix}\\right) 
+$$
+
+For both the systems $\\rho^2 = \\rho$. So is pure state.
+    
+</details>
+
+
+### Test for entanglement
+We have a wave function $\\psi(a, b)$, and we want to test if that state is entangled or not.
+
+#### Correlation Test
+Say there are two observables A and B, for two systems. The correlation between them is defined as $C(A, B) = \\braket{AB} - \\braket{A} \\braket{B}$.
+
+If a system is any state for which $C(A, B) \\ne 0$, the state is entangled.
+
+#### Using Density Matrix
+
+**Theorem**: For any product state, the density matrix of any constituent subsystem has exactly one non-zero eigenvalue (thus it has to be 1). Moreover, the eigenvector for this eigenvalue is the factor wave function for that subsystem.
+
+E.g., if A's wave function is $\\psi$, and B's wave function is $\\phi$, such that $\\psi(a, b) = \\psi(a) \\phi(b)$, $\\psi$ is the eigenvector with eigenvalue 1 for A's density matrix.
+
+Conversly, if there are at least two eigenvalues($\\lambda\_j > 0, \\lambda\_k > 0$ (and since the Trace = 1, they are less than 1), one can prove that $\\rho^2 \\ne \\rho$. And since $\\rho^2 = \\rho$ is necessary and sufficient condition for product state, we know that the state must be entangled.
+
+<details>
+    <summary> Proof that at least two positive eigenvalues implies $\\rho^2 \\ne \\rho$.</summary>
+Proof by contradiction.
+    
+Assume $\\rho^2 = \\rho$. 
+
+$$
+\\rho^2 - \\rho = 0 = \\sum\_i (\\lambda\_i^2 - \\lambda\_i) \\ket{\\Psi\_i} \\bra{\\Psi\_i}
+$$
+
+Since, in particular $\\lambda\_k^2 - \\lambda\_k < 0$ and $\\Psi\_i$ are eigenbasis, 
+
+$$
+\\begin{align*}
+\\braket{\\Psi\_k|0|\\Psi\_k} = 0 &= \\sum\_i (\\lambda\_i^2 - \\lambda\_i) \\braket{\\Psi\_k|\\Psi\_i} \\braket{\\Psi\_i|\\Psi\_k} \\\\
+&= \\lambda\_k^2 - \\lambda\_k \\\\
+&< 0
+\\end{align*}
+$$
+
+Which is a contradiction.    
+</details>
+
+
+
 
 
 ```python
