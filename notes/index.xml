@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://dhruvpatel.dev/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 06 Nov 2022 14:46:19 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Sun, 06 Nov 2022 14:46:19 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://dhruvpatel.dev/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 18 Nov 2022 04:16:24 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Fri, 18 Nov 2022 04:16:24 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
 Even a specific particle is not completely specified by its position.
 Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
 &lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
@@ -298,12 +298,16 @@ If we measure both spins, we leave the system in a state which is simultaneously
 &lt;p>For the moment we assume there are two systems, A and B (a.k.a. Alices&amp;rsquo;s sytem and Bob&amp;rsquo;s sytem, respectively).
 A has states from staet space $S_A$, which has dimensionality of $N_A$. Same for system B.&lt;/p>
 &lt;p>The combined system has statespace $S = S_A \otimes S_B$, which has dimensionality $N_A N_B$. $\otimes$ is a tensor product. The states of S are denoted as $\ket{ab}$, where $a \in S_A$ and $b \in S_B$.&lt;/p>
-&lt;p>If an operator M acts on the states of the composite system, M has $N_A N_B$ rows and colums. The entry $M_{a&amp;rsquo;b&amp;rsquo;, ab}$ is given by $\braket{a&amp;rsquo;b&amp;rsquo;|M|ab}$. The basis vectors $\ket{ab}$ are taken to be orthonormal. $\braket{ab|a&amp;rsquo;b&amp;rsquo;} = [a = a&amp;rsquo;, b = b&amp;rsquo;]$.&lt;/p>
+&lt;p>If an operator M acts on the states of the composite system, M has $N_A N_B$ rows and colums. The entry $M_{a&amp;rsquo;b&amp;rsquo;, ab}$ is given by $\braket{a&amp;rsquo;b&amp;rsquo;|M|ab}$.&lt;/p>
+&lt;p>If A, and B are 2x2 matrices, their product is defined as
+$$\left[\begin{matrix}A_{11} B_{11} &amp;amp; A_{11} B_{12} &amp;amp; A_{12} B_{11} &amp;amp; A_{12} B_{12}\\ A_{11} B_{21} &amp;amp; A_{11} B_{22} &amp;amp; A_{12} B_{21} &amp;amp; A_{12} B_{22}\\ A_{21} B_{11} &amp;amp; A_{21} B_{12} &amp;amp; A_{22} B_{11} &amp;amp; A_{22} B_{12}\\ A_{21} B_{21} &amp;amp; A_{21} B_{22} &amp;amp; A_{22} B_{21} &amp;amp; A_{22} B_{22}\end{matrix}\right]
+$$&lt;/p>
+&lt;p>The basis vectors $\ket{ab}$ are taken to be orthonormal. $\braket{ab|a&amp;rsquo;b&amp;rsquo;} = [a = a&amp;rsquo;, b = b&amp;rsquo;]$.&lt;/p>
 &lt;p>Thus, any state in the composite system is written as $\ket\Psi = \sum_{a,b} \psi(a, b) \ket{ab}$.&lt;/p>
 &lt;h3 id="two-spin-system">Two Spin System&lt;/h3>
 &lt;p>Let&amp;rsquo;s have four state vectors $\ket{uu}, \ket{ud}, \ket{du}, \ket{dd}$.&lt;/p>
 &lt;h4 id="product-state">Product State&lt;/h4>
-&lt;p>A product state is the result of completely independent preparations of two spins, each with its&amp;rsquo; own apparatus to prepare a spin.&lt;/p>
+&lt;p>A product state is the result of completely independent preparations of two spins, each with its&amp;rsquo; own apparatus to prepare a spin. If the state is not a product state than it is entangled.&lt;/p>
 &lt;p>Suppose spin A is prepared in $\alpha_u \ket{u} + \alpha_d \ket{d}$ and B is prepared in $\beta_u \ket{u} + \beta_d \ket{d}$ Where $\alpha^\ast_u \alpha_u + \alpha^\ast_d \alpha_d = \beta^\ast_u \beta_u + \beta^\ast_d \beta_d = 1$. In such case we need 4 real parameters to define the state (2 for each spin).&lt;/p>
 &lt;p>Thus, the combined product state is written as $\{\alpha_u \ket{u} + \alpha_d \ket{d} \} \otimes \{ \beta_u \ket{u} + \beta_d \ket{d} \}$. This can be expanded, to rewrite in the basis vectors of the combined system, as $\alpha_u \beta_u \ket{uu} + \alpha_u \beta_d \ket{ud} + \alpha_d \beta_u \ket{du} + \alpha_d \beta_d \ket{dd}$.&lt;/p>
 &lt;p>The main feature of a product state is that each subsystem behaves independently of the other.&lt;/p>
@@ -370,6 +374,164 @@ A has states from staet space $S_A$, which has dimensionality of $N_A$. Same for
 &lt;p>The four vectors above are eigenvectors for $\vec{\sigma} \cdot \vec{\tau}$. The singlet has eigenvalue -3 and each triplet has eigenvalue +1.&lt;/p>
 &lt;p>Comment: Generating singlet state is easy. Two spins prefer to be anti-aligned. Now bring these two spins together, they will radiate a photon and result in this state, as this state has low energy.&lt;/p>
 &lt;p>For product state it is easy to prove $\braket{AB} = \braket{A} \braket{B}$. Thus, we can see that $\braket{\sigma_w \tau_w}$ can not be product states. Because for them $\braket{\sigma_w} = 0$.&lt;/p>
+&lt;h3 id="outer-products">Outer Products&lt;/h3>
+&lt;p>$\ket{\Psi} \bra{\Phi}$ is an operator. Which can be applied to bras or kets.&lt;/p>
+&lt;p>$\ket{\Psi} \bra{\Phi} \ket{A} = \ket{\Psi} \braket{\Phi|A}$&lt;/p>
+&lt;p>Specificaly if $\ket\Psi$ is normalized, &lt;strong>Projection Operator&lt;/strong> is defined as $\ket{\Psi}\bra{\Psi}$.&lt;/p>
+&lt;p>Properties of Projection Operators.&lt;/p>
+&lt;ul>
+&lt;li>They are Hermitian.&lt;/li>
+&lt;li>$\Psi$ is an eigenvector with eigenvalue +1.&lt;/li>
+&lt;li>All perpendicular vectors to $\Psi$ are eigenvectors with eigenvalue 0.&lt;/li>
+&lt;li>Square of projection operator is the projection operator itself. $(\ket\Psi \bra\Psi)^2 = \ket\Psi \bra\Psi$.&lt;/li>
+&lt;li>Trace($Tr(L) = \sum_i \braket{i|L|i})$ of projection operator is 1.&lt;/li>
+&lt;li>If we add all proj. operators for all basis vectors we get identity operator. $\sum_i \ket{i}\bra{i} = I$.&lt;/li>
+&lt;li>Expectation of any operator L, for state $\Psi$ is $Tr (\ket\Psi \bra\Psi L)$.&lt;/li>
+&lt;/ul>
+&lt;h3 id="density-matrix">Density Matrix&lt;/h3>
+&lt;p>Suppose we don&amp;rsquo;t know the exact state of the system, but we know that it is either $\Psi$ of $\Phi$ with equal probability. Then, the expected value is $ \frac{\braket{\Psi|L|\Psi} + \braket{\Phi|L|\Phi}}{2}$. If we define a new operator $\rho = \frac{1}{2}\ket\Psi \bra\Psi + \frac{1}{2} \ket\Phi \bra\Phi$, the expected value can be computed as $Tr (\rho L)$.&lt;/p>
+&lt;p>The definition for $\rho$ is general, and holds for more than two states. On the other hand, if we knew exactly that the state is $\Psi$, the last property of the projection operator still applies. In any case, $\braket{L} = Tr (\rho L)$.&lt;/p>
+&lt;p>In a pure state, density matrix is just a projection operator. In a mixed state, it is a combination of multiple projection operators.&lt;/p>
+&lt;p>In the matrix form, for particular basis, $\rho_{aa&amp;rsquo;} = \braket{a|\rho|a&amp;rsquo;}$. In this basis, $\braket{L} = \sum_{a,a&amp;rsquo;} \rho_{aa&amp;rsquo;} L_{a&amp;rsquo;a}$.&lt;/p>
+&lt;p>In classical system, two particles in a line for example, if we know state of the complete system (i.e., $x_1, x_2, p_1, p_2$), we know the state of the constituents (i.e., $x_1, p_1$ and $x_2, p_2$).
+(Comment: This is classical pure state. But, sometimes we don&amp;rsquo;t know the exact $x_1, x_2, p_1, p_2$, but have some distribution of $\rho(x_1, x_2, p_1, p_2)$. This is mixed state.)&lt;/p>
+&lt;p>This is not true in QM when there is entanglement. In such cases, even if the combined system can be in pure state $\psi(a,b)$, each of it&amp;rsquo;s constituent states must be described by a mixed state (unlike classical setting).&lt;/p>
+&lt;p>Say we have the full knowledge of the combined system(A, B). That is we know $\psi(a, b)$ of the combined system. And we want to know what we can about A. Let&amp;rsquo;s pick an operator L which only acts on A.&lt;/p>
+&lt;p>Here, $\braket{L} = \sum_{ab, a&amp;rsquo;b&amp;rsquo;} \psi^{\ast}{(a&amp;rsquo;b&amp;rsquo;)} L_{a&amp;rsquo;b&amp;rsquo;, ab} \psi{(ab)}$.&lt;/p>
+&lt;p>Using the rules of matrix construction(Kronecker Product), $L_{a&amp;rsquo;b&amp;rsquo;, ab} = L_{a&amp;rsquo;a} \delta_{b&amp;rsquo;b}$.&lt;/p>
+&lt;p>Thus, $$
+\begin{align*}
+\braket{L} &amp;amp;= \sum_{a, b, a&amp;rsquo;} \psi^{\ast}{(a&amp;rsquo;b)} L_{a&amp;rsquo;a} \psi{(ab)} \\
+&amp;amp;= \sum_{a, a&amp;rsquo;} L_{a&amp;rsquo;a} \sum_{b}\psi^{\ast}{(a&amp;rsquo;b&amp;rsquo;)} \psi{(ab)} \\
+&amp;amp;= \sum_{a, a&amp;rsquo;} \rho_{aa&amp;rsquo;} L_{a&amp;rsquo;a} \psi{(ab)} \\
+\end{align*}
+$$&lt;/p>
+&lt;p>Where, we defined $\rho_{aa&amp;rsquo;} = \sum_{b}\psi^{\ast}{(a&amp;rsquo;b)} \psi{(ab)}$.&lt;/p>
+&lt;p>Note the difference in the definition of the $\rho$s. If in the above equation, we had product state (i.e., non entangled state $\psi(a, b) = \psi(a) \phi(b)$), we will get $\rho_{aa&amp;rsquo;} = \psi^{\ast}{(a&amp;rsquo;)} \psi{(a)} \sum_{b}\phi^{\ast}{(b)} \phi{(b)} = \psi^{\ast}{(a&amp;rsquo;)} \psi{(a)}$. Thus, we get our projection operator (i.e., pure state density matrix) back.&lt;/p>
+&lt;p>But in general, even if we had pure state for combined system ($\psi(a, b)$), we may not get pure state for constituent system.&lt;/p>
+&lt;p>For a single spin system, with pure state, the density matrix looks like below.&lt;/p>
+&lt;p>$$\left(\begin{matrix}
+\alpha^\ast \alpha &amp;amp;&amp;amp; \alpha \beta^\ast \\
+\alpha^\ast \beta &amp;amp;&amp;amp; \beta^\ast \beta
+\end{matrix}\right)
+$$&lt;/p>
+&lt;h4 id="properties-of-density-matrix">Properties of Density Matrix&lt;/h4>
+&lt;ol>
+&lt;li>Diagonal entries tell us the probability of the observation. That is, $P(a) = \rho_{aa}$. This is in line with traditional probability theory. The probability of observing eigenvalues for a, b is $P(a, b) = \psi^\ast(ab) \psi(ab)$. Marginalizing out b gives us $P(a) = \sum_b \psi^\ast(ab) \psi(ab)$. This is also easy to see in the density matrix for pure state shown above.&lt;/li>
+&lt;li>Density matrix is Hermitian.&lt;/li>
+&lt;li>Trace of density matrix is 1.&lt;/li>
+&lt;li>All Eigenvalues are between 0 and 1 inclusive. Since the trace is 1, if one eigenvalue is 1, the rest are 0.&lt;/li>
+&lt;li>For a &lt;strong>pure&lt;/strong> state, $\rho^2 = \rho$ and $Tr(\rho^2) = 1$.&lt;/li>
+&lt;li>For a mixed or entangled state, $\rho^2 \ne \rho$ and $Tr(\rho^2) &amp;lt; 1$.&lt;/li>
+&lt;/ol>
+&lt;p>Proving 5 is easy. Simple algebra. But, I found proving 6 to be little bit difficult. So here is the proof.&lt;/p>
+&lt;details>
+&lt;summary> Proof for point 6&lt;/summary>
+&lt;p>We will first prove that $Tr(\rho^2) &amp;lt; 1$.&lt;/p>
+&lt;p>Assume that our mixed state is $\sum_i p_i \ket{i} \bra{i}$.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\rho^2 &amp;amp;= \sum_{i, j} p_i p_j \ket{i} \bra{i} \ket{j} \bra{j} \\
+&amp;amp;= \sum_{i,j} p_i p_j \braket{i|j} \ket{i} \bra{j} \\
+Tr(\rho^2) &amp;amp;= \sum_{i, j} p_i p_j \braket{i|j} Tr(\ket{i} \bra{j}) \text{ // linearity of trace} \\
+&amp;amp;= \sum_{i, j} p_i p_j \braket{i|j} \sum_k (i_k j^\ast_k) \\
+&amp;amp;= \sum_{i, j} p_i p_j \braket{i|j} \braket{j|i} \\
+&amp;amp;= \sum_{i, j} p_i p_j |\braket{i|j}|^2 \\
+&amp;amp;&amp;lt; \sum_{i, j} p_i p_j \text{ //Cauchy Schwarz Inequalty} \\
+&amp;amp;= \sum_i p_i \sum_j p_j \\
+&amp;amp;= 1 \blacksquare
+\end{align*}
+$$&lt;/p>
+&lt;p>Now, $\rho^2 = \rho$ would imply that $Tr(\rho^2) = Tr(\rho) = 1$. Which contradicts what we just proved. So $\rho^2 \ne \rho$.&lt;/p>
+&lt;p>Some facts used in this proof are,&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://en.wikipedia.org/wiki/Trace_(linear_algebra)">Trace is a linear operator.&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality">Cauchy-Swartz Inequality&lt;/a>
+$ |\braket{i|j}|^2 \le \braket{i|i} \braket{j|j}$ Moreover, equality holds only when both vectors are linearly dependent.&lt;/li>
+&lt;/ul>
+&lt;/details>
+&lt;details>
+&lt;summary> Examples of Density matrix (Exercise 7.8)&lt;/summary>
+&lt;ol>
+&lt;li>$\ket{\Psi_1} = \frac{1}{2}(\ket{uu} + \ket{ud} + \ket{du} + \ket{dd})$
+Density matrix for system A&lt;/li>
+&lt;/ol>
+&lt;p>$$
+\left(\begin{matrix}
+\frac{1}{2} &amp;amp;&amp;amp; \frac{1}{2} \\
+\frac{1}{2} &amp;amp;&amp;amp; \frac{1}{2} \\
+\end{matrix}\right)
+$$&lt;/p>
+&lt;p>Density matrix for system B&lt;/p>
+&lt;p>$$
+\left(\begin{matrix}
+\frac{1}{2} &amp;amp;&amp;amp; \frac{1}{2} \\
+\frac{1}{2} &amp;amp;&amp;amp; \frac{1}{2} \\
+\end{matrix}\right)
+$$&lt;/p>
+&lt;p>For both the systems $\rho^2 = \rho$. So is pure state.&lt;/p>
+&lt;ol start="2">
+&lt;li>$\ket{\Psi_2} = \frac{1}{\sqrt2}(\ket{uu} + \ket{dd}) $&lt;/li>
+&lt;/ol>
+&lt;p>Density matrix for system A&lt;/p>
+&lt;p>$$
+\left(\begin{matrix}
+\frac{1}{2} &amp;amp;&amp;amp; 0 \\
+0 &amp;amp;&amp;amp; \frac{1}{2} \\
+\end{matrix}\right)
+$$&lt;/p>
+&lt;p>Density matrix for system B&lt;/p>
+&lt;p>$$
+\left(\begin{matrix}
+\frac{1}{2} &amp;amp;&amp;amp; 0 \\
+0 &amp;amp;&amp;amp; \frac{1}{2} \\
+\end{matrix}\right)
+$$&lt;/p>
+&lt;p>For both the systems $\rho^2 \ne \rho$. So is mixed state.&lt;/p>
+&lt;ol start="3">
+&lt;li>$\ket{\Psi_3} = \frac{1}{5}(3\ket{uu} + 4\ket{ud})$&lt;/li>
+&lt;/ol>
+&lt;p>$$
+\left(\begin{matrix}
+1 &amp;amp;&amp;amp; 0 \\
+0 &amp;amp;&amp;amp; 0 \\
+\end{matrix}\right)
+$$&lt;/p>
+&lt;p>Density matrix for system B&lt;/p>
+&lt;p>$$
+\left(\begin{matrix}
+\frac{9}{25} &amp;amp;&amp;amp; \frac{12}{25} \\
+\frac{12}{25} &amp;amp;&amp;amp; \frac{16}{25} \\
+\end{matrix}\right)
+$$&lt;/p>
+&lt;p>For both the systems $\rho^2 = \rho$. So is pure state.&lt;/p>
+&lt;/details>
+&lt;h3 id="test-for-entanglement">Test for entanglement&lt;/h3>
+&lt;p>We have a wave function $\psi(a, b)$, and we want to test if that state is entangled or not.&lt;/p>
+&lt;h4 id="correlation-test">Correlation Test&lt;/h4>
+&lt;p>Say there are two observables A and B, for two systems. The correlation between them is defined as $C(A, B) = \braket{AB} - \braket{A} \braket{B}$.&lt;/p>
+&lt;p>If a system is any state for which $C(A, B) \ne 0$, the state is entangled.&lt;/p>
+&lt;h4 id="using-density-matrix">Using Density Matrix&lt;/h4>
+&lt;p>&lt;strong>Theorem&lt;/strong>: For any product state, the density matrix of any constituent subsystem has exactly one non-zero eigenvalue (thus it has to be 1). Moreover, the eigenvector for this eigenvalue is the factor wave function for that subsystem.&lt;/p>
+&lt;p>E.g., if A&amp;rsquo;s wave function is $\psi$, and B&amp;rsquo;s wave function is $\phi$, such that $\psi(a, b) = \psi(a) \phi(b)$, $\psi$ is the eigenvector with eigenvalue 1 for A&amp;rsquo;s density matrix.&lt;/p>
+&lt;p>Conversly, if there are at least two eigenvalues($\lambda_j &amp;gt; 0, \lambda_k &amp;gt; 0$ (and since the Trace = 1, they are less than 1), one can prove that $\rho^2 \ne \rho$. And since $\rho^2 = \rho$ is necessary and sufficient condition for product state, we know that the state must be entangled.&lt;/p>
+&lt;details>
+&lt;summary> Proof that at least two positive eigenvalues implies $\\rho^2 \\ne \\rho$.&lt;/summary>
+Proof by contradiction.
+&lt;p>Assume $\rho^2 = \rho$.&lt;/p>
+&lt;p>$$
+\rho^2 - \rho = 0 = \sum_i (\lambda_i^2 - \lambda_i) \ket{\Psi_i} \bra{\Psi_i}
+$$&lt;/p>
+&lt;p>Since, in particular $\lambda_k^2 - \lambda_k &amp;lt; 0$ and $\Psi_i$ are eigenbasis,&lt;/p>
+&lt;p>$$
+\begin{align*}
+\braket{\Psi_k|0|\Psi_k} = 0 &amp;amp;= \sum_i (\lambda_i^2 - \lambda_i) \braket{\Psi_k|\Psi_i} \braket{\Psi_i|\Psi_k} \\
+&amp;amp;= \lambda_k^2 - \lambda_k \\
+&amp;amp;&amp;lt; 0
+\end{align*}
+$$&lt;/p>
+&lt;p>Which is a contradiction.&lt;/p>
+&lt;/details>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
 Configration space: 3N dimensional space, records positions.
