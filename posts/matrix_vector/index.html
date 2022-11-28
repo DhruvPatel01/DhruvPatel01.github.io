@@ -9,8 +9,8 @@
 </span></span><span style=display:flex><span>make -j8
 </span></span><span style=display:flex><span>make check -j8
 </span></span><span style=display:flex><span>make install
-</span></span></code></pre></div><p>This will install the header files and static library respectively into <code>~/blis/include/blis</code> and <code>~/blis/lib/libblis.a</code>. I will use these when I compile a wrapper around a BLAS <code>dgemv</code> call. <code>dgemv</code> stands for Generalized Matrix Vector multiplication. <code>d</code> prefix means that inputs are double precision floating points. For FP32 you would use <code>sgemv</code>.</p><div class=collapsable-code><input id=189642537 type=checkbox checked>
-<label for=189642537><span class=collapsable-code__language>bash</span>
+</span></span></code></pre></div><p>This will install the header files and static library respectively into <code>~/blis/include/blis</code> and <code>~/blis/lib/libblis.a</code>. I will use these when I compile a wrapper around a BLAS <code>dgemv</code> call. <code>dgemv</code> stands for Generalized Matrix Vector multiplication. <code>d</code> prefix means that inputs are double precision floating points. For FP32 you would use <code>sgemv</code>.</p><div class=collapsable-code><input id=576413928 type=checkbox checked>
+<label for=576413928><span class=collapsable-code__language>bash</span>
 <span class=collapsable-code__title>OpenBLAS Installation</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-bash><code>
 git clone https://github.com/xianyi/OpenBLAS.git
@@ -21,18 +21,18 @@ make PREFIX=/home/dhruv/OpenBLAS install
 
 </code></pre></div><h3 id=step-2-write-and-compile-a-wrapper-around-blas>Step 2: Write and compile a wrapper around BLAS.<a href=#step-2-write-and-compile-a-wrapper-around-blas class=hanchor arialabel=Anchor>&#8983;</a></h3><p>As you might have noticed, BLAS routines are also general (hence the g in gemv). The <code>bli_dgemv</code><sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup> computes $y := \beta y + \alpha * trans(A)* conjugate(x)$. Yup, we could conjugate a vector even if we are working with real numbers! I am not sure how it works here, I am not going to use transpose and conjugate features anyway. In my case, $\beta = 0, \alpha=1$.</p><p>The general signature of <code>bli_dgemv</code> is</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>bli_dgemv</span>
 </span></span><span style=display:flex><span>     (
-</span></span><span style=display:flex><span>       trans_t transa,
-</span></span><span style=display:flex><span>       conj_t  conjx,
-</span></span><span style=display:flex><span>       dim_t   m,
-</span></span><span style=display:flex><span>       dim_t   n,
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>trans_t</span> transa,
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>conj_t</span>  conjx,
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>dim_t</span>   m,
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>dim_t</span>   n,
 </span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  alpha,
-</span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  a, inc_t rsa, inc_t csa,
-</span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  x, inc_t incx,
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  a, <span style=color:#66d9ef>inc_t</span> rsa, <span style=color:#66d9ef>inc_t</span> csa,
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  x, <span style=color:#66d9ef>inc_t</span> incx,
 </span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  beta,
-</span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  y, inc_t incy
+</span></span><span style=display:flex><span>       <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span>  y, <span style=color:#66d9ef>inc_t</span> incy
 </span></span><span style=display:flex><span>     );
-</span></span></code></pre></div><ul><li><code>transa</code> tells blis if we want to transpose A before the multiplication. I don&rsquo;t, so I will use <code>BLIS_NO_TRANSPOSE</code>.</li><li><code>conjx</code> tells blis if we want to conjugate x. I don&rsquo;t, so I will use <code>BLIS_NO_CONJUGATE</code>.</li><li>m is the number of rows of A.</li><li>n is the number of columns of A.</li><li>$\alpha, \beta$ were explained earlier.</li><li><code>double *a</code>, is a pointer to the matrix A. I will have stored the matrix in row major order, so <code>rsa</code>(row stride) will be <code>n</code> and <code>csa</code>(column stride) will be 1.</li><li><code>x</code> is a pointer to array where x, the vector we want to multiply A with, stays.</li><li><code>y</code> is a pointer to array where Ax will be saved.</li><li><code>incx</code> and <code>incy</code> will be 1 as I know I have continuous arrays <code>x</code> and <code>y</code>.</li></ul><div class=collapsable-code><input id=279815463 type=checkbox>
-<label for=279815463><span class=collapsable-code__language>c</span>
+</span></span></code></pre></div><ul><li><code>transa</code> tells blis if we want to transpose A before the multiplication. I don&rsquo;t, so I will use <code>BLIS_NO_TRANSPOSE</code>.</li><li><code>conjx</code> tells blis if we want to conjugate x. I don&rsquo;t, so I will use <code>BLIS_NO_CONJUGATE</code>.</li><li>m is the number of rows of A.</li><li>n is the number of columns of A.</li><li>$\alpha, \beta$ were explained earlier.</li><li><code>double *a</code>, is a pointer to the matrix A. I will have stored the matrix in row major order, so <code>rsa</code>(row stride) will be <code>n</code> and <code>csa</code>(column stride) will be 1.</li><li><code>x</code> is a pointer to array where x, the vector we want to multiply A with, stays.</li><li><code>y</code> is a pointer to array where Ax will be saved.</li><li><code>incx</code> and <code>incy</code> will be 1 as I know I have continuous arrays <code>x</code> and <code>y</code>.</li></ul><div class=collapsable-code><input id=478192536 type=checkbox>
+<label for=478192536><span class=collapsable-code__language>c</span>
 <span class=collapsable-code__title>gemv_blis.c</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-c><code>
 #include &#34;blis.h&#34;
@@ -80,11 +80,11 @@ void blis_gemv_raw(int m, int n, double *c_matrix, double *x, double *y)
 </span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><code class=language-c data-lang=c><span style=display:flex><span>
 </span></span><span style=display:flex><span>...
-</span></span><span style=display:flex;background-color:#3c3d38><span><span style=color:#66d9ef>void</span> blis_gemv_raw(<span style=color:#66d9ef>int</span> m, <span style=color:#66d9ef>int</span> n, <span style=color:#66d9ef>double</span> <span style=color:#f92672>*</span>c_matrix, <span style=color:#66d9ef>double</span> <span style=color:#f92672>*</span>x, <span style=color:#66d9ef>double</span> <span style=color:#f92672>*</span>y);
+</span></span><span style=display:flex;background-color:#3c3d38><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>blis_gemv_raw</span>(<span style=color:#66d9ef>int</span> m, <span style=color:#66d9ef>int</span> n, <span style=color:#66d9ef>double</span> <span style=color:#f92672>*</span>c_matrix, <span style=color:#66d9ef>double</span> <span style=color:#f92672>*</span>x, <span style=color:#66d9ef>double</span> <span style=color:#f92672>*</span>y);
 </span></span><span style=display:flex><span>...
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>static</span> PyObject <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>blis_dgemv(PyObject <span style=color:#f92672>*</span>self, PyObject <span style=color:#f92672>*</span>args)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>blis_dgemv</span>(PyObject <span style=color:#f92672>*</span>self, PyObject <span style=color:#f92672>*</span>args)
 </span></span><span style=display:flex><span>{
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>void</span>  <span style=color:#f92672>*</span>a;
 </span></span><span style=display:flex><span>    Py_ssize_t asize;
@@ -92,9 +92,9 @@ void blis_gemv_raw(int m, int n, double *c_matrix, double *x, double *y)
 </span></span><span style=display:flex><span>    in_buf.buf <span style=color:#f92672>=</span> out_buf.buf <span style=color:#f92672>=</span> NULL;
 </span></span><span style=display:flex><span>    in_buf.len <span style=color:#f92672>=</span> out_buf.len <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>PyArg_ParseTuple(args, <span style=color:#e6db74>&#34;s#s*s*&#34;</span>, <span style=color:#f92672>&amp;</span>a, <span style=color:#f92672>&amp;</span>asize, <span style=color:#f92672>&amp;</span>in_buf, <span style=color:#f92672>&amp;</span>out_buf)) {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (in_buf.buf) PyBuffer_Release(<span style=color:#f92672>&amp;</span>in_buf);
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (out_buf.buf) PyBuffer_Release(<span style=color:#f92672>&amp;</span>out_buf);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>PyArg_ParseTuple</span>(args, <span style=color:#e6db74>&#34;s#s*s*&#34;</span>, <span style=color:#f92672>&amp;</span>a, <span style=color:#f92672>&amp;</span>asize, <span style=color:#f92672>&amp;</span>in_buf, <span style=color:#f92672>&amp;</span>out_buf)) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (in_buf.buf) <span style=color:#a6e22e>PyBuffer_Release</span>(<span style=color:#f92672>&amp;</span>in_buf);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (out_buf.buf) <span style=color:#a6e22e>PyBuffer_Release</span>(<span style=color:#f92672>&amp;</span>out_buf);
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> NULL;
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>
@@ -102,7 +102,7 @@ void blis_gemv_raw(int m, int n, double *c_matrix, double *x, double *y)
 </span></span><span style=display:flex><span>    m <span style=color:#f92672>=</span> out_buf.len<span style=color:#f92672>/</span><span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>double</span>);
 </span></span><span style=display:flex><span>    n <span style=color:#f92672>=</span> in_buf.len<span style=color:#f92672>/</span><span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>double</span>);
 </span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    blis_gemv_raw(m, n, a, in_buf.buf, out_buf.buf);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>blis_gemv_raw</span>(m, n, a, in_buf.buf, out_buf.buf);
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>	Py_RETURN_NONE;
 </span></span><span style=display:flex><span>}

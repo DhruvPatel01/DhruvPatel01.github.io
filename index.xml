@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 18 Nov 2022 04:16:24 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Fri, 18 Nov 2022 04:16:24 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 27 Nov 2022 03:07:20 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Sun, 27 Nov 2022 03:07:20 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
 Even a specific particle is not completely specified by its position.
 Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
 &lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
@@ -531,6 +531,94 @@ $$&lt;/p>
 \end{align*}
 $$&lt;/p>
 &lt;p>Which is a contradiction.&lt;/p>
+&lt;/details>
+&lt;p>In a maximally entangled state, all the eigenvalues of the density matrix are equal. $\rho_{aa} = \frac{1}{N_A}$, where $N_A$ is the number of states in subsystem A. Although in such state we don&amp;rsquo;t know anything about one particular subsystem (uniform probability distribution), there is correlation. If we measure one subsytem, we know the outcome of the experiment on other subsystem.&lt;/p>
+&lt;h2 id="continuous-domain">Continuous Domain&lt;/h2>
+&lt;p>So far we have talked about discrete case, where observable was discrete. There are observables like position which are continuous.&lt;/p>
+&lt;p>Our wave function is discrete complex-valued function. $\psi(\lambda)$, where for spin $\lambda$ was either up or down. The state $\Psi$&amp;rsquo;s wave function depended upon the basis. In the up-down basis $\Psi = \psi(\ket{u}) \ket{u} + \psi(\ket{d}) \ket{d}$.&lt;/p>
+&lt;p>For cases like particle moving on a line (x-axis), we need wave function that is continuous. We can write it as $\psi(x)$, where x is a real number. Notice that functions like this also form a vector space. Two functions can be added. It can be multiplied with a complex number to get another function, and so on.&lt;/p>
+&lt;dl>
+&lt;dt>Inner Product&lt;/dt>
+&lt;dd>$\braket{\Phi|\Psi} = \int_{-\infty}^{\infty} \phi^\ast(x)\psi(x) dx$&lt;/dd>
+&lt;dt>Probability Density&lt;/dt>
+&lt;dd>$P(x) = \psi^\ast(x) \psi(x)$ is NOT the probability of observing x. It is instead a density around x.&lt;/dd>
+&lt;dt>Dirac Delta Function&lt;/dt>
+&lt;dd>$\delta$ is defined such that $\int_{-\infty}^{\infty} \delta(x - x&amp;rsquo;) F(x&amp;rsquo;) dx&amp;rsquo; = F(x)$.&lt;/dd>
+&lt;/dl>
+&lt;h3 id="integration-by-parts">Integration By Parts&lt;/h3>
+&lt;p>$ FG |_a^b - \int_a^b G dF = \int_a^b F dG$.&lt;/p>
+&lt;p>Generally $F \to 0 \text{ as } |x| \to \infty$ for wave functions to be properly normalized. And same for G. So $FG |_a^b = 0$ in such cases. So the formula is quite easy to remember in QM.&lt;/p>
+&lt;p>$$&lt;/p>
+&lt;ul>
+&lt;li>\int_{-\infty}^\infty G \frac{dF}{dx} dx = \int_{-\infty}^\infty F \frac{dG}{dx} dx
+$$&lt;/li>
+&lt;/ul>
+&lt;p>Move the differentiation to another function by changing the sign.&lt;/p>
+&lt;h3 id="linear-operators">Linear Operators&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>X&lt;/strong>
+: Multiply by x operator, $X \psi(x) = x \psi(x)$.&lt;/li>
+&lt;li>&lt;strong>D&lt;/strong>
+: Diffrentiation operator, $D \psi(x) = \frac{d \psi(x)}{dx}$.&lt;/li>
+&lt;li>&lt;strong>P&lt;/strong>
+: $P = -i \hbar D$.&lt;/li>
+&lt;/ul>
+&lt;h4 id="hermitian-operators-1">Hermitian Operators.&lt;/h4>
+&lt;p>L is Hertmitian if $\braket{\Psi|L|\Phi} = \braket{\Phi|L|\Psi}^\ast$.&lt;/p>
+&lt;p>Since x (domain of $\psi, \phi$) is real, it is easy to show that &amp;ldquo;Multiply by X&amp;rdquo; $X$ operator is Hermitian.&lt;/p>
+&lt;p>On the other hand, you will find that D is not Hermitian. $\braket{\Psi|D|\Phi} = - \braket{\Phi|D|\Psi}^\ast$. Operators like this (where $D^\dagger = -D$ are called anti-hermitian. For any anti-hermitian operator A, both $iA$ and $-iA$ are hermitian.&lt;/p>
+&lt;p>Thus, we define an operator $P = -i \hbar D$ such that $-i \hbar D \ \psi(x) = -i \hbar \frac{d\psi(x)}{dx}$. This operator is Hermitian.&lt;/p>
+&lt;h3 id="particle-state">Particle State&lt;/h3>
+&lt;h4 id="formal-prose">Formal Prose&lt;/h4>
+&lt;p>In classical mechanics, for a particle moving on x-axis, if the Hamiltonian equations are known, given (x, p) (i.e., position, and momenta p = mv) we know the flow in the phasespace.&lt;/p>
+&lt;p>However, decades of experience tells us that in Quantum Mechanics, one does not have states where both the components are specified. We know from experience that &lt;code>x AND p&lt;/code> is not knowable, but &lt;code>x OR p&lt;/code> can be known.&lt;/p>
+&lt;h4 id="details">Details&lt;/h4>
+&lt;p>Since position, and momentum are observable, they would have Hermitian Operators associated with them. For position, this operator is &lt;strong>X&lt;/strong>.&lt;/p>
+&lt;h5 id="eigenvalues-and-eigenvectors-for-x">Eigenvalues, and Eigenvectors for &lt;strong>X&lt;/strong>.&lt;/h5>
+&lt;p>Trying to solve the eigenvalue equation,&lt;/p>
+&lt;p>$$
+\begin{align*}
+x \psi(x) &amp;amp;= x_0 \psi(x) \\
+(x - x_0)\psi(x) &amp;amp;=0
+\end{align*}
+$$&lt;/p>
+&lt;p>This holds true for all possible values of x. When $x \ne x_0$, this means that $\psi(x) = 0$. At $x = x_0$ it can take non zero value. We know such function, it is Dirac&amp;rsquo;s Delta function, $\delta(x - x_0)$.&lt;/p>
+&lt;p>Thus &lt;em>every&lt;/em> $x&amp;rsquo; \in \mathbb{R}$ is an eigenvalue for &lt;strong>X&lt;/strong>, with eigenfunction $\delta(x - x&amp;rsquo;)$.&lt;/p>
+&lt;p>$\braket{x_0|\Psi} = \int_{-\infty}^{\infty} \delta(x-x_0) \psi(x) dx = \psi(x_0)$.&lt;/p>
+&lt;p>Thus $\braket{x|\Psi} = \psi(x)$.&lt;/p>
+&lt;p>Wave function in the position representation: is denoted as $\psi(x)$ and is the projection of the state on the eigenvectors for position, i.e., $\braket{x|\Psi} = \psi(x)$.&lt;/p>
+&lt;h5 id="eigenvalues-and-eigenvectors-for-p-the-momentum-operator">Eigenvalues, and Eigenvectors for &lt;strong>P&lt;/strong>, the Momentum Operator&lt;/h5>
+&lt;p>NOTE: Connection with classical mass times velocity will become clear later.&lt;/p>
+&lt;p>If we solve for eigenvalue equation, $P \psi(x) = -i \hbar D \psi(x) = p \psi(x)$, we get the solution $\psi_p(x) = A e^{\frac{ipx}{\hbar}}$. Subscript p denotes the eigenfunction associated with eigenvalue p. The A is a normalizing constant, required to make the integration 1. It turns out to be, $A = \frac{1}{\sqrt{2 \pi}}$. Note that, this eigenfunction is written in basis of position.&lt;/p>
+&lt;p>Thus,&lt;/p>
+&lt;p>$\braket{x|p} = \frac{1}{\sqrt{2 \pi}} e^{\frac{ipx}{\hbar}}$&lt;/p>
+&lt;p>And, $\braket{p|x} = \frac{1}{\sqrt{2 \pi}} e^{\frac{-ipx}{\hbar}}$.&lt;/p>
+&lt;h5 id="waves">Waves?&lt;/h5>
+&lt;p>The momentum function $\frac{1}{\sqrt{2 \pi}} e^{\frac{ipx}{\hbar}}$ has sin and cosine. The A&amp;ndash;the constant&amp;ndash; is not important in the frequency of the wave, it just changes the mangnitude. $e^{\frac{ipx}{\hbar}}$ has a wavelength of $\frac{2 \pi \hbar}{p}$. (Because: $e^{\frac{ip(x+\lambda)}{\hbar}} = e^{\frac{ipx}{\hbar}} e^{i 2 \pi} = e^{\frac{ipx}{\hbar}}$).&lt;/p>
+&lt;p>In 20th century, scientists wanted to detect smaller and smaller particles. One can’t resolve objects much smaller than the wavelength one using to look at them. So in 20th century, scientists wanted to find light of smaller and smaller wavelengths. We will later see that light of a given wavelength is composed of photons whose momentum is related to the wavelength by the relation $\lambda = \frac{2 \pi \hbar}{p}$. But, as per this relation, to get smaller wavelength, one must increase the momentum. This requires high energy. Hence, particle acclerators were/are required.&lt;/p>
+&lt;h3 id="momentum-basis">Momentum Basis&lt;/h3>
+&lt;p>We saw the eigenfunction associated with momentum operator was a function of x! That is because we wrote it in position basis. If for the state $\Psi$, we want to measure it&amp;rsquo;s momentum, we can do so by using the probability density function $\psi^\ast(p) \psi(p)$. $\psi(p)$ (not to be confused with $\psi(x)$) is a function of p. In the momentum basis it is just $\braket{p|\Psi}$.&lt;/p>
+&lt;p>Both wave function $\psi(x)$ and $\psi(p)$ represent the same state $\Psi$, just in different basis. It is possible to convert between two using fourier transform.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\psi(p) &amp;amp;= \frac{1}{\sqrt{2 \pi}} \int e^{\frac{-ipx}{\hbar}} \psi(x) dx \\
+\psi(x) &amp;amp;= \frac{1}{\sqrt{2 \pi}} \int e^{\frac{ipx}{\hbar}} \psi(p) dp \\
+\end{align*}
+$$&lt;/p>
+&lt;details>
+&lt;summary> Derivation of the transform&lt;/summary>
+$$
+\\begin{align*}
+\\psi(p) &amp;= \\braket{p|\\Psi} \\\\
+&amp;= \\braket{p\\left|\\int dx \\ket{x}\\bra{x} \\right| \\Psi} \\\\
+&amp;= \\int dx \\braket{p|x}\\braket{x|\\Psi} \\\\
+&amp;= \\frac{1}{\\sqrt{2 \\pi}} \\int e^{\\frac{-ipx}{\\hbar}} \\psi(x) dx \\\\
+\\psi(x) &amp;= \\braket{x|\\Psi} \\\\
+&amp;= \\braket{x\\left|\\int dp \\ket{p}\\bra{p} \\right| \\Psi} \\\\
+&amp;= \\int dp \\braket{x|p}\\braket{p|\\Psi} \\\\
+&amp;= \\frac{1}{\\sqrt{2 \\pi}} \\int e^{\\frac{ipx}{\\hbar}} \\psi(p) dp
+\\end{align*}
+$$
 &lt;/details>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
@@ -1319,8 +1407,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="189642537" type="checkbox" checked />
-&lt;label for="189642537">
+&lt;input id="576413928" type="checkbox" checked />
+&lt;label for="576413928">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1337,15 +1425,15 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;p>The general signature of &lt;code>bli_dgemv&lt;/code> is&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">bli_dgemv&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> trans_t transa,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> conj_t conjx,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dim_t m,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dim_t n,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">trans_t&lt;/span> transa,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">conj_t&lt;/span> conjx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">dim_t&lt;/span> m,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">dim_t&lt;/span> n,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> alpha,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a, inc_t rsa, inc_t csa,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> x, inc_t incx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a, &lt;span style="color:#66d9ef">inc_t&lt;/span> rsa, &lt;span style="color:#66d9ef">inc_t&lt;/span> csa,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> x, &lt;span style="color:#66d9ef">inc_t&lt;/span> incx,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> beta,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> y, inc_t incy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> y, &lt;span style="color:#66d9ef">inc_t&lt;/span> incy
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> );
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>&lt;code>transa&lt;/code> tells blis if we want to transpose A before the multiplication. I don&amp;rsquo;t, so I will use &lt;code>BLIS_NO_TRANSPOSE&lt;/code>.&lt;/li>
@@ -1359,8 +1447,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="279815463" type="checkbox" />
-&lt;label for="279815463">
+&lt;input id="478192536" type="checkbox" />
+&lt;label for="478192536">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1422,11 +1510,11 @@ y, 1);
 &lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 &lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#3c3d38">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> blis_gemv_raw(&lt;span style="color:#66d9ef">int&lt;/span> m, &lt;span style="color:#66d9ef">int&lt;/span> n, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>c_matrix, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>x, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>y);
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#3c3d38">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">blis_gemv_raw&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> m, &lt;span style="color:#66d9ef">int&lt;/span> n, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>c_matrix, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>x, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>y);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> PyObject &lt;span style="color:#f92672">*&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blis_dgemv(PyObject &lt;span style="color:#f92672">*&lt;/span>self, PyObject &lt;span style="color:#f92672">*&lt;/span>args)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">blis_dgemv&lt;/span>(PyObject &lt;span style="color:#f92672">*&lt;/span>self, PyObject &lt;span style="color:#f92672">*&lt;/span>args)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#f92672">*&lt;/span>a;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_ssize_t asize;
@@ -1434,9 +1522,9 @@ y, 1);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in_buf.buf &lt;span style="color:#f92672">=&lt;/span> out_buf.buf &lt;span style="color:#f92672">=&lt;/span> NULL;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in_buf.len &lt;span style="color:#f92672">=&lt;/span> out_buf.len &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>PyArg_ParseTuple(args, &lt;span style="color:#e6db74">&amp;#34;s#s*s*&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>a, &lt;span style="color:#f92672">&amp;amp;&lt;/span>asize, &lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf, &lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf)) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (in_buf.buf) PyBuffer_Release(&lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (out_buf.buf) PyBuffer_Release(&lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>&lt;span style="color:#a6e22e">PyArg_ParseTuple&lt;/span>(args, &lt;span style="color:#e6db74">&amp;#34;s#s*s*&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>a, &lt;span style="color:#f92672">&amp;amp;&lt;/span>asize, &lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf, &lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (in_buf.buf) &lt;span style="color:#a6e22e">PyBuffer_Release&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (out_buf.buf) &lt;span style="color:#a6e22e">PyBuffer_Release&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> NULL;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -1444,7 +1532,7 @@ y, 1);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> out_buf.len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> n &lt;span style="color:#f92672">=&lt;/span> in_buf.len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> blis_gemv_raw(m, n, a, in_buf.buf, out_buf.buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">blis_gemv_raw&lt;/span>(m, n, a, in_buf.buf, out_buf.buf);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_RETURN_NONE;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
@@ -1600,8 +1688,8 @@ $$&lt;/p>
 &lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="283195674" type="checkbox" />
-&lt;label for="283195674">
+&lt;input id="158329746" type="checkbox" />
+&lt;label for="158329746">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1623,8 +1711,8 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="892763154" type="checkbox" />
-&lt;label for="892763154">
+&lt;input id="489635217" type="checkbox" />
+&lt;label for="489635217">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1641,8 +1729,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="614893572" type="checkbox" />
-&lt;label for="614893572">
+&lt;input id="972536841" type="checkbox" />
+&lt;label for="972536841">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1678,8 +1766,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="485796213" type="checkbox" />
-&lt;label for="485796213">
+&lt;input id="975264318" type="checkbox" />
+&lt;label for="975264318">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1697,8 +1785,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="174862935" type="checkbox" />
-&lt;label for="174862935">
+&lt;input id="269347851" type="checkbox" />
+&lt;label for="269347851">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1736,8 +1824,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="948561372" type="checkbox" />
-&lt;label for="948561372">
+&lt;input id="387265941" type="checkbox" />
+&lt;label for="387265941">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>

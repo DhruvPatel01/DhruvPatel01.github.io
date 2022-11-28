@@ -20,8 +20,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="189642537" type="checkbox" checked />
-&lt;label for="189642537">
+&lt;input id="576413928" type="checkbox" checked />
+&lt;label for="576413928">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -38,15 +38,15 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;p>The general signature of &lt;code>bli_dgemv&lt;/code> is&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">bli_dgemv&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> trans_t transa,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> conj_t conjx,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dim_t m,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dim_t n,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">trans_t&lt;/span> transa,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">conj_t&lt;/span> conjx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">dim_t&lt;/span> m,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">dim_t&lt;/span> n,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> alpha,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a, inc_t rsa, inc_t csa,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> x, inc_t incx,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> a, &lt;span style="color:#66d9ef">inc_t&lt;/span> rsa, &lt;span style="color:#66d9ef">inc_t&lt;/span> csa,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> x, &lt;span style="color:#66d9ef">inc_t&lt;/span> incx,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> beta,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> y, inc_t incy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">double&lt;/span>&lt;span style="color:#f92672">*&lt;/span> y, &lt;span style="color:#66d9ef">inc_t&lt;/span> incy
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> );
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>&lt;code>transa&lt;/code> tells blis if we want to transpose A before the multiplication. I don&amp;rsquo;t, so I will use &lt;code>BLIS_NO_TRANSPOSE&lt;/code>.&lt;/li>
@@ -60,8 +60,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="279815463" type="checkbox" />
-&lt;label for="279815463">
+&lt;input id="478192536" type="checkbox" />
+&lt;label for="478192536">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -123,11 +123,11 @@ y, 1);
 &lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 &lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#3c3d38">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> blis_gemv_raw(&lt;span style="color:#66d9ef">int&lt;/span> m, &lt;span style="color:#66d9ef">int&lt;/span> n, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>c_matrix, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>x, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>y);
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#3c3d38">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">blis_gemv_raw&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> m, &lt;span style="color:#66d9ef">int&lt;/span> n, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>c_matrix, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>x, &lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#f92672">*&lt;/span>y);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> PyObject &lt;span style="color:#f92672">*&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blis_dgemv(PyObject &lt;span style="color:#f92672">*&lt;/span>self, PyObject &lt;span style="color:#f92672">*&lt;/span>args)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">blis_dgemv&lt;/span>(PyObject &lt;span style="color:#f92672">*&lt;/span>self, PyObject &lt;span style="color:#f92672">*&lt;/span>args)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#f92672">*&lt;/span>a;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_ssize_t asize;
@@ -135,9 +135,9 @@ y, 1);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in_buf.buf &lt;span style="color:#f92672">=&lt;/span> out_buf.buf &lt;span style="color:#f92672">=&lt;/span> NULL;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in_buf.len &lt;span style="color:#f92672">=&lt;/span> out_buf.len &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>PyArg_ParseTuple(args, &lt;span style="color:#e6db74">&amp;#34;s#s*s*&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>a, &lt;span style="color:#f92672">&amp;amp;&lt;/span>asize, &lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf, &lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf)) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (in_buf.buf) PyBuffer_Release(&lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (out_buf.buf) PyBuffer_Release(&lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>&lt;span style="color:#a6e22e">PyArg_ParseTuple&lt;/span>(args, &lt;span style="color:#e6db74">&amp;#34;s#s*s*&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>a, &lt;span style="color:#f92672">&amp;amp;&lt;/span>asize, &lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf, &lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (in_buf.buf) &lt;span style="color:#a6e22e">PyBuffer_Release&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>in_buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (out_buf.buf) &lt;span style="color:#a6e22e">PyBuffer_Release&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>out_buf);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> NULL;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -145,7 +145,7 @@ y, 1);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> out_buf.len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> n &lt;span style="color:#f92672">=&lt;/span> in_buf.len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> blis_gemv_raw(m, n, a, in_buf.buf, out_buf.buf);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">blis_gemv_raw&lt;/span>(m, n, a, in_buf.buf, out_buf.buf);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_RETURN_NONE;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
@@ -226,8 +226,8 @@ y, 1);
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="892763154" type="checkbox" />
-&lt;label for="892763154">
+&lt;input id="489635217" type="checkbox" />
+&lt;label for="489635217">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -244,8 +244,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="614893572" type="checkbox" />
-&lt;label for="614893572">
+&lt;input id="972536841" type="checkbox" />
+&lt;label for="972536841">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -281,8 +281,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="485796213" type="checkbox" />
-&lt;label for="485796213">
+&lt;input id="975264318" type="checkbox" />
+&lt;label for="975264318">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -300,8 +300,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="174862935" type="checkbox" />
-&lt;label for="174862935">
+&lt;input id="269347851" type="checkbox" />
+&lt;label for="269347851">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -339,8 +339,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="948561372" type="checkbox" />
-&lt;label for="948561372">
+&lt;input id="387265941" type="checkbox" />
+&lt;label for="387265941">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
