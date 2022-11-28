@@ -1,7 +1,7 @@
 {
   "title": "Quantum Mechanics Notes",
-  "date": "2022-11-18T04:16:24Z",
-  "lastmod": "2022-11-18T04:16:24Z"
+  "date": "2022-11-27T03:07:20Z",
+  "lastmod": "2022-11-27T03:07:20Z"
 }
 
 
@@ -800,8 +800,142 @@ $$
 Which is a contradiction.    
 </details>
 
+In a maximally entangled state, all the eigenvalues of the density matrix are equal. $\\rho\_{aa} = \\frac{1}{N\_A}$, where $N\_A$ is the number of states in subsystem A. Although in such state we don't know anything about one particular subsystem (uniform probability distribution), there is correlation. If we measure one subsytem, we know the outcome of the experiment on other subsystem.
 
 
+
+
+## Continuous Domain
+
+
+So far we have talked about discrete case, where observable was discrete. There are observables like position which are continuous.
+
+Our wave function is discrete complex-valued function. $\\psi(\\lambda)$, where for spin $\\lambda$ was either up or down. The state $\\Psi$'s wave function depended upon the basis. In the up-down basis $\\Psi = \\psi(\\ket{u}) \\ket{u} + \\psi(\\ket{d}) \\ket{d}$. 
+
+For cases like particle moving on a line (x-axis), we need wave function that is continuous. We can write it as $\\psi(x)$, where x is a real number. Notice that functions like this also form a vector space. Two functions can be added. It can be multiplied with a complex number to get another function, and so on.
+
+Inner Product
+: $\\braket{\\Phi|\\Psi} = \\int\_{-\\infty}^{\\infty} \\phi^\\ast(x)\\psi(x) dx$
+
+Probability Density
+: $P(x) = \\psi^\\ast(x) \\psi(x)$ is NOT the probability of observing x. It is instead a density around x.
+
+Dirac Delta Function
+: $\\delta$ is defined such that $\\int\_{-\\infty}^{\\infty} \\delta(x - x') F(x') dx' = F(x)$.
+
+
+### Integration By Parts
+
+$ FG |\_a^b - \\int\_a^b G dF = \\int\_a^b F dG$.
+
+Generally $F \\to 0 \\text{ as } |x| \\to \\infty$ for wave functions to be properly normalized. And same for G. So $FG |\_a^b = 0$ in such cases. So the formula is quite easy to remember in QM.
+
+$$
+- \\int\_{-\\infty}^\\infty G \\frac{dF}{dx} dx = \\int\_{-\\infty}^\\infty F \\frac{dG}{dx} dx
+$$
+
+Move the differentiation to another function by changing the sign.
+
+
+### Linear Operators
+
+- **X**
+: Multiply by x operator, $X \\psi(x) = x \\psi(x)$.
+- **D**
+: Diffrentiation operator, $D \\psi(x) = \\frac{d \\psi(x)}{dx}$.
+- **P**
+: $P = -i \\hbar D$.
+
+#### Hermitian Operators.
+L is Hertmitian if $\\braket{\\Psi|L|\\Phi} = \\braket{\\Phi|L|\\Psi}^\\ast$.
+
+Since x (domain of $\\psi, \\phi$) is real, it is easy to show that "Multiply by X" $X$ operator is Hermitian.
+
+On the other hand, you will find that D is not Hermitian. $\\braket{\\Psi|D|\\Phi} = - \\braket{\\Phi|D|\\Psi}^\\ast$. Operators like this (where $D^\\dagger = -D$ are called anti-hermitian. For any anti-hermitian operator A, both $iA$ and $-iA$ are hermitian.
+
+Thus, we define an operator $P = -i \\hbar D$ such that $-i \\hbar D \\  \\psi(x) = -i \\hbar \\frac{d\\psi(x)}{dx}$. This operator is Hermitian.
+
+
+### Particle State
+
+#### Formal Prose
+
+In classical mechanics, for a particle moving on x-axis, if the Hamiltonian equations are known, given (x, p) (i.e., position, and momenta p = mv) we know the flow in the phasespace.
+
+However, decades of experience tells us that in Quantum Mechanics, one does not have states where both the components are specified. We know from experience that `x AND p` is not knowable, but `x OR p` can be known.
+
+#### Details
+
+Since position, and momentum are observable, they would have Hermitian Operators associated with them. For position, this operator is **X**.
+
+##### Eigenvalues, and Eigenvectors for **X**.
+Trying to solve the eigenvalue equation,
+
+$$
+\\begin{align*}
+x \\psi(x) &= x\_0 \\psi(x) \\\\
+(x - x\_0)\\psi(x) &=0 
+\\end{align*}
+$$
+
+This holds true for all possible values of x. When $x \\ne x\_0$, this means that $\\psi(x) = 0$. At $x = x\_0$ it can take non zero value. We know such function, it is Dirac's Delta function, $\\delta(x - x\_0)$.
+
+Thus *every* $x' \\in \\mathbb{R}$ is an eigenvalue for **X**, with eigenfunction $\\delta(x - x')$.
+
+$\\braket{x\_0|\\Psi} = \\int\_{-\\infty}^{\\infty} \\delta(x-x\_0) \\psi(x) dx = \\psi(x\_0)$.
+
+Thus $\\braket{x|\\Psi} = \\psi(x)$.
+
+Wave function in the position representation: is denoted as $\\psi(x)$ and is the projection of the state on the eigenvectors for position, i.e., $\\braket{x|\\Psi} = \\psi(x)$.
+
+##### Eigenvalues, and Eigenvectors for **P**, the Momentum Operator
+
+NOTE: Connection with classical mass times velocity will become clear later. 
+
+If we solve for eigenvalue equation, $P \\psi(x) = -i \\hbar D \\psi(x) = p \\psi(x)$, we get the solution $\\psi\_p(x) = A e^{\\frac{ipx}{\\hbar}}$. Subscript p denotes the eigenfunction associated with eigenvalue p. The A is a normalizing constant, required to make the integration 1. It turns out to be, $A = \\frac{1}{\\sqrt{2 \\pi}}$. Note that, this eigenfunction is written in basis of position.
+
+Thus, 
+
+$\\braket{x|p} = \\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{ipx}{\\hbar}}$
+
+And, $\\braket{p|x} = \\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{-ipx}{\\hbar}}$.
+
+
+##### Waves?
+
+The momentum function $\\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{ipx}{\\hbar}}$ has sin and cosine. The A--the constant-- is not important in the frequency of the wave, it just changes the mangnitude. $e^{\\frac{ipx}{\\hbar}}$ has a wavelength of $\\frac{2 \\pi \\hbar}{p}$. (Because: $e^{\\frac{ip(x+\\lambda)}{\\hbar}} = e^{\\frac{ipx}{\\hbar}}  e^{i 2 \\pi} = e^{\\frac{ipx}{\\hbar}}$).
+
+In 20th century, scientists wanted to detect smaller and smaller particles. One can’t resolve objects much smaller than the wavelength one using to look at them. So in 20th century, scientists wanted to find light of smaller and smaller wavelengths. We will later see that light of a given wavelength is composed of photons whose momentum is related to the wavelength by the relation $\\lambda = \\frac{2 \\pi \\hbar}{p}$. But, as per this relation, to get smaller wavelength, one must increase the momentum. This requires high energy. Hence, particle acclerators were/are required.
+
+
+### Momentum Basis
+
+We saw the eigenfunction associated with momentum operator was a function of x! That is because we wrote it in position basis. If for the state $\\Psi$, we want to measure it's momentum, we can do so by using the probability density function $\\psi^\\ast(p) \\psi(p)$. $\\psi(p)$ (not to be confused with $\\psi(x)$) is a function of p. In the momentum basis it is just $\\braket{p|\\Psi}$.
+
+Both wave function $\\psi(x)$ and $\\psi(p)$ represent the same state $\\Psi$, just in different basis. It is possible to convert between two using fourier transform. 
+
+$$
+\\begin{align*}
+\\psi(p) &= \\frac{1}{\\sqrt{2 \\pi}} \\int  e^{\\frac{-ipx}{\\hbar}} \\psi(x) dx \\\\
+\\psi(x) &= \\frac{1}{\\sqrt{2 \\pi}} \\int  e^{\\frac{ipx}{\\hbar}} \\psi(p) dp \\\\
+\\end{align*}
+$$
+
+<details>
+<summary> Derivation of the transform</summary>
+$$
+\\begin{align*}
+\\psi(p) &= \\braket{p|\\Psi} \\\\
+        &= \\braket{p\\left|\\int dx \\ket{x}\\bra{x}  \\right| \\Psi} \\\\
+        &= \\int dx \\braket{p|x}\\braket{x|\\Psi} \\\\
+        &= \\frac{1}{\\sqrt{2 \\pi}} \\int  e^{\\frac{-ipx}{\\hbar}} \\psi(x) dx \\\\
+\\psi(x) &= \\braket{x|\\Psi} \\\\
+        &= \\braket{x\\left|\\int dp \\ket{p}\\bra{p}  \\right| \\Psi} \\\\
+        &= \\int dp \\braket{x|p}\\braket{p|\\Psi} \\\\
+        &= \\frac{1}{\\sqrt{2 \\pi}} \\int  e^{\\frac{ipx}{\\hbar}} \\psi(p) dp
+\\end{align*}
+$$
+</details>
 
 
 ```python
