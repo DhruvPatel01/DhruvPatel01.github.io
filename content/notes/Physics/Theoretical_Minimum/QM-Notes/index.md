@@ -1,7 +1,7 @@
 {
   "title": "Quantum Mechanics Notes",
-  "date": "2022-11-27T03:07:20Z",
-  "lastmod": "2022-11-27T03:07:20Z"
+  "date": "2022-12-03T12:22:24Z",
+  "lastmod": "2022-12-03T12:22:24Z"
 }
 
 
@@ -830,9 +830,7 @@ $ FG |\_a^b - \\int\_a^b G dF = \\int\_a^b F dG$.
 
 Generally $F \\to 0 \\text{ as } |x| \\to \\infty$ for wave functions to be properly normalized. And same for G. So $FG |\_a^b = 0$ in such cases. So the formula is quite easy to remember in QM.
 
-$$
-- \\int\_{-\\infty}^\\infty G \\frac{dF}{dx} dx = \\int\_{-\\infty}^\\infty F \\frac{dG}{dx} dx
-$$
+$$- \\int\_{-\\infty}^\\infty G \\frac{dF}{dx} dx = \\int\_{-\\infty}^\\infty F \\frac{dG}{dx} dx$$
 
 Move the differentiation to another function by changing the sign.
 
@@ -922,7 +920,8 @@ $$
 $$
 
 <details>
-<summary> Derivation of the transform</summary>
+    <summary> Derivation of the transform</summary>
+    
 $$
 \\begin{align*}
 \\psi(p) &= \\braket{p|\\Psi} \\\\
@@ -935,7 +934,113 @@ $$
         &= \\frac{1}{\\sqrt{2 \\pi}} \\int  e^{\\frac{ipx}{\\hbar}} \\psi(p) dp
 \\end{align*}
 $$
+    
 </details>
+
+
+### Relation with Poisson Brackets
+
+earlier we show that $[L, M] = i\\hbar\\{L, M\\}$. 
+
+We can compute the commutator $[X, P] = XP - PX$. 
+
+$$
+\\begin{align*}
+XP \\psi(x) &= -i \\hbar x \\frac{d \\psi(x)}{dx} \\\\
+PX \\psi(x) &= -i \\hbar \\frac{d x \\psi(x)}{dx} \\\\
+           &= -i \\hbar x \\frac{d \\psi(x)}{dx} - i\\hbar \\psi(x) \\\\
+[X, P]\\psi(x) &= i \\hbar \\psi(x) \\\\
+[X, P] &= i \\hbar
+\\end{align*}
+$$
+
+Thus, the commutator is a number, which is non-zero. That is, X and P don't commute. You can't measure one without disturbing the other.
+
+This also implies that Poisson bracket {X, P} = 1. This was proved in classical mechanics course. This is the link between classical momentum and quantum momentum P.
+
+
+### Heisenberg's Uncertainty Principle
+
+Earlier we had derived $\\Delta{A} \\Delta{B} \\ge \\frac{1}{2} |\\braket{\\Psi|[A, B]|\\Psi}|$. 
+
+Thus, $\\Delta{X} \\Delta{P} \\ge \\frac{1}{2} |\\braket{\\Psi|[X, P]|\\Psi}| = \\frac{1}{2} \\hbar$. 
+
+Let's look at example. I think this section requires more mathematical rigor, but I am not at the point where I can justify much of what I am writing. 
+
+Let's assume that our state is eigenstate of the momentum. That is, $\\psi(p\_0) = \\delta (p-p\_0)$. Then, as per Fourier formulas, $$
+\\begin{align*}
+\\psi(x) &= \\frac{1}{\\sqrt{2 \\pi}} \\int\_{-\\infty}^{\\infty}  e^{\\frac{ipx}{\\hbar}} \\psi(p) dp \\\\
+        &= \\frac{1}{\\sqrt{2 \\pi}} \\int\_{-\\infty}^{\\infty}  e^{\\frac{ipx}{\\hbar}} \\delta(p-p\_0) dp \\\\
+        &= \\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{i p\_0 x}{\\hbar}} \\\\
+\\psi^\\ast(x) &= \\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{-i p\_0 x}{\\hbar}} \\\\
+\\psi^\\ast(x)\\psi(x) &= \\frac{1}{2 \\pi}
+\\end{align*}
+$$
+
+Thus, the density function for position is as uncertain as it can get, it is uniform.
+
+In this case, there is no uncertainty in $\\Delta P$. That is $\\Delta P = 0$. However, $\\Delta X = \\infty$. Obviously, the product is not defined. But, maybe in the limits the product is greater than $\\hbar /2$?
+
+See discussion at https://physics.stackexchange.com/questions/553145/does-the-heisenbergs-uncertainty-equation-holds-when-one-of-the-observable-have.
+
+
+## Time Evolution of Particles
+
+
+### Simple Example
+
+Recall that time evolution of particle is given by generalized Schrodinger's equation $i\\hbar \\frac{\\partial \\psi(x, t)}{\\partial t} = H \\psi(x, t)$. Where H is Hamiltonian, and is energy of the quantum system.
+
+A simplest Hamiltonian is $H = -cP$, where c is a fixed number. If we apply above equation here, we get, 
+$i\\hbar \\frac{\\partial \\psi(x, t)}{\\partial t} = -c i \\hbar \\frac{\\partial \\psi(x, t)}{\\partial x}$. Which leads to $\\frac{\\partial \\psi(x, t)}{\\partial t} = -c \\frac{\\partial \\psi(x, t)}{\\partial x}$. Any function $\\psi(x - ct)$ solves this equation. 
+
+At T = 0, we have some function $\\psi(x)$. Note that due to normalization contraints, this function has to go to zero towards the ends. The wave function might look something like this. 
+
+![image.png](images/attachment:7891febe-a9f7-46e4-b840-9a4ce96ad8c7.png)
+
+At later time, T = t, $\\psi(x-ct)$ has the same shape as $\\psi(x)$ but shifted to the right by ct. It is equivalent to say that the wave has translated to the right in space. This translation happens at uniform velocity. If we let c to be the speed of the light, this Hamiltonian almost describes the 1d neutrinos, except that our H only describes particle moving to the right. 
+
+Since the wave function moves rigidly to the right, the expected value also moves to the right at the same velocity. In classical mechanics if let $H = cP$, the Hamiltonian equations give us following equations.
+
+$$
+\\begin{align*}
+    \\frac{\\partial H}{\\partial p} &= \\dot{x} = c \\\\
+    \\frac{\\partial H}{\\partial x} &= -\\dot{p} = 0 \\\\
+\\end{align*}
+$$
+
+Thus classically, the momentum is conserved, and the particle moves with the constant velocity c.
+
+
+### Non relativistic Particles
+
+Particles that have some mass, can not travel at the speed of light. Classically, a free particle (i.e., zero potential energy) has the Hamiltonian $\\frac{p^2}{2m}$.
+
+Inspired from it, we can imagine that QM has hamiltonian $\\frac{P^2}{2m}$. When we put definition of P into time-dependent Schrodinger's equation, we get $\\frac{\\partial \\psi}{\\partial t} = \\frac{i \\hbar}{2m} \\frac{\\partial^2 \\psi}{\\partial x^2}$.
+
+Susskind's book says that waves with different wavelength travel with different velocities, so this wave changes the shape with time. I don't understand this chain of thoughts. 
+
+There are two explanations I found on the Internet. [Here](https://physics.stackexchange.com/questions/77860/why-do-wave-packets-spread-out-over-time).
+
+1. One explanation is connection with heat equation. The Schrodinger's equation above, is partial differential equation in the form of heat equation. Heat equation says that waves where the curvature is high, dissipaets faster. 
+2. Another explanation is that initially we have some uncertainity in the position, and some uncertainity in the momentum (i.e., velocity). Smaller the uncertainity in position, larger the uncertainity in velocity. So overtime, this uncertainity increases, and the wavefunction spreads.
+
+
+#### Time evolution of the non-relativistic particle.
+
+We follow the recipe outlined earlier.
+1. Find the H somehow. Done: $H = \\frac{P^2}{2m}$.
+2. Find the eigenvalues for this H. This is easy. Eigenvectors $P^2$ are same as eigenvectors of P. Just the eigenvalues change to $\\frac{p^2}{2m}$. $E(p) = e^{\\frac{ipx}{\\hbar}}$.
+3. Prepare the state in the initial state $\\Psi$.
+4. Use the continuous counterpart of $\\Psi(t) = \\sum\_j \\ket{E\_j}\\braket{E\_j|\\Psi(0)} e^{-\\frac{i}{\\hbar}E\_j t}$ to find the state at later time. So, 
+$$
+\\begin{align*}
+\\psi(x, t) &= \\int \\psi(p) \\psi(x, 0) e{^\\left(-\\frac{i p^2}{\\hbar 2 m} t\\right)} dp \\\\
+           &= \\int \\psi(p) e^\\left(\\frac{i\\left(px - \\frac{p^2}{2 m}\\right)}{\\hbar}\\right) dp
+\\end{align*}
+$$
+
+Of course, I have abused the notation. A lot.
 
 
 ```python
