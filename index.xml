@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sat, 03 Dec 2022 12:22:24 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Sat, 03 Dec 2022 12:22:24 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 30 Dec 2022 06:35:17 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Fri, 30 Dec 2022 06:35:17 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
 Even a specific particle is not completely specified by its position.
 Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
 &lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
@@ -591,7 +591,7 @@ $$&lt;/p>
 &lt;p>And, $\braket{p|x} = \frac{1}{\sqrt{2 \pi}} e^{\frac{-ipx}{\hbar}}$.&lt;/p>
 &lt;h5 id="waves">Waves?&lt;/h5>
 &lt;p>The momentum function $\frac{1}{\sqrt{2 \pi}} e^{\frac{ipx}{\hbar}}$ has sin and cosine. The A&amp;ndash;the constant&amp;ndash; is not important in the frequency of the wave, it just changes the mangnitude. $e^{\frac{ipx}{\hbar}}$ has a wavelength of $\frac{2 \pi \hbar}{p}$. (Because: $e^{\frac{ip(x+\lambda)}{\hbar}} = e^{\frac{ipx}{\hbar}} e^{i 2 \pi} = e^{\frac{ipx}{\hbar}}$).&lt;/p>
-&lt;p>In 20th century, scientists wanted to detect smaller and smaller particles. One can’t resolve objects much smaller than the wavelength one using to look at them. So in 20th century, scientists wanted to find light of smaller and smaller wavelengths. We will later see that light of a given wavelength is composed of photons whose momentum is related to the wavelength by the relation $\lambda = \frac{2 \pi \hbar}{p}$. But, as per this relation, to get smaller wavelength, one must increase the momentum. This requires high energy. Hence, particle acclerators were/are required.&lt;/p>
+&lt;p>In 20th century, scientists wanted to detect smaller and smaller particles. One can&amp;rsquo;t resolve objects much smaller than the wavelength one using to look at them. So in 20th century, scientists wanted to find light of smaller and smaller wavelengths. We will later see that light of a given wavelength is composed of photons whose momentum is related to the wavelength by the relation $\lambda = \frac{2 \pi \hbar}{p}$. But, as per this relation, to get smaller wavelength, one must increase the momentum. This requires high energy. Hence, particle acclerators were/are required.&lt;/p>
 &lt;h3 id="momentum-basis">Momentum Basis&lt;/h3>
 &lt;p>We saw the eigenfunction associated with momentum operator was a function of x! That is because we wrote it in position basis. If for the state $\Psi$, we want to measure it&amp;rsquo;s momentum, we can do so by using the probability density function $\psi^\ast(p) \psi(p)$. $\psi(p)$ (not to be confused with $\psi(x)$) is a function of p. In the momentum basis it is just $\braket{p|\Psi}$.&lt;/p>
 &lt;p>Both wave function $\psi(x)$ and $\psi(p)$ represent the same state $\Psi$, just in different basis. It is possible to convert between two using fourier transform.&lt;/p>
@@ -649,7 +649,7 @@ $$&lt;/p>
 &lt;h2 id="time-evolution-of-particles">Time Evolution of Particles&lt;/h2>
 &lt;h3 id="simple-example">Simple Example&lt;/h3>
 &lt;p>Recall that time evolution of particle is given by generalized Schrodinger&amp;rsquo;s equation $i\hbar \frac{\partial \psi(x, t)}{\partial t} = H \psi(x, t)$. Where H is Hamiltonian, and is energy of the quantum system.&lt;/p>
-&lt;p>A simplest Hamiltonian is $H = -cP$, where c is a fixed number. If we apply above equation here, we get,
+&lt;p>A simplest Hamiltonian is $H = cP$, where c is a fixed number. If we apply above equation here, we get,
 $i\hbar \frac{\partial \psi(x, t)}{\partial t} = -c i \hbar \frac{\partial \psi(x, t)}{\partial x}$. Which leads to $\frac{\partial \psi(x, t)}{\partial t} = -c \frac{\partial \psi(x, t)}{\partial x}$. Any function $\psi(x - ct)$ solves this equation.&lt;/p>
 &lt;p>At T = 0, we have some function $\psi(x)$. Note that due to normalization contraints, this function has to go to zero towards the ends. The wave function might look something like this.&lt;/p>
 &lt;p>&lt;img src="images/attachment:7891febe-a9f7-46e4-b840-9a4ce96ad8c7.png" alt="image.png">&lt;/p>
@@ -668,24 +668,150 @@ $$&lt;/p>
 &lt;p>Susskind&amp;rsquo;s book says that waves with different wavelength travel with different velocities, so this wave changes the shape with time. I don&amp;rsquo;t understand this chain of thoughts.&lt;/p>
 &lt;p>There are two explanations I found on the Internet. &lt;a href="https://physics.stackexchange.com/questions/77860/why-do-wave-packets-spread-out-over-time">Here&lt;/a>.&lt;/p>
 &lt;ol>
-&lt;li>One explanation is connection with heat equation. The Schrodinger&amp;rsquo;s equation above, is partial differential equation in the form of heat equation. Heat equation says that waves where the curvature is high, dissipaets faster.&lt;/li>
-&lt;li>Another explanation is that initially we have some uncertainity in the position, and some uncertainity in the momentum (i.e., velocity). Smaller the uncertainity in position, larger the uncertainity in velocity. So overtime, this uncertainity increases, and the wavefunction spreads.&lt;/li>
+&lt;li>One explanation is connection with heat equation. The Schrodinger&amp;rsquo;s equation above, is partial differential equation in the form of heat equation. Heat equation says that waves where the curvature is high, dissipates faster.&lt;/li>
+&lt;li>Another explanation is that initially we have some uncertainity in the position, and some uncertainity in the momentum (i.e., velocity). Smaller the uncertainity in position, larger the uncertainity in velocity. So overtime, this uncertainity in position increases(due to initial uncertainty in velocity), and the wavefunction spreads.&lt;/li>
 &lt;/ol>
 &lt;h4 id="time-evolution-of-the-non-relativistic-particle">Time evolution of the non-relativistic particle.&lt;/h4>
 &lt;p>We follow the recipe outlined earlier.&lt;/p>
 &lt;ol>
 &lt;li>Find the H somehow. Done: $H = \frac{P^2}{2m}$.&lt;/li>
-&lt;li>Find the eigenvalues for this H. This is easy. Eigenvectors $P^2$ are same as eigenvectors of P. Just the eigenvalues change to $\frac{p^2}{2m}$. $E(p) = e^{\frac{ipx}{\hbar}}$.&lt;/li>
+&lt;li>Find the eigenvalues for this H. This is easy. Eigenvectors $\frac{P^2}{2m}$ are same as eigenvectors of P. Just the eigenvalues change to $\frac{p^2}{2m}$. $E(p) = e^{\frac{ipx}{\hbar}}$.&lt;/li>
 &lt;li>Prepare the state in the initial state $\Psi$.&lt;/li>
-&lt;li>Use the continuous counterpart of $\Psi(t) = \sum_j \ket{E_j}\braket{E_j|\Psi(0)} e^{-\frac{i}{\hbar}E_j t}$ to find the state at later time. So,
+&lt;li>Use the continuous counterpart of $\Psi(t) = \sum_j \ket{E_j}\braket{E_j|\Psi(0)} e^{-\frac{i}{\hbar}E_j t}$ to find the state at later time. So,&lt;/li>
+&lt;/ol>
+&lt;p>$$
+\begin{align*}
+\psi(x, t) &amp;amp;= \int \text{exp}\left(\frac{i p x}{\hbar}\right) \psi(p) \text{exp}\left({-\frac{i p^2 t}{\hbar 2 m}}\right) dp \\
+&amp;amp;= \int \psi(p) \text{exp}\left({\frac{i\left(px - \frac{p^2 t}{2 m}\right)}{\hbar}}\right) dp
+\end{align*}
+$$&lt;/p>
+&lt;p>Of course, I have abused the notation. A lot.&lt;/p>
+&lt;p>If we compare the last equation to fourier formula, we get $\psi(p, t) = \psi(p) \text{exp}\left({\frac{-i\frac{p^2}{2 m}}{\hbar}}\right)$.&lt;/p>
+&lt;p>Note: This formula might be wrong. Book has it $\psi(p, t) = \psi(p) \text{exp}\left({\frac{i\left(px - \frac{p^2}{2 m}\right)}{\hbar}}\right) dp$. But, it didn&amp;rsquo;t mention how it got it. Things are becoming crazy. I might have missed something. Or it is just a typo in the book.&lt;/p>
+&lt;p>Anyway, both the formulas suggest that P(p, t) is equivalent to P(p, 0). This is because momentum is conserved when there is no external force.&lt;/p>
+&lt;h4 id="expected-change-in-position">Expected Change in Position&lt;/h4>
+&lt;p>Since the wave function changes with time, the expected value of x, i.e., $\braket{\Psi|X|\Psi}$ also changes with time. There are two ways to compute this quantity. One is bruteforce, and one is to use commutators.&lt;/p>
+&lt;p>Using commutators is easy. We use the relationship proved &lt;a href="#change-in-the-expectation">here&lt;/a>. $\frac{d \braket{X}}{dt} = \frac{-i}{\hbar 2 m} \braket{[P^2, X]} = \frac{-i}{\hbar 2 m} \braket{P[P, X] + [P, X]P} = \frac{-i}{\hbar 2 m} \braket{-2 i \hbar P} = \frac{\braket{P}}{m}$.&lt;/p>
+&lt;p>This is similar to classical v = p/m.&lt;/p>
+&lt;p>I will probably not do the bruteforce. But the in the 10th Lecture Prof. Susskind does that.&lt;/p>
+&lt;h3 id="non-relativistic-particle-with-some-forces-on-it">Non relativistic particle, with some forces on it&lt;/h3>
+&lt;p>In CM, we replace all the forces acting on the particle by a potential function. That is $F(x) = -\frac{\partial V}{\partial x}$. The Hamiltonian in CM is K + V. So, our quantum Hamiltonian should have V operator. The V operator is defined on wave functions, and is, $V\psi(x) = V(x)\psi(x)$. Just multiply by V(x).&lt;/p>
+&lt;p>Classically, the momentum does not depend upon forces on the particle. It is just v/m. Thus our update in the Hamiltonian should not change $\frac{d \braket{X}}{dt}$ that was derived earlier. Indeed, the new commutator will be just $[P^2 + V, X] = [P^2, X] + [V, X]$. Remember, commutators are linear, and so are expectations. Also, V and X commute with each other. That is easy to see when you use the definitions of V and X. So $[V, X] = 0$. Hence, $\frac{d \braket{X}}{dt} = \frac{\braket{P}}{m}$ still holds.&lt;/p>
+&lt;p>Classically, $\frac{dp}{dt} = F = -\frac{\partial V}{\partial x}$. Let&amp;rsquo;s see what happens in the quantum realm.&lt;/p>
+&lt;p>$\frac{d \braket{P}}{dt} = \frac{i}{\hbar} \braket{[P^2+V, P]} = \frac{i}{\hbar} \braket{[V, P]}$.&lt;/p>
+&lt;p>It is easy exercise to show that $[V, P] = i \hbar \frac{\partial V}{\partial x}$.&lt;/p>
+&lt;p>And hence, $\frac{d \braket{P}}{dt} = - \braket{ \frac{\partial V}{\partial x}}$.&lt;/p>
+&lt;p>It is important to note that $\frac{d \braket{P}}{dt} \ne - \frac{\partial \braket V}{\partial x}$.&lt;/p>
+&lt;p>For example, take a bimodal distribution, where one peak is at -5 and another one at 5. Let $F(x) = x^2$. Since, the expected value of x is 0, $F(\braket{x}) = F(0) = 0$. On the other hand, $\braket{F(x)}$ is not zero.&lt;/p>
+&lt;p>When the wave function is concentrated over a fairly narrow range, only then $\braket{F(x)} = F(\braket{x})$.&lt;/p>
+&lt;p>Following are statements from the book. I am unable to prove it or find the proofs in the book. So pasting them verbatimly.&lt;/p>
+&lt;pre>&lt;code>If V varies rapidly across the wave packet, the classical approximation will break down. In fact, in that situation a nice, narrow wave packet will get broken up into a badly scattered wave that has no resemblance to the original wave packet.
+&lt;/code>&lt;/pre>
+&lt;h1 id="path-integrals">Path Integrals&lt;/h1>
+&lt;p>In classical mechanics, given that particle is at x1 at time t1, and is at x2 given t2, the path the particle takes is the one that minimizes the action.&lt;/p>
+&lt;p>Similar notion is for quantum mechanics, called path integrals. Here, we say that given that particle is at x1 at time t1, what is the probability (or amplitude) at x2, t2.&lt;/p>
+&lt;p>The initial state is $\ket{\Psi(t_1)} = \ket{x_1}$. The time evolution gives us $\ket{\Psi(t_2)} = e^{-i H (t_2-t_1)} \ket{x_1}$. So the amplitude at position x2 is given by $\braket{x_2|\Psi(t_2)} = \braket{x_2|e^{-i H (t_2-t_1)} | x_1}$. We replace t2-t1 by t.&lt;/p>
+&lt;p>$\braket{x_2|\Psi(t_2)} = \braket{x_2|e^{-i H t} | x_1}$. Using the decomposition $e^{-i H t} = e^{-i H \frac{t}{2}}e^{-i H \frac{t}{2}}$, and $I = \int dx \ket{x}\bra{x}$, we get, $\braket{x_2|\Psi(t_2)} = \int {dx \braket{x_2|e^{-i H \frac{t}{2}} | x} \braket{x|e^{-i H \frac{t}{2}} | x_2}}$.&lt;/p>
+&lt;p>But, there is nothing special about t/2. We can divide the path into N segments, each with length $\epsilon$. If we denote $U = e^{-i\epsilon H}$, $\braket{x_2|\Psi(t_2)} = \braket{x_2|U^N|x_1}$.&lt;/p>
+&lt;p>What Feynman discovered was that for each path, there is an action A. And that $\braket{x_2|\Psi(t_2)} = \int_{paths} e^{iA/\hbar}$.&lt;/p>
+&lt;h1 id="harmonic-oscillators">Harmonic Oscillators&lt;/h1>
+&lt;p>Harmonic oscillators is a mathematical framework. Many natural phenomenon have oscillation property. Ideallized spring for example follows Hook&amp;rsquo;s law. That is, force is proportional to the displacement. $F = -kx$. Thus, $V = kx^2/2$.&lt;/p>
+&lt;p>Many energy functions approximate quadratic function, around minima.&lt;/p>
+&lt;p>Examples,&lt;/p>
+&lt;ul>
+&lt;li>Waves: Sound waves and water waves. At particular position, water molecules oscillates.&lt;/li>
+&lt;li>Electromagnetic waves: Same mathematics as normal waves.&lt;/li>
+&lt;li>Electric current in a low resistance often oscillates with a charateristic frequency.&lt;/li>
+&lt;/ul>
+&lt;p>All these, have the same mathematics.&lt;/p>
+&lt;h2 id="classical-spring">Classical Spring&lt;/h2>
+&lt;p>$ L = K - V = \frac{m \dot{y}^2}{2} - \frac{k y^2}{2}$. If we let $x = \sqrt{m}y$, the lagrangian becomes, $L = \frac{ \dot{x}^2}{2} - \frac{\omega^2 x^2}{2}$, where $ \omega = \sqrt{\frac{k}{m}}$. Omega happens to be the frequency of the oscillation.&lt;/p>
+&lt;p>We changed the variable to convert into the common form. In the common form, every osillator just changes the omega.&lt;/p>
+&lt;p>For one dimensional motion, Lagrange&amp;rsquo;s equation is
+$\frac{\partial L}{\partial x} = \frac{d}{dt} \frac{\partial L}{\partial \dot x}$. Solving this gives us $-\omega^2 x = \ddot{x}$. The minus sign is there to tell us that acceleration is opposite to the displacement. This equation is exactly same as $F = ma$. The general solution of this is $x = Acos(\omega t) + Bsin(\omega t)$. This confirms that, omega is the frequency.&lt;/p>
+&lt;h2 id="quantum-spring">&amp;ldquo;Quantum Spring&amp;rdquo;&lt;/h2>
+&lt;pre>&lt;code>Many molecules consist of two atoms - for example, a heavy atom and a light one. There are forces holding the molecule in equilibrium with the atoms separated by a certain distance. When the light atom is displaced, it will be attracted back to the equilibrium location.
+&lt;/code>&lt;/pre>
+&lt;p>States in 1-dimensional motion, for small particles, is given by state vectors $\psi(x)$. This $\psi$ has to follow certain conditions, like normality, and waning to zero at infinities.&lt;/p>
+&lt;p>The canonical momentum conjugate to x is defined as $p = \frac{\partial L}{\partial \dot{x}} = \dot{x}$. Thus, the classical Hamiltonian is given by $H = p\dot{x} - \mathcal{L}$. One can use the definition of Lagrangian to figure out the Hamiltonian. It turns out to be $H = \frac{\dot{x}^2}{2} + \frac{\omega^2 x^2}{2}$. But, the velocity does not have quantum operator, so we replace velocity by canonical conjugate momentum. $H = \frac{p^2}{2} + \frac{\omega^2 x^2}{2}$.&lt;/p>
+&lt;p>The Quantum counterpart is, $H = \frac{P^2}{2} + \frac{\omega^2 X^2}{2}$.&lt;/p>
+&lt;p>The algebra will tell us that, $H \ket{\psi(x)} = -\frac{\hbar^2}{2} \frac{\partial^2 \psi(x)}{\partial x^2} + \frac{1}{2} \omega^2 x^2 \psi(x)$.&lt;/p>
+&lt;h3 id="time-dependent-shrodingers-equation">Time dependent Shrodinger&amp;rsquo;s Equation&lt;/h3>
+&lt;p>$$
+\begin{align*}
+i \frac{\partial \psi}{\partial t} &amp;amp;= \frac{1}{\hbar} H \psi \\
+&amp;amp;= -\frac{\hbar}{2} \frac{\partial^2 \psi}{\partial x^2} + \frac{1}{2\hbar} \omega^2 x^2 \psi \\
+\end{align*}
+$$&lt;/p>
+&lt;p>One can use computational methods to solve these equations. But, another way to solve is to use time-independent schrodinger&amp;rsquo;s equations.&lt;/p>
+&lt;h3 id="time-independent-schrodingers-equations">Time independent Schrodinger&amp;rsquo;s equations&lt;/h3>
+&lt;p>We can find eigenvalues and eigenvectors of the H, and follow the recipe outlined earlier.&lt;/p>
+&lt;p>$$
+\begin{align*}
+H \ket{\Psi_E} &amp;amp;= E \ket{\Psi_E} \\
+-\frac{\hbar^2}{2} \frac{\partial^2 \psi_E(x)}{\partial x^2} + \frac{1}{2} \omega^2 x^2 \psi_E(x) &amp;amp;= \psi_E(x)\\
+\end{align*}
+$$&lt;/p>
+&lt;p>We want to find E, and associated $\Psi_E$ that solve this equation. But, as it turns out, most of the solutions for E, including all the complenumbers, have associated $\Psi_E$ which blows up as x approaches one or both infinities. So, we want the E, and associated $\Psi_E$ where $\Psi_E$ is normalizable.&lt;/p>
+&lt;h4 id="smallest-eigenvalue">Smallest eigenvalue&lt;/h4>
+&lt;p>Classical oscillator does not have negative energy. The reason for it is that it has square terms $x^2$ and $p^2$ in it. But, zero is the minimum energy, arrived when $x = p = 0$.&lt;/p>
+&lt;p>Quantum oscillator, has $X^2$ and $P^2$, both of which has non-negative eigenvalues. So the minimum energy has to be non-negative. (Because we have $P^2/2 + \omega^2/2 X^2$. A non-negative sum of positive semi-definite matrices is also positive semi-definite. I assume that argument would hold true for complex operators as well.) But, in QM, as per heisenberg&amp;rsquo;s uncertainy principle, we can&amp;rsquo;t set $X = P = 0$. The state associated with the lowest positive eigenvalue is known as ground state, and is denoted as $\Psi_0$.&lt;/p>
+&lt;p>There is a theorem which helps us find the eigenfunction associated with the smallest eigenvalue.&lt;/p>
+&lt;pre>&lt;code>The ground-state wave function for any potential has no zeros and it’s the only energy eigenstate that has no nodes.
+&lt;/code>&lt;/pre>
+&lt;p>One such function is $\psi(x) = e^{\frac{-\omega}{2\hbar}x^2}$. This function, is concentrated around x = 0, as would be required for minimum valued eigenfunction.&lt;/p>
+&lt;p>When we put this function in the time independent schrodinger&amp;rsquo;s equation, we will get $\frac{\hbar}{2} \omega e^{\frac{-\omega}{2\hbar}x^2} = E e^{\frac{-\omega}{2\hbar}x^2}$. The only solution is to set $E = \frac{\omega \hbar}{2}$.&lt;/p>
+&lt;p>Thus we have groundstate $\psi_0(x) = e^{\frac{-\omega}{2\hbar}x^2}$ and groundstate energy $E_0 = \frac{\omega \hbar}{2}$.&lt;/p>
+&lt;h4 id="other-way-to-look">Other way to look&lt;/h4>
+&lt;p>So far we have looked at functions. Another way to look is abstract method. Our operator is $H = \frac{1}{2} (P^2 + \omega^2 X^2)$.&lt;/p>
+&lt;p>It is easy to write $H = \frac{1}{2}(P + i\omega X)(P - i\omega X) + \frac{\omega \hbar}{2}$. (Hint: $[X, P] = i\hbar$).&lt;/p>
+&lt;p>Due to the history, we define $a^{-} = \frac{i}{\sqrt{2\omega \hbar}} (P - i \omega X)$ and $a^{+} = \frac{-i}{\sqrt{2\omega \hbar}} (P + i \omega X)$.&lt;/p>
+&lt;p>Properties of $a^+, a^-$.&lt;/p>
+&lt;ul>
+&lt;li>$(a^-)^\dagger = a^+$&lt;/li>
+&lt;li>$[a^-, a^+] = 1$&lt;/li>
+&lt;/ul>
+&lt;p>After these definitions, $H = \omega \hbar (a^+ a^- + 1/2)$. If we define $N = a^+ a^-$, $H = \omega \hbar (N + 1/2)$.&lt;/p>
+&lt;ul>
+&lt;li>$[a^-, N] = a^-$&lt;/li>
+&lt;li>$[a^+, N] = - a^+$.&lt;/li>
+&lt;/ul>
+&lt;h5 id="why-are-these-important">Why are these important?&lt;/h5>
+&lt;p>Say you had and eigenpair for N, $N \ket{n} = n \ket{n}$, what happens if I apply N to $a^+ \ket{n}$?
 $$
 \begin{align*}
-\psi(x, t) &amp;amp;= \int \psi(p) \psi(x, 0) e{^\left(-\frac{i p^2}{\hbar 2 m} t\right)} dp \\
-&amp;amp;= \int \psi(p) e^\left(\frac{i\left(px - \frac{p^2}{2 m}\right)}{\hbar}\right) dp
+N (a^+\ket{n}) &amp;amp;= (a^+ N - (a^+ N - N^a+)) \ket{n} \\
+&amp;amp;= n a^+ \ket{n} - [a^+, N]\ket{n} \\
+&amp;amp;= n a^+ \ket{n} + a^+ \ket{n} \\
+&amp;amp;= (n+1) a^+ \ket{n}
 \end{align*}
-$$&lt;/li>
-&lt;/ol>
-&lt;p>Of course, I have abused the notation. A lot.&lt;/p>
+$$&lt;/p>
+&lt;p>Thus, $a^+ \ket{n}$ is the eigenvector with next eigenvalue. i.e., $(a^+ \ket{n}) = \ket{n+1}$.&lt;/p>
+&lt;p>Similarly, $N a^- \ket{n} = (n-1) a^- \ket{n}$, and $a^-\ket{n} = \ket{n-1}$.&lt;/p>
+&lt;p>Because of these, $a^+$ is known as raising operator, and $a^-$ is known as lowering operator.&lt;/p>
+&lt;p>By the way, since $H = \omega \hbar (N + 1/2)$, lowering can&amp;rsquo;t continue indefinitely, otherwise H might end up with negative eigenvalues. Thus, for the smallest eigenvector, call it $\ket{0}$, $a^- \ket{0} = 0$. This vector, solves the time-independent schrodinger&amp;rsquo;s equation for $E_0 = \omega \hbar /2$.&lt;/p>
+&lt;p>$E_n = \omega \hbar (1/2, 3/2, 5/2, \dots)$.&lt;/p>
+&lt;h5 id="but-what-is-the-ground-state">But, what is the ground state?&lt;/h5>
+&lt;p>We can find the ground state by using the lowering operator on the $a^-$. $ \frac{i}{\sqrt{2 \pi \hbar}} (P - i \omega \hbar X) \psi_0{x} = 0$.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\frac{i}{\sqrt{2 \pi \hbar}} (P - i \omega \hbar X) \psi_0{(x)} &amp;amp;= 0 \\
+(P - i \omega \hbar X) \psi_0{(x)} &amp;amp;= 0 \\
+-i \hbar \frac{\partial \psi_0{(x)}}{\partial x} - i \omega x \psi_0{(x)} &amp;amp;= 0 \\
+\frac{\partial \psi_0{(x)}}{\partial x} = -\frac{\omega x}{\hbar} \psi_0{(x)}
+\end{align*}
+$$&lt;/p>
+&lt;p>This solution has equation $\psi_0{(x)} = e^{-\frac{\omega}{2 \hbar} x^2}$.&lt;/p>
+&lt;p>The next eigenvectors can be found by using $a^+$ operator on the ground state. Not doing the algebra here, but the solutions for the next two states are below.&lt;/p>
+&lt;p>$$
+\begin{align*}
+\psi_1(x) &amp;amp;= \frac{2 \omega x}{\sqrt{2 \pi \hbar}} e^{-\frac{\omega}{2 \hbar} x^2} \\
+\psi_2(x) &amp;amp;= \frac{\omega}{\pi \hbar} (-\hbar + 2 \omega x^2) e^{-\frac{\omega}{2 \hbar} x^2} \\
+\end{align*}
+$$&lt;/p>
+&lt;p>It is easy to notice that for each step higher in the eigenstate, we have higher degree polynomial multiplied by the ground state. As the degree of the polynomial increases, the zeros of the statefunction, and nodes of the amplitudes increase. Thus, higher energy wave functions have higher frequency, implying higher momentum. Also, since the exponential goes to zero faster than the polynomial, the wave function are &amp;ldquo;good&amp;rdquo;, i.e., they go to zero towards the infinities.&lt;/p>
+&lt;p>&lt;img src="images/attachment:3fce27c0-2578-4ab1-8d39-7c3096802b26.png" alt="image.png">&lt;/p>
+&lt;p>Although, they approch zero towards infinities, they are not quite zero. That means there is positive probability of finding particles outside of the &amp;ldquo;potential bowl&amp;rdquo;. This phenomenon is known as quantum tunneling.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
 Configration space: 3N dimensional space, records positions.
@@ -1473,8 +1599,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="219576843" type="checkbox" checked />
-&lt;label for="219576843">
+&lt;input id="514698723" type="checkbox" checked />
+&lt;label for="514698723">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1513,8 +1639,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="732514869" type="checkbox" />
-&lt;label for="732514869">
+&lt;input id="698425713" type="checkbox" />
+&lt;label for="698425713">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1754,8 +1880,8 @@ $$&lt;/p>
 &lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="924578136" type="checkbox" />
-&lt;label for="924578136">
+&lt;input id="297418563" type="checkbox" />
+&lt;label for="297418563">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1777,8 +1903,8 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="763152489" type="checkbox" />
-&lt;label for="763152489">
+&lt;input id="897532641" type="checkbox" />
+&lt;label for="897532641">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1795,8 +1921,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="971856324" type="checkbox" />
-&lt;label for="971856324">
+&lt;input id="392786514" type="checkbox" />
+&lt;label for="392786514">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1832,8 +1958,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="354796812" type="checkbox" />
-&lt;label for="354796812">
+&lt;input id="628549173" type="checkbox" />
+&lt;label for="628549173">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1851,8 +1977,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="143265789" type="checkbox" />
-&lt;label for="143265789">
+&lt;input id="648971235" type="checkbox" />
+&lt;label for="648971235">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -1890,8 +2016,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="962548317" type="checkbox" />
-&lt;label for="962548317">
+&lt;input id="351724698" type="checkbox" />
+&lt;label for="351724698">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
