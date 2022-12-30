@@ -1,7 +1,7 @@
 {
   "title": "Quantum Mechanics Notes",
-  "date": "2022-12-03T12:22:24Z",
-  "lastmod": "2022-12-03T12:22:24Z"
+  "date": "2022-12-30T06:35:17Z",
+  "lastmod": "2022-12-30T06:35:17Z"
 }
 
 
@@ -903,7 +903,7 @@ And, $\\braket{p|x} = \\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{-ipx}{\\hbar}}$.
 
 The momentum function $\\frac{1}{\\sqrt{2 \\pi}} e^{\\frac{ipx}{\\hbar}}$ has sin and cosine. The A--the constant-- is not important in the frequency of the wave, it just changes the mangnitude. $e^{\\frac{ipx}{\\hbar}}$ has a wavelength of $\\frac{2 \\pi \\hbar}{p}$. (Because: $e^{\\frac{ip(x+\\lambda)}{\\hbar}} = e^{\\frac{ipx}{\\hbar}}  e^{i 2 \\pi} = e^{\\frac{ipx}{\\hbar}}$).
 
-In 20th century, scientists wanted to detect smaller and smaller particles. One can’t resolve objects much smaller than the wavelength one using to look at them. So in 20th century, scientists wanted to find light of smaller and smaller wavelengths. We will later see that light of a given wavelength is composed of photons whose momentum is related to the wavelength by the relation $\\lambda = \\frac{2 \\pi \\hbar}{p}$. But, as per this relation, to get smaller wavelength, one must increase the momentum. This requires high energy. Hence, particle acclerators were/are required.
+In 20th century, scientists wanted to detect smaller and smaller particles. One can't resolve objects much smaller than the wavelength one using to look at them. So in 20th century, scientists wanted to find light of smaller and smaller wavelengths. We will later see that light of a given wavelength is composed of photons whose momentum is related to the wavelength by the relation $\\lambda = \\frac{2 \\pi \\hbar}{p}$. But, as per this relation, to get smaller wavelength, one must increase the momentum. This requires high energy. Hence, particle acclerators were/are required.
 
 
 ### Momentum Basis
@@ -991,7 +991,7 @@ See discussion at https://physics.stackexchange.com/questions/553145/does-the-he
 
 Recall that time evolution of particle is given by generalized Schrodinger's equation $i\\hbar \\frac{\\partial \\psi(x, t)}{\\partial t} = H \\psi(x, t)$. Where H is Hamiltonian, and is energy of the quantum system.
 
-A simplest Hamiltonian is $H = -cP$, where c is a fixed number. If we apply above equation here, we get, 
+A simplest Hamiltonian is $H = cP$, where c is a fixed number. If we apply above equation here, we get, 
 $i\\hbar \\frac{\\partial \\psi(x, t)}{\\partial t} = -c i \\hbar \\frac{\\partial \\psi(x, t)}{\\partial x}$. Which leads to $\\frac{\\partial \\psi(x, t)}{\\partial t} = -c \\frac{\\partial \\psi(x, t)}{\\partial x}$. Any function $\\psi(x - ct)$ solves this equation. 
 
 At T = 0, we have some function $\\psi(x)$. Note that due to normalization contraints, this function has to go to zero towards the ends. The wave function might look something like this. 
@@ -1022,25 +1022,250 @@ Susskind's book says that waves with different wavelength travel with different 
 
 There are two explanations I found on the Internet. [Here](https://physics.stackexchange.com/questions/77860/why-do-wave-packets-spread-out-over-time).
 
-1. One explanation is connection with heat equation. The Schrodinger's equation above, is partial differential equation in the form of heat equation. Heat equation says that waves where the curvature is high, dissipaets faster. 
-2. Another explanation is that initially we have some uncertainity in the position, and some uncertainity in the momentum (i.e., velocity). Smaller the uncertainity in position, larger the uncertainity in velocity. So overtime, this uncertainity increases, and the wavefunction spreads.
+1. One explanation is connection with heat equation. The Schrodinger's equation above, is partial differential equation in the form of heat equation. Heat equation says that waves where the curvature is high, dissipates faster. 
+2. Another explanation is that initially we have some uncertainity in the position, and some uncertainity in the momentum (i.e., velocity). Smaller the uncertainity in position, larger the uncertainity in velocity. So overtime, this uncertainity in position increases(due to initial uncertainty in velocity), and the wavefunction spreads.
 
 
 #### Time evolution of the non-relativistic particle.
 
 We follow the recipe outlined earlier.
+
 1. Find the H somehow. Done: $H = \\frac{P^2}{2m}$.
-2. Find the eigenvalues for this H. This is easy. Eigenvectors $P^2$ are same as eigenvectors of P. Just the eigenvalues change to $\\frac{p^2}{2m}$. $E(p) = e^{\\frac{ipx}{\\hbar}}$.
+2. Find the eigenvalues for this H. This is easy. Eigenvectors $\\frac{P^2}{2m}$ are same as eigenvectors of P. Just the eigenvalues change to $\\frac{p^2}{2m}$. $E(p) = e^{\\frac{ipx}{\\hbar}}$.
 3. Prepare the state in the initial state $\\Psi$.
 4. Use the continuous counterpart of $\\Psi(t) = \\sum\_j \\ket{E\_j}\\braket{E\_j|\\Psi(0)} e^{-\\frac{i}{\\hbar}E\_j t}$ to find the state at later time. So, 
+
 $$
 \\begin{align*}
-\\psi(x, t) &= \\int \\psi(p) \\psi(x, 0) e{^\\left(-\\frac{i p^2}{\\hbar 2 m} t\\right)} dp \\\\
-           &= \\int \\psi(p) e^\\left(\\frac{i\\left(px - \\frac{p^2}{2 m}\\right)}{\\hbar}\\right) dp
+\\psi(x, t) &= \\int \\text{exp}\\left(\\frac{i p x}{\\hbar}\\right) \\psi(p) \\text{exp}\\left({-\\frac{i p^2 t}{\\hbar 2 m}}\\right) dp \\\\
+           &= \\int \\psi(p) \\text{exp}\\left({\\frac{i\\left(px - \\frac{p^2 t}{2 m}\\right)}{\\hbar}}\\right) dp
 \\end{align*}
 $$
 
 Of course, I have abused the notation. A lot.
+
+If we compare the last equation to fourier formula, we get $\\psi(p, t) = \\psi(p) \\text{exp}\\left({\\frac{-i\\frac{p^2}{2 m}}{\\hbar}}\\right)$.
+
+Note: This formula might be wrong. Book has it $\\psi(p, t) = \\psi(p) \\text{exp}\\left({\\frac{i\\left(px - \\frac{p^2}{2 m}\\right)}{\\hbar}}\\right) dp$. But, it didn't mention how it got it. Things are becoming crazy. I might have missed something. Or it is just a typo in the book. 
+
+Anyway, both the formulas suggest that P(p, t) is equivalent to P(p, 0). This is because momentum is conserved when there is no external force.
+
+
+
+#### Expected Change in Position
+
+
+Since the wave function changes with time, the expected value of x, i.e., $\\braket{\\Psi|X|\\Psi}$ also changes with time. There are two ways to compute this quantity. One is bruteforce, and one is to use commutators. 
+
+Using commutators is easy. We use the relationship proved [here](#change-in-the-expectation). $\\frac{d \\braket{X}}{dt} = \\frac{-i}{\\hbar 2 m} \\braket{[P^2, X]} = \\frac{-i}{\\hbar 2 m} \\braket{P[P, X] + [P, X]P} = \\frac{-i}{\\hbar 2 m} \\braket{-2 i \\hbar P} = \\frac{\\braket{P}}{m}$.
+
+This is similar to classical v = p/m.
+
+I will probably not do the bruteforce. But the in the 10th Lecture Prof. Susskind does that. 
+
+
+
+### Non relativistic particle, with some forces on it
+
+In CM, we replace all the forces acting on the particle by a potential function. That is $F(x) = -\\frac{\\partial V}{\\partial x}$. The Hamiltonian in CM is K + V. So, our quantum Hamiltonian should have V operator. The V operator is defined on wave functions, and is, $V\\psi(x) = V(x)\\psi(x)$. Just multiply by V(x).
+
+Classically, the momentum does not depend upon forces on the particle. It is just v/m. Thus our update in the Hamiltonian should not change $\\frac{d \\braket{X}}{dt}$ that was derived earlier. Indeed, the new commutator will be just $[P^2 + V, X] = [P^2, X] + [V, X]$. Remember, commutators are linear, and so are expectations. Also, V and X commute with each other. That is easy to see when you use the definitions of V and X. So $[V, X] = 0$. Hence,  $\\frac{d \\braket{X}}{dt} = \\frac{\\braket{P}}{m}$ still holds.
+
+Classically, $\\frac{dp}{dt} = F = -\\frac{\\partial V}{\\partial x}$. Let's see what happens in the quantum realm.
+
+$\\frac{d \\braket{P}}{dt} = \\frac{i}{\\hbar} \\braket{[P^2+V, P]} = \\frac{i}{\\hbar} \\braket{[V, P]}$.
+
+It is easy exercise to show that $[V, P] = i \\hbar \\frac{\\partial V}{\\partial x}$.
+
+And hence, $\\frac{d \\braket{P}}{dt} = - \\braket{ \\frac{\\partial V}{\\partial x}}$.
+
+It is important to note that $\\frac{d \\braket{P}}{dt} \\ne - \\frac{\\partial \\braket V}{\\partial x}$.
+
+For example, take a bimodal distribution, where one peak is at -5 and another one at 5. Let $F(x) = x^2$. Since, the expected value of x is 0, $F(\\braket{x}) = F(0) = 0$. On the other hand, $\\braket{F(x)}$ is not zero.
+
+When the wave function is concentrated over a fairly narrow range, only then $\\braket{F(x)} = F(\\braket{x})$.
+
+Following are statements from the book. I am unable to prove it or find the proofs in the book. So pasting them verbatimly.
+
+    If V varies rapidly across the wave packet, the classical approximation will break down. In fact, in that situation a nice, narrow wave packet will get broken up into a badly scattered wave that has no resemblance to the original wave packet. 
+    
+    
+
+
+
+# Path Integrals
+
+In classical mechanics, given that particle is at x1 at time t1, and is at x2 given t2, the path the particle takes is the one that minimizes the action. 
+
+Similar notion is for quantum mechanics, called path integrals. Here, we say that given that particle is at x1 at time t1, what is the probability (or amplitude) at x2, t2.
+
+The initial state is $\\ket{\\Psi(t\_1)} = \\ket{x\_1}$. The time evolution gives us $\\ket{\\Psi(t\_2)} = e^{-i H (t\_2-t\_1)} \\ket{x\_1}$. So the amplitude at position x2 is given by $\\braket{x\_2|\\Psi(t\_2)} = \\braket{x\_2|e^{-i H (t\_2-t\_1)} | x\_1}$. We replace t2-t1 by t. 
+
+$\\braket{x\_2|\\Psi(t\_2)} = \\braket{x\_2|e^{-i H t} | x\_1}$. Using the decomposition $e^{-i H t} = e^{-i H \\frac{t}{2}}e^{-i H \\frac{t}{2}}$, and $I = \\int dx \\ket{x}\\bra{x}$, we get, $\\braket{x\_2|\\Psi(t\_2)} = \\int {dx \\braket{x\_2|e^{-i H \\frac{t}{2}} | x} \\braket{x|e^{-i H \\frac{t}{2}} | x\_2}}$.
+
+But, there is nothing special about t/2. We can divide the path into N segments, each with length $\\epsilon$. If we denote $U = e^{-i\\epsilon H}$, $\\braket{x\_2|\\Psi(t\_2)} = \\braket{x\_2|U^N|x\_1}$.
+
+What Feynman discovered was that for each path, there is an action A. And that $\\braket{x\_2|\\Psi(t\_2)} = \\int\_{paths} e^{iA/\\hbar}$.
+
+
+
+# Harmonic Oscillators
+
+
+Harmonic oscillators is a mathematical framework. Many natural phenomenon have oscillation property. Ideallized spring for example follows Hook's law. That is, force is proportional to the displacement. $F = -kx$. Thus, $V = kx^2/2$.
+
+Many energy functions approximate quadratic function, around minima.
+
+Examples,
+- Waves: Sound waves and water waves. At particular position, water molecules oscillates.
+- Electromagnetic waves: Same mathematics as normal waves.
+- Electric current in a low resistance often oscillates with a charateristic frequency.
+
+All these, have the same mathematics.
+
+
+## Classical Spring
+
+$ L = K - V = \\frac{m \\dot{y}^2}{2} - \\frac{k y^2}{2}$. If we let $x = \\sqrt{m}y$, the lagrangian becomes, $L = \\frac{ \\dot{x}^2}{2} - \\frac{\\omega^2 x^2}{2}$, where $ \\omega = \\sqrt{\\frac{k}{m}}$. Omega happens to be the frequency of the oscillation.
+
+We changed the variable to convert into the common form. In the common form, every osillator just changes the omega.
+
+For one dimensional motion, Lagrange's equation is 
+$\\frac{\\partial L}{\\partial x} = \\frac{d}{dt} \\frac{\\partial L}{\\partial \\dot x}$. Solving this gives us $-\\omega^2 x = \\ddot{x}$. The minus sign is there to tell us that acceleration is opposite to the displacement. This equation is exactly same as $F = ma$. The general solution of this is $x = Acos(\\omega t) + Bsin(\\omega t)$. This confirms that, omega is the frequency.
+
+
+## "Quantum Spring"
+
+    Many molecules consist of two atoms - for example, a heavy atom and a light one. There are forces holding the molecule in equilibrium with the atoms separated by a certain distance. When the light atom is displaced, it will be attracted back to the equilibrium location.
+    
+States in 1-dimensional motion, for small particles, is given by state vectors $\\psi(x)$. This $\\psi$ has to follow certain conditions, like normality, and waning to zero at infinities. 
+
+The canonical momentum conjugate to x is defined as $p = \\frac{\\partial L}{\\partial \\dot{x}} = \\dot{x}$. Thus, the classical Hamiltonian is given by $H = p\\dot{x} - \\mathcal{L}$. One can use the definition of Lagrangian to figure out the Hamiltonian. It turns out to be $H = \\frac{\\dot{x}^2}{2} + \\frac{\\omega^2 x^2}{2}$. But, the velocity does not have quantum operator, so we replace velocity by canonical conjugate momentum. $H = \\frac{p^2}{2} + \\frac{\\omega^2 x^2}{2}$.
+
+The Quantum counterpart is, $H = \\frac{P^2}{2} + \\frac{\\omega^2 X^2}{2}$.
+
+The algebra will tell us that, $H \\ket{\\psi(x)} = -\\frac{\\hbar^2}{2} \\frac{\\partial^2 \\psi(x)}{\\partial x^2} + \\frac{1}{2} \\omega^2 x^2 \\psi(x)$.
+
+### Time dependent Shrodinger's Equation
+
+$$
+\\begin{align*}
+i \\frac{\\partial \\psi}{\\partial t} &= \\frac{1}{\\hbar} H \\psi \\\\
+ &= -\\frac{\\hbar}{2} \\frac{\\partial^2 \\psi}{\\partial x^2} + \\frac{1}{2\\hbar} \\omega^2 x^2 \\psi \\\\
+\\end{align*}
+$$
+
+One can use computational methods to solve these equations. But, another way to solve is to use time-independent schrodinger's equations.
+
+
+
+
+### Time independent Schrodinger's equations
+
+We can find eigenvalues and eigenvectors of the H, and follow the recipe outlined earlier. 
+
+$$
+\\begin{align*}
+H \\ket{\\Psi\_E} &= E \\ket{\\Psi\_E} \\\\
+-\\frac{\\hbar^2}{2} \\frac{\\partial^2 \\psi\_E(x)}{\\partial x^2} + \\frac{1}{2} \\omega^2 x^2 \\psi\_E(x) &= \\psi\_E(x)\\\\
+\\end{align*}
+$$
+
+We want to find E, and associated $\\Psi\_E$ that solve this equation. But, as it turns out, most of the solutions for E, including all the complenumbers, have associated $\\Psi\_E$ which blows up as x approaches one or both infinities. So, we want the E, and associated $\\Psi\_E$ where $\\Psi\_E$ is normalizable.
+
+#### Smallest eigenvalue
+
+Classical oscillator does not have negative energy. The reason for it is that it has square terms $x^2$ and $p^2$ in it. But, zero is the minimum energy, arrived when $x = p = 0$. 
+
+Quantum oscillator, has $X^2$ and $P^2$, both of which has non-negative eigenvalues. So the minimum energy has to be non-negative. (Because we have $P^2/2 + \\omega^2/2 X^2$. A non-negative sum of positive semi-definite matrices is also positive semi-definite. I assume that argument would hold true for complex operators as well.)  But, in QM, as per heisenberg's uncertainy principle, we can't set $X = P = 0$. The state associated with the lowest positive eigenvalue is known as ground state, and is denoted as $\\Psi\_0$.
+
+There is a theorem which helps us find the eigenfunction associated with the smallest eigenvalue. 
+    
+    The ground-state wave function for any potential has no zeros and it’s the only energy eigenstate that has no nodes. 
+    
+One such function is $\\psi(x) = e^{\\frac{-\\omega}{2\\hbar}x^2}$. This function, is concentrated around x = 0, as would be required for minimum valued eigenfunction. 
+
+When we put this function in the time independent schrodinger's equation, we will get $\\frac{\\hbar}{2} \\omega e^{\\frac{-\\omega}{2\\hbar}x^2}  = E e^{\\frac{-\\omega}{2\\hbar}x^2}$. The only solution is to set $E = \\frac{\\omega \\hbar}{2}$.
+
+Thus we have groundstate $\\psi\_0(x) = e^{\\frac{-\\omega}{2\\hbar}x^2}$ and groundstate energy $E\_0 = \\frac{\\omega \\hbar}{2}$.
+
+
+
+#### Other way to look
+
+So far we have looked at functions. Another way to look is abstract method. Our operator is $H = \\frac{1}{2} (P^2 + \\omega^2 X^2)$.
+
+It is easy to write $H = \\frac{1}{2}(P + i\\omega X)(P - i\\omega X) + \\frac{\\omega \\hbar}{2}$. (Hint: $[X, P] = i\\hbar$).
+
+Due to the history, we define $a^{-} = \\frac{i}{\\sqrt{2\\omega \\hbar}} (P - i \\omega X)$ and $a^{+} = \\frac{-i}{\\sqrt{2\\omega \\hbar}} (P + i \\omega X)$.
+
+Properties of $a^+, a^-$.
+- $(a^-)^\\dagger = a^+$
+- $[a^-, a^+] = 1$
+
+
+After these definitions, $H = \\omega \\hbar (a^+ a^- + 1/2)$. If we define $N = a^+ a^-$, $H = \\omega \\hbar (N + 1/2)$.
+
+- $[a^-, N] = a^-$
+- $[a^+, N] = - a^+$.
+
+##### Why are these important?
+
+Say you had and eigenpair for N, $N \\ket{n} = n \\ket{n}$, what happens if I apply N to $a^+ \\ket{n}$?
+$$
+\\begin{align*}
+N (a^+\\ket{n}) &= (a^+ N - (a^+ N - N^a+)) \\ket{n} \\\\
+               &= n a^+ \\ket{n} - [a^+, N]\\ket{n} \\\\
+               &= n a^+ \\ket{n} + a^+ \\ket{n} \\\\
+               &= (n+1) a^+ \\ket{n}
+\\end{align*}
+$$
+
+Thus, $a^+ \\ket{n}$ is the eigenvector with next eigenvalue. i.e., $(a^+ \\ket{n}) = \\ket{n+1}$.
+
+Similarly, $N a^- \\ket{n} = (n-1) a^- \\ket{n}$, and $a^-\\ket{n} = \\ket{n-1}$.
+
+Because of these, $a^+$ is known as raising operator, and $a^-$ is known as lowering operator.
+
+By the way, since $H = \\omega \\hbar (N + 1/2)$, lowering can't continue indefinitely, otherwise H might end up with negative eigenvalues. Thus, for the smallest eigenvector, call it $\\ket{0}$, $a^- \\ket{0} = 0$. This vector, solves the time-independent schrodinger's equation for $E\_0 = \\omega \\hbar /2$.
+
+$E\_n = \\omega \\hbar (1/2, 3/2, 5/2, \\dots)$.
+
+
+
+
+
+##### But, what is the ground state?
+
+We can find the ground state by using the lowering operator on the $a^-$. $ \\frac{i}{\\sqrt{2 \\pi \\hbar}} (P - i \\omega \\hbar X) \\psi\_0{x} = 0$.
+
+$$
+\\begin{align*}
+ \\frac{i}{\\sqrt{2 \\pi \\hbar}} (P - i \\omega \\hbar X) \\psi\_0{(x)} &= 0 \\\\
+ (P - i \\omega \\hbar X) \\psi\_0{(x)} &= 0 \\\\
+ -i \\hbar \\frac{\\partial \\psi\_0{(x)}}{\\partial x} - i \\omega  x \\psi\_0{(x)} &= 0 \\\\
+  \\frac{\\partial \\psi\_0{(x)}}{\\partial x} =  -\\frac{\\omega x}{\\hbar} \\psi\_0{(x)} 
+\\end{align*}
+$$
+
+This solution has equation $\\psi\_0{(x)} = e^{-\\frac{\\omega}{2 \\hbar} x^2}$.
+
+The next eigenvectors can be found by using $a^+$ operator on the ground state. Not doing the algebra here, but the solutions for the next two states are below.
+
+$$
+\\begin{align*}
+    \\psi\_1(x) &= \\frac{2 \\omega x}{\\sqrt{2 \\pi \\hbar}} e^{-\\frac{\\omega}{2 \\hbar} x^2} \\\\
+    \\psi\_2(x) &= \\frac{\\omega}{\\pi \\hbar} (-\\hbar + 2 \\omega x^2) e^{-\\frac{\\omega}{2 \\hbar} x^2} \\\\
+\\end{align*}
+$$
+
+It is easy to notice that for each step higher in the eigenstate, we have higher degree polynomial multiplied by the ground state. As the degree of the polynomial increases, the zeros of the statefunction, and nodes of the amplitudes increase. Thus, higher energy wave functions have higher frequency, implying higher momentum.  Also, since the exponential goes to zero faster than the polynomial, the wave function are "good", i.e., they go to zero towards the infinities. 
+
+![image.png](images/attachment:3fce27c0-2578-4ab1-8d39-7c3096802b26.png)
+
+
+Although, they approch zero towards infinities, they are not quite zero. That means there is positive probability of finding particles outside of the "potential bowl". This phenomenon is known as quantum tunneling.
+
 
 
 ```python
