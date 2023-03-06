@@ -70,6 +70,10 @@ paginate = 10
         name = "About"
         url = "/about/"
       [[languages.en.menu.main]]
+        identifier = "now"
+        name = "Now"
+        url = "/now"
+      [[languages.en.menu.main]]
         identifier = "github"
         name = "Github"
         url = "https://github.com/DhruvPatel01/"
