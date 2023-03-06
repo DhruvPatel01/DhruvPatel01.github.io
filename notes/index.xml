@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://dhruvpatel.dev/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 30 Dec 2022 06:35:17 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Fri, 30 Dec 2022 06:35:17 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g. mass, electric charge.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notes on Dhruv Patel</title><link>https://dhruvpatel.dev/notes/</link><description>Recent content in Notes on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sat, 14 Jan 2023 04:02:28 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Quantum Mechanics Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</link><pubDate>Sat, 14 Jan 2023 04:02:28 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/</guid><description>Quantum Mechanics Differences from Classical Mechanics States have different logical structure than CM. States and measurements are different unlike CM. e.g., Position and Momemntum can be determined by experiments in CM. Spins Particles have properties attached to it. e.g., mass, electric charge.
 Even a specific particle is not completely specified by its position.
 Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.</description><content>&lt;h1 id="quantum-mechanics">Quantum Mechanics&lt;/h1>
 &lt;h2 id="differences-from-classical-mechanics">Differences from Classical Mechanics&lt;/h2>
 &lt;ol>
 &lt;li>States have different logical structure than CM.&lt;/li>
-&lt;li>States and measurements are different unlike CM. e.g. Position and Momemntum can be determined by experiments in CM.&lt;/li>
+&lt;li>States and measurements are different unlike CM. e.g., Position and Momemntum can be determined by experiments in CM.&lt;/li>
 &lt;/ol>
 &lt;h2 id="spins">Spins&lt;/h2>
-&lt;p>Particles have properties attached to it. e.g. mass, electric charge.&lt;/p>
+&lt;p>Particles have properties attached to it. e.g., mass, electric charge.&lt;/p>
 &lt;p>Even a specific particle is not completely specified by its position.&lt;/p>
 &lt;p>Attached to electron is an extra degree of freedom, called spin. Spin is as quantum mechanical as it can and we should not try to visualize it.&lt;/p>
 &lt;h2 id="testing">Testing&lt;/h2>
@@ -19,10 +19,10 @@ B &amp;amp;: \sigma_x = +1 \\
 \end{align*}
 $$&lt;/p>
 &lt;h3 id="classically">Classically,&lt;/h3>
-&lt;p>To test (A or B), one could first &lt;strong>gently&lt;/strong> test $\sigma_z$. If it is -1, one would &lt;strong>gently&lt;/strong> test $\sigma_x$. The result of doing it otherway (i.e. B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don&amp;rsquo;t change the state of the system.&lt;/p>
+&lt;p>To test (A or B), one could first &lt;strong>gently&lt;/strong> test $\sigma_z$. If it is -1, one would &lt;strong>gently&lt;/strong> test $\sigma_x$. The result of doing it otherway (i.e., B or A) will be the same as doing (A or B). The reason is that classically, measurements are gentle. They don&amp;rsquo;t change the state of the system.&lt;/p>
 &lt;h3 id="in-quantum-mechanics">In Quantum Mechanics,&lt;/h3>
 &lt;p>If some entity prepares the spin in $\sigma_z = +1$ state, and we measure &lt;code>A or B&lt;/code> (whether we use short circuit or not), we will measure it to be true. However, if we measure &lt;code>B or A&lt;/code>, there is 25% chance that we will measure it to be false.&lt;/p>
-&lt;p>What about &lt;code>A and B&lt;/code>? If we conclude that &lt;code>A and B&lt;/code> is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\sigma_x$, which ruined measurement of A. Thus we can&amp;rsquo;t confirm it. i.e. experiment is not reproducible.&lt;/p>
+&lt;p>What about &lt;code>A and B&lt;/code>? If we conclude that &lt;code>A and B&lt;/code> is true, can we confirm it again? Answer is no. Since to compute B, we had to measure $\sigma_x$, which ruined measurement of A. Thus we can&amp;rsquo;t confirm it. i.e., experiment is not reproducible.&lt;/p>
 &lt;h2 id="complex-numbers">Complex Numbers&lt;/h2>
 &lt;p>Two ways to represent them.&lt;/p>
 &lt;p>In cartesian coordinates, $z = x + iy$.&lt;/p>
@@ -30,7 +30,7 @@ $$&lt;/p>
 &lt;p>$ x_1 x_2 = (r_1e^{i\theta_1})(r_2e^{i\theta_2}) = r_1 r_2 e^{i(\theta_1 + \theta_2)}$.&lt;/p>
 &lt;p>$z = x + iy = re^{i\theta}$&lt;/p>
 &lt;p>$z^\ast = x - iy = re^{-i\theta}$&lt;/p>
-&lt;p>$z^\ast z = r^2$, i.e. a real number&lt;/p>
+&lt;p>$z^\ast z = r^2$, i.e., a real number&lt;/p>
 &lt;h3 id="phase-factors">Phase Factors&lt;/h3>
 &lt;p>These are complex numbers whose r componenet is 1. Following holds for them,&lt;/p>
 &lt;p>$$
@@ -52,7 +52,7 @@ $$\renewcommand{\braket}[1]{\left\langle{#1}\right\rangle}$$&lt;/p>
 &lt;li>Conjugate of $z\ket{A}$ is $z^\ast \bra{A} = \bra{A}z^\ast $.&lt;/li>
 &lt;/ol>
 &lt;p>In the concrete case where ket space is column vectors, bra space is denoted as row vectors.&lt;/p>
-&lt;p>i.e. if&lt;/p>
+&lt;p>i.e., if&lt;/p>
 &lt;p>$$
 \begin{align*}
 \ket{A} = \begin{bmatrix}
@@ -88,21 +88,21 @@ $$&lt;/p>
 &lt;p>$$
 \ket{A} = \sum_i \alpha_i \ket{i},
 $$&lt;/p>
-&lt;p>where, $\alpha_j = \braket{j|A}$. (To derive this, multiply both sides by $\bra{j}$.&lt;/p>
+&lt;p>where, $\alpha_j = \braket{j|A}$. (To derive this, multiply both sides by $\bra{j}$.)&lt;/p>
 &lt;h1 id="states">States&lt;/h1>
 &lt;p>In CM, knowing the state means knowing everything that is necessary to predict the future.&lt;/p>
 &lt;p>In QM, knowing the state means knowing as much as can be known about how the system was prepared.&lt;/p>
 &lt;p>Apparatus $\cal{A}$ can be oriented on any axis. If we orient it along z axis, the measured spin will either be +1 or -1.&lt;/p>
 &lt;p>$\sigma_z = \pm 1$. We can denote +1 as state $\ket{u}$ and -1 as $\ket{d}$.&lt;/p>
 &lt;p>Similarly $\sigma_x = \pm 1$, can be denoted by $\ket{r}$ and -1 as $\ket{l}$. And $\sigma_y = \pm 1$, can be denoted by $\ket{o}$ and -1 as $\ket{i}$.&lt;/p>
-&lt;p>If two states are orthogonal than these two states can be determined together. For example, if $\sigma_z$ was prepared to be in $\ket{u}$, for any subsequent measurements probability that $\ket{d}$ is detected is 0. Thus for binary spin, the state space is two dimensional. For now we can take $\ket{u}, \ket{d}$ as the basis vectors.&lt;/p>
+&lt;p>If two states are orthogonal then these two states can be determined together. For example, if $\sigma_z$ was prepared to be in $\ket{u}$, for any subsequent measurements the probability that $\ket{d}$ is detected is 0. Thus, for binary spin, the state space is two dimensional. For now we can take $\ket{u}, \ket{d}$ as the basis vectors.&lt;/p>
 &lt;p>Then, the generic state $\ket{A} = \alpha_u \ket{u} + \alpha_d \ket{d}$. Where $\alpha_i = \braket{i|A}$.&lt;/p>
 &lt;p>The meaning of,&lt;/p>
 &lt;ul>
 &lt;li>$\alpha_u^\ast \alpha_u$: If the spin was prepared in $\ket{A}$ state, $\alpha_u^\ast \alpha_u$ is the probability that $\sigma_z = +1$.&lt;/li>
 &lt;li>$\alpha_d^\ast \alpha_d$: is the probability that $\sigma_z = -1$.&lt;/li>
 &lt;/ul>
-&lt;p>Since probabilities must add to 1, $\alpha_u^\ast \alpha_u + \alpha_d^\ast \alpha_d = 1$. It is equivalent to saying that $\ket{A}$ is normalized, i.e. $\braket{A|A} = 1$.&lt;/p>
+&lt;p>Since probabilities must add to 1, $\alpha_u^\ast \alpha_u + \alpha_d^\ast \alpha_d = 1$. It is equivalent to saying that $\ket{A}$ is normalized, i.e., $\braket{A|A} = 1$.&lt;/p>
 &lt;p>General principle of quantum systems: the state of a system is represented by a unit (normalized) vector in a vector space of states. Moreover, the squared magnitudes of the components of the state-vector, &lt;strong>along particular basis vectors&lt;/strong>, represent probabilities for various experimental outcomes.&lt;/p>
 &lt;h3 id="representing-ketr-and-ketl-using-above-basis-vectors">Representing $\ket{r}$ and $\ket{l}$ using above basis vectors&lt;/h3>
 &lt;p>We know that if A initially prepares the state in $\ket{r}$, $\sigma_z = \pm 1$ with equal probability. Hence, $\alpha_u^\ast \alpha_u =\alpha_d^\ast \alpha_d = \frac{1}{2}$. One choice is to have $\alpha_u = \alpha_d = \frac{1}{\sqrt{2}}$.&lt;/p>
@@ -160,24 +160,24 @@ M \ket{A} &amp;amp;= \ket{B} \\
 $$&lt;/p>
 &lt;h4 id="hermitian-operators">Hermitian Operators&lt;/h4>
 &lt;ul>
-&lt;li>Observables quantities in classcial mechanics are real numbers. i.e. they are their own complex conjugate.&lt;/li>
-&lt;li>Observables in quantum mechanics (i.e. linear operators) are also their own complex conjugates. Such operators are called Hermitian Operators. $M^\dagger = M$.&lt;/li>
+&lt;li>Observables quantities in classcial mechanics are real numbers. i.e., they are their own complex conjugate.&lt;/li>
+&lt;li>Observables in quantum mechanics (i.e., linear operators) are also their own complex conjugates. Such operators are called Hermitian Operators. $M^\dagger = M$.&lt;/li>
 &lt;/ul>
 &lt;h5 id="properties-of-hermitian-operators">Properties of Hermitian Operators&lt;/h5>
 &lt;ul>
 &lt;li>Their eigenvalues are real.&lt;/li>
-&lt;li>Their eigenvectors form an orthonormal basis. (i.e. their eigenvectors are orthonormal and they form a basis)&lt;/li>
+&lt;li>Their eigenvectors form an orthonormal basis. (i.e., their eigenvectors are orthonormal and they form a basis)&lt;/li>
 &lt;/ul>
 &lt;h2 id="principles">Principles&lt;/h2>
 &lt;ol>
 &lt;li>The observable or measurable quantities of QM are represented by a linear operator L.&lt;/li>
 &lt;li>The possible readings of the measurements are eigenvalues $\lambda_i$. The state for which reading is &lt;strong>unambiguously&lt;/strong> $\lambda_i$ is the corresponding eigenvector $\ket{\lambda_i}$.&lt;/li>
-&lt;li>Unambiguously distinguishable states are represented by orthogonal vectors. e.g. $\braket{u|d} = 0$.&lt;/li>
+&lt;li>Unambiguously distinguishable states are represented by orthogonal vectors. e.g., $\braket{u|d} = 0$.&lt;/li>
 &lt;li>If $\ket{A}$ is the state vector of the system, and the observable L is measured, the probability of observing $\lambda_i$ is given by $\braket{A|\lambda_i}\braket{\lambda_i|A}$.&lt;/li>
 &lt;/ol>
 &lt;p>Since the readings (i.e., eigenvalues) are real and eigenvectors are orthogonal, the operator L must be hermitian.&lt;/p>
 &lt;p>P1 says that $\sigma_x, \sigma_y, \text{and} \sigma_z$ are identified with a specific linear operator in 2D space of states describing the states.
-P2 says that the actual measurments can take discrete values. E.g., energy of atom will be one of the established energy levels of the atom.&lt;/p>
+P2 says that the actual measurments can take discrete values. e.g., energy of atom will be one of the established energy levels of the atom.&lt;/p>
 &lt;h3 id="3-vector-operator-sigma">3-Vector Operator $\sigma$&lt;/h3>
 &lt;ul>
 &lt;li>Just as a spin-measuring apparatus can only answer questions about a spin&amp;rsquo;s orientation in a specific direction, a spin operator can only provide information about the spin component in a specific direction.&lt;/li>
@@ -292,7 +292,7 @@ If we measure both spins, we leave the system in a state which is simultaneously
 &lt;p>A little bit of algebra shows that this is equivalent to $\braket{\bar{A}^2} = \braket{\Psi|\bar{A}^2|\Psi}$.&lt;/p>
 &lt;h3 id="uncertainty-principle">Uncertainty Principle&lt;/h3>
 &lt;p>From triangle inequality $|x| + |y| \ge |x+y|$, one can derive $2|x||y| \ge |\braket{x|y} + \braket{y|x}|$. (Hint: Square both sides, and expand).&lt;/p>
-&lt;p>Putting, $x = A\ket\Psi$ and $y = iB\ket\Psi$, we get $\Delta{A} \Delta{B} \ge \frac{1}{2} | \braket{\Psi|[A, B]|\Psi}$. (Hint: Though formula is true in general, it is easy to derive by assuming that $\braket{A} = \braket{B} = 0$, in which case $(\Delta{A})^2 = \braket{A^2}$.&lt;/p>
+&lt;p>Putting, $x = A\ket\Psi$ and $y = iB\ket\Psi$, we get $\Delta{A} \Delta{B} \ge \frac{1}{2} | \braket{\Psi|[A, B]|\Psi}$. (Hint: Though formula is true in general, it is easy to derive by assuming that $\braket{A} = \braket{B} = 0$, in which case $(\Delta{A})^2 = \braket{A^2}$.)&lt;/p>
 &lt;h2 id="composite-system">Composite System&lt;/h2>
 &lt;p>Atom is made of nucleons and electrons, each is a quantum system of it&amp;rsquo;s own. We want to study composite system.&lt;/p>
 &lt;p>For the moment we assume there are two systems, A and B (a.k.a. Alices&amp;rsquo;s sytem and Bob&amp;rsquo;s sytem, respectively).
@@ -325,7 +325,7 @@ $$&lt;/p>
 &lt;p>These states are maximally entangled.&lt;/p>
 &lt;h3 id="observables-in-combined-system">Observables in combined system.&lt;/h3>
 &lt;p>The observables in the case of single sping system, still apply in the combined system. They just modify their half.&lt;/p>
-&lt;p>E.g. if $\sigma_x$ is observable of spin A, $\sigma_x \ket{ud} = \ket{dd}$.&lt;/p>
+&lt;p>e.g., if $\sigma_x$ is observable of spin A, $\sigma_x \ket{ud} = \ket{dd}$.&lt;/p>
 &lt;p>Note that $\sigma_x$ for single spin system and $\sigma_x$ for combined systems are different operators. This is easy to see in the matrix forms. The two matrices are different.&lt;/p>
 &lt;p>In the case of single spin system (or product state), there is a direction where the measurement is guaranteed to be +1. Thus, $\braket{\vec{\sigma} \cdot \vec{n}} = \braket{\Psi|\vec{\sigma} \cdot \vec{n}|\Psi} = 1$, for that particular $\vec{n}$. Thus we know that none of the $\braket{\sigma_x}, \braket{\sigma_y}, \braket{\sigma_z}$ can be zero(which would lead to contradiction).&lt;/p>
 &lt;p>On the other hand, if you compute $\braket{\sigma_x}$ for $\ket{sing}$, you will find it to be zero. In fact, for singlet state, $\braket{\sigma_x} = \braket{\sigma_y} = \braket{\sigma_z} = 0$. Since the components are zero on expectation, we are equaly likely to get +1 and -1 for any measurement. Thus, although the state is known, we don&amp;rsquo;t know the outcome.&lt;/p>
