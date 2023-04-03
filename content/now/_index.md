@@ -1,8 +1,19 @@
 ---
 title: "What am I doing Now?"
-date: 2023-03-06
+date: 2023-04-03
 ---
 <small>(This is a [now page](https://nownownow.com/about).)</small>
+
+<small>Updated: 3rd April 2023</small>
+Finally, I have finished the Programming for High Performance course. I'd started is about a year back. But had stopped when WFO started, and I had to shift back to Bangalore. But, finally finished it. Great course. 
+
+Apart from that, I am continuing reading following things.
+- Crafting Interpreters (at chapter 24 right now) (looking at Github, I had started reading the book around October 2022).
+- Special Relativity (Susskind)
+
+Started new
+- Godel's Proof, by Ernest and Nagel.
+- Spark
 
 <small>Updated: 6th March 2023</small>
 
