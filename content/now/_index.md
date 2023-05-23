@@ -4,6 +4,20 @@ date: 2023-04-03
 ---
 <small>(This is a [now page](https://nownownow.com/about).)</small>
 
+
+<small>Updated: 23rd May 2023</small>
+
+Last week I started learning to swim. Just today I finished "Godel's Proof" by Nagel and Newman. It was a wonderful book. However, such a short book did not go deeper in the topic. I am glad though, as my understanding of logic is not that good. 
+I also started reading "The Seasoned Schemer", and "Designing Data Intensive Applications". I am planning to take DDIA slowly and target to finish it in 6 months. 
+- In progress: 
+  - Crafting Interpreters (at chapter 29 now). Looks like will be done by next update of this page. However, I plan to reread it for the virtual machine part, while implementing it in Rust at the same time. 
+
+
+However I did not make any progress on following things. I don't think I will resume them in upcoming couple of months. 
+  - Special Relativity
+  - Spark
+------------
+
 <small>Updated: 3rd April 2023</small>
 Finally, I have finished the Programming for High Performance course. I'd started is about a year back. But had stopped when WFO started, and I had to shift back to Bangalore. But, finally finished it. Great course. 
 
