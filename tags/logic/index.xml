@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>logic on Dhruv Patel</title><link>https://dhruvpatel.dev/tags/logic/</link><description>Recent content in logic on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Tue, 23 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/tags/logic/index.xml" rel="self" type="application/rss+xml"/><item><title>Gödel's Proof: Book Notes</title><link>https://dhruvpatel.dev/notes/cs/godels_proofs/</link><pubDate>Tue, 23 May 2023 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/notes/cs/godels_proofs/</guid><description>My book summary for the book by Ernest Nagel and James Newman.</description><content>&lt;p>Following is my summary of the book Gödel&amp;rsquo;s Proof by Nagel and Newman. While reading the book I realized that the topic under the discussion is quite complex and the book does not go over every minute details. Thus, the notes below may contain inconsistencies, as they reflect my understanding, which is incomplete.&lt;/p>
+&lt;hr>
+&lt;p>Eulid&amp;rsquo;s axiom:
+Given line, and a point outside it, only one parallel line can be drawn.&lt;/p>
+&lt;p>Can this be derived from other Euclidean axioms?&lt;/p>
+&lt;p>In the 19th century, through the works of Gauss, Bolyai, Lobachevsky, and Riemann, it was proved that was impossible. This proved that proof can be given of the &lt;em>impossibility of proving&lt;/em> certain proposition in a given system.&lt;/p>
+&lt;p>Soundness: logically incompatible statements can not be simultaneously be true.&lt;/p>
+&lt;p>Sometimes the postulates/axioms themselves are not &amp;ldquo;true&amp;rdquo;. e.g., non-euclidean geometry. In such cases it is imperative to ascertain if the assumed axioms are consistent.&lt;/p>
+&lt;p>Elliptical Geometry has an axiom that says that given point outside of the line, no parallel line to it can be drawn. If we list down all the theorems derived so far and manually check, what is the guarantee that our grand children won&amp;rsquo;t derive a theorem that contradicts one of these?&lt;/p>
+&lt;p>In classical set theory, Burtrand Russell&amp;rsquo;s normal set (set that doesn&amp;rsquo;t contain itself as a member) proves a statement that is both true and false. Thus that system is not consistent.&lt;/p>
+&lt;h2 id="example-of-a-consistent-system">Example of a consistent system&lt;/h2>
+&lt;h3 id="axioms">axioms&lt;/h3>
+&lt;p>Vocabulary&lt;/p>
+&lt;ul>
+&lt;li>letters like p, q, r: they can be replaced by any sentence&lt;/li>
+&lt;li>~, .(and), |(or), ⇒(if then else)&lt;/li>
+&lt;/ul>
+&lt;p>Formulas&lt;/p>
+&lt;ul>
+&lt;li>These are familiar rules. Like &lt;code>p .&lt;/code> is not a valid formula. But, &lt;code>p.q&lt;/code> is.&lt;/li>
+&lt;/ul>
+&lt;p>Transformation Rules&lt;/p>
+&lt;p>one can derive new formulas by&lt;/p>
+&lt;ul>
+&lt;li>uniformly substituting letters by other formulas.&lt;/li>
+&lt;li>If we are given two formulas, &lt;code>S&lt;/code> and &lt;code>S =&amp;gt; T&lt;/code>, then &lt;code>T&lt;/code> is also a formula.&lt;/li>
+&lt;/ul>
+&lt;p>Axioms&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>(p | p) =&amp;gt; p&lt;/code>&lt;/li>
+&lt;li>&lt;code>p =&amp;gt; (p | q)&lt;/code>&lt;/li>
+&lt;li>&lt;code>p|q =&amp;gt; q|p&lt;/code>&lt;/li>
+&lt;li>&lt;code>(p =&amp;gt; q) =&amp;gt;((r|p) =&amp;gt; (r|q))&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>Theorems: All the formulas that can be derived using the above axioms and transformations.&lt;/p>
+&lt;p>What we want to show is that, it is &amp;ldquo;absolutely&amp;rdquo;(as opposed to relatively) impossible to derive two statements &lt;code>S&lt;/code> and &lt;code>~S&lt;/code> from these axioms.&lt;/p>
+&lt;p>One can prove that the formula &lt;code>p =&amp;gt; (~p =&amp;gt; q)&lt;/code> is a theorem.&lt;/p>
+&lt;p>If it was possible to derive both &lt;code>S&lt;/code> and &lt;code>~S&lt;/code>, we can substitute &lt;code>S&lt;/code> in the above theorem to get &lt;code>S =&amp;gt; (~S =&amp;gt; q)&lt;/code>. The second transformation rule then can be applied to get &lt;code>~S =&amp;gt; q&lt;/code>. But, again, by the same transformation we get &lt;code>q&lt;/code>.&lt;/p>
+&lt;p>Thus, if the system were inconsistent, any formula can be derived. Conversely, if we prove that there is a formula that cannot be derived from the stated axioms, we have proved that the system is consistent.&lt;/p>
+&lt;p>For the proof that such a formula exists, we use tautology. Tautology is a formula which is always true. Now, all the axioms are tautologies. The book&amp;rsquo;s appendix shows that if either of the two transformations is applied to the tautology, the resulting formula is also a tautology.&lt;/p>
+&lt;p>Look at the formula &lt;code>p | q&lt;/code>. Is it a tautology? No, because if both &lt;code>~p&lt;/code> and &lt;code>~q&lt;/code> are true, the formula is false. Tautology means always true.&lt;/p>
+&lt;p>So, we showed a formula which is not a tautology. If this were a theorem, it would have been a tautology. So, it isn&amp;rsquo;t a theorem. Thus, there is a formula which isn&amp;rsquo;t a theorem. Thus, the system is consistent.&lt;/p>
+&lt;p>It also turns out that the system is complete. i.e., every tautology can be derived from these axioms.&lt;/p>
+&lt;p>Note: This system is not sufficient even to develop elementary arithmatic.&lt;/p>
+&lt;h4 id="correspondence-lemma">Correspondence Lemma:&lt;/h4>
+&lt;p>PM (Principia Mathematica) gave each symbol a meaning (e.g., &lt;code>+&lt;/code> is addition). However, the formal system does not require us to give a meaning to the symbols. The theorems are derived from axioms by following the rules of the system.&lt;/p>
+&lt;p>However, Godel proved that&lt;/p>
+&lt;ul>
+&lt;li>there is an infinite class of theorems, which interpreted with the &amp;ldquo;intendend&amp;rdquo; meaning, are arithmatical truths.&lt;/li>
+&lt;li>there are infinite recursive primitive truths, which when encoded using symbols with &amp;ldquo;intended&amp;rdquo; meanings are indeed theorems&lt;/li>
+&lt;/ul>
+&lt;p>Recursive Primitive Truths: correct additions like &amp;ldquo;2 plus 2 is 4&amp;rdquo;. Or &amp;ldquo;17 is 7th prime&amp;rdquo;.&lt;/p>
+&lt;p>Then, there is a mapping from an expression in the calculus to a unique number.
+Conversely, given any number, it is easy to see if it makes symbols of the calculus, or expression or a sequence of expressions.&lt;/p>
+&lt;p>Godel also showed that statements (in meta-mathematics) about the calculus can also be mapped to expressed with the symbols of the calculus itself.&lt;/p>
+&lt;p>The fundamental idea is to convert the typographical relationship between the expression to the arithmetical relationship between Gödel numbers.&lt;/p>
+&lt;p>E.g., &lt;code>~(0 = 0)&lt;/code>. Consider the meta-mathematical statement, &lt;em>The first symbol of the expression is ~&lt;/em>.&lt;/p>
+&lt;p>The Gödel number associated with the expression is&lt;code>a = 2^s(!) * 3^s('(') * 5^s(0) * 7^s(=) * 11^s(')')&lt;/code>.&lt;/p>
+&lt;p>Suppose that the associated number with &lt;code>!&lt;/code> is 7 (there are only few such preliminary symbols). Then, the &amp;ldquo;expression&amp;rdquo; &lt;code>2^7 is a factor of a, and 2^8 is not a factor of a&lt;/code> can be expressed with the symbols of calculus, and hence by a Gödel number.&lt;/p>
+&lt;p>By the way, &lt;code>x is a factor of y&lt;/code> is a primitive recursive truth. Thus, by correspondence lemma, is a theorem in PM.&lt;/p>
+&lt;p>Another meta-mathematical statement is &lt;code>the sequence of formulas having Godel number x is a proof (in PM) of the formula with Godel number z&lt;/code>. There is a mathematical relationship between x and z, denote it by &lt;code>dem(x, z)&lt;/code>. Godel showed that this relation &lt;code>dem(x, z)&lt;/code> is a primitive recursive relation. Thus, there, the formula in the PM &lt;code>Dem(x, z)&lt;/code> is actually a theorem.&lt;/p>
+&lt;details> &lt;summary>Example&lt;/summary>
+Notaion: s[5] = sssss
+&lt;p>the meta-mathematical statement &lt;code>x is prime (or pr(x))&lt;/code> can be written as a formula &lt;code>~ (E y) (E z) (s[x]0 = s[y]0 * s[z]0&lt;/code>. Now since &lt;code>is prime&lt;/code>, or &lt;code>is not prime&lt;/code> is a primitive recursive, there is a theorem in PM for the formula &lt;code>~ ~ (E y) (E z) (s[9]0 = s[y]0 * s[z]0&lt;/code>&lt;/p>
+&lt;/details>
+&lt;p>Also, &lt;code>~Dem(y, z)&lt;/code> is a theorem.&lt;/p>
+&lt;p>Take the formula &lt;code>(E x) (x = sy)&lt;/code>. This formula has a Godel number m. We can replace y with the concrete number m and get the new formula &lt;code>(E x) (x = ss[m]0)&lt;/code>. This formula states nothing new, but &lt;code>m has a successor&lt;/code>. Meta-mathematically, this is a Godel number obtained from the formula for Godel number m by substituting 17 with m. This function of replacing a variable within the formula by the Godel number of the formula itself is a primitive recursive function. Denote the new Godel number by &lt;code>sub (x, 17, x)&lt;/code>.&lt;/p>
+&lt;p>Since the algorithm is primitive recursive, the formula &lt;code>z = sub(x, 17, x)&lt;/code> is a theorem. This formula is denoted as &lt;code>Sub (x, 17, x)&lt;/code>.&lt;/p>
+&lt;h2 id="gödels-proof">Gödel&amp;rsquo;s proof&lt;/h2>
+&lt;p>Gödel showed&lt;/p>
+&lt;ol>
+&lt;li>How to construct a formula G for the meta-mathematical statement &amp;ldquo;The formula G is not demonstrable&amp;rdquo;. This formula&amp;rsquo;s Gödel number is denoted as g.&lt;/li>
+&lt;li>G is demonstrable iff ~G is demonstrable. Thus, if PM is consistent, neither G nor ~G can be demonstrated. Such formulas where neither G nor ~G can be proved (under the assumption that PM is consistent) are called formally undecidable.&lt;/li>
+&lt;li>Though G is not formally demonstrable, it is nevertheless true.&lt;/li>
+&lt;li>Since G is true and formally undecidable, PM is incomplete. Godel showed PM is essentially incomplete. That is, even if you augment PM with some axioms, the new resulting system still would be incomplete.&lt;/li>
+&lt;li>Gödel showed how to construct &lt;code>A&lt;/code> (&amp;ldquo;PM is consistent&amp;rdquo;), and &lt;code>A =&amp;gt; G&lt;/code> is formally demonstrable. But A is not demonstrable.&lt;/li>
+&lt;/ol>
+&lt;p>Notaion: &lt;code>n := x&lt;/code>. n is a godel number that represents a formula or a sequence of forumlas.&lt;/p>
+&lt;h3 id="1-construction-of-g">1: Construction of G&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>Dem(x, z)&lt;/code> was showed to exist earlier.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The new formula &lt;code>(E x) Dem(x, z)&lt;/code> tells us that z is demonstrable.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The formula &lt;code>~(E x) Dem(x, z)&lt;/code> tells us that z is not demonstrable.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Consider the formula &lt;code>n := ~(E x) Dem(x, Sub(y, 17, y))&lt;/code> This formula tells meta-mathematically that a formula with &lt;code>Sub(y, 17, y)&lt;/code> is not provable in PM. However, this formula is not definite, as it uses a variable y.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Consider the formula &lt;code>g := ~(E x) Dem(x, Sub(n, 17, n))&lt;/code>. This formula tells meta-mathematically that &lt;code>Sub(n, 17, n)&lt;/code> is not demonstrable. g represents a definite formula, as it doesn&amp;rsquo;t have any variables.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>But, &lt;code>sub(n, 17, n)&lt;/code> is precisely g. That is how g was constructed.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Thus, G tells that G is not demonstrable in PM.&lt;/p>
+&lt;p>&amp;ldquo;In a word, the PM formula G can be construedas asserting of itself that it is not a theorem of PM.&amp;rdquo;&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-if-pm-is-consistent-neither-g-nor-g-can-be-derived">2: If PM is consistent, neither G nor ~G can be derived.&lt;/h3>
+&lt;ul>
+&lt;li>Gödel showed that if G can be demonstrated, ~G can be demonstrated.
+&lt;ul>
+&lt;li>Proof goes like this. If G is demonstrable, let k denote the proof.&lt;/li>
+&lt;li>i.e., &lt;code>Dem (k, Sub(n, 17, n))&lt;/code> is a theorem.&lt;/li>
+&lt;li>By the inference rules of PM, &lt;code>(E x) Dem(x, Sub(n, 17, n))&lt;/code> is a theorem.&lt;/li>
+&lt;li>But, that is precisely ~G. QED.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Gödel also showed that if ~G is demonstrable, then PM is $\omega$-consistent.&lt;/li>
+&lt;li>Rosser later proved that if ~G is demonstrable, then G is demonsrable.&lt;/li>
+&lt;li>Thus, if PM were to be consistent, neither G nor ~G must be demonsrable. Thus, G is formally undemonsrable.&lt;/li>
+&lt;/ul>
+&lt;h3 id="digression-in-an-inconsistent-system-every-statement-is-provable">Digression: In an inconsistent system every statement is provable.&lt;/h3>
+&lt;p>This is a little bit of revision from above.&lt;/p>
+&lt;ul>
+&lt;li>Since the system is inconsistent, there is some P such that both P and ~P are true (as per the system).&lt;/li>
+&lt;li>Since &lt;code>P&lt;/code> is true &lt;code>P or Q&lt;/code> is true.&lt;/li>
+&lt;li>Since &lt;code>P or Q&lt;/code> is true and &lt;code>~P&lt;/code> is true, i.e., &lt;code>P&lt;/code> is false, Q must be true.&lt;/li>
+&lt;/ul>
+&lt;p>Thus, we just proved that arbitrary statement Q is true. Because of this, the previous point and the next points do not consider about what happens if the system is inconsistent.&lt;/p>
+&lt;p>There is another implication. If there is at least one formula which is not demonstrable, the system is consistent.&lt;/p>
+&lt;h3 id="3-g-is-true-statement">3: G is true statement.&lt;/h3>
+&lt;p>Certainly, either G or ~G must be true. It can be shown by the meta-mathematical reasoning that G is true.&lt;/p>
+&lt;p>G says that &amp;ldquo;There is no proof of G in the PM&amp;rdquo;.
+~G says that &amp;ldquo;There is a proof of G in the PM&amp;rdquo;.&lt;/p>
+&lt;p>We(Gödel) in 2nd point proved that G does not have a proof in PM. Thus, G is a true statement.&lt;/p>
+&lt;p>Note: We have not used axioms or the rules of the inference in this proof. We used meta-mathematical reasoning.&lt;/p>
+&lt;p>Note: Gödel also showed in 2nd point that ~G does not have a proof in the system, but this part seems irrelevant.&lt;/p>
+&lt;h3 id="4-pm-is-incomplete">4: PM is incomplete&lt;/h3>
+&lt;p>Under the hypothesis that PM is consistent, using pt2 and pt3, we see that PM is incomplete.&lt;/p>
+&lt;h3 id="5-consistency--incompletness-is-demonstrable">5 Consistency =&amp;gt; Incompletness is demonstrable.&lt;/h3>
+&lt;p>Based on the digression above, the statement &amp;ldquo;PM is consistent&amp;rdquo; is equivalent to the statement that &amp;ldquo;There is a formula of PM that is not demonstrable inside PM&amp;rdquo;. This meta-mathematical statement can be written as a formula in PM &lt;code>(E y) ~ (E x) Dem(x, y)&lt;/code>. Call this formula A. The antecedent therefore is in place.&lt;/p>
+&lt;p>The consequent clause too is easy. The system is incomplete means there is a true-but-not-demonstrable formula X, &amp;ldquo;X is not a theorem of PM&amp;rdquo;. G is such formula. So, the consequent clause &amp;ldquo;G is not a theorem of PM&amp;rdquo; can be encoded. We already know the encoding, it is G itself.&lt;/p>
+&lt;p>The statement &amp;ldquo;If PM is consistent,then it is incomplete&amp;rdquo; is represented in PM by &lt;code>(E y) ~ (E x) Dem(x, y) =&amp;gt; ~(E x) Dem(x, Sub(n, 17, n))&lt;/code>. This forumala (abbreviated as &lt;code>A =&amp;gt; G&lt;/code>) is demonstrable (not proved in the book).&lt;/p>
+&lt;p>If we can proove A in the PM, by the rule of detachment &lt;code>(A and A =&amp;gt; B) =&amp;gt; B&lt;/code>, G is proveable. But, unless PM is inconsistent, G is formally undemonstrable.&lt;/p>
+&lt;p>Thus, if PM is consistent, the consistency of it can not be proved by PM itself. One should note that, this does not consider meta-mathematical proof that can not be mirrored by the PM. That is a fair game. Only that a reasoning that can be mirrored in PM, can not show that PM is consistent.&lt;/p></content></item></channel></rss>
