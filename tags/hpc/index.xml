@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hpc on Dhruv Patel</title><link>https://dhruvpatel.dev/tags/hpc/</link><description>Recent content in hpc on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Apr 2022 09:11:23 +0530</lastBuildDate><atom:link href="https://dhruvpatel.dev/tags/hpc/index.xml" rel="self" type="application/rss+xml"/><item><title>Can we do better than NumPy in special cases?</title><link>https://dhruvpatel.dev/posts/matrix_vector/</link><pubDate>Sun, 10 Apr 2022 09:11:23 +0530</pubDate><guid>https://dhruvpatel.dev/posts/matrix_vector/</guid><description>Can we? Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from GitHub repository.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hpc on Dhruv Patel</title><link>https://dhruvpatel.dev/tags/hpc/</link><description>Recent content in hpc on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dhruv Patel</copyright><lastBuildDate>Sun, 10 Apr 2022 09:11:23 +0530</lastBuildDate><atom:link href="https://dhruvpatel.dev/tags/hpc/index.xml" rel="self" type="application/rss+xml"/><item><title>Can we do better than NumPy in special cases?</title><link>https://dhruvpatel.dev/posts/matrix_vector/</link><pubDate>Sun, 10 Apr 2022 09:11:23 +0530</pubDate><guid>https://dhruvpatel.dev/posts/matrix_vector/</guid><description>Can we? Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from GitHub repository.
 Why would we? Good question. NumPy is great. It is fast. Beating it would be hard. Even if we beat it, will it be worth it? Probably not. You would quote Donald Knuth and say that premature optimization is the root of all evil. I am trying to justify this blog by asking What if this is not a premature optimization?</description><content>&lt;h2 id="can-we">Can we?&lt;/h2>
 &lt;p>Yes. This blog explains how I did. If you want to follow the whole code, you can download the source code from &lt;a href="https://github.com/DhruvPatel01/notebooks/tree/main/High_Performance_Computing/mat_vec">GitHub repository.&lt;/a>&lt;/p>
 &lt;h2 id="why-would-we">Why would we?&lt;/h2>
@@ -20,8 +20,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="194265378" type="checkbox" checked />
-&lt;label for="194265378">
+&lt;input id="376851249" type="checkbox" checked />
+&lt;label for="376851249">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -60,8 +60,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="947352168" type="checkbox" />
-&lt;label for="947352168">
+&lt;input id="546287193" type="checkbox" />
+&lt;label for="546287193">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>

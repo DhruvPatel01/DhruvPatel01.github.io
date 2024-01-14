@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python-gotcha on Dhruv Patel</title><link>https://dhruvpatel.dev/tags/python-gotcha/</link><description>Recent content in python-gotcha on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dhruv Patel</copyright><lastBuildDate>Wed, 14 Apr 2021 21:51:48 +0530</lastBuildDate><atom:link href="https://dhruvpatel.dev/tags/python-gotcha/index.xml" rel="self" type="application/rss+xml"/><item><title>Python got me with circular imports!</title><link>https://dhruvpatel.dev/posts/python_circular_imports/</link><pubDate>Wed, 14 Apr 2021 21:51:48 +0530</pubDate><guid>https://dhruvpatel.dev/posts/python_circular_imports/</guid><description>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python-gotcha on Dhruv Patel</title><link>https://dhruvpatel.dev/tags/python-gotcha/</link><description>Recent content in python-gotcha on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dhruv Patel</copyright><lastBuildDate>Wed, 14 Apr 2021 21:51:48 +0530</lastBuildDate><atom:link href="https://dhruvpatel.dev/tags/python-gotcha/index.xml" rel="self" type="application/rss+xml"/><item><title>Python got me with circular imports!</title><link>https://dhruvpatel.dev/posts/python_circular_imports/</link><pubDate>Wed, 14 Apr 2021 21:51:48 +0530</pubDate><guid>https://dhruvpatel.dev/posts/python_circular_imports/</guid><description>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="371259846" type="checkbox" />
-&lt;label for="371259846">
+&lt;input id="964572813" type="checkbox" />
+&lt;label for="964572813">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -20,8 +20,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="648173592" type="checkbox" />
-&lt;label for="648173592">
+&lt;input id="923615478" type="checkbox" />
+&lt;label for="923615478">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -57,8 +57,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="516837942" type="checkbox" />
-&lt;label for="516837942">
+&lt;input id="514327986" type="checkbox" />
+&lt;label for="514327986">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -76,8 +76,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="185942736" type="checkbox" />
-&lt;label for="185942736">
+&lt;input id="157892346" type="checkbox" />
+&lt;label for="157892346">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -115,8 +115,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="693478251" type="checkbox" />
-&lt;label for="693478251">
+&lt;input id="153894672" type="checkbox" />
+&lt;label for="153894672">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
