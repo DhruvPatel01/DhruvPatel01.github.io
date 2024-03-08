@@ -1,5 +1,5 @@
 ---
-title: "What am I was doing earlier?"
+title: "What I was doing earlier?"
 date: 2024-03-08
 ---
 <small>(This is an archival of my [now page](https://nownownow.com/about).)</small>
