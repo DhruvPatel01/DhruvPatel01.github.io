@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dhruv Patel</copyright><lastBuildDate>Tue, 23 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Gödel's Proof: Book Notes</title><link>https://dhruvpatel.dev/notes/cs/godels_proofs/</link><pubDate>Tue, 23 May 2023 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/notes/cs/godels_proofs/</guid><description>My book summary for the book by Ernest Nagel and James Newman.</description><content>&lt;p>Following is my summary of the book Gödel&amp;rsquo;s Proof by Nagel and Newman. While reading the book I realized that the topic under the discussion is quite complex and the book does not go over every minute details. Thus, the notes below may contain inconsistencies, as they reflect my understanding, which is incomplete.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dhruv Patel</title><link>https://dhruvpatel.dev/</link><description>Recent content on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 08 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>What am I was doing earlier?</title><link>https://dhruvpatel.dev/now/archive/</link><pubDate>Fri, 08 Mar 2024 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/now/archive/</guid><description>(This is an archival of my now page.)
+Updated: 23rd May 2023
+Last week I started learning to swim. Just today I finished &amp;ldquo;Godel&amp;rsquo;s Proof&amp;rdquo; by Nagel and Newman. It was a wonderful book. However, such a short book did not go deeper in the topic. I am glad though, as my understanding of logic is not that good. I also started reading &amp;ldquo;The Seasoned Schemer&amp;rdquo;, and &amp;ldquo;Designing Data Intensive Applications&amp;rdquo;.</description><content>&lt;p>&lt;small>(This is an archival of my &lt;a href="https://nownownow.com/about">now page&lt;/a>.)&lt;/small>&lt;/p>
+&lt;p>&lt;small>Updated: 23rd May 2023&lt;/small>&lt;/p>
+&lt;p>Last week I started learning to swim. Just today I finished &amp;ldquo;Godel&amp;rsquo;s Proof&amp;rdquo; by Nagel and Newman. It was a wonderful book. However, such a short book did not go deeper in the topic. I am glad though, as my understanding of logic is not that good.
+I also started reading &amp;ldquo;The Seasoned Schemer&amp;rdquo;, and &amp;ldquo;Designing Data Intensive Applications&amp;rdquo;. I am planning to take DDIA slowly and target to finish it in 6 months.&lt;/p>
+&lt;ul>
+&lt;li>In progress:
+&lt;ul>
+&lt;li>Crafting Interpreters (at chapter 29 now). Looks like will be done by next update of this page. However, I plan to reread it for the virtual machine part, while implementing it in Rust at the same time.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>However I did not make any progress on following things. I don&amp;rsquo;t think I will resume them in upcoming couple of months.&lt;/p>
+&lt;ul>
+&lt;li>Special Relativity&lt;/li>
+&lt;li>Spark&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>&lt;small>Updated: 3rd April 2023&lt;/small>
+Finally, I have finished the Programming for High Performance course. I&amp;rsquo;d started is about a year back. But had stopped when WFO started, and I had to shift back to Bangalore. But, finally finished it. Great course.&lt;/p>
+&lt;p>Apart from that, I am continuing reading following things.&lt;/p>
+&lt;ul>
+&lt;li>Crafting Interpreters (at chapter 24 right now) (looking at Github, I had started reading the book around October 2022).&lt;/li>
+&lt;li>Special Relativity (Susskind)&lt;/li>
+&lt;/ul>
+&lt;p>Started new&lt;/p>
+&lt;ul>
+&lt;li>Godel&amp;rsquo;s Proof, by Ernest and Nagel.&lt;/li>
+&lt;li>Spark&lt;/li>
+&lt;/ul>
+&lt;p>&lt;small>Updated: 6th March 2023&lt;/small>&lt;/p>
+&lt;p>This week, I finished up reading &lt;code>The Little Schemer&lt;/code>. The book started out easy. But, the second-to-last chapter made me aware of the applicative order Y Combinator. It also showed halting problem with a different lens. The book pointed to other interesting books at the end.&lt;/p>
+&lt;ul>
+&lt;li>Godel&amp;rsquo;s proof&lt;/li>
+&lt;li>to mock the mockingbird&lt;/li>
+&lt;/ul>
+&lt;p>I think I&amp;rsquo;ll read Godel&amp;rsquo;s proof before I start the seasoned schemer.&lt;/p>
+&lt;p>Apart from that, I am also following a great course on &lt;a href="https://www.cs.utexas.edu/users/flame/laff/pfhp/">Programming for High Performance computing&lt;/a>. I am currently at the third week. I&amp;rsquo;ll try to complete the course hopefully this month.&lt;/p>
+&lt;p>I am also focusing more on Special Relativity (&lt;a href="https://theoreticalminimum.com/courses/special-relativity-and-electrodynamics/2012/spring">Susskind&amp;rsquo;s course and book&lt;/a>) this month relative to other months, as I am at home (Patan), where I get more time. Though, I am home for few days only, so pace will slow down after a week or so.&lt;/p></content></item><item><title>Gödel's Proof: Book Notes</title><link>https://dhruvpatel.dev/notes/cs/godels_proofs/</link><pubDate>Tue, 23 May 2023 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/notes/cs/godels_proofs/</guid><description>My book summary for the book by Ernest Nagel and James Newman.</description><content>&lt;p>Following is my summary of the book Gödel&amp;rsquo;s Proof by Nagel and Newman. While reading the book I realized that the topic under the discussion is quite complex and the book does not go over every minute details. Thus, the notes below may contain inconsistencies, as they reflect my understanding, which is incomplete.&lt;/p>
 &lt;hr>
 &lt;p>Eulid&amp;rsquo;s axiom:
 Given line, and a point outside it, only one parallel line can be drawn.&lt;/p>
@@ -792,7 +831,7 @@ $$&lt;/p>
 &lt;p>A simplest Hamiltonian is $H = cP$, where c is a fixed number. If we apply above equation here, we get,
 $i\hbar \frac{\partial \psi(x, t)}{\partial t} = -c i \hbar \frac{\partial \psi(x, t)}{\partial x}$. Which leads to $\frac{\partial \psi(x, t)}{\partial t} = -c \frac{\partial \psi(x, t)}{\partial x}$. Any function $\psi(x - ct)$ solves this equation.&lt;/p>
 &lt;p>At T = 0, we have some function $\psi(x)$. Note that due to normalization contraints, this function has to go to zero towards the ends. The wave function might look something like this.&lt;/p>
-&lt;p>&lt;img src="images/attachment:7891febe-a9f7-46e4-b840-9a4ce96ad8c7.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/images/attachment:7891febe-a9f7-46e4-b840-9a4ce96ad8c7.png">&lt;/p>
 &lt;p>At later time, T = t, $\psi(x-ct)$ has the same shape as $\psi(x)$ but shifted to the right by ct. It is equivalent to say that the wave has translated to the right in space. This translation happens at uniform velocity. If we let c to be the speed of the light, this Hamiltonian almost describes the 1d neutrinos, except that our H only describes particle moving to the right.&lt;/p>
 &lt;p>Since the wave function moves rigidly to the right, the expected value also moves to the right at the same velocity. In classical mechanics if let $H = cP$, the Hamiltonian equations give us following equations.&lt;/p>
 &lt;p>$$
@@ -831,7 +870,7 @@ $$&lt;/p>
 &lt;p>Anyway, both the formulas suggest that P(p, t) is equivalent to P(p, 0). This is because momentum is conserved when there is no external force.&lt;/p>
 &lt;h4 id="expected-change-in-position">Expected Change in Position&lt;/h4>
 &lt;p>Since the wave function changes with time, the expected value of x, i.e., $\braket{\Psi|X|\Psi}$ also changes with time. There are two ways to compute this quantity. One is bruteforce, and one is to use commutators.&lt;/p>
-&lt;p>Using commutators is easy. We use the relationship proved &lt;a href="#change-in-the-expectation">here&lt;/a>. $\frac{d \braket{X}}{dt} = \frac{-i}{\hbar 2 m} \braket{[P^2, X]} = \frac{-i}{\hbar 2 m} \braket{P[P, X] + [P, X]P} = \frac{-i}{\hbar 2 m} \braket{-2 i \hbar P} = \frac{\braket{P}}{m}$.&lt;/p>
+&lt;p>Using commutators is easy. We use the relationship proved &lt;a href="https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/#change-in-the-expectation">here&lt;/a>. $\frac{d \braket{X}}{dt} = \frac{-i}{\hbar 2 m} \braket{[P^2, X]} = \frac{-i}{\hbar 2 m} \braket{P[P, X] + [P, X]P} = \frac{-i}{\hbar 2 m} \braket{-2 i \hbar P} = \frac{\braket{P}}{m}$.&lt;/p>
 &lt;p>This is similar to classical v = p/m.&lt;/p>
 &lt;p>I will probably not do the bruteforce. But the in the 10th Lecture Prof. Susskind does that.&lt;/p>
 &lt;h3 id="non-relativistic-particle-with-some-forces-on-it">Non relativistic particle, with some forces on it&lt;/h3>
@@ -950,7 +989,7 @@ $$&lt;/p>
 \end{align*}
 $$&lt;/p>
 &lt;p>It is easy to notice that for each step higher in the eigenstate, we have higher degree polynomial multiplied by the ground state. As the degree of the polynomial increases, the zeros of the statefunction, and nodes of the amplitudes increase. Thus, higher energy wave functions have higher frequency, implying higher momentum. Also, since the exponential goes to zero faster than the polynomial, the wave function are &amp;ldquo;good&amp;rdquo;, i.e., they go to zero towards the infinities.&lt;/p>
-&lt;p>&lt;img src="images/attachment:3fce27c0-2578-4ab1-8d39-7c3096802b26.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/images/attachment:3fce27c0-2578-4ab1-8d39-7c3096802b26.png">&lt;/p>
 &lt;p>Although, they approch zero towards infinities, they are not quite zero. That means there is positive probability of finding particles outside of the &amp;ldquo;potential bowl&amp;rdquo;. This phenomenon is known as quantum tunneling.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
@@ -1176,7 +1215,7 @@ $$&lt;/p>
 &lt;p>Thus Hamiltonian formulation gives us two first order equations.&lt;/p>
 &lt;p>Solving Euler-Lagrangian equation, on the other hand gives us single second order equation. $\ddot{q} = \omega \dot{p}$. These two are equivalent, and can be seen by substituting the first equation in the time derivative of the second equation of the Hamiltonian.&lt;/p>
 &lt;p>Notice that because of constant energy, in the phase space the particle moves along a circle of fixed radius.&lt;/p>
-&lt;p>&lt;img src="images/attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/images/attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png">&lt;/p>
 &lt;h2 id="phase-space-fluid">Phase Space Fluid&lt;/h2>
 &lt;p>One can imagine a trajectory starting with arbitrary point &lt;code>(p, q)&lt;/code> in the phase following the hamiltonian equations.&lt;/p>
 &lt;p>$$
@@ -1192,7 +1231,7 @@ $$&lt;/p>
 The surfaces of the energy are defined by $H(q, p) = E$. For each value of E, we have a surface.&lt;/li>
 &lt;/ol>
 &lt;p>In ordinary 3-d space, a flow can be described as a velocity field $\vec{v}(x, y, z)$. For each point, it defines a velocity at that point. This can also be a function of time.&lt;/p>
-&lt;p>&lt;img src="images/attachment:beee651f-3d52-42fb-95fb-028ec81d6cf7.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/images/attachment:beee651f-3d52-42fb-95fb-028ec81d6cf7.png">&lt;/p>
 &lt;dl>
 &lt;dt>Incompressible fluid&lt;/dt>
 &lt;dd>a given amount of the fluid always occupies the same volume. It also means that the density of the fluid—the number of molecules per unit volume—is uniform and stays that way forever.&lt;/dd>
@@ -1326,7 +1365,7 @@ $$&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">+&lt;/span>x, label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$1 +x$&amp;#34;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, np&lt;span style="color:#f92672">.&lt;/span>exp(x), label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$e^x$&amp;#34;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc91.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="output image for above cell" src="https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/images/63351a0ed542f328049edc91.png">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Thus, $p \approx 1 - e^{\frac{-k|S|}{n}} = 1 - e^{\frac{-k}{b}}$. Remember, b is the bits per element.&lt;/p>
 &lt;p>As $b \to \inf$, $p \to 0$.&lt;/p>
@@ -1388,7 +1427,7 @@ Using calculus, $k \approx (ln 2) b$.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlabel(&lt;span style="color:#e6db74">&amp;#34;bits per element&amp;#34;&lt;/span>)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Text(0.5, 0, &amp;#39;bits per element&amp;#39;)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc92.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="output image for above cell" src="https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/images/63351a0ed542f328049edc92.png">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>fpve_rate
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>[0.1551, 0.0211, 0.0024, 0.0003]
@@ -1419,7 +1458,7 @@ Gorbachev was younger, talked like a western politician, allowed criticism of th
 &lt;li>yelstin to putin&lt;/li>
 &lt;li>why is Russia so corrupt and lessons from it.&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="images/final_days_of_ussr.png" alt="final_days">&lt;/p>
+&lt;p>&lt;img alt="final_days" src="https://dhruvpatel.dev/notes/politics/power/images/final_days_of_ussr.png">&lt;/p>
 &lt;h2 id="why-did-ussr-collapse">Why did USSR collapse?&lt;/h2>
 &lt;ul>
 &lt;li>Stores were empty.&lt;/li>
@@ -1654,7 +1693,7 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> plt&lt;span style="color:#f92672">.&lt;/span>plot(x, y2(x), &lt;span style="color:#e6db74">&amp;#39;k&amp;#39;&lt;/span>, lw&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;.5&amp;#39;&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>ylim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/5c5d61291f1a421f53dc37afdf5908e5.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="output image for above cell" src="https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/images/5c5d61291f1a421f53dc37afdf5908e5.png">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 432x288 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="affine-functions">Affine Functions&lt;/h4>
 &lt;p>Function f is affine if f = Ax + b for some A and b.&lt;/p>
@@ -1739,8 +1778,8 @@ Why would we? Good question. NumPy is great. It is fast. Beating it would be har
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the header files and static library respectively into &lt;code>~/blis/include/blis&lt;/code> and &lt;code>~/blis/lib/libblis.a&lt;/code>. I will use these when I compile a wrapper around a BLAS &lt;code>dgemv&lt;/code> call. &lt;code>dgemv&lt;/code> stands for Generalized Matrix Vector multiplication. &lt;code>d&lt;/code> prefix means that inputs are double precision floating points. For FP32 you would use &lt;code>sgemv&lt;/code>.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="376851249" type="checkbox" checked />
-&lt;label for="376851249">
+&lt;input id="584371629" type="checkbox" checked />
+&lt;label for="584371629">
 &lt;span class="collapsable-code__language">bash&lt;/span>
 &lt;span class="collapsable-code__title">OpenBLAS Installation&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1779,8 +1818,8 @@ make PREFIX=/home/dhruv/OpenBLAS install
 &lt;li>&lt;code>incx&lt;/code> and &lt;code>incy&lt;/code> will be 1 as I know I have continuous arrays &lt;code>x&lt;/code> and &lt;code>y&lt;/code>.&lt;/li>
 &lt;/ul>
 &lt;div class="collapsable-code">
-&lt;input id="546287193" type="checkbox" />
-&lt;label for="546287193">
+&lt;input id="389145276" type="checkbox" />
+&lt;label for="389145276">
 &lt;span class="collapsable-code__language">c&lt;/span>
 &lt;span class="collapsable-code__title">gemv_blis.c&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1889,7 +1928,7 @@ y, 1);
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Et, voila! Now we can just &lt;code>import gemv&lt;/code> and call the &lt;code>gemv.blis_dgemv&lt;/code> with three appropriately shaped ndarrays.&lt;/p>
 &lt;h2 id="benchmarking">Benchmarking&lt;/h2>
 &lt;p>I ran both NumPy and BLIS based implementation on batches of [10, 50, 100, 500, 1000] for vector size of 128. Following are the results.&lt;/p>
-&lt;p>&lt;img src="./benchmark.png" alt="benchmark_result.png">&lt;/p>
+&lt;p>&lt;img alt="benchmark_result.png" src="./benchmark.png">&lt;/p>
 &lt;p>Following table shows percentage improvement over &lt;code>np.dot&lt;/code>. This was computed as $\frac{\text{numpy\_time} - \text{my\_time}}{\text{numpy\_time}}$.&lt;/p>
 &lt;table>
 &lt;thead>
@@ -1978,7 +2017,7 @@ $$&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>costs &lt;span style="color:#f92672">=&lt;/span> [cost(X, x)&lt;span style="color:#f92672">.&lt;/span>sum() &lt;span style="color:#66d9ef">for&lt;/span> x &lt;span style="color:#f92672">in&lt;/span> s]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>argmin &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>argmin(costs)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Following is the output plotted.&lt;/p>
-&lt;p>&lt;img src="images/day7_plot.png" alt="plot">&lt;/p>
+&lt;p>&lt;img alt="plot" src="https://dhruvpatel.dev/posts/aoc/21/day7/images/day7_plot.png">&lt;/p>
 &lt;p>&lt;code>s[argmin]&lt;/code> gave me &lt;code>482.555&lt;/code>. Since required answer is integer and function is convex, I computed the cost of 482 and 483, and &lt;code>cost(X, 482) &amp;lt; cost(X, 483)&lt;/code>. And, that indeed, was the correct answer.&lt;/p>
 &lt;h2 id="ok-so-what">Ok, so what?&lt;/h2>
 &lt;p>Nothing exceptional has happened so far. I could have just used binary search, or could have called heavy guns like PyTorch or JAX to do the optimization.&lt;/p>
@@ -2020,8 +2059,8 @@ $$&lt;/p>
 &lt;/ol></content></item><item><title>Why Blelloch Scan Works</title><link>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</link><pubDate>Sat, 02 Oct 2021 09:31:44 +0530</pubDate><guid>https://dhruvpatel.dev/posts/why_blelloch_scan_works/</guid><description>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.
 python sequential.py def exclusive_scan(a, op): b = [0] # Identity of the op, (for sum and max, it is 0). for x in a[:-1]: b.append(op(x, b[-1])) return b exclusive_scan([1, 2, 3, 4], lambda x, y: x&amp;#43;y) == [0, 1, 3, 6] exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3] This vlog is complementary to the excellent video description from now archived Udacity CS344 course.</description><content>&lt;p>Blelloch scan is a (exclusive) scan algorithm for parallel computers. A common example of scan is prefix sum.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="896531472" type="checkbox" />
-&lt;label for="896531472">
+&lt;input id="169742385" type="checkbox" />
+&lt;label for="169742385">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">sequential.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -2043,8 +2082,8 @@ exclusive_scan([1, 2, 3, 4], max) == [0, 1, 2, 3]
 I will demonstrate what happened with the trimmed down code. I have two files, main.py and notmain.py. main.py has a global variable called var. notmain has some code that would process user input and add entry into main.var. Pretty simple, right?</description><content>&lt;p>I have been programming in Python from last seven years. Apart from the new features Python adds in every new release, I didn&amp;rsquo;t think Python would surprise me, until it did.&lt;/p>
 &lt;p>I will demonstrate what happened with the trimmed down code. I have two files, &lt;code>main.py&lt;/code> and &lt;code>notmain.py&lt;/code>. &lt;code>main.py&lt;/code> has a global variable called &lt;code>var&lt;/code>. &lt;code>notmain&lt;/code> has some code that would process user input and add entry into &lt;code>main.var&lt;/code>. Pretty simple, right?&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="964572813" type="checkbox" />
-&lt;label for="964572813">
+&lt;input id="182694753" type="checkbox" />
+&lt;label for="182694753">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -2061,8 +2100,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="923615478" type="checkbox" />
-&lt;label for="923615478">
+&lt;input id="735692814" type="checkbox" />
+&lt;label for="735692814">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -2098,8 +2137,8 @@ After: {}
 &lt;h2 id="what-happened-with-my-code">What happened with my code?&lt;/h2>
 &lt;p>Let&amp;rsquo;s augment the files to print location of &lt;code>var&lt;/code> object. That shall give some ideas.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="514327986" type="checkbox" />
-&lt;label for="514327986">
+&lt;input id="547821639" type="checkbox" />
+&lt;label for="547821639">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -2117,8 +2156,8 @@ work()
 &lt;/code>&lt;/pre>
 &lt;/div>
 &lt;div class="collapsable-code">
-&lt;input id="157892346" type="checkbox" />
-&lt;label for="157892346">
+&lt;input id="968734125" type="checkbox" />
+&lt;label for="968734125">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">notmain.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="Hide" data-label-collapse="Hide">&lt;/span>
@@ -2156,8 +2195,8 @@ After: {} at 0x7f64e490c6c0
 &lt;/ul>
 &lt;p>The issue is self-evident now. We need to distinguish between &lt;code>main&lt;/code> and &lt;code>__main__&lt;/code>. A simple solution is to create another file that imports &lt;code>main&lt;/code> and then calls &lt;code>main.work&lt;/code>. This way when &lt;code>notmain&lt;/code> calls import, &lt;code>sys.modules&lt;/code> will already have an entry for &lt;code>main&lt;/code> and &lt;code>main&lt;/code> will not be executed again, and both &lt;code>main&lt;/code> and &lt;code>notmain&lt;/code> have same view of &lt;code>var&lt;/code>. So let&amp;rsquo;s try this.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="153894672" type="checkbox" />
-&lt;label for="153894672">
+&lt;input id="534872196" type="checkbox" />
+&lt;label for="534872196">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">really_main.py&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -2295,7 +2334,7 @@ A simple Python code like below can solve the problem, if we have required memor
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(z, estimates)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>axhline(true_n_uniq, c&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;r&amp;#39;&lt;/span>)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/cumulative_effects.png" alt="plot">&lt;/p></content></item><item><title>About Me</title><link>https://dhruvpatel.dev/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/about/</guid><description>Hi, I am Dhruv. As a Senior Data Scientist at Myntra, I work on personalised size recommendation models. I graduated from the department of Computer Science and Automation at Indian Institute of Science in 2019. There I worked mostly on image segmentation problem and little bit on using machine learning on graph like structures.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="plot" src="https://dhruvpatel.dev/posts/flajolet-martin/images/cumulative_effects.png">&lt;/p></content></item><item><title>About Me</title><link>https://dhruvpatel.dev/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/about/</guid><description>Hi, I am Dhruv. As a Senior Data Scientist at Myntra, I work on personalised size recommendation models. I graduated from the department of Computer Science and Automation at Indian Institute of Science in 2019. There I worked mostly on image segmentation problem and little bit on using machine learning on graph like structures.
 You can reach out to me at hello at domain.</description><content>&lt;p>Hi, I am Dhruv. As a Senior Data Scientist at &lt;a href="https://www.myntra.com">Myntra&lt;/a>, I work on personalised size recommendation models. I graduated from the department of Computer Science and Automation at Indian Institute of Science in 2019. There I worked mostly on image segmentation problem and little bit on using machine learning on graph like structures.&lt;/p>
 &lt;p>You can reach out to me at &lt;code>hello at domain&lt;/code>.&lt;/p></content></item><item><title>Talks I have given</title><link>https://dhruvpatel.dev/talks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/talks/</guid><description>Monte Carlo Markov Chains and PyMC3 The talk given at Myntra starts with an introduction to the Bayesian Linear Regression. I explain analytic solution and also introduce PyMC3 based solution. Then I proceed to explain Markov Chains that were used by PyMC internally. In the process Metropolis-Hastings and Gibbs chain are explained. The notebook is available here. For proofs there is a supplementary pdf.
 On Double Precision Floating Points In this talk, I introduced subtleties of using floating points to the audience.</description><content>&lt;h2 id="monte-carlo-markov-chains-and-pymc3">Monte Carlo Markov Chains and PyMC3&lt;/h2>

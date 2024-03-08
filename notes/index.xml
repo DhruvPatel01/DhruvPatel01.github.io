@@ -792,7 +792,7 @@ $$&lt;/p>
 &lt;p>A simplest Hamiltonian is $H = cP$, where c is a fixed number. If we apply above equation here, we get,
 $i\hbar \frac{\partial \psi(x, t)}{\partial t} = -c i \hbar \frac{\partial \psi(x, t)}{\partial x}$. Which leads to $\frac{\partial \psi(x, t)}{\partial t} = -c \frac{\partial \psi(x, t)}{\partial x}$. Any function $\psi(x - ct)$ solves this equation.&lt;/p>
 &lt;p>At T = 0, we have some function $\psi(x)$. Note that due to normalization contraints, this function has to go to zero towards the ends. The wave function might look something like this.&lt;/p>
-&lt;p>&lt;img src="images/attachment:7891febe-a9f7-46e4-b840-9a4ce96ad8c7.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/images/attachment:7891febe-a9f7-46e4-b840-9a4ce96ad8c7.png">&lt;/p>
 &lt;p>At later time, T = t, $\psi(x-ct)$ has the same shape as $\psi(x)$ but shifted to the right by ct. It is equivalent to say that the wave has translated to the right in space. This translation happens at uniform velocity. If we let c to be the speed of the light, this Hamiltonian almost describes the 1d neutrinos, except that our H only describes particle moving to the right.&lt;/p>
 &lt;p>Since the wave function moves rigidly to the right, the expected value also moves to the right at the same velocity. In classical mechanics if let $H = cP$, the Hamiltonian equations give us following equations.&lt;/p>
 &lt;p>$$
@@ -831,7 +831,7 @@ $$&lt;/p>
 &lt;p>Anyway, both the formulas suggest that P(p, t) is equivalent to P(p, 0). This is because momentum is conserved when there is no external force.&lt;/p>
 &lt;h4 id="expected-change-in-position">Expected Change in Position&lt;/h4>
 &lt;p>Since the wave function changes with time, the expected value of x, i.e., $\braket{\Psi|X|\Psi}$ also changes with time. There are two ways to compute this quantity. One is bruteforce, and one is to use commutators.&lt;/p>
-&lt;p>Using commutators is easy. We use the relationship proved &lt;a href="#change-in-the-expectation">here&lt;/a>. $\frac{d \braket{X}}{dt} = \frac{-i}{\hbar 2 m} \braket{[P^2, X]} = \frac{-i}{\hbar 2 m} \braket{P[P, X] + [P, X]P} = \frac{-i}{\hbar 2 m} \braket{-2 i \hbar P} = \frac{\braket{P}}{m}$.&lt;/p>
+&lt;p>Using commutators is easy. We use the relationship proved &lt;a href="https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/#change-in-the-expectation">here&lt;/a>. $\frac{d \braket{X}}{dt} = \frac{-i}{\hbar 2 m} \braket{[P^2, X]} = \frac{-i}{\hbar 2 m} \braket{P[P, X] + [P, X]P} = \frac{-i}{\hbar 2 m} \braket{-2 i \hbar P} = \frac{\braket{P}}{m}$.&lt;/p>
 &lt;p>This is similar to classical v = p/m.&lt;/p>
 &lt;p>I will probably not do the bruteforce. But the in the 10th Lecture Prof. Susskind does that.&lt;/p>
 &lt;h3 id="non-relativistic-particle-with-some-forces-on-it">Non relativistic particle, with some forces on it&lt;/h3>
@@ -950,7 +950,7 @@ $$&lt;/p>
 \end{align*}
 $$&lt;/p>
 &lt;p>It is easy to notice that for each step higher in the eigenstate, we have higher degree polynomial multiplied by the ground state. As the degree of the polynomial increases, the zeros of the statefunction, and nodes of the amplitudes increase. Thus, higher energy wave functions have higher frequency, implying higher momentum. Also, since the exponential goes to zero faster than the polynomial, the wave function are &amp;ldquo;good&amp;rdquo;, i.e., they go to zero towards the infinities.&lt;/p>
-&lt;p>&lt;img src="images/attachment:3fce27c0-2578-4ab1-8d39-7c3096802b26.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/qm-notes/images/attachment:3fce27c0-2578-4ab1-8d39-7c3096802b26.png">&lt;/p>
 &lt;p>Although, they approch zero towards infinities, they are not quite zero. That means there is positive probability of finding particles outside of the &amp;ldquo;potential bowl&amp;rdquo;. This phenomenon is known as quantum tunneling.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>CM-Notes</title><link>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</link><pubDate>Wed, 05 Oct 2022 02:01:42 +0000</pubDate><guid>https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/</guid><description>Notation $ F_i(\{q\}) $ is the force on ith particle. $ \{q\} $ is the set of cordinates of all particles.
 If there are N particles in the system,
@@ -1176,7 +1176,7 @@ $$&lt;/p>
 &lt;p>Thus Hamiltonian formulation gives us two first order equations.&lt;/p>
 &lt;p>Solving Euler-Lagrangian equation, on the other hand gives us single second order equation. $\ddot{q} = \omega \dot{p}$. These two are equivalent, and can be seen by substituting the first equation in the time derivative of the second equation of the Hamiltonian.&lt;/p>
 &lt;p>Notice that because of constant energy, in the phase space the particle moves along a circle of fixed radius.&lt;/p>
-&lt;p>&lt;img src="images/attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/images/attachment:767ea6b5-3f7f-4b7f-9d23-a82fe7abc155.png">&lt;/p>
 &lt;h2 id="phase-space-fluid">Phase Space Fluid&lt;/h2>
 &lt;p>One can imagine a trajectory starting with arbitrary point &lt;code>(p, q)&lt;/code> in the phase following the hamiltonian equations.&lt;/p>
 &lt;p>$$
@@ -1192,7 +1192,7 @@ $$&lt;/p>
 The surfaces of the energy are defined by $H(q, p) = E$. For each value of E, we have a surface.&lt;/li>
 &lt;/ol>
 &lt;p>In ordinary 3-d space, a flow can be described as a velocity field $\vec{v}(x, y, z)$. For each point, it defines a velocity at that point. This can also be a function of time.&lt;/p>
-&lt;p>&lt;img src="images/attachment:beee651f-3d52-42fb-95fb-028ec81d6cf7.png" alt="image.png">&lt;/p>
+&lt;p>&lt;img alt="image.png" src="https://dhruvpatel.dev/notes/physics/theoretical_minimum/cm-notes/images/attachment:beee651f-3d52-42fb-95fb-028ec81d6cf7.png">&lt;/p>
 &lt;dl>
 &lt;dt>Incompressible fluid&lt;/dt>
 &lt;dd>a given amount of the fluid always occupies the same volume. It also means that the density of the fluid—the number of molecules per unit volume—is uniform and stays that way forever.&lt;/dd>
@@ -1326,7 +1326,7 @@ $$&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">+&lt;/span>x, label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$1 +x$&amp;#34;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>plot(x, np&lt;span style="color:#f92672">.&lt;/span>exp(x), label&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;$e^x$&amp;#34;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc91.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="output image for above cell" src="https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/images/63351a0ed542f328049edc91.png">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Thus, $p \approx 1 - e^{\frac{-k|S|}{n}} = 1 - e^{\frac{-k}{b}}$. Remember, b is the bits per element.&lt;/p>
 &lt;p>As $b \to \inf$, $p \to 0$.&lt;/p>
@@ -1388,7 +1388,7 @@ Using calculus, $k \approx (ln 2) b$.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>legend();
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlabel(&lt;span style="color:#e6db74">&amp;#34;bits per element&amp;#34;&lt;/span>)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Text(0.5, 0, &amp;#39;bits per element&amp;#39;)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/63351a0ed542f328049edc92.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="output image for above cell" src="https://dhruvpatel.dev/notes/cs/algorithms/bloom_filters/images/63351a0ed542f328049edc92.png">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 640x480 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>fpve_rate
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>[0.1551, 0.0211, 0.0024, 0.0003]
@@ -1419,7 +1419,7 @@ Gorbachev was younger, talked like a western politician, allowed criticism of th
 &lt;li>yelstin to putin&lt;/li>
 &lt;li>why is Russia so corrupt and lessons from it.&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="images/final_days_of_ussr.png" alt="final_days">&lt;/p>
+&lt;p>&lt;img alt="final_days" src="https://dhruvpatel.dev/notes/politics/power/images/final_days_of_ussr.png">&lt;/p>
 &lt;h2 id="why-did-ussr-collapse">Why did USSR collapse?&lt;/h2>
 &lt;ul>
 &lt;li>Stores were empty.&lt;/li>
@@ -1654,7 +1654,7 @@ These notes are not mathematically rigorous. These are meant for quick reference
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> plt&lt;span style="color:#f92672">.&lt;/span>plot(x, y2(x), &lt;span style="color:#e6db74">&amp;#39;k&amp;#39;&lt;/span>, lw&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;.5&amp;#39;&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>ylim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>plt&lt;span style="color:#f92672">.&lt;/span>xlim(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>);
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="images/5c5d61291f1a421f53dc37afdf5908e5.png" alt="output image for above cell">&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img alt="output image for above cell" src="https://dhruvpatel.dev/notes/maths/convex_optimization/convex_optimization/images/5c5d61291f1a421f53dc37afdf5908e5.png">&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&amp;lt;Figure size 432x288 with 1 Axes&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="affine-functions">Affine Functions&lt;/h4>
 &lt;p>Function f is affine if f = Ax + b for some A and b.&lt;/p>
