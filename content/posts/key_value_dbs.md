@@ -15,7 +15,8 @@ draft = true
 
 [CMPH (C Minimal Perfect Hashing)](http://cmph.sourceforge.net/)
 [BBHash](https://github.com/rizkg/BBHash)
-
+[RecSplit](https://epubs.siam.org/doi/pdf/10.1137/1.9781611976007.14)
+[SicHash](https://arxiv.org/pdf/2210.01560)
 - [Bam](https://github.com/StefanKarpinski/bam)
 - [Spotify-SParkey](https://github.com/spotify/sparkey)
 - [DiscoDB](https://discodb.readthedocs.io/en/latest/)
