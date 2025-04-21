@@ -7,6 +7,7 @@ date: 2023-04-03
 <small>Archived copy of what I was doing before is maintained <a href="./archive">here.</a></small>
 
 <small>Updated: 6th April, 2024</small>
+
 I have revised my TAoCP target to 1.6 pages per day, as I found it hard to find time for it. So far the progress is good enough.  I also started reading [Understanding Deep Learning by Simon Prince](https://udlbook.github.io/udlbook/). I am currently on Chapter 4. Although, I have close to 6 years of experience working with Deep Networks, I find this book really intreseting, and found many things that I was not aware of earlier.
 
 In the board game side, we learned Ticket to Ride, some expansions of Carcassone, Lost Cities, and Jaipur. Castles of Burgandy is still in my list to learn. I added Terraforming Mars in to the to learn list as well. 
