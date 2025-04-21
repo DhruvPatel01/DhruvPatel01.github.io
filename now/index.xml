@@ -1,40 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>What am I doing Now? on Dhruv Patel</title><link>https://dhruvpatel.dev/now/</link><description>Recent content in What am I doing Now? on Dhruv Patel</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dhruv Patel</copyright><lastBuildDate>Mon, 03 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/now/index.xml" rel="self" type="application/rss+xml"/><item><title>What I was doing earlier?</title><link>https://dhruvpatel.dev/now/archive/</link><pubDate>Fri, 08 Mar 2024 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/now/archive/</guid><description>(This is an archival of my now page.)
-Updated: 23rd May 2023
-Last week I started learning to swim. Just today I finished &amp;ldquo;Godel&amp;rsquo;s Proof&amp;rdquo; by Nagel and Newman. It was a wonderful book. However, such a short book did not go deeper in the topic. I am glad though, as my understanding of logic is not that good. I also started reading &amp;ldquo;The Seasoned Schemer&amp;rdquo;, and &amp;ldquo;Designing Data Intensive Applications&amp;rdquo;.</description><content>&lt;p>&lt;small>(This is an archival of my &lt;a href="https://nownownow.com/about">now page&lt;/a>.)&lt;/small>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>What am I doing Now? on Dhruv Patel</title><link>https://dhruvpatel.dev/now/</link><description>Recent content in What am I doing Now? on Dhruv Patel</description><generator>Hugo</generator><language>en</language><copyright>Dhruv Patel</copyright><lastBuildDate>Fri, 08 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://dhruvpatel.dev/now/index.xml" rel="self" type="application/rss+xml"/><item><title>What I was doing earlier?</title><link>https://dhruvpatel.dev/now/archive/</link><pubDate>Fri, 08 Mar 2024 00:00:00 +0000</pubDate><guid>https://dhruvpatel.dev/now/archive/</guid><description>&lt;p>&lt;small>(This is an archival of my &lt;a href="https://nownownow.com/about">now page&lt;/a>.)&lt;/small>&lt;/p>
 &lt;p>&lt;small>Updated: 23rd May 2023&lt;/small>&lt;/p>
 &lt;p>Last week I started learning to swim. Just today I finished &amp;ldquo;Godel&amp;rsquo;s Proof&amp;rdquo; by Nagel and Newman. It was a wonderful book. However, such a short book did not go deeper in the topic. I am glad though, as my understanding of logic is not that good.
-I also started reading &amp;ldquo;The Seasoned Schemer&amp;rdquo;, and &amp;ldquo;Designing Data Intensive Applications&amp;rdquo;. I am planning to take DDIA slowly and target to finish it in 6 months.&lt;/p>
-&lt;ul>
-&lt;li>In progress:
-&lt;ul>
-&lt;li>Crafting Interpreters (at chapter 29 now). Looks like will be done by next update of this page. However, I plan to reread it for the virtual machine part, while implementing it in Rust at the same time.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>However I did not make any progress on following things. I don&amp;rsquo;t think I will resume them in upcoming couple of months.&lt;/p>
-&lt;ul>
-&lt;li>Special Relativity&lt;/li>
-&lt;li>Spark&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;p>&lt;small>Updated: 3rd April 2023&lt;/small>
-Finally, I have finished the Programming for High Performance course. I&amp;rsquo;d started is about a year back. But had stopped when WFO started, and I had to shift back to Bangalore. But, finally finished it. Great course.&lt;/p>
-&lt;p>Apart from that, I am continuing reading following things.&lt;/p>
-&lt;ul>
-&lt;li>Crafting Interpreters (at chapter 24 right now) (looking at Github, I had started reading the book around October 2022).&lt;/li>
-&lt;li>Special Relativity (Susskind)&lt;/li>
-&lt;/ul>
-&lt;p>Started new&lt;/p>
-&lt;ul>
-&lt;li>Godel&amp;rsquo;s Proof, by Ernest and Nagel.&lt;/li>
-&lt;li>Spark&lt;/li>
-&lt;/ul>
-&lt;p>&lt;small>Updated: 6th March 2023&lt;/small>&lt;/p>
-&lt;p>This week, I finished up reading &lt;code>The Little Schemer&lt;/code>. The book started out easy. But, the second-to-last chapter made me aware of the applicative order Y Combinator. It also showed halting problem with a different lens. The book pointed to other interesting books at the end.&lt;/p>
-&lt;ul>
-&lt;li>Godel&amp;rsquo;s proof&lt;/li>
-&lt;li>to mock the mockingbird&lt;/li>
-&lt;/ul>
-&lt;p>I think I&amp;rsquo;ll read Godel&amp;rsquo;s proof before I start the seasoned schemer.&lt;/p>
-&lt;p>Apart from that, I am also following a great course on &lt;a href="https://www.cs.utexas.edu/users/flame/laff/pfhp/">Programming for High Performance computing&lt;/a>. I am currently at the third week. I&amp;rsquo;ll try to complete the course hopefully this month.&lt;/p>
-&lt;p>I am also focusing more on Special Relativity (&lt;a href="https://theoreticalminimum.com/courses/special-relativity-and-electrodynamics/2012/spring">Susskind&amp;rsquo;s course and book&lt;/a>) this month relative to other months, as I am at home (Patan), where I get more time. Though, I am home for few days only, so pace will slow down after a week or so.&lt;/p></content></item></channel></rss>
+I also started reading &amp;ldquo;The Seasoned Schemer&amp;rdquo;, and &amp;ldquo;Designing Data Intensive Applications&amp;rdquo;. I am planning to take DDIA slowly and target to finish it in 6 months.&lt;/p></description></item></channel></rss>
